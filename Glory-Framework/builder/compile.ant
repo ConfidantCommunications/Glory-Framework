@@ -1,0 +1,24 @@
+<project name="NME-Build" default="buildAll" basedir="../">
+
+	<property name="nmePath" location="/usr/lib/haxe/nme"/>
+	<property name="nmmlFile" location="config.nmml"/>
+
+	<target name="buildAll" depends="buildFlash, buildHTML5"> 
+		<echo message="Building completed!"/>
+	</target>
+
+	<target name="buildFlash"> 
+		<echo message="NME Test Flash"/>
+		<exec executable="${nmePath}">
+			<arg line='test "${nmmlFile}" flash'/>
+		</exec>
+	</target>
+
+	<target name="buildHTML5"> 
+		<echo message="NME Test HTML5"/>
+		<exec executable="${nmePath}">
+			<arg line='test "${nmmlFile}" html5'/>
+		</exec>
+	</target>
+
+</project>

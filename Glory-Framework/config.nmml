@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<!-- http://www.haxenme.org/developers/documentation/nmml-project-files/ -->
+	
+	<!--
+		The <app> Node
+
+		The app node controls general settings about your application, like the code entry point or the meta data to use while packaging.
+
+		title - The name of your application
+		file - The name that will be used when creating your executable (Default: "MyApplication")
+		package - The package identifier used when publishing your application (Default: "com.example.myapp")
+		version - The version number for your application (Default: "1.0.0")
+		company - The publisher name for your application (Default: "Example Inc.")
+	-->
+	<app title="${fileName}" file="${fileName}" main="${appId}.${mainClassName}" package="${appId}" version="${appDescVersion}" company="${appDescCompany}" />
+  
+	<set name="fullscreen" if="target_webos" />
+	<set name="fullscreen" if="target_ios" />
+	<set name="fullscreen" if="target_android" />
+  
+	<!--
+		The <window> Node
+
+		The window node controls how your application will be displayed on each platform. Though most properties are supported by all targets, some will be ignored. For example, "hardware" is ignored when publishing to Flash.
+
+			width - The width of your application in pixels. Use zero to display fullscreen (Default: "640")
+			height - The height of your application in pixels. Use zero to display fullscreen (Default: "480")
+			orientation - Set the application's orientation. Values include "portrait" and "landscape" (Default: "")
+			fps - Control the framerate of your application. A value of 30 is common (Default: 60)
+			background - Set the background color of your application (Default: "0xFFFFFF")
+			hardware - Toggle between hardware and software rendering (Default: "true")
+			resizable - Control whether the application window is resizable (Default: "true")
+	-->
+	<window width="${appDescWidth}" height="${appDescHeight}" fps="${appDescFps}" orientation="${appDescOrientation}" resizable="${appDescResizable}" background="${appDescBackground}" hardware="${appDescHardware}" />
+	<window width="0" height="0" if="fullscreen" />
+ 	
+	<!--
+		<set>, <unset>, "if" and "unless"
+
+		You can use the set and unset node tags to shape the values that are defined for the install tool. There are some values that are preset in the install tool which you can customize, or you can create your own.
+
+		Every node supports an "if" and an "unless" attribute, which can be used for conditional compiling. For example, when you compile for Windows, "target_windows" is automatically defined as true. If you add "if='target_windows'" to an , or other kind of node, it will only be executed if "target_windows" is true. Likewise, the "unless" attribute can be used to ignore tags when a property is true.
+
+		Some of the settings you can configure for the install tool are "BUILD_DIR", which sets the output directory when building your project, or "SWF_VERSION", which manages the SWF version when compiling for Flash. The default Flash version is "10"
+	-->
+	<set name="BUILD_DIR" value="${outputFolder}" />
+	
+	<!--
+		The <classpath> Node
+
+		You can use the classpath node to include a Haxe source code directory when compiling your project. Set the "name" attribute to the relative or absolute path to your target directory.
+	-->
+	<classpath name="${sourceFolder}" />
+	
+	<!--
+		The <haxelib> Node
+
+		In addition to classpaths, you can use the haxelib node to include code from an installed library off of haxelib. You will want to include a node that pulls code from NME, but you can also add more, depending on the libraries you decide to use. Set the "name" attribute to the name of the library you have installed.
+	-->
+	<haxelib name="nme" />
+	<!--  <haxelib name="actuate" /> -->
+	
+	<!--
+		The <icon> Node
+
+		NME can generate icons for you, based on the platform you target. Depending on the target you choose, NME will look for icons of specific sizes.
+
+		You can set the "path" attribute to a relative or absolute path for the file you are using as an icon. If this file is an SVG vector graphic, it can be used for any size icon NME needs during the compile process.
+
+		If you are using bitmap icons, specify "width" and "height" attributes that match the file you are adding. Add multiple icon nodes with different width and height values to match the required sizes for each platform you target.
+	-->
+	<icon name="assets/nme.svg" />
+	
+	<!--
+		The <assets> Node
+
+		The assets node is the most robust node type in an NMML project file. You can use asset nodes to customize the files you would like to include in your project, and how they should be treated.
+
+		File types are determined automatically based on the extensions of your files. Valid types include "sound", "music", "font" and "image". Either you can allow the install tool to assign types automatically, or you can use the "type" attribute to set the type for your files, or you can actually add child nodes beneath your  node, using the type you wish to use as the name of the node.
+
+			path - A relative or absolute directory or file path to include
+			rename - Use this attribute if the output path should differ from the input path
+			type - Manually set the file or files to a specific file type
+			include - Define a filter that specifies file or directory name patterns that should be included
+			exclude - Define a filter that specifies file or directory name patterns that should be excluded
+	-->
+	<assets path="assets" include="*" exclude="nme.svg" />
+	
+	<!--
+		The <ndll> Node
+
+		You can include precompiled native libraries with your project. By default, you will want to include NME and some other standard libraries. If you create or use a native extension to NME, you can use these tags to make sure that your native libraries are included.
+
+		The "name" attribute controls the name of the library. The install tool will look in your project directory or the HXCPP project to find files. If you specify a "haxelib" attribute, the install tool will also look under "/ndll/(target name)/" for the requested library.	
+	-->
+	<ndll name="std" />
+	<ndll name="regexp" />
+	<ndll name="zlib" />
+	<ndll name="nme" haxelib="nme" />
+
+</project>

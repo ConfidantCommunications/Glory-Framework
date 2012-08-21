@@ -1,0 +1,8 @@
+-swf-version 11.1
+-swf bin/swf/Main.swf
+-main Main
+-cp src
+-lib nme
+-lib actuate
+-lib nape
+-lib xirsys_cube

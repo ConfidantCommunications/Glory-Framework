@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+hxmlPath=compile.hxml
+sdkPath=/usr/lib/haxe
+sdkPathOverride=false
+useHaxeCompilerServer=true
