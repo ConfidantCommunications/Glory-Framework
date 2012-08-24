@@ -1,8 +1,5 @@
--swf-version 11.1
--swf bin/swf/Main.swf
+-swf9 bin/flash/GloryDemo.swf
 -main Main
 -cp src
 -lib nme
--lib actuate
--lib nape
--lib xirsys_cube
+-lib svg
