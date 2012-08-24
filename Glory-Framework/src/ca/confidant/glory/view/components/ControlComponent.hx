@@ -1,4 +1,5 @@
 package ca.confidant.glory.view.components;
+import format.SVG;
 
 import nme.display.Sprite;
 import nme.display.Bitmap;
@@ -12,10 +13,18 @@ class ControlComponent extends Sprite {
 	public var type:String;
 
 
-	public function new (bMap:Bitmap,type:String) {
+	public function new (type:String) {
 		super ();
-		this.defaultBitmap=bMap;
+		//this.defaultBitmap=bMap;
 		this.type=type;
+		//addChild(bMap);
+	}
+	public function addBitmap(bMap:Bitmap){
+		this.defaultBitmap=bMap;
 		addChild(bMap);
+	}
+	public function addSVG(t:String):Void {
+		var svg = new SVG (t); 
+		svg.render(this.graphics);
 	}
 }

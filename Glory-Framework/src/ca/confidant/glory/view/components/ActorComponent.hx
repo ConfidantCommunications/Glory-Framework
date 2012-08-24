@@ -8,8 +8,8 @@ import nme.display.BitmapDataChannel;
 import nme.utils.ByteArray;
 
 /**
- * ActorComponents appear within a page. They serve as the fun part of the interactive book. Make them do whatever you want.
- * @param bMap The bare minimum to create this. This may be beefed up in future.
+ * ActorComponents appear within a page. Make them do whatever you want. 
+ * Make one then add a bitmap or svg.
  */
 class ActorComponent extends Sprite {
 	
@@ -28,17 +28,11 @@ class ActorComponent extends Sprite {
 		addChild(bMap);
 	}
 	public function addSVG(t:String):Void {
-		//var xml = Xml.parse (t);
-		//var svg = new SVG2Gfx (xml);
-		//this.addChild (svg.CreateShape ());
-		/*var s=new SVG(t);
-		var newGfx=s.render(this.graphics);
-		this.addChild(s);*/
-		
 		var svg = new SVG (t); 
 		svg.render(this.graphics);
 	}
-	/*public function setColourImage(bMap:Bitmap):Void{
+	/* disabled for now
+	public function setColourImage(bMap:Bitmap):Void{
 		this.altBitmap=bMap;
 		altBitmap.visible=false;
 		addChild(bMap);

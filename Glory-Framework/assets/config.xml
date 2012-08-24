@@ -7,7 +7,7 @@
 		<button id="bOptions" action="pageSkipTo:options" z="18" x="849" y="-11" width="111" height="71" src="nav/bOptions.png"></button>
 		<button id="bHome" action="pageSkipTo:title" z="19" x="0" y="0" width="111" height="60" src="nav/bHome.png"></button>
 		<button id="panLeft" action="panLeft" z="20" x="306" y="0" width="30" height="30" src="nav/panLeft.png"></button>
-		<button id="panRight" action="panRight" z="21" x="407" y="110" width="30" height="30" src="nav/panRight.png"></button>
+		<button id="panRight" action="panRight" z="21" x="407" y="0" width="30" height="30" src="nav/panRight.png"></button>
 		
 	</controls>
 	<page type="normal" id="title" original="" width="960" height="640">

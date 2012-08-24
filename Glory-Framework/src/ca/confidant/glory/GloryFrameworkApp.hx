@@ -2,6 +2,11 @@ package ca.confidant.glory;
 import ca.confidant.glory.ApplicationFacade;
 import flash.display.Sprite;
 import flash.Lib;
+
+/*
+ * This is the main class your Glory application will be built upon. Extend it as desired.
+ */
+
 class GloryFrameworkApp extends Sprite {
 
 	function new()
