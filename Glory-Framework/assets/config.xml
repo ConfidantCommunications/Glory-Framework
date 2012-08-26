@@ -10,14 +10,14 @@
 		<button id="panRight" action="panRight" z="21" x="407" y="0" width="30" height="30" src="nav/panRight.png"></button>
 		
 	</controls>
-	<page type="normal" id="title" original="" width="960" height="640">
+	<page id="title" type="normal" original="" width="960" height="640">
 		<actor id="bg1" z="0" type="prop" x="0" y="0" width="960" height="640" src="title/title.jpg" ></actor>
 	</page>
-	<page type="overlay" id="options" original="" width="960" height="640">
+	<page id="options" type="overlay" original="" width="960" height="640">
 		<actor id="bg2" z="0" type="prop" x="0" y="0" width="960" height="640" src="options/options.jpg" ></actor>
 		<actor id="close" z="1" type="control" action="transitionOut:options" x="910" y="0" width="50" height="50" src="nav/close.png" ></actor>
 	</page>
-	<page type="normal" id="p1" original="~/Documents/Apps/Limericks/Art/1.%20Fireshoes/" width="960" height="640">
+	<page id="p1" type="normal" original="~/Documents/Apps/Limericks/Art/1.%20Fireshoes/" width="960" height="640">
 		<actor id="bg3" z="0" type="prop" x="0" y="0" width="960" height="640" src="p1/pageObject_0000_bg.jpg" src2="p1/pageObject_0000_bg.jpg"></actor>
 		<actor id="skin" z="1" type="colour" x="196" y="122" width="368" height="396" src="p1/pageObject_0001_skin.png" src2="p1/pageObject_0001_skin.png"></actor>
 		<actor id="hose" z="2" type="colour" x="236" y="135" width="250" height="281" src="p1/pageObject_0002_hose.png" src2="p1/pageObject_0002_hose.png"></actor>
@@ -31,10 +31,10 @@
 		<actor id="bw" type="prop" z="10" x="108" y="44" width="648" height="553" src="p1/pageObject_0010_bw.png"></actor>
 		<actor id="text" type="prop" z="11" x="509" y="250" width="407" height="205" src="p1/pageObject_0011_text.png" src2="p1/pageObject_0011_text.png"></actor>
 	</page>
-	<page type="normal" id="p2a" original="" width="960" height="640">
+	<page id="p2a" type="normal" original="" width="960" height="640">
 		<actor id="bg4" z="0" type="prop" x="0" y="0" width="960" height="640" src="p2/p2a.jpg" ></actor>
 	</page>
-	<page type="normal" id="p2b" original="" width="960" height="640">
+	<page id="p2b" type="normal" original="" width="960" height="640">
 		<actor id="bg5" z="0" type="prop" x="0" y="0" width="960" height="640" src="p2/p2b.jpg" ></actor>
 		<actor id="nmelogo" z="0" type="prop" x="0" y="0" width="200" height="200" src="nme.svg" ></actor>
 	</page>

@@ -23,6 +23,7 @@ class ActorComponent extends Sprite {
 
 		mouseEnabled=false;
 	}
+	
 	public function addBitmap(bMap:Bitmap){
 		this.defaultBitmap=bMap;
 		addChild(bMap);
