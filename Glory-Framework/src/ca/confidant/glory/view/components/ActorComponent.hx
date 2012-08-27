@@ -6,21 +6,19 @@ import nme.display.Sprite;
 import nme.display.Bitmap;
 import nme.display.BitmapDataChannel;
 import nme.utils.ByteArray;
-
 /**
  * ActorComponents appear within a page. Make them do whatever you want. 
  * Make one then add a bitmap or svg.
  */
 class ActorComponent extends Sprite {
 	
-	var defaultBitmap:Bitmap;
+	private var defaultBitmap:Bitmap;
 	//var altBitmap:Bitmap;
 	//public var hasColour:Bool;
 	public var type:String;
 	public function new () {
 		super ();
 		//hasColour=false;
-
 		mouseEnabled=false;
 	}
 	

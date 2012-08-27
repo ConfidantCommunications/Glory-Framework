@@ -12,6 +12,7 @@
 	</controls>
 	<page id="title" type="normal" original="" width="960" height="640">
 		<actor id="bg1" z="0" type="prop" x="0" y="0" width="960" height="640" src="title/title.jpg" ></actor>
+		<actor id="star1" z="1" type="prop" x="200" y="120" width="100" height="100" src="title/star.svg" ></actor>
 	</page>
 	<page id="options" type="overlay" original="" width="960" height="640">
 		<actor id="bg2" z="0" type="prop" x="0" y="0" width="960" height="640" src="options/options.jpg" ></actor>
