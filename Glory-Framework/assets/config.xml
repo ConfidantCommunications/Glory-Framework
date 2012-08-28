@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages>
-
 	<controls>
 		<button id="bRight" action="pageForward" z="16" x="849" y="580" width="111" height="60" src="nav/bRight.png"></button>
 		<button id="bLeft" action="pageBackward" z="17" x="0" y="580" width="111" height="60" src="nav/bLeft.png"></button>
 		<button id="bOptions" action="pageSkipTo:options" z="18" x="849" y="-11" width="111" height="71" src="nav/bOptions.png"></button>
 		<button id="bHome" action="pageSkipTo:title" z="19" x="0" y="0" width="111" height="60" src="nav/bHome.png"></button>
-		<button id="panLeft" action="panLeft" z="20" x="306" y="0" width="30" height="30" src="nav/panLeft.png"></button>
-		<button id="panRight" action="panRight" z="21" x="407" y="0" width="30" height="30" src="nav/panRight.png"></button>
+		<!-- <button id="panLeft" action="panLeft" z="20" x="306" y="0" width="30" height="30" src="nav/panLeft.png"></button>
+		<button id="panRight" action="panRight" z="21" x="407" y="0" width="30" height="30" src="nav/panRight.png"></button> -->
 		
 	</controls>
 	<page id="title" type="normal" original="" width="960" height="640">
 		<actor id="bg1" z="0" type="prop" x="0" y="0" width="960" height="640" src="title/title.jpg" ></actor>
-		<actor id="star1" z="1" type="prop" x="200" y="120" width="100" height="100" src="title/star.svg" ></actor>
 	</page>
-	<page id="options" type="overlay" original="" width="960" height="640">
-		<actor id="bg2" z="0" type="prop" x="0" y="0" width="960" height="640" src="options/options.jpg" ></actor>
-		<actor id="close" z="1" type="control" action="transitionOut:options" x="910" y="0" width="50" height="50" src="nav/close.png" ></actor>
+	<page id="options" type="overlay" original="~/Documents/Freelance/R&D/Media%20Framework/Art/" width="960" height="640">
+		<actor id="background" type="prop" z="0" x="0" y="0" width="960" height="640" src="options/actor_0000_background.png"></actor>
+		<actor id="duck" type="control" action="pageSkipTo:svg,transitionOut:options" z="1" x="461" y="352" width="223" height="209" src="options/actor_0001_duck.png"></actor>
+		<actor id="home" type="control" action="pageSkipTo:title,transitionOut:options" z="2" x="132" y="136" width="252" height="264" src="options/actor_0002_home.png"></actor>
+		<actor id="cow" type="control" action="pageSkipTo:deal,transitionOut:options" z="3" x="351" y="150" width="219" height="220" src="options/actor_0003_cow.png"></actor>
+		<actor id="easyXML" type="control" action="pageSkipTo:easy,transitionOut:options" z="4" x="551" y="136" width="273" height="246" src="options/actor_0004_easyXML.png"></actor>
+		<actor id="limerick" type="control" action="pageSkipTo:limerickPage,transitionOut:options" z="5" x="235" y="366" width="198" height="185" src="options/actor_0005_limerick.png"></actor>
+		<actor id="close" z="6" type="control" action="transitionOut:options" x="900" y="10" width="50" height="50" src="closeX.svg" ></actor>
+	
 	</page>
-	<page id="p1" type="normal" original="~/Documents/Apps/Limericks/Art/1.%20Fireshoes/" width="960" height="640">
+		
+		
+	
+	<page id="deal" type="normal" original="" width="960" height="640">
+		<actor id="bgDeal" z="0" type="prop" x="0" y="0" width="960" height="640" src="heres-the-deal.jpg" ></actor>
+	</page>
+	<page id="easy" type="normal" original="" width="960" height="640">
+		<actor id="bgEasy" z="0" type="prop" x="0" y="0" width="960" height="640" src="easyXML.jpg" ></actor>
+	</page>
+	<page id="limerickPage" type="normal" original="~/Documents/Apps/Limericks/Art/1.%20Fireshoes/" width="960" height="640">
 		<actor id="bg3" z="0" type="prop" x="0" y="0" width="960" height="640" src="p1/pageObject_0000_bg.jpg" src2="p1/pageObject_0000_bg.jpg"></actor>
 		<actor id="skin" z="1" type="colour" x="196" y="122" width="368" height="396" src="p1/pageObject_0001_skin.png" src2="p1/pageObject_0001_skin.png"></actor>
 		<actor id="hose" z="2" type="colour" x="236" y="135" width="250" height="281" src="p1/pageObject_0002_hose.png" src2="p1/pageObject_0002_hose.png"></actor>
@@ -32,13 +45,8 @@
 		<actor id="bw" type="prop" z="10" x="108" y="44" width="648" height="553" src="p1/pageObject_0010_bw.png"></actor>
 		<actor id="text" type="prop" z="11" x="509" y="250" width="407" height="205" src="p1/pageObject_0011_text.png" src2="p1/pageObject_0011_text.png"></actor>
 	</page>
-	<page id="p2a" type="normal" original="" width="960" height="640">
-		<actor id="bg4" z="0" type="prop" x="0" y="0" width="960" height="640" src="p2/p2a.jpg" ></actor>
+	<page id="svg" type="normal" original="" width="960" height="640">
+		<actor id="duck" z="1" type="prop" x="0" y="0" width="962" height="640" src="duck.svg" ></actor>
+		<actor id="star1" z="1" type="prop" x="100" y="120" width="100" height="100" src="title/star.svg" ></actor>
 	</page>
-	<page id="p2b" type="normal" original="" width="960" height="640">
-		<actor id="bg5" z="0" type="prop" x="0" y="0" width="960" height="640" src="p2/p2b.jpg" ></actor>
-		<actor id="nmelogo" z="0" type="prop" x="0" y="0" width="200" height="200" src="nme.svg" ></actor>
-	</page>
-
-
 </pages>

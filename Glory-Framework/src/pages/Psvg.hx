@@ -4,7 +4,7 @@ import ca.confidant.glory.view.components.PageComponent;
 import ca.confidant.glory.view.components.ActorComponent;
 import haxe.Timer;
 
-class Ptitle extends PageComponent{
+class Psvg extends PageComponent{
 	private var myTimer:Timer;
 	private var star:ActorComponent;
 	public function new(){

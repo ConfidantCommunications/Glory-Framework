@@ -10,13 +10,13 @@ import nme.display.BitmapDataChannel;
  */
 class ControlComponent extends Sprite {
 	private var defaultBitmap:Bitmap;
-	public var type:String;
+	public var action:String;
 
 
-	public function new (type:String) {
+	public function new (action:String) {
 		super ();
 		//this.defaultBitmap=bMap;
-		this.type=type;
+		this.action=action;
 		//addChild(bMap);
 	}
 	public function addBitmap(bMap:Bitmap){
