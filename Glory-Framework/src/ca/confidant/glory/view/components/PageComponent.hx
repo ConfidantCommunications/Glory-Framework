@@ -3,6 +3,7 @@ import nme.display.Sprite;
 import ca.confidant.glory.view.components.ActorComponent;
 
 /**
+ * @author Allan Dowdeswell
  * PageComponents hold the actors. 
  * Make one then add a bitmap or svg.
  */

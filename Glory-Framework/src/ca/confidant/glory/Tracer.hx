@@ -1,13 +1,18 @@
 package ca.confidant.glory;
 
+/*
+ * @author Allan Dowdeswell
+ * Use this class if you need to redirect traces.
+ * The Main class calls setRedirection if you want to hide traces.
+ */
 class Tracer {
-
+	
     public static function setRedirection() {
-        haxe.Log.trace = myTrace;
+        haxe.Log.trace = customTrace;
     }
 
-    private static function myTrace( v : Dynamic, ?inf : haxe.PosInfos ) {
-        // .....
+    private static function customTrace( v : Dynamic, ?inf : haxe.PosInfos ) {
+        //
     }
 
 }

@@ -7,6 +7,7 @@ import nme.display.Bitmap;
 import nme.display.BitmapDataChannel;
 import nme.utils.ByteArray;
 /**
+ * @author Allan Dowdeswell
  * ActorComponents appear within a page. Make them do whatever you want. 
  * Make one then add a bitmap or svg.
  */

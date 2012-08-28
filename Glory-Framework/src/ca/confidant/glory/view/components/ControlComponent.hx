@@ -5,6 +5,7 @@ import nme.display.Sprite;
 import nme.display.Bitmap;
 import nme.display.BitmapDataChannel;
 /**
+ * @author Allan Dowdeswell
  * ControlComponents persist on screen and are used to control display.
  * @param bMap The bare minimum to create this. This may be beefed up in future.
  */

@@ -1,5 +1,6 @@
 package ca.confidant.glory.view.constants;
 /*
+ * @author Allan Dowdeswell
  * Constants which are broadcast by controls.
  */
 class ControlConstants {

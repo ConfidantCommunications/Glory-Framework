@@ -5,6 +5,7 @@ import nme.Lib;
 import pages.Psvg;
 import ca.confidant.glory.Tracer;
 /*
+ * @author Allan Dowdeswell
  * Your config.nmml and compile.hxml files should use this as the main class.
  */
 class Main extends GloryFrameworkApp{	

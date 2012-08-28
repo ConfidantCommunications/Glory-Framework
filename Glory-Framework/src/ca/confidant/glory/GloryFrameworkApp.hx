@@ -4,6 +4,7 @@ import nme.display.Sprite;
 import nme.Lib;
 
 /*
+ * @author Allan Dowdeswell
  * This is the main class your Glory application will be built upon. Extend it as desired.
  */
 
