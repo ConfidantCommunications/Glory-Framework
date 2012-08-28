@@ -6,8 +6,5 @@ It uses an XML configuration file to build the layout of each screen, including 
 
 Glory also includes two Photoshop scripts which make it easy to rapidly convert a PSD layout into something that Glory can use. 
 
-To do list:
-• Sound/background music
-• Transitions
 
 *** Dedicated to the glory of God! ***

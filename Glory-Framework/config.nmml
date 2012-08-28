@@ -12,7 +12,6 @@
 
 	<haxelib name="nme" />
 	<haxelib name="actuate" />
-	<haxelib name="svg" />
 
 	<icon name="assets/nme.svg" />
 	<assets path="assets" include="*" />

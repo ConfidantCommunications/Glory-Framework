@@ -2,4 +2,3 @@
 -main Main
 -cp src
 -lib nme
--lib svg

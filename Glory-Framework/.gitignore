@@ -1,3 +1,5 @@
 /bin
 /${outputFolder}
 /${sourceFolder}
+/.hxtypes
+/builder
