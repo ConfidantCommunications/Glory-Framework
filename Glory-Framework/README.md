@@ -8,4 +8,6 @@ Glory also includes two Photoshop scripts which make it easy to rapidly convert 
 
 This framework requires the SVG and Actuate libraries available on haxelib. Please note that using SVG with the HTML5 target will not work unless you are using a version of NME >later< than the 3.4.2. release.
 
+Brought to you by [Confidant Communications](http://confidant.ca)
+
 *** Dedicated to the glory of God! ***
