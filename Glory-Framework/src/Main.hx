@@ -14,7 +14,7 @@ class Main extends GloryFrameworkApp{
 	}
 	
 	public static function main() {
-		Tracer.setRedirection();
+		//Tracer.setRedirection();
 		
 		var app:GloryFrameworkApp=new GloryFrameworkApp();
 		Lib.current.addChild (app);

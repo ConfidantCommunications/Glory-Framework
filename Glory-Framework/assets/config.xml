@@ -12,7 +12,7 @@
 	<page id="title" type="normal" original="" width="960" height="640">
 		<actor id="bg1" z="0" type="prop" x="0" y="0" width="960" height="640" src="title/title.jpg" ></actor>
 	</page>
-	<page id="options" type="overlay" original="~/Documents/Freelance/R&D/Media%20Framework/Art/" width="960" height="640">
+	<page id="options" type="overlay" original="" width="960" height="640">
 		<actor id="background" type="prop" z="0" x="0" y="0" width="960" height="640" src="options/actor_0000_background.png"></actor>
 		<actor id="duck" type="control" action="pageSkipTo:svg,transitionOut:options" z="1" x="461" y="352" width="223" height="209" src="options/actor_0001_duck.png"></actor>
 		<actor id="home" type="control" action="pageSkipTo:title,transitionOut:options" z="2" x="132" y="136" width="252" height="264" src="options/actor_0002_home.png"></actor>
