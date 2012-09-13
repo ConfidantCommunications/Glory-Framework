@@ -31,18 +31,18 @@
 		<actor id="bgEasy" z="0" type="prop" x="0" y="0" width="960" height="640" src="easyXML.jpg" ></actor>
 	</page>
 	<page id="limerickPage" type="normal" original="~/Documents/Apps/Limericks/Art/1.%20Fireshoes/" width="960" height="640">
-		<actor id="bg3" z="0" type="prop" x="0" y="0" width="960" height="640" src="p1/pageObject_0000_bg.jpg" src2="p1/pageObject_0000_bg.jpg"></actor>
-		<actor id="skin" z="1" type="colour" x="196" y="122" width="368" height="396" src="p1/pageObject_0001_skin.png" src2="p1/pageObject_0001_skin.png"></actor>
-		<actor id="hose" z="2" type="colour" x="236" y="135" width="250" height="281" src="p1/pageObject_0002_hose.png" src2="p1/pageObject_0002_hose.png"></actor>
-		<actor id="pants" z="3" type="colour" x="324" y="143" width="247" height="381" src="p1/pageObject_0003_pants.png" src2="p1/pageObject_0003_pants.png"></actor>
-		<actor id="flameshoe" type="colour" z="4" x="48" y="30" width="642" height="590" src="p1/pageObject_0004_flameshoe.png" src2="p1/pageObject_0004_flameshoe.png"></actor>
-		<actor id="shoe" type="colour" z="5" x="268" y="410" width="86" height="179" src="p1/pageObject_0005_shoe.png" src2="p1/pageObject_0005_shoe.png"></actor>
-		<actor id="shirt" type="colour" z="6" x="53" y="173" width="357" height="324" src="p1/pageObject_0006_shirt.png" src2="p1/pageObject_0006_shirt.png"></actor>
-		<actor id="truck" type="colour" z="7" x="412" y="187" width="112" height="100" src="p1/pageObject_0007_truck.png" src2="p1/pageObject_0007_truck.png"></actor>
-		<actor id="firemen" type="colour" z="8" x="633" y="497" width="124" height="67" src="p1/pageObject_0008_firemen.png" src2="p1/pageObject_0008_firemen.png"></actor>
-		<actor id="can" type="colour" z="9" x="171" y="375" width="89" height="138" src="p1/pageObject_0009_can.png" src2="p1/pageObject_0009_can.png"></actor>
+		<actor id="bg3" z="0" type="prop" x="0" y="0" width="960" height="640" src="p1/pageObject_0000_bg.jpg"></actor>
+		<actor id="skin" z="1" type="prop" x="196" y="122" width="368" height="396" src="p1/pageObject_0001_skin.png"></actor>
+		<actor id="hose" z="2" type="prop" x="236" y="135" width="250" height="281" src="p1/pageObject_0002_hose.png"></actor>
+		<actor id="pants" z="3" type="prop" x="324" y="143" width="247" height="381" src="p1/pageObject_0003_pants.png"></actor>
+		<actor id="flameshoe" type="prop" z="4" x="48" y="30" width="642" height="590" src="p1/pageObject_0004_flameshoe.png"></actor>
+		<actor id="shoe" type="prop" z="5" x="268" y="410" width="86" height="179" src="p1/pageObject_0005_shoe.png"></actor>
+		<actor id="shirt" type="prop" z="6" x="53" y="173" width="357" height="324" src="p1/pageObject_0006_shirt.png"></actor>
+		<actor id="truck" type="prop" z="7" x="412" y="187" width="112" height="100" src="p1/pageObject_0007_truck.png"></actor>
+		<actor id="firemen" type="prop" z="8" x="633" y="497" width="124" height="67" src="p1/pageObject_0008_firemen.png"></actor>
+		<actor id="can" type="prop" z="9" x="171" y="375" width="89" height="138" src="p1/pageObject_0009_can.png"></actor>
 		<actor id="bw" type="prop" z="10" x="108" y="44" width="648" height="553" src="p1/pageObject_0010_bw.png"></actor>
-		<actor id="text" type="prop" z="11" x="509" y="250" width="407" height="205" src="p1/pageObject_0011_text.png" src2="p1/pageObject_0011_text.png"></actor>
+		<actor id="text" type="prop" z="11" x="509" y="250" width="407" height="205" src="p1/pageObject_0011_text.png"></actor>
 	</page>
 	<page id="svg" type="normal" original="" width="960" height="640">
 		<actor id="duck" z="1" type="prop" x="0" y="0" width="962" height="640" src="duck.svg" ></actor>
