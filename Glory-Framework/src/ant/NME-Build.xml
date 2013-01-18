@@ -17,7 +17,7 @@
 <target name="buildHTML5">
 	<echo message="NME Test HTML5"/>
 	<exec executable="${nmePath}">
-	  <arg line='test "${nmmlFile}" html5'/>
+	  <arg line='test "${nmmlFile}" html5 -debug'/>
 	</exec>
 	<!--exec executable="/usr/lib/haxe/haxelib">
 	  <arg line='run jsmin bin/html5/bin/MediaFramework.js bin/html5/bin/MediaFrameworkMin.js'/>
