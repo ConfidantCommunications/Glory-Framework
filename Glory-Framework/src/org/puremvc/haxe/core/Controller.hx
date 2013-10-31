@@ -43,7 +43,7 @@ class Controller implements IController
 	private function new()
 	{
 		instance = this;
-		commandMap = new Hash();	
+		commandMap = new Map();	
 		initializeController();	
 	}
 		
@@ -127,7 +127,7 @@ class Controller implements IController
 	private var view: IView;
 	
 	// Mapping of Notification names to Command Class references
-	private var commandMap: Hash<Class<ICommand>>;
+	private var commandMap: Map<String,Class<ICommand>>;
 
 	// Singleton instance
 	private static var instance: IController;

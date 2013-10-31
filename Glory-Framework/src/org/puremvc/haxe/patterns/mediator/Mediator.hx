@@ -13,7 +13,7 @@ import org.puremvc.haxe.patterns.observer.Notifier;
 /**
  * A base [IMediator] implementation. 
  */
-class Mediator extends Notifier, implements IMediator
+class Mediator extends Notifier implements IMediator
 {
 
 	/**

@@ -1,11 +1,11 @@
 package ca.confidant.glory.view.components;
 import format.SVG;
 //import format.svg.SVG2Gfx;
-import nme.display.Sprite;
+import flash.display.Sprite;
 //import com.eclecticdesignstudio.motion.Actuate;
-import nme.display.Bitmap;
-import nme.display.BitmapDataChannel;
-import nme.utils.ByteArray;
+import flash.display.Bitmap;
+import flash.display.BitmapDataChannel;
+import flash.utils.ByteArray;
 /**
  * @author Allan Dowdeswell
  * ActorComponents appear within a page. Make them do whatever you want. 

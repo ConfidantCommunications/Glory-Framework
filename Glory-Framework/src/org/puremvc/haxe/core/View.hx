@@ -36,11 +36,19 @@ class View implements IView
 	 * directly, but instead call the static Singleton 
 	 * Factory method [View.getInstance()]</p>
 	 */
+	 // Mapping of Mediator names to Mediator instances
+	private var mediatorMap: Map<String,IMediator>;
+
+	// Mapping of Notification names to Observer lists
+	private var observerMap: Map<String,List<IObserver>>;
+		
+	// Singleton instance
+	private static var instance	: IView;
 	public function new()
 	{
 		instance = this;
-		mediatorMap = new Hash();
-		observerMap = new Hash();	
+		mediatorMap = new Map();
+		observerMap = new Map();	
 		initializeView();	
 	}
 	
@@ -208,13 +216,6 @@ class View implements IView
 		return mediatorMap.exists( mediatorName );
 	}
 					
-	// Mapping of Mediator names to Mediator instances
-	private var mediatorMap: Hash<IMediator>;
-
-	// Mapping of Notification names to Observer lists
-	private var observerMap: Hash<List<IObserver>>;
-		
-	// Singleton instance
-	private static var instance	: IView;
+	
 
 }

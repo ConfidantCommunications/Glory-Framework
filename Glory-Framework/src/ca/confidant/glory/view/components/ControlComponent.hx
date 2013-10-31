@@ -1,9 +1,9 @@
 package ca.confidant.glory.view.components;
 import format.SVG;
 
-import nme.display.Sprite;
-import nme.display.Bitmap;
-import nme.display.BitmapDataChannel;
+import flash.display.Sprite;
+import flash.display.Bitmap;
+import flash.display.BitmapDataChannel;
 /**
  * @author Allan Dowdeswell
  * ControlComponents persist on screen and are used to control display.

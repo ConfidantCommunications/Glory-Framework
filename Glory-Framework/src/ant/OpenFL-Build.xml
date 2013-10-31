@@ -1,21 +1,21 @@
 <project name="Glory Demo Build" default="buildAll" basedir="../../">
 
-<property name="nmePath" location="/usr/lib/haxe/nme"/>
-<property name="nmmlFile" location="config.nmml"/>
+<property name="nmePath" location="/usr/bin/openfl"/>
+<property name="nmmlFile" location="project.xml"/>
 
 <target name="buildAll" depends="buildFlash, buildHTML5">
 	<echo message="Building completed!"/>
 </target>
 
 <target name="buildFlash">
-	<echo message="NME Test Flash"/>
+	<echo message="OpenFL Test Flash"/>
 	<exec executable="${nmePath}">
 	  <arg line='test "${nmmlFile}" flash'/>
 	</exec>
 </target>
 
 <target name="buildHTML5">
-	<echo message="NME Test HTML5"/>
+	<echo message="OpenFL Test HTML5"/>
 	<exec executable="${nmePath}">
 	  <arg line='test "${nmmlFile}" html5 -debug'/>
 	</exec>
@@ -24,43 +24,43 @@
 	</exec-->
 </target>
 <target name="buildIOSsim">
-	<echo message="NME Test iOS Simulator"/>
+	<echo message="OpenFL Test iOS Simulator"/>
 	<exec executable="${nmePath}">
 	  <arg line='test "${nmmlFile}" ios -simulator'/>
 	</exec>
 </target>
 <target name="buildIOS">
-	<echo message="NME Test iOS"/>
+	<echo message="OpenFL Test iOS"/>
 	<exec executable="${nmePath}">
 	  <arg line='build "${nmmlFile}" ios'/>
 	</exec>
 </target>
 <target name="buildWebOS">
-	<echo message="NME Test WebOS"/>
+	<echo message="OpenFL Test WebOS"/>
 	<exec executable="${nmePath}">
 	  <arg line='test "${nmmlFile}" webos'/>
 	</exec>
 </target>
 <target name="buildAndroid">
-	<echo message="NME Test Android"/>
+	<echo message="OpenFL Test Android"/>
 	<exec executable="${nmePath}">
 	  <arg line='test "${nmmlFile}" android'/>
 	</exec>
 </target>
 <target name="buildWindows">
-	<echo message="NME Test Windows"/>
+	<echo message="OpenFL Test Windows"/>
 	<exec executable="${nmePath}">
 	  <arg line='test "${nmmlFile}" windows'/>
 	</exec>
 </target>
 <target name="buildMac">
-	<echo message="NME Test Mac"/>
+	<echo message="OpenFL Test Mac"/>
 	<exec executable="${nmePath}">
 	  <arg line='test "${nmmlFile}" mac'/>
 	</exec>
 </target>
 <target name="buildLinux">
-	<echo message="NME Test Linux - neko"/>
+	<echo message="OpenFL Test Linux - neko"/>
 	<exec executable="${nmePath}">
 	  <arg line='test "${nmmlFile}" linux'/>
 	</exec>

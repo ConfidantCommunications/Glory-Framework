@@ -1,7 +1,7 @@
 package ca.confidant.glory;
 import ca.confidant.glory.ApplicationFacade;
-import nme.display.Sprite;
-import nme.Lib;
+import flash.display.Sprite;
+import flash.Lib;
 
 /*
  * @author Allan Dowdeswell

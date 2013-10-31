@@ -1,6 +1,6 @@
 package;
 import ca.confidant.glory.GloryFrameworkApp;
-import nme.Lib;
+import flash.Lib;
 //import all of your page classes here
 import pages.Psvg;
 import ca.confidant.glory.Tracer;

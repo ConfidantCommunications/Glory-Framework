@@ -31,10 +31,15 @@ class Model implements IModel
 	 * <p>This [IModel] implementation is a Singleton, so you should not call the constructor 
 	 * directly, but instead call the static Singleton Factory method [Model.getInstance()]</p>
 	 */
+	 // Mapping of proxyNames to [IProxy] instances
+	private var proxyMap: Map<String,IProxy>;
+
+	// Singleton instance
+	private static var instance: IModel;
 	private function new()
 	{
 		instance = this;
-		proxyMap = new Hash();	
+		proxyMap = new Map();	
 		initializeModel();
 	}
 		
@@ -96,10 +101,6 @@ class Model implements IModel
 		return proxy;
 	}
 
-	// Mapping of proxyNames to [IProxy] instances
-	private var proxyMap: Hash<IProxy>;
-
-	// Singleton instance
-	private static var instance: IModel;
+	
 		
 }

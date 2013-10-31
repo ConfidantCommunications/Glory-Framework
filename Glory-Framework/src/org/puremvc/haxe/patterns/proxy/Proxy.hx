@@ -25,7 +25,7 @@ import org.puremvc.haxe.patterns.observer.Notifier;
  * [Proxy] and listening for a [Notification] to be sent 
  * when the [Proxy] has retrieved the data from the service.</p>
  */
-class Proxy extends Notifier, implements IProxy
+class Proxy extends Notifier implements IProxy
 {
 
 	public static var NAME: String = 'Proxy';

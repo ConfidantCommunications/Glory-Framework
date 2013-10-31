@@ -2,25 +2,19 @@
 <project>
 
 	<!-- http://www.haxenme.org/developers/documentation/nmml-project-files/ -->
-	<app title="Glory Framework Demo" file="GloryDemo" main="Main" package="ca.confidant.gloryDemo" version="1.0.0" company="Confidant Communications" />
-
+	<meta title="Glory Framework Demo" package="ca.confidant.gloryDemo" version="1.0.0" company="Confidant Communications" />
+	<app main="Main" path="bin" file="GloryDemo" />
 	<window width="960" height="640" fps="30" background="0xfff6e2" orientation="landscape" hardware="true" />
 
  	<set name="BUILD_DIR" value="bin" />
 
-	<classpath name="src" />
+	<source path="src" />
 
-	<haxelib name="nme" />
+	<haxelib name="openfl" />
 	<haxelib name="actuate" />
 	<haxelib name="svg" />
 
-	<icon name="assets/nme.svg" />
+	<icon path="assets/nme.svg" />
 	<assets path="assets" include="*" />
 
-	<!-- ndll name="std" />
-	<ndll name="regexp" />
-	<ndll name="zlib" / -->
-	<ndll name="nme" haxelib="nme" />
-
 </project>
-
