@@ -23,13 +23,13 @@
 		<actor id="choose" z="7" type="prop" x="244" y="41" width="461" height="109" src="options/choose.png" ></actor>
 	</page>
 	
-	<page id="deal" type="normal" original="" width="960" height="640">
+	<page id="deal" type="normal" original="" width="960" height="640" transitionOutTime="2">
 		<actor id="bgDeal" z="0" type="prop" x="0" y="0" width="960" height="640" src="heres-the-deal.jpg" ></actor>
 	</page>
 	<page id="easy" type="normal" original="" width="960" height="640">
 		<actor id="bgEasy" z="0" type="prop" x="0" y="0" width="960" height="640" src="easyXML.jpg" ></actor>
 	</page>
-	<page id="limerickPage" type="normal" original="~/Documents/Apps/Limericks/Art/1.%20Fireshoes/" width="960" height="640" transitionOutTime="3000">
+	<page id="limerickPage" type="normal" original="~/Documents/Apps/Limericks/Art/1.%20Fireshoes/" width="960" height="640" transitionOutTime="0">
 		<actor id="bg3" z="0" type="prop" x="0" y="0" width="960" height="640" src="p1/pageObject_0000_bg.jpg"></actor>
 		<actor id="skin" z="1" type="prop" x="196" y="122" width="368" height="396" src="p1/pageObject_0001_skin.png"></actor>
 		<actor id="hose" z="2" type="prop" x="236" y="135" width="250" height="281" src="p1/pageObject_0002_hose.png"></actor>

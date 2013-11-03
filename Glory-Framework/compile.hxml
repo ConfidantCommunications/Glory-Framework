@@ -3,3 +3,4 @@
 -cp src
 -lib openfl
 -lib svg
+-lib actuate
