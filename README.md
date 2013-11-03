@@ -1,4 +1,4 @@
-Glory Framework is a page-based media framework built using Haxe 3, OpenFL, and PureMVC. It can be used for interactive e-books, adventure games, or slide presentations on any target supported by OpenFL.
+Glory Framework is a page-based media framework built using [Haxe 3](http://haxe.org/), [OpenFL](http://openfl.org), and [PureMVC](http://puremvc.org/). It can be used for interactive e-books, adventure games, or slide presentations on any target supported by OpenFL.
 
 It uses an XML configuration file to build the layout of each page, including placement and function of different controls. Each page can have its own custom class if desired.
 
