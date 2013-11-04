@@ -8,6 +8,7 @@ This framework requires the SVG and Actuate libraries available on haxelib. Only
 Please note that using SVG with the HTML5 target and Haxe 2 will not work unless you are using a version of NME >later< than the 3.4.2. release.
 
 Be sure to read the [wiki pages](https://github.com/ConfidantCommunications/Glory-Framework/wiki) to learn how to get set up.
+Here is [a compiled HTML5 demo](http://confidant.ca/demo/glory/).
 
 Brought to you by [Confidant Communications](http://confidant.ca)
 
