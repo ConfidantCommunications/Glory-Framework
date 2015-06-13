@@ -1,0 +1,17 @@
+HXCPP_CLANG
+OBJC_ARC
+actuate
+cpp
+haxe_208
+haxe_209
+haxe_210
+ios
+iphone
+mobile
+nme
+nme_install_tool
+simulator
+svg
+sys
+true
+/usr/lib/haxe/lib/hxcpp/2,10/

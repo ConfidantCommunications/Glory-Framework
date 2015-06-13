@@ -1,0 +1,1994 @@
+<xml>
+<files id="haxe">
+<compilerflag value="-Iinclude"/>
+  <file name="src/sys/io/Process.cpp">
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/haxe/io/Input.h"/>
+   <depend name="include/haxe/io/Output.h"/>
+   <depend name="include/sys/io/Process.h"/>
+   <depend name="include/sys/io/_Process/Stdin.h"/>
+   <depend name="include/sys/io/_Process/Stdout.h"/>
+  </file>
+  <file name="src/sys/io/_Process/Stdout.cpp">
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Eof.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+   <depend name="include/haxe/io/Input.h"/>
+   <depend name="include/sys/io/_Process/Stdout.h"/>
+  </file>
+  <file name="src/sys/io/_Process/Stdin.cpp">
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Eof.h"/>
+   <depend name="include/haxe/io/Output.h"/>
+   <depend name="include/sys/io/_Process/Stdin.h"/>
+  </file>
+  <file name="src/sys/io/FileSeek.cpp">
+   <depend name="include/sys/io/FileSeek.h"/>
+  </file>
+  <file name="src/sys/io/FileOutput.cpp">
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+   <depend name="include/haxe/io/Output.h"/>
+   <depend name="include/sys/io/FileOutput.h"/>
+   <depend name="include/sys/io/FileSeek.h"/>
+  </file>
+  <file name="src/sys/io/FileInput.cpp">
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Eof.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+   <depend name="include/haxe/io/Input.h"/>
+   <depend name="include/sys/io/FileInput.h"/>
+   <depend name="include/sys/io/FileSeek.h"/>
+  </file>
+  <file name="src/sys/io/File.cpp">
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Input.h"/>
+   <depend name="include/haxe/io/Output.h"/>
+   <depend name="include/sys/io/File.h"/>
+   <depend name="include/sys/io/FileInput.h"/>
+   <depend name="include/sys/io/FileOutput.h"/>
+  </file>
+  <file name="src/sys/FileSystem.cpp">
+   <depend name="include/Date.h"/>
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/sys/FileSystem.h"/>
+   <depend name="include/sys/_FileSystem/FileKind.h"/>
+  </file>
+  <file name="src/sys/_FileSystem/FileKind.cpp">
+   <depend name="include/sys/_FileSystem/FileKind.h"/>
+  </file>
+  <file name="src/pages/Psvg.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/ca/confidant/glory/view/components/ActorComponent.h"/>
+   <depend name="include/ca/confidant/glory/view/components/PageComponent.h"/>
+   <depend name="include/haxe/Timer.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/pages/Psvg.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/patterns/observer/Observer.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IObserver.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Observer.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/patterns/observer/Notification.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notification.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/interfaces/IObserver.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IObserver.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/interfaces/INotification.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/core/View.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/List.h"/>
+   <depend name="include/org/puremvc/haxe/core/View.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IObserver.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IView.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Observer.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/interfaces/IView.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IObserver.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IView.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/core/Model.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/org/puremvc/haxe/core/Model.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IModel.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/interfaces/IModel.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/IModel.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/core/Controller.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/Type.h"/>
+   <depend name="include/org/puremvc/haxe/core/Controller.h"/>
+   <depend name="include/org/puremvc/haxe/core/View.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IController.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IObserver.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IView.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Observer.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/interfaces/IController.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IController.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+  </file>
+  <file name="src/nme/installer/Assets.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/media/Sound.h"/>
+   <depend name="include/native/media/SoundLoaderContext.h"/>
+   <depend name="include/native/net/URLRequest.h"/>
+   <depend name="include/native/text/Font.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+   <depend name="include/nme/installer/Assets.h"/>
+  </file>
+  <file name="src/nme/VectorHelper.cpp">
+   <depend name="include/nme/VectorHelper.h"/>
+  </file>
+  <file name="src/nme/Lib.cpp">
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/native/Lib.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/ManagedStage.h"/>
+   <depend name="include/native/display/MovieClip.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/display/Stage.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/net/URLRequest.h"/>
+   <depend name="include/nme/Lib.h"/>
+  </file>
+  <file name="src/native/utils/WeakRef.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/utils/WeakRef.h"/>
+  </file>
+  <file name="src/native/utils/Float32Array.cpp">
+   <depend name="include/native/geom/Matrix3D.h"/>
+   <depend name="include/native/utils/ArrayBufferView.h"/>
+   <depend name="include/native/utils/Float32Array.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/utils/Endian.cpp">
+   <depend name="include/native/utils/Endian.h"/>
+  </file>
+  <file name="src/native/utils/CompressionAlgorithm.cpp">
+   <depend name="include/native/utils/CompressionAlgorithm.h"/>
+  </file>
+  <file name="src/native/utils/ByteArray.cpp">
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/cpp/zip/Compress.h"/>
+   <depend name="include/cpp/zip/Uncompress.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/errors/EOFError.h"/>
+   <depend name="include/native/errors/Error.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/CompressionAlgorithm.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/utils/IDataInput.cpp">
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/utils/ArrayBufferView.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/utils/ArrayBufferView.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/utils/IMemoryRange.cpp">
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/text/FontType.cpp">
+   <depend name="include/native/text/FontType.h"/>
+  </file>
+  <file name="src/native/text/FontStyle.cpp">
+   <depend name="include/native/text/FontStyle.h"/>
+  </file>
+  <file name="src/native/text/Font.cpp">
+   <depend name="include/native/text/Font.h"/>
+   <depend name="include/native/text/FontStyle.h"/>
+   <depend name="include/native/text/FontType.h"/>
+  </file>
+  <file name="src/native/net/URLVariables.cpp">
+   <depend name="include/Reflect.h"/>
+   <depend name="include/StringTools.h"/>
+   <depend name="include/native/net/URLVariables.h"/>
+  </file>
+  <file name="src/native/net/URLRequestMethod.cpp">
+   <depend name="include/native/net/URLRequestMethod.h"/>
+  </file>
+  <file name="src/native/net/URLRequestHeader.cpp">
+   <depend name="include/native/net/URLRequestHeader.h"/>
+  </file>
+  <file name="src/native/net/URLRequest.cpp">
+   <depend name="include/Reflect.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/net/URLRequest.h"/>
+   <depend name="include/native/net/URLRequestHeader.h"/>
+   <depend name="include/native/net/URLVariables.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/net/URLLoaderDataFormat.cpp">
+   <depend name="include/native/net/URLLoaderDataFormat.h"/>
+  </file>
+  <file name="src/native/net/URLLoader.cpp">
+   <depend name="include/List.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/events/ErrorEvent.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/HTTPStatusEvent.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/events/IOErrorEvent.h"/>
+   <depend name="include/native/events/ProgressEvent.h"/>
+   <depend name="include/native/events/TextEvent.h"/>
+   <depend name="include/native/net/URLLoader.h"/>
+   <depend name="include/native/net/URLLoaderDataFormat.h"/>
+   <depend name="include/native/net/URLRequest.h"/>
+   <depend name="include/native/net/URLVariables.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/media/SoundTransform.cpp">
+   <depend name="include/native/media/SoundTransform.h"/>
+  </file>
+  <file name="src/native/media/SoundLoaderContext.cpp">
+   <depend name="include/native/media/SoundLoaderContext.h"/>
+  </file>
+  <file name="src/native/media/SoundChannel.cpp">
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/events/SampleDataEvent.h"/>
+   <depend name="include/native/media/SoundChannel.h"/>
+   <depend name="include/native/media/SoundTransform.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/media/Sound.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/errors/Error.h"/>
+   <depend name="include/native/events/ErrorEvent.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/events/IOErrorEvent.h"/>
+   <depend name="include/native/events/SampleDataEvent.h"/>
+   <depend name="include/native/events/TextEvent.h"/>
+   <depend name="include/native/media/ID3Info.h"/>
+   <depend name="include/native/media/Sound.h"/>
+   <depend name="include/native/media/SoundChannel.h"/>
+   <depend name="include/native/media/SoundLoaderContext.h"/>
+   <depend name="include/native/media/SoundTransform.h"/>
+   <depend name="include/native/net/URLRequest.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/media/ID3Info.cpp">
+   <depend name="include/native/media/ID3Info.h"/>
+  </file>
+  <file name="src/native/gl/Texture.cpp">
+   <depend name="include/native/gl/Object.h"/>
+   <depend name="include/native/gl/Texture.h"/>
+  </file>
+  <file name="src/native/gl/Shader.cpp">
+   <depend name="include/native/gl/Object.h"/>
+   <depend name="include/native/gl/Shader.h"/>
+  </file>
+  <file name="src/native/gl/Renderbuffer.cpp">
+   <depend name="include/native/gl/Object.h"/>
+   <depend name="include/native/gl/Renderbuffer.h"/>
+  </file>
+  <file name="src/native/gl/Program.cpp">
+   <depend name="include/native/gl/Object.h"/>
+   <depend name="include/native/gl/Program.h"/>
+   <depend name="include/native/gl/Shader.h"/>
+  </file>
+  <file name="src/native/gl/Framebuffer.cpp">
+   <depend name="include/native/gl/Framebuffer.h"/>
+   <depend name="include/native/gl/Object.h"/>
+  </file>
+  <file name="src/native/gl/Buffer.cpp">
+   <depend name="include/native/gl/Buffer.h"/>
+   <depend name="include/native/gl/Object.h"/>
+  </file>
+  <file name="src/native/gl/Object.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/gl/GL.h"/>
+   <depend name="include/native/gl/Object.h"/>
+  </file>
+  <file name="src/native/gl/GL.cpp">
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/Lib.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/MovieClip.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/display/Stage.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/geom/Matrix3D.h"/>
+   <depend name="include/native/gl/Buffer.h"/>
+   <depend name="include/native/gl/Framebuffer.h"/>
+   <depend name="include/native/gl/GL.h"/>
+   <depend name="include/native/gl/Object.h"/>
+   <depend name="include/native/gl/Program.h"/>
+   <depend name="include/native/gl/Renderbuffer.h"/>
+   <depend name="include/native/gl/Shader.h"/>
+   <depend name="include/native/gl/Texture.h"/>
+   <depend name="include/native/utils/ArrayBufferView.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/Float32Array.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/geom/Vector3D.cpp">
+   <depend name="include/native/geom/Vector3D.h"/>
+  </file>
+  <file name="src/native/geom/Transform.cpp">
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/geom/ColorTransform.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+   <depend name="include/native/geom/Transform.h"/>
+  </file>
+  <file name="src/native/geom/Rectangle.cpp">
+   <depend name="include/native/geom/Matrix.h"/>
+   <depend name="include/native/geom/Point.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+  </file>
+  <file name="src/native/geom/Point.cpp">
+   <depend name="include/native/geom/Point.h"/>
+  </file>
+  <file name="src/native/geom/Matrix3D.cpp">
+   <depend name="include/native/geom/Matrix3D.h"/>
+   <depend name="include/native/geom/Vector3D.h"/>
+  </file>
+  <file name="src/native/geom/Matrix.cpp">
+   <depend name="include/native/geom/Matrix.h"/>
+   <depend name="include/native/geom/Point.h"/>
+  </file>
+  <file name="src/native/geom/ColorTransform.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/geom/ColorTransform.h"/>
+  </file>
+  <file name="src/native/filters/BitmapFilter.cpp">
+   <depend name="include/native/filters/BitmapFilter.h"/>
+  </file>
+  <file name="src/native/events/SampleDataEvent.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/SampleDataEvent.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/events/ProgressEvent.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/ProgressEvent.h"/>
+  </file>
+  <file name="src/native/events/KeyboardEvent.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/KeyboardEvent.h"/>
+  </file>
+  <file name="src/native/events/JoystickEvent.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/JoystickEvent.h"/>
+  </file>
+  <file name="src/native/events/IOErrorEvent.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/events/ErrorEvent.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/IOErrorEvent.h"/>
+   <depend name="include/native/events/TextEvent.h"/>
+  </file>
+  <file name="src/native/events/HTTPStatusEvent.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/HTTPStatusEvent.h"/>
+  </file>
+  <file name="src/native/events/FocusEvent.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/FocusEvent.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/native/events/EventPhase.cpp">
+   <depend name="include/native/events/EventPhase.h"/>
+  </file>
+  <file name="src/native/events/Listener.cpp">
+   <depend name="include/Reflect.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/Listener.h"/>
+  </file>
+  <file name="src/native/events/ErrorEvent.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/events/ErrorEvent.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/TextEvent.h"/>
+  </file>
+  <file name="src/native/events/TextEvent.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/TextEvent.h"/>
+  </file>
+  <file name="src/native/errors/RangeError.cpp">
+   <depend name="include/native/errors/Error.h"/>
+   <depend name="include/native/errors/RangeError.h"/>
+  </file>
+  <file name="src/native/errors/EOFError.cpp">
+   <depend name="include/native/errors/EOFError.h"/>
+   <depend name="include/native/errors/Error.h"/>
+  </file>
+  <file name="src/native/errors/ArgumentError.cpp">
+   <depend name="include/native/errors/ArgumentError.h"/>
+   <depend name="include/native/errors/Error.h"/>
+  </file>
+  <file name="src/native/errors/Error.cpp">
+   <depend name="include/native/errors/Error.h"/>
+  </file>
+  <file name="src/native/display3D/textures/Texture.cpp">
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display3D/textures/Texture.h"/>
+   <depend name="include/native/display3D/textures/TextureBase.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+   <depend name="include/native/gl/GL.h"/>
+   <depend name="include/native/gl/Object.h"/>
+   <depend name="include/native/gl/Texture.h"/>
+   <depend name="include/native/utils/ArrayBufferView.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/display3D/textures/CubeTexture.cpp">
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display3D/textures/CubeTexture.h"/>
+   <depend name="include/native/display3D/textures/TextureBase.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/display3D/textures/TextureBase.cpp">
+   <depend name="include/native/display3D/textures/TextureBase.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/native/display3D/VertexBuffer3D.cpp">
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/display3D/VertexBuffer3D.h"/>
+   <depend name="include/native/gl/Buffer.h"/>
+   <depend name="include/native/gl/GL.h"/>
+   <depend name="include/native/gl/Object.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/display3D/Program3D.cpp">
+   <depend name="include/native/display3D/Program3D.h"/>
+   <depend name="include/native/gl/GL.h"/>
+   <depend name="include/native/gl/Object.h"/>
+   <depend name="include/native/gl/Program.h"/>
+   <depend name="include/native/gl/Shader.h"/>
+  </file>
+  <file name="src/native/display3D/IndexBuffer3D.cpp">
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/display3D/IndexBuffer3D.h"/>
+   <depend name="include/native/gl/Buffer.h"/>
+   <depend name="include/native/gl/GL.h"/>
+   <depend name="include/native/gl/Object.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/display3D/Context3DVertexBufferFormat.cpp">
+   <depend name="include/native/display3D/Context3DVertexBufferFormat.h"/>
+  </file>
+  <file name="src/native/display3D/Context3DTriangleFace.cpp">
+   <depend name="include/native/display3D/Context3DTriangleFace.h"/>
+  </file>
+  <file name="src/native/display3D/Context3DTextureFormat.cpp">
+   <depend name="include/native/display3D/Context3DTextureFormat.h"/>
+  </file>
+  <file name="src/native/display3D/Context3DStencilAction.cpp">
+   <depend name="include/native/display3D/Context3DStencilAction.h"/>
+  </file>
+  <file name="src/native/display3D/Context3DProgramType.cpp">
+   <depend name="include/native/display3D/Context3DProgramType.h"/>
+  </file>
+  <file name="src/native/display3D/Context3DCompareMode.cpp">
+   <depend name="include/native/display3D/Context3DCompareMode.h"/>
+  </file>
+  <file name="src/native/display3D/Context3DClearMask.cpp">
+   <depend name="include/native/display3D/Context3DClearMask.h"/>
+  </file>
+  <file name="src/native/display3D/Context3D.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/Lib.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/DirectRenderer.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/MovieClip.h"/>
+   <depend name="include/native/display/OpenGLView.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/display/Stage.h"/>
+   <depend name="include/native/display3D/Context3D.h"/>
+   <depend name="include/native/display3D/Context3DCompareMode.h"/>
+   <depend name="include/native/display3D/Context3DProgramType.h"/>
+   <depend name="include/native/display3D/Context3DStencilAction.h"/>
+   <depend name="include/native/display3D/Context3DTextureFormat.h"/>
+   <depend name="include/native/display3D/Context3DTriangleFace.h"/>
+   <depend name="include/native/display3D/Context3DVertexBufferFormat.h"/>
+   <depend name="include/native/display3D/IndexBuffer3D.h"/>
+   <depend name="include/native/display3D/Program3D.h"/>
+   <depend name="include/native/display3D/VertexBuffer3D.h"/>
+   <depend name="include/native/display3D/textures/CubeTexture.h"/>
+   <depend name="include/native/display3D/textures/Texture.h"/>
+   <depend name="include/native/display3D/textures/TextureBase.h"/>
+   <depend name="include/native/errors/Error.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/geom/Matrix3D.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+   <depend name="include/native/gl/Buffer.h"/>
+   <depend name="include/native/gl/GL.h"/>
+   <depend name="include/native/gl/Object.h"/>
+   <depend name="include/native/gl/Program.h"/>
+   <depend name="include/native/gl/Texture.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/display/TriangleCulling.cpp">
+   <depend name="include/native/display/TriangleCulling.h"/>
+  </file>
+  <file name="src/native/display/Tilesheet.cpp">
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/Graphics.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/Tilesheet.h"/>
+   <depend name="include/native/geom/Point.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+  </file>
+  <file name="src/native/display/StageScaleMode.cpp">
+   <depend name="include/native/display/StageScaleMode.h"/>
+  </file>
+  <file name="src/native/display/StageQuality.cpp">
+   <depend name="include/native/display/StageQuality.h"/>
+  </file>
+  <file name="src/native/display/StageDisplayState.cpp">
+   <depend name="include/native/display/StageDisplayState.h"/>
+  </file>
+  <file name="src/native/display/StageAlign.cpp">
+   <depend name="include/native/display/StageAlign.h"/>
+  </file>
+  <file name="src/native/display/Stage3D.cpp">
+   <depend name="include/native/display/Stage3D.h"/>
+   <depend name="include/native/display3D/Context3D.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/native/display/TouchInfo.cpp">
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/TouchInfo.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/native/display/Shape.cpp">
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/Shape.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/native/display/PixelSnapping.cpp">
+   <depend name="include/native/display/PixelSnapping.h"/>
+  </file>
+  <file name="src/native/display/OpenGLView.cpp">
+   <depend name="include/native/display/DirectRenderer.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/OpenGLView.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/native/display/MovieClip.cpp">
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/MovieClip.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/native/display/ManagedStage.cpp">
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/ManagedStage.h"/>
+   <depend name="include/native/display/Stage.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/native/display/Stage.cpp">
+   <depend name="include/IntHash.h"/>
+   <depend name="include/Reflect.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/Type.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/Timer.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/display/Stage.h"/>
+   <depend name="include/native/display/Stage3D.h"/>
+   <depend name="include/native/display/StageAlign.h"/>
+   <depend name="include/native/display/StageDisplayState.h"/>
+   <depend name="include/native/display/StageQuality.h"/>
+   <depend name="include/native/display/StageScaleMode.h"/>
+   <depend name="include/native/display/TouchInfo.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/FocusEvent.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/events/JoystickEvent.h"/>
+   <depend name="include/native/events/KeyboardEvent.h"/>
+   <depend name="include/native/events/MouseEvent.h"/>
+   <depend name="include/native/events/TouchEvent.h"/>
+   <depend name="include/native/geom/Point.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+   <depend name="include/native/media/SoundChannel.h"/>
+   <depend name="include/native/net/URLLoader.h"/>
+  </file>
+  <file name="src/native/events/TouchEvent.cpp">
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/events/MouseEvent.h"/>
+   <depend name="include/native/events/TouchEvent.h"/>
+   <depend name="include/native/geom/Point.h"/>
+  </file>
+  <file name="src/native/events/MouseEvent.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/events/MouseEvent.h"/>
+   <depend name="include/native/geom/Point.h"/>
+  </file>
+  <file name="src/native/events/Event.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventPhase.h"/>
+  </file>
+  <file name="src/native/display/IGraphicsData.cpp">
+   <depend name="include/native/display/IGraphicsData.h"/>
+  </file>
+  <file name="src/native/display/GraphicsPathWinding.cpp">
+   <depend name="include/native/display/GraphicsPathWinding.h"/>
+  </file>
+  <file name="src/native/display/Graphics.cpp">
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/CapsStyle.h"/>
+   <depend name="include/native/display/GradientType.h"/>
+   <depend name="include/native/display/Graphics.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/IGraphicsData.h"/>
+   <depend name="include/native/display/InterpolationMethod.h"/>
+   <depend name="include/native/display/JointStyle.h"/>
+   <depend name="include/native/display/LineScaleMode.h"/>
+   <depend name="include/native/display/SpreadMethod.h"/>
+   <depend name="include/native/display/Tilesheet.h"/>
+   <depend name="include/native/display/TriangleCulling.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+  </file>
+  <file name="src/native/display/GradientType.cpp">
+   <depend name="include/native/display/GradientType.h"/>
+  </file>
+  <file name="src/native/display/DirectRenderer.cpp">
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/DirectRenderer.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+  </file>
+  <file name="src/native/display/BlendMode.cpp">
+   <depend name="include/native/display/BlendMode.h"/>
+  </file>
+  <file name="src/native/display/BitmapDataChannel.cpp">
+   <depend name="include/native/display/BitmapDataChannel.h"/>
+  </file>
+  <file name="src/native/display/OptimizedPerlin.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/OptimizedPerlin.h"/>
+  </file>
+  <file name="src/native/display/BitmapData.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/BlendMode.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/OptimizedPerlin.h"/>
+   <depend name="include/native/filters/BitmapFilter.h"/>
+   <depend name="include/native/geom/ColorTransform.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+   <depend name="include/native/geom/Point.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/display/Bitmap.cpp">
+   <depend name="include/native/display/Bitmap.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/Graphics.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/PixelSnapping.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+  </file>
+  <file name="src/native/Lib.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/Timer.h"/>
+   <depend name="include/native/Lib.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/ManagedStage.h"/>
+   <depend name="include/native/display/MovieClip.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/display/Stage.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/net/URLRequest.h"/>
+  </file>
+  <file name="src/haxe/xml/Fast.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/StringBuf.h"/>
+   <depend name="include/StringTools.h"/>
+   <depend name="include/Xml.h"/>
+   <depend name="include/XmlType.h"/>
+   <depend name="include/haxe/xml/Fast.h"/>
+   <depend name="include/haxe/xml/_Fast/AttribAccess.h"/>
+   <depend name="include/haxe/xml/_Fast/HasAttribAccess.h"/>
+   <depend name="include/haxe/xml/_Fast/HasNodeAccess.h"/>
+   <depend name="include/haxe/xml/_Fast/NodeAccess.h"/>
+   <depend name="include/haxe/xml/_Fast/NodeListAccess.h"/>
+  </file>
+  <file name="src/haxe/xml/_Fast/NodeListAccess.cpp">
+   <depend name="include/List.h"/>
+   <depend name="include/Xml.h"/>
+   <depend name="include/haxe/xml/Fast.h"/>
+   <depend name="include/haxe/xml/_Fast/NodeListAccess.h"/>
+  </file>
+  <file name="src/haxe/xml/_Fast/HasNodeAccess.cpp">
+   <depend name="include/Xml.h"/>
+   <depend name="include/haxe/xml/_Fast/HasNodeAccess.h"/>
+  </file>
+  <file name="src/haxe/xml/_Fast/HasAttribAccess.cpp">
+   <depend name="include/Xml.h"/>
+   <depend name="include/XmlType.h"/>
+   <depend name="include/haxe/xml/_Fast/HasAttribAccess.h"/>
+  </file>
+  <file name="src/haxe/xml/_Fast/AttribAccess.cpp">
+   <depend name="include/Xml.h"/>
+   <depend name="include/XmlType.h"/>
+   <depend name="include/haxe/xml/_Fast/AttribAccess.h"/>
+  </file>
+  <file name="src/haxe/xml/_Fast/NodeAccess.cpp">
+   <depend name="include/Xml.h"/>
+   <depend name="include/XmlType.h"/>
+   <depend name="include/haxe/xml/Fast.h"/>
+   <depend name="include/haxe/xml/_Fast/NodeAccess.h"/>
+  </file>
+  <file name="src/haxe/io/Output.cpp">
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Eof.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+   <depend name="include/haxe/io/Input.h"/>
+   <depend name="include/haxe/io/Output.h"/>
+  </file>
+  <file name="src/haxe/io/Input.cpp">
+   <depend name="include/StringBuf.h"/>
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/BytesBuffer.h"/>
+   <depend name="include/haxe/io/Eof.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+   <depend name="include/haxe/io/Input.h"/>
+  </file>
+  <file name="src/haxe/io/Error.cpp">
+   <depend name="include/haxe/io/Error.h"/>
+  </file>
+  <file name="src/haxe/io/Eof.cpp">
+   <depend name="include/haxe/io/Eof.h"/>
+  </file>
+  <file name="src/haxe/io/BytesBuffer.cpp">
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/BytesBuffer.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+  </file>
+  <file name="src/haxe/io/Bytes.cpp">
+   <depend name="include/StringBuf.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+  </file>
+  <file name="src/haxe/Timer.cpp">
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/Timer.h"/>
+   <depend name="include/native/Loader.h"/>
+  </file>
+  <file name="src/haxe/Log.cpp">
+   <depend name="include/haxe/Log.h"/>
+  </file>
+  <file name="src/haxe/BaseCode.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/haxe/BaseCode.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+  </file>
+  <file name="src/format/svg/Text.cpp">
+   <depend name="include/format/svg/FillType.h"/>
+   <depend name="include/format/svg/Text.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+  </file>
+  <file name="src/format/svg/SVGRenderer.cpp">
+   <depend name="include/EReg.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/Xml.h"/>
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/gfx/Gfx2Haxe.h"/>
+   <depend name="include/format/gfx/GfxBytes.h"/>
+   <depend name="include/format/gfx/GfxExtent.h"/>
+   <depend name="include/format/gfx/GfxGraphics.h"/>
+   <depend name="include/format/gfx/GfxTextFinder.h"/>
+   <depend name="include/format/gfx/Gradient.h"/>
+   <depend name="include/format/gfx/LineStyle.h"/>
+   <depend name="include/format/svg/DisplayElement.h"/>
+   <depend name="include/format/svg/FillType.h"/>
+   <depend name="include/format/svg/Grad.h"/>
+   <depend name="include/format/svg/Group.h"/>
+   <depend name="include/format/svg/Path.h"/>
+   <depend name="include/format/svg/PathSegment.h"/>
+   <depend name="include/format/svg/RenderContext.h"/>
+   <depend name="include/format/svg/SVGData.h"/>
+   <depend name="include/format/svg/SVGRenderer.h"/>
+   <depend name="include/format/svg/Text.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/BlendMode.h"/>
+   <depend name="include/native/display/CapsStyle.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/Graphics.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/JointStyle.h"/>
+   <depend name="include/native/display/Shape.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/geom/ColorTransform.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/format/svg/SVGData.cpp">
+   <depend name="include/EReg.h"/>
+   <depend name="include/Hash.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/Xml.h"/>
+   <depend name="include/format/gfx/Gradient.h"/>
+   <depend name="include/format/svg/DisplayElement.h"/>
+   <depend name="include/format/svg/DrawSegment.h"/>
+   <depend name="include/format/svg/FillType.h"/>
+   <depend name="include/format/svg/Grad.h"/>
+   <depend name="include/format/svg/Group.h"/>
+   <depend name="include/format/svg/MoveSegment.h"/>
+   <depend name="include/format/svg/Path.h"/>
+   <depend name="include/format/svg/PathParser.h"/>
+   <depend name="include/format/svg/PathSegment.h"/>
+   <depend name="include/format/svg/QuadraticSegment.h"/>
+   <depend name="include/format/svg/SVGData.h"/>
+   <depend name="include/format/svg/Text.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/native/display/CapsStyle.h"/>
+   <depend name="include/native/display/GradientType.h"/>
+   <depend name="include/native/display/InterpolationMethod.h"/>
+   <depend name="include/native/display/JointStyle.h"/>
+   <depend name="include/native/display/SpreadMethod.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+  </file>
+  <file name="src/format/svg/RenderContext.cpp">
+   <depend name="include/format/svg/RenderContext.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+  </file>
+  <file name="src/format/svg/ArcSegment.cpp">
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/svg/ArcSegment.h"/>
+   <depend name="include/format/svg/PathSegment.h"/>
+   <depend name="include/format/svg/RenderContext.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+  </file>
+  <file name="src/format/svg/CubicSegment.cpp">
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/svg/CubicSegment.h"/>
+   <depend name="include/format/svg/PathSegment.h"/>
+   <depend name="include/format/svg/QuadraticSegment.h"/>
+   <depend name="include/format/svg/RenderContext.h"/>
+  </file>
+  <file name="src/format/svg/QuadraticSegment.cpp">
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/svg/PathSegment.h"/>
+   <depend name="include/format/svg/QuadraticSegment.h"/>
+   <depend name="include/format/svg/RenderContext.h"/>
+  </file>
+  <file name="src/format/svg/DrawSegment.cpp">
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/svg/DrawSegment.h"/>
+   <depend name="include/format/svg/PathSegment.h"/>
+   <depend name="include/format/svg/RenderContext.h"/>
+  </file>
+  <file name="src/format/svg/MoveSegment.cpp">
+   <depend name="include/format/svg/MoveSegment.h"/>
+   <depend name="include/format/svg/PathSegment.h"/>
+  </file>
+  <file name="src/format/svg/PathSegment.cpp">
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/svg/PathSegment.h"/>
+   <depend name="include/format/svg/RenderContext.h"/>
+  </file>
+  <file name="src/format/svg/PathParser.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/format/svg/ArcSegment.h"/>
+   <depend name="include/format/svg/CubicSegment.h"/>
+   <depend name="include/format/svg/DrawSegment.h"/>
+   <depend name="include/format/svg/MoveSegment.h"/>
+   <depend name="include/format/svg/PathParser.h"/>
+   <depend name="include/format/svg/PathSegment.h"/>
+   <depend name="include/format/svg/QuadraticSegment.h"/>
+  </file>
+  <file name="src/format/svg/Path.cpp">
+   <depend name="include/format/svg/FillType.h"/>
+   <depend name="include/format/svg/Path.h"/>
+   <depend name="include/format/svg/PathSegment.h"/>
+   <depend name="include/native/display/CapsStyle.h"/>
+   <depend name="include/native/display/JointStyle.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+  </file>
+  <file name="src/format/svg/DisplayElement.cpp">
+   <depend name="include/format/svg/DisplayElement.h"/>
+   <depend name="include/format/svg/Group.h"/>
+   <depend name="include/format/svg/Path.h"/>
+   <depend name="include/format/svg/Text.h"/>
+  </file>
+  <file name="src/format/svg/Group.cpp">
+   <depend name="include/format/svg/DisplayElement.h"/>
+   <depend name="include/format/svg/Group.h"/>
+  </file>
+  <file name="src/format/svg/Grad.cpp">
+   <depend name="include/format/gfx/Gradient.h"/>
+   <depend name="include/format/svg/Grad.h"/>
+   <depend name="include/native/display/GradientType.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+  </file>
+  <file name="src/format/svg/FillType.cpp">
+   <depend name="include/format/gfx/Gradient.h"/>
+   <depend name="include/format/svg/FillType.h"/>
+   <depend name="include/format/svg/Grad.h"/>
+  </file>
+  <file name="src/format/gfx/LineStyle.cpp">
+   <depend name="include/format/gfx/LineStyle.h"/>
+   <depend name="include/native/display/CapsStyle.h"/>
+   <depend name="include/native/display/JointStyle.h"/>
+   <depend name="include/native/display/LineScaleMode.h"/>
+  </file>
+  <file name="src/format/gfx/Gradient.cpp">
+   <depend name="include/format/gfx/Gradient.h"/>
+   <depend name="include/native/display/GradientType.h"/>
+   <depend name="include/native/display/InterpolationMethod.h"/>
+   <depend name="include/native/display/SpreadMethod.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+  </file>
+  <file name="src/format/gfx/GfxTextFinder.cpp">
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/gfx/GfxTextFinder.h"/>
+   <depend name="include/format/svg/Text.h"/>
+  </file>
+  <file name="src/format/gfx/GfxGraphics.cpp">
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/gfx/GfxGraphics.h"/>
+   <depend name="include/format/gfx/Gradient.h"/>
+   <depend name="include/format/gfx/LineStyle.h"/>
+   <depend name="include/native/display/CapsStyle.h"/>
+   <depend name="include/native/display/GradientType.h"/>
+   <depend name="include/native/display/Graphics.h"/>
+   <depend name="include/native/display/InterpolationMethod.h"/>
+   <depend name="include/native/display/JointStyle.h"/>
+   <depend name="include/native/display/LineScaleMode.h"/>
+   <depend name="include/native/display/SpreadMethod.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+  </file>
+  <file name="src/format/gfx/GfxExtent.cpp">
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/gfx/GfxExtent.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+  </file>
+  <file name="src/format/gfx/GfxBytes.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/Type.h"/>
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/gfx/GfxBytes.h"/>
+   <depend name="include/format/gfx/Gradient.h"/>
+   <depend name="include/format/gfx/LineStyle.h"/>
+   <depend name="include/haxe/BaseCode.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/native/display/CapsStyle.h"/>
+   <depend name="include/native/display/GradientType.h"/>
+   <depend name="include/native/display/InterpolationMethod.h"/>
+   <depend name="include/native/display/JointStyle.h"/>
+   <depend name="include/native/display/LineScaleMode.h"/>
+   <depend name="include/native/display/SpreadMethod.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+   <depend name="include/native/utils/ByteArray.h"/>
+   <depend name="include/native/utils/CompressionAlgorithm.h"/>
+   <depend name="include/native/utils/IDataInput.h"/>
+   <depend name="include/native/utils/IMemoryRange.h"/>
+  </file>
+  <file name="src/native/display/SpreadMethod.cpp">
+   <depend name="include/native/display/SpreadMethod.h"/>
+  </file>
+  <file name="src/native/display/LineScaleMode.cpp">
+   <depend name="include/native/display/LineScaleMode.h"/>
+  </file>
+  <file name="src/native/display/JointStyle.cpp">
+   <depend name="include/native/display/JointStyle.h"/>
+  </file>
+  <file name="src/native/display/InterpolationMethod.cpp">
+   <depend name="include/native/display/InterpolationMethod.h"/>
+  </file>
+  <file name="src/native/display/CapsStyle.cpp">
+   <depend name="include/native/display/CapsStyle.h"/>
+  </file>
+  <file name="src/format/gfx/Gfx2Haxe.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/gfx/Gfx2Haxe.h"/>
+   <depend name="include/format/gfx/Gradient.h"/>
+   <depend name="include/format/gfx/LineStyle.h"/>
+   <depend name="include/native/display/CapsStyle.h"/>
+   <depend name="include/native/display/GradientType.h"/>
+   <depend name="include/native/display/InterpolationMethod.h"/>
+   <depend name="include/native/display/JointStyle.h"/>
+   <depend name="include/native/display/LineScaleMode.h"/>
+   <depend name="include/native/display/SpreadMethod.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+  </file>
+  <file name="src/format/gfx/Gfx.cpp">
+   <depend name="include/format/gfx/Gfx.h"/>
+   <depend name="include/format/gfx/Gradient.h"/>
+   <depend name="include/format/gfx/LineStyle.h"/>
+   <depend name="include/format/svg/Text.h"/>
+  </file>
+  <file name="src/format/SVG.cpp">
+   <depend name="include/Xml.h"/>
+   <depend name="include/format/SVG.h"/>
+   <depend name="include/format/svg/Group.h"/>
+   <depend name="include/format/svg/SVGData.h"/>
+   <depend name="include/format/svg/SVGRenderer.h"/>
+   <depend name="include/native/display/Graphics.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+  </file>
+  <file name="src/cpp/zip/Uncompress.cpp">
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/cpp/zip/Flush.h"/>
+   <depend name="include/cpp/zip/Uncompress.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/BytesBuffer.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+  </file>
+  <file name="src/cpp/zip/Flush.cpp">
+   <depend name="include/cpp/zip/Flush.h"/>
+  </file>
+  <file name="src/cpp/zip/Compress.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/cpp/zip/Compress.h"/>
+   <depend name="include/cpp/zip/Flush.h"/>
+   <depend name="include/haxe/io/Bytes.h"/>
+  </file>
+  <file name="src/cpp/rtti/FieldNumericIntegerLookup.cpp">
+   <depend name="include/cpp/rtti/FieldNumericIntegerLookup.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/view/constants/ControlConstants.cpp">
+   <depend name="include/ca/confidant/glory/view/constants/ControlConstants.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/view/components/PageComponent.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/ca/confidant/glory/view/components/ActorComponent.h"/>
+   <depend name="include/ca/confidant/glory/view/components/PageComponent.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/view/components/ControlComponent.cpp">
+   <depend name="include/ca/confidant/glory/view/components/ControlComponent.h"/>
+   <depend name="include/format/SVG.h"/>
+   <depend name="include/native/display/Bitmap.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/Graphics.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/view/components/ActorComponent.cpp">
+   <depend name="include/ca/confidant/glory/view/components/ActorComponent.h"/>
+   <depend name="include/format/SVG.h"/>
+   <depend name="include/native/display/Bitmap.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/Graphics.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/view/SoundMediator.cpp">
+   <depend name="include/ca/confidant/glory/view/SoundMediator.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/media/Sound.h"/>
+   <depend name="include/native/media/SoundChannel.h"/>
+   <depend name="include/native/media/SoundTransform.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/view/PageMediator.cpp">
+   <depend name="include/ca/confidant/glory/view/PageMediator.h"/>
+   <depend name="include/ca/confidant/glory/view/components/PageComponent.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/view/ControlComponentMediator.cpp">
+   <depend name="include/ca/confidant/glory/view/ControlComponentMediator.h"/>
+   <depend name="include/ca/confidant/glory/view/components/ControlComponent.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/events/MouseEvent.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/view/ApplicationMediator.cpp">
+   <depend name="include/ca/confidant/glory/GloryFrameworkApp.h"/>
+   <depend name="include/ca/confidant/glory/model/LoaderProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/PagesConfigProxy.h"/>
+   <depend name="include/ca/confidant/glory/view/ApplicationMediator.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/view/ActorComponentMediator.cpp">
+   <depend name="include/ca/confidant/glory/model/ActorComponentConfigProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/PagesConfigProxy.h"/>
+   <depend name="include/ca/confidant/glory/view/ActorComponentMediator.h"/>
+   <depend name="include/ca/confidant/glory/view/components/ActorComponent.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/events/MouseEvent.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/patterns/mediator/Mediator.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/interfaces/IMediator.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/model/TickerProxy.cpp">
+   <depend name="include/ca/confidant/glory/model/TickerProxy.h"/>
+   <depend name="include/haxe/Timer.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/model/PagesConfigProxy.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/List.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/Type.h"/>
+   <depend name="include/ValueType.h"/>
+   <depend name="include/Xml.h"/>
+   <depend name="include/ca/confidant/glory/model/PagesConfigProxy.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/xml/Fast.h"/>
+   <depend name="include/haxe/xml/_Fast/AttribAccess.h"/>
+   <depend name="include/haxe/xml/_Fast/HasAttribAccess.h"/>
+   <depend name="include/haxe/xml/_Fast/HasNodeAccess.h"/>
+   <depend name="include/haxe/xml/_Fast/NodeAccess.h"/>
+   <depend name="include/haxe/xml/_Fast/NodeListAccess.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/model/LoaderProxy.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/ca/confidant/glory/model/LoaderProxy.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/nme/installer/Assets.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/model/ControlsRegistryProxy.cpp">
+   <depend name="include/ca/confidant/glory/model/ControlsRegistryProxy.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/model/ActorComponentConfigProxy.cpp">
+   <depend name="include/ca/confidant/glory/model/ActorComponentConfigProxy.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/patterns/proxy/Proxy.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/interfaces/IProxy.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/TimerEnableCommand.cpp">
+   <depend name="include/ca/confidant/glory/controller/TimerEnableCommand.h"/>
+   <depend name="include/ca/confidant/glory/model/TickerProxy.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/TimerDisableCommand.cpp">
+   <depend name="include/ca/confidant/glory/controller/TimerDisableCommand.h"/>
+   <depend name="include/ca/confidant/glory/model/TickerProxy.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/StartupCommand.cpp">
+   <depend name="include/ca/confidant/glory/controller/Startup0_RegCommands_Command.h"/>
+   <depend name="include/ca/confidant/glory/controller/Startup1_App_Command.h"/>
+   <depend name="include/ca/confidant/glory/controller/Startup2_Proxies_Command.h"/>
+   <depend name="include/ca/confidant/glory/controller/StartupCommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/MacroCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/patterns/command/MacroCommand.cpp">
+   <depend name="include/List.h"/>
+   <depend name="include/Type.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/MacroCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/Startup2_Proxies_Command.cpp">
+   <depend name="include/ca/confidant/glory/controller/Startup2_Proxies_Command.h"/>
+   <depend name="include/ca/confidant/glory/model/ControlsRegistryProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/LoaderProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/PagesConfigProxy.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/Startup1_App_Command.cpp">
+   <depend name="include/ca/confidant/glory/GloryFrameworkApp.h"/>
+   <depend name="include/ca/confidant/glory/controller/Startup1_App_Command.h"/>
+   <depend name="include/ca/confidant/glory/view/ApplicationMediator.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/Startup0_RegCommands_Command.cpp">
+   <depend name="include/ca/confidant/glory/controller/BuildControlsCommand.h"/>
+   <depend name="include/ca/confidant/glory/controller/BuildPageCommand.h"/>
+   <depend name="include/ca/confidant/glory/controller/ChangePageCommand.h"/>
+   <depend name="include/ca/confidant/glory/controller/DestroyPageSoundsCommand.h"/>
+   <depend name="include/ca/confidant/glory/controller/GotoIntroCommand.h"/>
+   <depend name="include/ca/confidant/glory/controller/HandleAssetsLoadedCommand.h"/>
+   <depend name="include/ca/confidant/glory/controller/InitPageSoundsCommand.h"/>
+   <depend name="include/ca/confidant/glory/controller/RemovePageCommand.h"/>
+   <depend name="include/ca/confidant/glory/controller/Startup0_RegCommands_Command.h"/>
+   <depend name="include/ca/confidant/glory/controller/TimerDisableCommand.h"/>
+   <depend name="include/ca/confidant/glory/controller/TimerEnableCommand.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/RemovePageCommand.cpp">
+   <depend name="include/ca/confidant/glory/controller/RemovePageCommand.h"/>
+   <depend name="include/ca/confidant/glory/model/ControlsRegistryProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/PagesConfigProxy.h"/>
+   <depend name="include/ca/confidant/glory/view/ApplicationMediator.h"/>
+   <depend name="include/ca/confidant/glory/view/PageMediator.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/InitPageSoundsCommand.cpp">
+   <depend name="include/List.h"/>
+   <depend name="include/ca/confidant/glory/controller/InitPageSoundsCommand.h"/>
+   <depend name="include/ca/confidant/glory/model/PagesConfigProxy.h"/>
+   <depend name="include/ca/confidant/glory/view/SoundMediator.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/xml/Fast.h"/>
+   <depend name="include/haxe/xml/_Fast/AttribAccess.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/media/Sound.h"/>
+   <depend name="include/nme/installer/Assets.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/HandleAssetsLoadedCommand.cpp">
+   <depend name="include/ca/confidant/glory/controller/HandleAssetsLoadedCommand.h"/>
+   <depend name="include/ca/confidant/glory/model/LoaderProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/PagesConfigProxy.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/GotoIntroCommand.cpp">
+   <depend name="include/ca/confidant/glory/controller/GotoIntroCommand.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/DestroyPageSoundsCommand.cpp">
+   <depend name="include/List.h"/>
+   <depend name="include/ca/confidant/glory/controller/DestroyPageSoundsCommand.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/ChangePageCommand.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/ca/confidant/glory/controller/ChangePageCommand.h"/>
+   <depend name="include/ca/confidant/glory/model/PagesConfigProxy.h"/>
+   <depend name="include/ca/confidant/glory/view/ApplicationMediator.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/BuildPageCommand.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/List.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/Type.h"/>
+   <depend name="include/ca/confidant/glory/GloryFrameworkApp.h"/>
+   <depend name="include/ca/confidant/glory/controller/BuildPageCommand.h"/>
+   <depend name="include/ca/confidant/glory/model/ActorComponentConfigProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/ControlsRegistryProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/LoaderProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/PagesConfigProxy.h"/>
+   <depend name="include/ca/confidant/glory/view/ActorComponentMediator.h"/>
+   <depend name="include/ca/confidant/glory/view/ApplicationMediator.h"/>
+   <depend name="include/ca/confidant/glory/view/PageMediator.h"/>
+   <depend name="include/ca/confidant/glory/view/components/ActorComponent.h"/>
+   <depend name="include/ca/confidant/glory/view/components/PageComponent.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/xml/Fast.h"/>
+   <depend name="include/haxe/xml/_Fast/AttribAccess.h"/>
+   <depend name="include/haxe/xml/_Fast/HasAttribAccess.h"/>
+   <depend name="include/native/display/Bitmap.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/PixelSnapping.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/controller/BuildControlsCommand.cpp">
+   <depend name="include/List.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/ca/confidant/glory/controller/BuildControlsCommand.h"/>
+   <depend name="include/ca/confidant/glory/model/ControlsRegistryProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/LoaderProxy.h"/>
+   <depend name="include/ca/confidant/glory/model/PagesConfigProxy.h"/>
+   <depend name="include/ca/confidant/glory/view/ApplicationMediator.h"/>
+   <depend name="include/ca/confidant/glory/view/ControlComponentMediator.h"/>
+   <depend name="include/ca/confidant/glory/view/components/ControlComponent.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/haxe/xml/Fast.h"/>
+   <depend name="include/haxe/xml/_Fast/AttribAccess.h"/>
+   <depend name="include/native/display/Bitmap.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/PixelSnapping.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/mediator/Mediator.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/proxy/Proxy.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/patterns/command/SimpleCommand.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/SimpleCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/interfaces/ICommand.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/patterns/observer/Notifier.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/facade/Facade.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/interfaces/INotifier.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/Tracer.cpp">
+   <depend name="include/ca/confidant/glory/Tracer.h"/>
+   <depend name="include/haxe/Log.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/ApplicationFacade.cpp">
+   <depend name="include/ca/confidant/glory/ApplicationFacade.h"/>
+   <depend name="include/ca/confidant/glory/GloryFrameworkApp.h"/>
+   <depend name="include/ca/confidant/glory/controller/StartupCommand.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotifier.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/command/MacroCommand.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/facade/Facade.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notifier.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/patterns/facade/Facade.cpp">
+   <depend name="include/org/puremvc/haxe/core/Controller.h"/>
+   <depend name="include/org/puremvc/haxe/core/Model.h"/>
+   <depend name="include/org/puremvc/haxe/core/View.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IController.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IModel.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IView.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/facade/Facade.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/observer/Notification.h"/>
+  </file>
+  <file name="src/org/puremvc/haxe/interfaces/IFacade.cpp">
+   <depend name="include/org/puremvc/haxe/interfaces/ICommand.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IMediator.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/INotification.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IProxy.h"/>
+  </file>
+  <file name="src/Xml.cpp">
+   <depend name="include/Reflect.h"/>
+   <depend name="include/StringBuf.h"/>
+   <depend name="include/Type.h"/>
+   <depend name="include/Xml.h"/>
+   <depend name="include/XmlType.h"/>
+   <depend name="include/cpp/Lib.h"/>
+  </file>
+  <file name="src/XmlType.cpp">
+   <depend name="include/XmlType.h"/>
+  </file>
+  <file name="src/Type.cpp">
+   <depend name="include/Reflect.h"/>
+   <depend name="include/Type.h"/>
+   <depend name="include/ValueType.h"/>
+  </file>
+  <file name="src/ValueType.cpp">
+   <depend name="include/ValueType.h"/>
+  </file>
+  <file name="src/Sys.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/Sys.h"/>
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/haxe/io/Input.h"/>
+   <depend name="include/haxe/io/Output.h"/>
+   <depend name="include/sys/io/FileInput.h"/>
+   <depend name="include/sys/io/FileOutput.h"/>
+  </file>
+  <file name="src/StringTools.cpp">
+   <depend name="include/StringTools.h"/>
+  </file>
+  <file name="src/StringBuf.cpp">
+   <depend name="include/StringBuf.h"/>
+  </file>
+  <file name="src/Std.cpp">
+   <depend name="include/Std.h"/>
+  </file>
+  <file name="src/Reflect.cpp">
+   <depend name="include/Reflect.h"/>
+  </file>
+  <file name="src/Main.cpp">
+   <depend name="include/Main.h"/>
+   <depend name="include/ca/confidant/glory/GloryFrameworkApp.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/MovieClip.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/nme/Lib.h"/>
+  </file>
+  <file name="src/ca/confidant/glory/GloryFrameworkApp.cpp">
+   <depend name="include/ca/confidant/glory/ApplicationFacade.h"/>
+   <depend name="include/ca/confidant/glory/GloryFrameworkApp.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/MovieClip.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/nme/Lib.h"/>
+   <depend name="include/org/puremvc/haxe/interfaces/IFacade.h"/>
+   <depend name="include/org/puremvc/haxe/patterns/facade/Facade.h"/>
+  </file>
+  <file name="src/native/display/Sprite.cpp">
+   <depend name="include/Type.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/display/Stage.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+  </file>
+  <file name="src/native/display/DisplayObjectContainer.cpp">
+   <depend name="include/Std.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/errors/ArgumentError.h"/>
+   <depend name="include/native/errors/Error.h"/>
+   <depend name="include/native/errors/RangeError.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/geom/Point.h"/>
+  </file>
+  <file name="src/native/display/InteractiveObject.cpp">
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/native/display/DisplayObject.cpp">
+   <depend name="include/Type.h"/>
+   <depend name="include/native/Loader.h"/>
+   <depend name="include/native/display/BlendMode.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/Graphics.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/PixelSnapping.h"/>
+   <depend name="include/native/display/Stage.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/EventPhase.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/geom/ColorTransform.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+   <depend name="include/native/geom/Point.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+   <depend name="include/native/geom/Transform.h"/>
+  </file>
+  <file name="src/native/Loader.cpp">
+   <depend name="include/cpp/Lib.h"/>
+   <depend name="include/native/Loader.h"/>
+  </file>
+  <file name="src/native/display/IBitmapDrawable.cpp">
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/geom/ColorTransform.h"/>
+   <depend name="include/native/geom/Matrix.h"/>
+   <depend name="include/native/geom/Rectangle.h"/>
+  </file>
+  <file name="src/native/events/EventDispatcher.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/Type.h"/>
+   <depend name="include/native/events/ErrorEvent.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/EventPhase.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/events/IOErrorEvent.h"/>
+   <depend name="include/native/events/Listener.h"/>
+   <depend name="include/native/events/TextEvent.h"/>
+   <depend name="include/native/utils/WeakRef.h"/>
+  </file>
+  <file name="src/native/events/IEventDispatcher.cpp">
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/List.cpp">
+   <depend name="include/List.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/StringBuf.h"/>
+  </file>
+  <file name="src/IntIter.cpp">
+   <depend name="include/IntIter.h"/>
+  </file>
+  <file name="src/IntHash.cpp">
+   <depend name="include/IntHash.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/StringBuf.h"/>
+  </file>
+  <file name="src/Hash.cpp">
+   <depend name="include/Hash.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/StringBuf.h"/>
+  </file>
+  <file name="src/EReg.cpp">
+   <depend name="include/EReg.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/StringBuf.h"/>
+   <depend name="include/cpp/Lib.h"/>
+  </file>
+  <file name="src/cpp/Lib.cpp">
+   <depend name="include/cpp/Lib.h"/>
+  </file>
+  <file name="src/Date.cpp">
+   <depend name="include/Date.h"/>
+   <depend name="include/Std.h"/>
+  </file>
+  <file name="src/ApplicationMain.cpp">
+   <depend name="include/ApplicationMain.h"/>
+   <depend name="include/Main.h"/>
+   <depend name="include/Reflect.h"/>
+   <depend name="include/Type.h"/>
+   <depend name="include/ca/confidant/glory/GloryFrameworkApp.h"/>
+   <depend name="include/native/display/BitmapData.h"/>
+   <depend name="include/native/display/DisplayObject.h"/>
+   <depend name="include/native/display/DisplayObjectContainer.h"/>
+   <depend name="include/native/display/IBitmapDrawable.h"/>
+   <depend name="include/native/display/InteractiveObject.h"/>
+   <depend name="include/native/display/MovieClip.h"/>
+   <depend name="include/native/display/Sprite.h"/>
+   <depend name="include/native/display/Stage.h"/>
+   <depend name="include/native/events/Event.h"/>
+   <depend name="include/native/events/EventDispatcher.h"/>
+   <depend name="include/native/events/IEventDispatcher.h"/>
+   <depend name="include/native/media/Sound.h"/>
+   <depend name="include/nme/Lib.h"/>
+   <depend name="include/nme/installer/Assets.h"/>
+  </file>
+  <file name="src/__boot__.cpp">
+  </file>
+  <file name="src/__files__.cpp">
+  </file>
+  <file name="src/__resources__.cpp">
+  </file>
+</files>
+<files id="__lib__">
+<compilerflag value="-Iinclude"/>
+  <file name="src/__lib__.cpp">
+   <depend name="include/ApplicationMain.h"/>
+  </file>
+</files>
+<files id="__main__">
+<compilerflag value="-Iinclude"/>
+  <file name="src/__main__.cpp">
+   <depend name="include/ApplicationMain.h"/>
+  </file>
+</files>
+<set name="HAXE_OUTPUT" value="ApplicationMain" />
+<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
+</xml>

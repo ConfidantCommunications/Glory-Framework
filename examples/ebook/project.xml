@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+	<!-- http://www.haxenme.org/developers/documentation/nmml-project-files/ -->
+	<meta title="Glory Framework Demo" package="ca.confidant.gloryDemo" version="1.0.0" company="Confidant Communications" />
+	<app main="Main" path="bin" file="GloryDemo" />
+	<window width="960" height="640" fps="30" background="0xfff6e2" orientation="landscape" hardware="true" />
+
+ 	<set name="BUILD_DIR" value="bin" />
+
+	<source path="src" />
+
+	<haxelib name="openfl" />
+	<haxelib name="actuate" />
+	<haxelib name="svg" />
+	<haxelib name="glory" />
+
+	<icon path="assets/nme.svg" />
+	<assets path="assets" include="*" />
+
+</project>
