@@ -1,7 +1,9 @@
 /bin
+/examples/ebook/bin
 /${outputFolder}
 /${sourceFolder}
 /.hxtypes
 /builder
 /badassets
 /.project
+.DS_Store
