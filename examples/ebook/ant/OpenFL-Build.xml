@@ -1,7 +1,7 @@
 <project name="Glory Demo Build" default="buildAll" basedir="../../">
 
 <property name="nmePath" location="/usr/bin/openfl"/>
-<property name="nmmlFile" location="project.xml"/>
+<property name="nmmlFile" location="**/project.xml"/>
 
 <target name="buildAll" depends="buildFlash, buildHTML5">
 	<echo message="Building completed!"/>
