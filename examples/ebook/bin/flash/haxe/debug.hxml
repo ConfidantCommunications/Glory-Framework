@@ -1,8 +1,8 @@
 -main ApplicationMain 
 -cp /usr/lib/haxe/lib/lime/2,4,4
 -D lime=2.4.4
--cp /usr/lib/haxe/lib/glory/git
--D glory=1.0.0
+-cp /usr/lib/haxe/lib/glory/git/src
+-D glory
 -cp /usr/lib/haxe/lib/actuate/1,8,6
 -D actuate=1.8.6
 -cp /usr/lib/haxe/lib/svg/1,0,8

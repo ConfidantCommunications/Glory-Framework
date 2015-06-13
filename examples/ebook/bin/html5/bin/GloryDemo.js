@@ -1163,7 +1163,6 @@ var Main = function() {
 $hxClasses["Main"] = Main;
 Main.__name__ = ["Main"];
 Main.main = function() {
-	ca.confidant.glory.Tracer.setRedirection();
 	var app = new ca.confidant.glory.GloryFrameworkApp();
 	openfl.Lib.current.addChild(app);
 };
@@ -2416,6 +2415,7 @@ ca.confidant.glory.controller.ChangePageCommand.prototype = $extend(org.puremvc.
 		var outPageId;
 		var this1 = this.pcp.getCurrentPage();
 		outPageId = this1.get("id");
+		this.sp.setState(ca.confidant.glory.model.GloryState.TRANSITIONING);
 		switch(action) {
 		case "pageForward":
 			var nextPage = this.pcp.getNextPage();
@@ -2430,6 +2430,7 @@ ca.confidant.glory.controller.ChangePageCommand.prototype = $extend(org.puremvc.
 					_g.sendNotification("initPageSounds",nextPage.get("id"));
 					_g.sendNotification("buildPage",nextPage.get("id"));
 					_g.pcp.setCurrentPageById(nextPage.get("id"));
+					_g.sp.setState(ca.confidant.glory.model.GloryState.READY);
 				};
 			}
 			break;
@@ -2438,7 +2439,7 @@ ca.confidant.glory.controller.ChangePageCommand.prototype = $extend(org.puremvc.
 			if(prevPage != null) {
 				this.doTransition(outPageId,"out");
 				waitTimerOut = new haxe.Timer(this.pcp.getPageTransitionOutTime(outPageId) * 1000);
-				haxe.Log.trace("out time:" + this.pcp.getPageTransitionOutTime(outPageId),{ fileName : "ChangePageCommand.hx", lineNumber : 80, className : "ca.confidant.glory.controller.ChangePageCommand", methodName : "execute"});
+				haxe.Log.trace("out time:" + this.pcp.getPageTransitionOutTime(outPageId),{ fileName : "ChangePageCommand.hx", lineNumber : 81, className : "ca.confidant.glory.controller.ChangePageCommand", methodName : "execute"});
 				waitTimerOut.run = function() {
 					waitTimerOut.stop();
 					_g.sendNotification("removePage",outPageId);
@@ -2446,6 +2447,7 @@ ca.confidant.glory.controller.ChangePageCommand.prototype = $extend(org.puremvc.
 					_g.sendNotification("initPageSounds",prevPage.get("id"));
 					_g.sendNotification("buildPage",prevPage.get("id"));
 					_g.pcp.setCurrentPageById(prevPage.get("id"));
+					_g.sp.setState(ca.confidant.glory.model.GloryState.READY);
 				};
 			}
 			break;
@@ -2456,7 +2458,7 @@ ca.confidant.glory.controller.ChangePageCommand.prototype = $extend(org.puremvc.
 				if(!overlay) {
 					this.doTransition(outPageId,"out");
 					waitTimerOut = new haxe.Timer(this.pcp.getPageTransitionOutTime(outPageId) * 1000);
-					haxe.Log.trace("out time:" + this.pcp.getPageTransitionOutTime(outPageId),{ fileName : "ChangePageCommand.hx", lineNumber : 103, className : "ca.confidant.glory.controller.ChangePageCommand", methodName : "execute"});
+					haxe.Log.trace("out time:" + this.pcp.getPageTransitionOutTime(outPageId),{ fileName : "ChangePageCommand.hx", lineNumber : 105, className : "ca.confidant.glory.controller.ChangePageCommand", methodName : "execute"});
 					waitTimerOut.run = function() {
 						waitTimerOut.stop();
 						_g.sendNotification("removePage",outPageId);
@@ -2464,10 +2466,12 @@ ca.confidant.glory.controller.ChangePageCommand.prototype = $extend(org.puremvc.
 						_g.sendNotification("initPageSounds",p.get("id"));
 						_g.sendNotification("buildPage",p.get("id"));
 						_g.pcp.setCurrentPageById(p.get("id"));
+						_g.sp.setState(ca.confidant.glory.model.GloryState.READY);
 					};
 				} else {
 					this.sendNotification("initPageSounds",p.get("id"));
 					this.sendNotification("buildPage",p.get("id"));
+					this.sp.setState(ca.confidant.glory.model.GloryState.READY);
 				}
 			}
 		}
@@ -2784,8 +2788,6 @@ ca.confidant.glory.model.ControlsRegistryProxy.prototype = $extend(org.puremvc.h
 ca.confidant.glory.model.LoaderProxy = function() {
 	org.puremvc.haxe.patterns.proxy.Proxy.call(this,ca.confidant.glory.model.LoaderProxy.NAME);
 	this.loadedItems = new haxe.ds.StringMap();
-	this.loadItems = new Array();
-	this.pendingLoads = 0;
 };
 $hxClasses["ca.confidant.glory.model.LoaderProxy"] = ca.confidant.glory.model.LoaderProxy;
 ca.confidant.glory.model.LoaderProxy.__name__ = ["ca","confidant","glory","model","LoaderProxy"];
@@ -2811,41 +2813,7 @@ ca.confidant.glory.model.LoaderProxy.prototype = $extend(org.puremvc.haxe.patter
 		return imageData;
 	}
 	,loadAllAssets: function() {
-		while(this.pendingLoads < 4) this.loadNextAsset();
-	}
-	,addLoadItem: function(id,type,src) {
-		haxe.Log.trace("-->" + src,{ fileName : "LoaderProxy.hx", lineNumber : 76, className : "ca.confidant.glory.model.LoaderProxy", methodName : "addLoadItem"});
-		var h = new haxe.ds.StringMap();
-		h.set("src",src);
-		h.set("id",id);
-		h.set("type",type);
-		this.loadItems.push(h);
-	}
-	,loadNextAsset: function() {
-		if(this.loadItems.length > 0) {
-			var theAsset = this.loadItems.pop();
-			var r = new haxe.Http(theAsset.get("src"));
-			r.onData = (function(f,id) {
-				return function(r1) {
-					return f(id,r1);
-				};
-			})($bind(this,this.onAssetLoaded),theAsset.get("id"));
-			r.onError = (function(f1,id1) {
-				return function(r2) {
-					return f1(id1,r2);
-				};
-			})($bind(this,this.onLoadError),theAsset.get("id"));
-		}
-	}
-	,onLoadError: function(id,r) {
-		haxe.Log.trace("Load error:" + id,{ fileName : "LoaderProxy.hx", lineNumber : 98, className : "ca.confidant.glory.model.LoaderProxy", methodName : "onLoadError"});
-		this.onAssetLoaded(id,r);
-	}
-	,onAssetLoaded: function(id,r) {
-		haxe.Log.trace("onAssetLoaded:" + id,{ fileName : "LoaderProxy.hx", lineNumber : 104, className : "ca.confidant.glory.model.LoaderProxy", methodName : "onAssetLoaded"});
-		this.pendingLoads--;
-		if(this.loadItems.length > 0) this.loadNextAsset();
-		if(this.loadItems.length == 0 && this.pendingLoads == 0) this.sendNotification("assetsLoaded");
+		this.sendNotification("assetsLoaded");
 	}
 	,__class__: ca.confidant.glory.model.LoaderProxy
 });
@@ -5074,21 +5042,6 @@ haxe.CallStack.makeStack = function(s) {
 		}
 		return m;
 	} else return s;
-};
-haxe.Http = function(url) {
-	this.url = url;
-	this.headers = new List();
-	this.params = new List();
-	this.async = true;
-};
-$hxClasses["haxe.Http"] = haxe.Http;
-haxe.Http.__name__ = ["haxe","Http"];
-haxe.Http.prototype = {
-	onData: function(data) {
-	}
-	,onError: function(msg) {
-	}
-	,__class__: haxe.Http
 };
 haxe.Log = function() { };
 $hxClasses["haxe.Log"] = haxe.Log;
