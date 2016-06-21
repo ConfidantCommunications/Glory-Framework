@@ -14,6 +14,7 @@
 	<haxelib name="actuate" />
 	<haxelib name="svg" />
 	<haxelib name="glory" />
+	<haxelib name="puremvc-standard" />
 
 	<icon path="assets/nme.svg" />
 	<assets path="assets" include="*" />
