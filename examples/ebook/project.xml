@@ -15,8 +15,11 @@
 	<haxelib name="svg" />
 	<haxelib name="glory" />
 	<haxelib name="puremvc-standard" />
+	<haxelib name="swf" />
 
 	<icon path="assets/nme.svg" />
-	<assets path="assets" include="*" />
+	
+	<library path="assets/swflibrary.swf" preload="true" />
+	<assets path="assets" include="*" exclude="*.swf|*.fla" />
 
 </project>
