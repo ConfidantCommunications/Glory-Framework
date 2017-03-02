@@ -20,6 +20,7 @@
 	<icon path="assets/nme.svg" />
 	
 	<library path="assets/swflibrary.swf" preload="true" />
-	<assets path="assets" include="*" exclude="*.swf|*.fla" />
+	<!-- Options in the assets tag are important. Set embed to true if you want Glory/OpenFL to preload all the pages into memory (HTML5) or bundle them into the swf/app -->
+	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="true" />
 
 </project>
