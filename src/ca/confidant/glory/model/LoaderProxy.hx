@@ -67,7 +67,7 @@
 		public function getBitmapData(id:String,b:Bool=true,dest:String):Void{
 			Assets.loadBitmapData(id,b)
 				.onComplete(function(imageData){
-					// trace("We got the bitmap.");
+					trace("We got the bitmap:"+id);
 					// trace(imageData);
 					var lr:LoadResult={id:id,destinationActor:dest,type:"bitmap",data:imageData};
 					sendNotification(ApplicationFacade.HANDLE_LOADED_ASSET,lr);

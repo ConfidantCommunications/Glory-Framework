@@ -98,9 +98,6 @@
 				//var newy=thisControl.y;
 				//thisControl.y=newy;
 			}
-			
-			
-			
 			s.init();
         }
 		private function makeActor(actor:Fast):ActorComponent{
@@ -114,6 +111,21 @@
 					
 				var a=new ActorComponent();
 				//a.name=actor.att.id;
+				//embed info from config, used once bitmaps are filled
+				a.setInitValues(
+					Std.parseInt(actor.att.x),
+					Std.parseInt(actor.att.y),
+					Std.parseInt(actor.att.width),
+					Std.parseInt(actor.att.height)
+				);
+
+				a.type=actor.att.type;
+				a.name=actor.att.id;
+				if(a.type=="control"){
+					a.mouseEnabled=true;
+					a.useHandCursor=true;
+					a.buttonMode=true;
+				}
 				
 				var action:String;
 				if(actor.has.action){
@@ -148,32 +160,9 @@
 						// var b=new Bitmap (imageData);
 						// a.addBitmap(b); 
 					default: //must be a swf
-						//load swf asset per instructions at http://www.openfl.org/learn/tutorials/using-swf-assets/
-						//var clip = 
 						lp.getMovieClip (actor.att.src, actor.att.id);
-						// trace("loading:"+actor.att.src);
-						// a.addChild(clip);
 				}
-				/*if(ext=="svg"){
-					var theText=lp.getText("assets/"+actor.att.src);
-					a.addSVG(theText);
-				} else {
-					var imageData:BitmapData = lp.getBitmapData("assets/"+actor.att.src,true);
-					var b=new Bitmap (imageData);
-					a.addBitmap(b);
-				}*/
-				//appMediator.addDisplayObject(a);
-				a.x=Std.parseInt(actor.att.x);
-				a.y=Std.parseInt(actor.att.y);
-				// a.width=Std.parseInt(actor.att.width);
-				// a.height=Std.parseInt(actor.att.height);
-				a.type=actor.att.type;
-				a.name=actor.att.id;
-				if(a.type=="control"){
-					a.mouseEnabled=true;
-					a.useHandCursor=true;
-					a.buttonMode=true;
-				}
+				
 				return a;
 			//} catch(e:Dynamic){
 				//trace(Std.string(e));

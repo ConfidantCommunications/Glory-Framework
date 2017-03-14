@@ -58,10 +58,8 @@ package ca.confidant.glory.controller;
 				}
 							
 				//kill the pageMediator
-				pageMediator=null;
 				facade.removeMediator(pageId);
-				
-				
+				pageMediator=null;
 				appMediator.removeDisplayObject(s);
 				s=null;
 			} catch(e:Dynamic){

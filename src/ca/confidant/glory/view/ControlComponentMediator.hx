@@ -31,26 +31,15 @@
 		}
 		private function onMouseDown(e:MouseEvent):Void{
 			var a=cast(e.currentTarget,ControlComponent);
-			switch(a.action){
-				case ControlConstants.PAN_RIGHT_CONTROL:
-					//trace("onMouseDown");
-					//sendNotification(ApplicationFacade.TIMER_ENABLE,100);
-					sendNotification(ApplicationFacade.PAN_RIGHT);
-				case ControlConstants.PAN_LEFT_CONTROL:
-					//sendNotification(ApplicationFacade.TIMER_ENABLE,100);
-					sendNotification(ApplicationFacade.PAN_LEFT);
-
-			}
+			if ((a.action==ControlConstants.PAN_DOWN_CONTROL) ||
+				(a.action==ControlConstants.PAN_UP_CONTROL) ||
+				(a.action==ControlConstants.PAN_LEFT_CONTROL) ||
+				(a.action==ControlConstants.PAN_RIGHT_CONTROL)
+			)
+			sendNotification(ApplicationFacade.PAN_TICK,a.action);
 		}
 		private function onMouseUp(e:MouseEvent):Void{
-			var a=cast(e.currentTarget,ControlComponent);
-			switch(a.action){
-				case ControlConstants.PAN_RIGHT_CONTROL:
-					//trace("onMouseUp");
-					sendNotification(ApplicationFacade.PAN_STOP);
-				case ControlConstants.PAN_LEFT_CONTROL:
-					sendNotification(ApplicationFacade.PAN_STOP);
-			}
+			sendNotification(ApplicationFacade.PAN_STOP);
 		}
 		private function onControlClicked(e:MouseEvent):Void{
 			var a=cast(e.currentTarget,ControlComponent);
@@ -106,16 +95,16 @@
 					if(theAsset.destinationActor==mediatorName){
 						switch (theAsset.type){
 							case "bitmap":
-									var b=new Bitmap (theAsset.data);
-									b.smoothing=true;
-									control().addBitmap(b);
+								var b=new Bitmap (theAsset.data);
+								b.smoothing=true;
+								control().init(b);
 							case "svg":
 								var s:String=theAsset.data;
-								control().addSVG(s);
+								control().init(s);
 							default:
 								//must be a swf
 								var mc:DisplayObject=cast(theAsset.data,DisplayObject);
-								control().addChild(mc);
+								control().init(mc);
 						}
 					}
 

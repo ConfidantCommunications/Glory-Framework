@@ -33,8 +33,7 @@
         public static inline var TIMER_TICK:String					= "timerTick";
         public static inline var TIMER_ENABLE:String				= "timerEnable";
         public static inline var TIMER_DISABLE:String				= "timerDisable";
-        public static inline var PAN_LEFT:String					= "panLeft";
-        public static inline var PAN_RIGHT:String					= "panRight";
+        public static inline var PAN_TICK:String					= "panTick";
         public static inline var PAN_STOP:String					= "panStop";
         public static inline var TOGGLE_OPTIONS:String				= "toggleOptions";
         public static inline var PLAY_SOUND:String					= "playSound";

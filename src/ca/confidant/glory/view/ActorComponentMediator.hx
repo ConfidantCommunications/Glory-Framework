@@ -22,10 +22,15 @@
  *	@param viewComponent A reference to an ActorComponent.
  *	@param accp The ActorComponentConfigProxy which is created along with this Mediator. A repository for actor-specific data.
  */
+ 	typedef PanXY={
+		var x:Int;
+		var y:Int;
+	}
 	class ActorComponentMediator extends Mediator {
 
 		private var config:ActorComponentConfigProxy;
 		private var type:String;
+		private var panXY:PanXY;
 		public function new ( id:String,viewComponent:ActorComponent,accp:ActorComponentConfigProxy ) {
 			super( id, viewComponent );
 			this.config=accp;
@@ -84,8 +89,7 @@
         {
             return [
 					ApplicationFacade.TIMER_TICK,
-					ApplicationFacade.PAN_LEFT,
-					ApplicationFacade.PAN_RIGHT,
+					ApplicationFacade.PAN_TICK,
 					ApplicationFacade.PAN_STOP,
 					ApplicationFacade.HANDLE_LOADED_ASSET
                    ];
@@ -93,17 +97,25 @@
 
         override public function handleNotification( note:INotification ):Void
         {
-            switch ( note.getName() ) {
+			switch ( note.getName() ) {
 
             	case ApplicationFacade.TIMER_TICK:
 					//trace("timerTick");
-				case ApplicationFacade.PAN_LEFT:
-					actor().addEventListener(Event.ENTER_FRAME,onPanLeft);
-				case ApplicationFacade.PAN_RIGHT:
-					actor().addEventListener(Event.ENTER_FRAME,onPanRight);
+				case ApplicationFacade.PAN_TICK:
+					switch(note.getBody()){
+						case ControlConstants.PAN_UP_CONTROL:
+							panXY={x:0,y:-4};
+						case ControlConstants.PAN_DOWN_CONTROL:
+							panXY={x:0,y:4};
+						case ControlConstants.PAN_LEFT_CONTROL:
+							panXY={x:-4,y:0};
+						case ControlConstants.PAN_RIGHT_CONTROL:
+							panXY={x:4,y:0};
+					}
+
+					actor().addEventListener(Event.ENTER_FRAME,onPanTick);
 				case ApplicationFacade.PAN_STOP:
-					actor().removeEventListener(Event.ENTER_FRAME,onPanRight);
-					actor().removeEventListener(Event.ENTER_FRAME,onPanLeft);
+					actor().removeEventListener(Event.ENTER_FRAME,onPanTick);
 				case ApplicationFacade.HANDLE_LOADED_ASSET:
 					//note will have a destinationActor,type,data
 					var theAsset:LoadResult=note.getBody();
@@ -113,35 +125,24 @@
 							case "bitmap":
 								var b=new Bitmap (theAsset.data);
 								b.smoothing=true;
-								//trace("I am a:"+actor());
-								//var appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
-								//appMediator.addDisplayObject(b,0);
-								// trace("actor scaleX:"+actor().scaleX);
-								// trace("actor scaleY:"+actor().scaleY);
-								actor().addBitmap(b);
+								actor().init(b);
 							case "svg":
 								var s:String=theAsset.data;
-								actor().addSVG(s);
+								actor().init(s);
 							default:
 								//must be a swf
 								var mc:DisplayObject=cast(theAsset.data,DisplayObject);
-								actor().addChild(mc);
+								actor().init(mc);
 						}
 					}
 
             }
         }
-		private function onPanLeft(e:Dynamic):Void{
-
-					//trace("left");
-					actor().x=actor().x+4;
+		private function onPanTick(e:Dynamic):Void{
+			actor().x+=panXY.x;
+			actor().y+=panXY.y;
 		}
 
-		private function onPanRight(e:Dynamic):Void{
-
-					//trace("right");
-					actor().x=actor().x-4;
-		}
 		private function actor():ActorComponent {
 
 

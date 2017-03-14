@@ -18,7 +18,7 @@ package ca.confidant.glory.controller;
         {
 			var lp:LoaderProxy=cast(facade.retrieveProxy(LoaderProxy.NAME),LoaderProxy);
 			var theAsset:LoadResult=note.getBody();
-			trace('HandleAssetsLoadedCommand:'+theAsset.type);
+			// trace('HandleAssetsLoadedCommand:'+theAsset.type);
 
 			switch(theAsset.type){
 

@@ -65,14 +65,16 @@ package ca.confidant.glory.controller;
 				}
 
 
-				appMediator.addDisplayObject(a);
-				a.x=Std.parseInt(actor.att.x);
-				a.y=Std.parseInt(actor.att.y);
-				// a.width=Std.parseInt(actor.att.width);
-				// a.height=Std.parseInt(actor.att.height);
+				a.setInitValues(
+					Std.parseInt(actor.att.x),
+					Std.parseInt(actor.att.y),
+					Std.parseInt(actor.att.width),
+					Std.parseInt(actor.att.height)
+				);
 				a.mouseEnabled=true;
 				a.useHandCursor=true;
 				a.buttonMode=true;
+				appMediator.addDisplayObject(a);
 
 			} catch(e:Dynamic){
 				trace(Std.string(e));
