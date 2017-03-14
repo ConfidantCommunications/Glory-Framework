@@ -13,34 +13,24 @@ import flash.utils.ByteArray;
  */
 class ActorComponent extends Sprite {
 	
-	private var defaultBitmap:Bitmap;
-	//var altBitmap:Bitmap;
-	//public var hasColour:Bool;
 	public var type:String;
 	public function new () {
 		super ();
-		//hasColour=false;
 		mouseEnabled=false;
+		//the 3 lines below are necessary for correct scaling when loading asynchronously
+		// this.graphics.beginFill(0x0000FF,0); //0 makes it transparent
+		// this.graphics.drawRect(0,0,960,640);
+		// this.graphics.endFill();
 	}
 	
 	public function addBitmap(bMap:Bitmap){
-		this.defaultBitmap=bMap;
 		addChild(bMap);
+		//these 2 lines below must remain in order for scaling to work properly when loading asynchronously
+		// bMap.width=960;
+		// bMap.height=640;
 	}
 	public function addSVG(t:String):Void {
 		var svg = new SVG (t); 
 		svg.render(this.graphics);
 	}
-	/* disabled for now
-	public function setColourImage(bMap:Bitmap):Void{
-		this.altBitmap=bMap;
-		altBitmap.visible=false;
-		addChild(bMap);
-		addChild(defaultBitmap);
-		hasColour=true;
-	}
-	public function toggleColour():Void{
-		altBitmap.visible= !altBitmap.visible;
-
-	}*/
 }

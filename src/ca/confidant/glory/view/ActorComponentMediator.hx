@@ -6,11 +6,14 @@
 	import flash.events.MouseEvent;
 	import flash.events.Event;
 	import flash.display.Sprite;
+	import flash.display.Bitmap;
+	import flash.display.DisplayObject;
 	import openfl.Assets;
 	import org.puremvc.haxe.interfaces.INotification;
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ActorComponentConfigProxy;
+	using ca.confidant.glory.model.LoaderProxy.LoadResult;
 /**
  * @author Allan Dowdeswell
  * The ActorComponentMediator mediates between ActorComponents on a page and the framework. This is created via the BuildPageCommand and destroyed with the RemovePageCommand.
@@ -45,16 +48,8 @@
 		}
 		private function onActorClicked(e:MouseEvent):Void{
 			var a=cast(e.currentTarget, Sprite);
-			trace(a.name);
-			//a.x=200;//works
-			//a.toggleColour();
+			trace(a.name+":"+config.type+":"+config.action);
 			switch(config.type){
-				//case "colour":
-					//a.toggleColour();
-				//case ControlConstants.PAGE_FORWARD:
-					//sendNotification(ApplicationFacade.CHANGE_PAGE, ControlConstants.PAGE_FORWARD);
-				//case ControlConstants.PAGE_BACKWARD:
-					//sendNotification(ApplicationFacade.CHANGE_PAGE, ControlConstants.PAGE_BACKWARD);
 
 				case ControlConstants.CONTROL:
 					var pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
@@ -82,10 +77,6 @@
 								
 						}
 					}
-					//remember to disallow multiple options pages creation
-				//case ControlConstants.GET_URL:
-					//var pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
-					//sendNotification(ApplicationFacade.HTTP_LINK, pcp.getActorHref(this.mediatorName));
 			}
 
 		}
@@ -95,7 +86,8 @@
 					ApplicationFacade.TIMER_TICK,
 					ApplicationFacade.PAN_LEFT,
 					ApplicationFacade.PAN_RIGHT,
-					ApplicationFacade.PAN_STOP
+					ApplicationFacade.PAN_STOP,
+					ApplicationFacade.HANDLE_LOADED_ASSET
                    ];
         }
 
@@ -112,8 +104,30 @@
 				case ApplicationFacade.PAN_STOP:
 					actor().removeEventListener(Event.ENTER_FRAME,onPanRight);
 					actor().removeEventListener(Event.ENTER_FRAME,onPanLeft);
-
-
+				case ApplicationFacade.HANDLE_LOADED_ASSET:
+					//note will have a destinationActor,type,data
+					var theAsset:LoadResult=note.getBody();
+					//first check if the asset is for this actor/mediator
+					if(theAsset.destinationActor==mediatorName){
+						switch (theAsset.type){
+							case "bitmap":
+								var b=new Bitmap (theAsset.data);
+								b.smoothing=true;
+								//trace("I am a:"+actor());
+								//var appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
+								//appMediator.addDisplayObject(b,0);
+								// trace("actor scaleX:"+actor().scaleX);
+								// trace("actor scaleY:"+actor().scaleY);
+								actor().addBitmap(b);
+							case "svg":
+								var s:String=theAsset.data;
+								actor().addSVG(s);
+							default:
+								//must be a swf
+								var mc:DisplayObject=cast(theAsset.data,DisplayObject);
+								actor().addChild(mc);
+						}
+					}
 
             }
         }

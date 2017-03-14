@@ -5,11 +5,14 @@
 	//import Main;
 	import flash.events.MouseEvent;
 	import flash.display.Sprite;
+	import flash.display.Bitmap;
+	import flash.display.DisplayObject;
 	import org.puremvc.haxe.interfaces.INotification;
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
+	using ca.confidant.glory.model.LoaderProxy.LoadResult;
 /**
- * The ControlComponentMediator mediates between ControlComponents on a page and the framework. This is created via the BuildPageCommand and destroyed with the RemovePageCommand.
+ * The ControlComponentMediator mediates between ControlComponents on a page and the framework.
  *	@author Allan Dowdeswell
  *	@param id A String used as a unique identifier. This will match the id of your control in the XML configuration.
  *	@param viewComponent A reference to a ControlComponent.
@@ -84,6 +87,40 @@
 			
 			
 		}
+		override public function listNotificationInterests():Array<String>
+        {
+            return [
+					ApplicationFacade.HANDLE_LOADED_ASSET
+                   ];
+        }
+
+        override public function handleNotification( note:INotification ):Void
+        {
+            switch ( note.getName() ) {
+				case ApplicationFacade.HANDLE_LOADED_ASSET:
+					//note will have a destinationActor,type,data
+					var theAsset:LoadResult=note.getBody();
+					// lp.retrieveLoadedAsset(assetID)
+					//trace("Handling:"+theAsset.destinationActor+":"+mediatorName);
+					//first check if the asset is for this actor/mediator
+					if(theAsset.destinationActor==mediatorName){
+						switch (theAsset.type){
+							case "bitmap":
+									var b=new Bitmap (theAsset.data);
+									b.smoothing=true;
+									control().addBitmap(b);
+							case "svg":
+								var s:String=theAsset.data;
+								control().addSVG(s);
+							default:
+								//must be a swf
+								var mc:DisplayObject=cast(theAsset.data,DisplayObject);
+								control().addChild(mc);
+						}
+					}
+
+            }
+        }
 		private function control():ControlComponent {
 
 

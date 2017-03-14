@@ -16,11 +16,19 @@
 	<haxelib name="glory" />
 	<haxelib name="puremvc-standard" />
 	<haxelib name="swf" />
+	<!-- enable flash debug-->
+	<haxedef name="fdb" if="flash debug" /> 
+	<!-- enable telemetry profiling for hxScout, etc. -->
+	<haxedef name="advanced-telemetry" if="flash debug" />
+	<icon path="assets/G.png" />
 
-	<icon path="assets/nme.svg" />
+	<!--Remove the embedAssets tag below to only load assets when a page requires them (asynchronous loading). This is useful for building website-style Glory projects. 
+	<define name="embedAssets" />-->
+
+	<library path="assets/swflibrary.swf" preload="true" id="swflibrary" if="embedAssets" />
+	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="true" if="embedAssets" />
 	
-	<library path="assets/swflibrary.swf" preload="true" />
-	<!-- Options in the assets tag are important. Set embed to true if you want Glory/OpenFL to preload all the pages into memory (HTML5) or bundle them into the swf/app -->
-	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="true" />
+	<library path="assets/swflibrary.swf" preload="false" id="swflibrary" unless="embedAssets" />
+	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="false" unless="embedAssets" />
 
 </project>

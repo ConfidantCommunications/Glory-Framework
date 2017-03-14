@@ -19,7 +19,7 @@ class GloryFrameworkApp extends Sprite {
 	}
 
 	// entry point
-	public static function main() {
+	public function main() {
 		var app:GloryFrameworkApp=new GloryFrameworkApp();
 		Lib.current.addChild (app);
 	}
@@ -27,5 +27,13 @@ class GloryFrameworkApp extends Sprite {
 
 	}
 
+	#if (debug && js)
+	//debug in browser per: http://jasono.co/2013/06/24/a-haxejs-debugging-tip/
+    @:expose("haxedebug") @:keep
+    public static function enterDebug()
+    {
+        js.Lib.debug();
+    }
+	#end
 }
 

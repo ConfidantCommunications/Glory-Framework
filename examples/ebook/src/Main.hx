@@ -13,7 +13,7 @@ class Main extends GloryFrameworkApp{
 		super();
 	}
 	
-	public static function main() {
+	override public function main() {
 		//Tracer.setRedirection();
 		
 		var app:GloryFrameworkApp=new GloryFrameworkApp();
