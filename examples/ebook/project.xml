@@ -20,6 +20,7 @@
 	<haxedef name="fdb" if="flash debug" /> 
 	<!-- enable telemetry profiling for hxScout, etc. -->
 	<haxedef name="advanced-telemetry" if="flash debug" />
+	<!--haxeflag name="--macro" value="keep('org.puremvc.haxe')" / -->
 	<icon path="assets/G.png" />
 
 	<!--Remove the embedAssets tag below to only load assets when a page requires them (asynchronous loading). This is useful for building website-style Glory projects. 
