@@ -13,7 +13,7 @@
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ActorComponentConfigProxy;
-	using ca.confidant.glory.model.LoaderProxy.LoadResult;
+	// using ca.confidant.glory.model.LoaderProxy.LoadResult;
 /**
  * @author Allan Dowdeswell
  * The ActorComponentMediator mediates between ActorComponents on a page and the framework. This is created via the BuildPageCommand and destroyed with the RemovePageCommand.
@@ -90,8 +90,8 @@
             return [
 					ApplicationFacade.TIMER_TICK,
 					ApplicationFacade.PAN_TICK,
-					ApplicationFacade.PAN_STOP,
-					ApplicationFacade.HANDLE_LOADED_ASSET
+					ApplicationFacade.PAN_STOP
+					// ApplicationFacade.HANDLE_LOADED_ASSET
                    ];
         }
 
@@ -116,25 +116,25 @@
 					actor().addEventListener(Event.ENTER_FRAME,onPanTick);
 				case ApplicationFacade.PAN_STOP:
 					actor().removeEventListener(Event.ENTER_FRAME,onPanTick);
-				case ApplicationFacade.HANDLE_LOADED_ASSET:
-					//note will have a destinationActor,type,data
-					var theAsset:LoadResult=note.getBody();
-					//first check if the asset is for this actor/mediator
-					if(theAsset.destinationActor==mediatorName){
-						switch (theAsset.type){
-							case "bitmap":
-								var b=new Bitmap (theAsset.data);
-								b.smoothing=true;
-								actor().init(b);
-							case "svg":
-								var s:String=theAsset.data;
-								actor().init(s);
-							default:
-								//must be a swf
-								var mc:DisplayObject=cast(theAsset.data,DisplayObject);
-								actor().init(mc);
-						}
-					}
+				// case ApplicationFacade.HANDLE_LOADED_ASSET:
+				// 	//note will have a destinationActor,type,data
+				// 	var theAsset:LoadResult=note.getBody();
+				// 	//first check if the asset is for this actor/mediator
+				// 	if(theAsset.destinationActor==mediatorName){
+				// 		switch (theAsset.type){
+				// 			case "bitmap":
+				// 				var b=new Bitmap (theAsset.data);
+				// 				b.smoothing=true;
+				// 				actor().init(b);
+				// 			case "svg":
+				// 				var s:String=theAsset.data;
+				// 				actor().init(s);
+				// 			default:
+				// 				//must be a swf
+				// 				var mc:DisplayObject=cast(theAsset.data,DisplayObject);
+				// 				actor().init(mc);
+				// 		}
+				// 	}
 
             }
         }

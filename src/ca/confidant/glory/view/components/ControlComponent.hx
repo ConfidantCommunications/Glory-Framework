@@ -20,7 +20,7 @@ class ControlComponent extends ActorComponent {
 		this.action=action;
 	}
 	// public function addBitmap(bMap:Bitmap){
-	// 	this.defaultBitmap=bMap;
+	// 	// this.defaultBitmap=bMap;
 	// 	// bMap.width=10;
 	// 	// bMap.height=10;
 	// 	addChild(bMap);

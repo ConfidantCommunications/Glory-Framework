@@ -24,7 +24,7 @@ class ActorComponent extends Sprite {
 		mouseEnabled=false;
 	}
 	public function setInitValues(x:Int,y:Int,w:Int,h:Int):Void{
-		trace("setInitValues! "+x+":"+y+":"+w+":"+h);
+		// trace("setInitValues! "+x+":"+y+":"+w+":"+h);
 		this._initX=x;
 		this._initY=y;
 		this._initW=w;
@@ -45,12 +45,12 @@ class ActorComponent extends Sprite {
 		this.width=_initW;
 		this.height=_initH;
 	}
-/*
+
 	public function addBitmap(bMap:Bitmap){
 		addChild(bMap);
 	}
 	public function addSVG(t:String):Void {
 		var svg = new SVG (t); 
 		svg.render(this.graphics);
-	}*/
+	}
 }

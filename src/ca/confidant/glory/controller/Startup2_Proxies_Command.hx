@@ -8,9 +8,10 @@ package ca.confidant.glory.controller;
 	import ca.confidant.glory.model.ControlsRegistryProxy;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.StateProxy;
+	import ca.confidant.glory.model.CacheProxy;
 /**
  * @author Allan Dowdeswell
- * This is the third and final part of the StartupCommand chain.
+ * This is the third part of the StartupCommand chain.
  * This command registers some necessary proxies for the framework and then starts loading of XML. 
  */
 
@@ -22,14 +23,10 @@ package ca.confidant.glory.controller;
 
         override public function execute( note:INotification ) : Void
         {
-			//trace("startup2");
 			facade.registerProxy(new PagesConfigProxy());
 			facade.registerProxy(new ControlsRegistryProxy());
 			facade.registerProxy(new StateProxy());
-
-			var lp=new LoaderProxy();
-			facade.registerProxy(lp);
-
-			lp.loadXML("assets/config.xml");
+			facade.registerProxy(new LoaderProxy());
+			facade.registerProxy(new CacheProxy());
         }
     }

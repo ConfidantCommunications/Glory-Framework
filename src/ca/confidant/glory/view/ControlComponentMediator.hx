@@ -10,7 +10,7 @@
 	import org.puremvc.haxe.interfaces.INotification;
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
-	using ca.confidant.glory.model.LoaderProxy.LoadResult;
+	// using ca.confidant.glory.model.LoaderProxy.LoadResult;
 /**
  * The ControlComponentMediator mediates between ControlComponents on a page and the framework.
  *	@author Allan Dowdeswell
@@ -79,36 +79,36 @@
 		override public function listNotificationInterests():Array<String>
         {
             return [
-					ApplicationFacade.HANDLE_LOADED_ASSET
+					// ApplicationFacade.HANDLE_LOADED_ASSET
                    ];
         }
 
         override public function handleNotification( note:INotification ):Void
         {
-            switch ( note.getName() ) {
-				case ApplicationFacade.HANDLE_LOADED_ASSET:
-					//note will have a destinationActor,type,data
-					var theAsset:LoadResult=note.getBody();
-					// lp.retrieveLoadedAsset(assetID)
-					//trace("Handling:"+theAsset.destinationActor+":"+mediatorName);
-					//first check if the asset is for this actor/mediator
-					if(theAsset.destinationActor==mediatorName){
-						switch (theAsset.type){
-							case "bitmap":
-								var b=new Bitmap (theAsset.data);
-								b.smoothing=true;
-								control().init(b);
-							case "svg":
-								var s:String=theAsset.data;
-								control().init(s);
-							default:
-								//must be a swf
-								var mc:DisplayObject=cast(theAsset.data,DisplayObject);
-								control().init(mc);
-						}
-					}
+            // switch ( note.getName() ) {
+				// case ApplicationFacade.HANDLE_LOADED_ASSET:
+				// 	//note will have a destinationActor,type,data
+				// 	var theAsset:LoadResult=note.getBody();
+				// 	// lp.retrieveLoadedAsset(assetID)
+				// 	//trace("Handling:"+theAsset.destinationActor+":"+mediatorName);
+				// 	//first check if the asset is for this actor/mediator
+				// 	if(theAsset.destinationActor==mediatorName){
+				// 		switch (theAsset.type){
+				// 			case "bitmap":
+				// 				var b=new Bitmap (theAsset.data);
+				// 				b.smoothing=true;
+				// 				control().init(b);
+				// 			case "svg":
+				// 				var s:String=theAsset.data;
+				// 				control().init(s);
+				// 			default:
+				// 				//must be a swf
+				// 				var mc:DisplayObject=cast(theAsset.data,DisplayObject);
+				// 				control().init(mc);
+				// 		}
+				// 	}
 
-            }
+            // }
         }
 		private function control():ControlComponent {
 

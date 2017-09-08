@@ -28,15 +28,16 @@ class PageComponent extends Sprite {
 	 * 		Override this function in your page class.
 	 */
 	public function init():Void{
-		//transitionIn();
+		trace ("init:"+this.name);
 	}
 	/*
 	 * Gets called after page build
 	 */
 	public function transitionIn():Void{
 		trace(this.name+" in!");
-		Actuate.tween (this, 1, { alpha: 1 }, false).ease (Quad.easeIn);//.onComplete (animateCircle, [ circle ])
-
+		Actuate.tween (this, 1, { alpha: 1 }, false).ease (Quad.easeIn).onComplete (init, [  ]);
+		
+		// init();
 	}
 	/*
 	 * Gets called before page destroy

@@ -15,6 +15,7 @@
 	<haxelib name="svg" />
 	<haxelib name="glory" />
 	<haxelib name="puremvc-standard" />
+	<haxelib name="puremvc-asynccommand-standard" />
 	<haxelib name="swf" />
 	<!-- enable flash debug-->
 	<haxedef name="fdb" if="flash debug" /> 
@@ -28,8 +29,10 @@
 
 	<library path="assets/swflibrary.swf" preload="true" id="swflibrary" if="embedAssets" />
 	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="true" if="embedAssets" />
+	<!--  type="template" will copy the assets to the bin folder without creating an asset manifest in the compiled javascript -->
+	<!-- I am now building the Assets library on the fly via Startup3_Assets_Command -->
 	
-	<library path="assets/swflibrary.swf" preload="false" id="swflibrary" unless="embedAssets" />
-	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="false" unless="embedAssets" />
+	<library path="assets/swflibrary.swf" type="template" preload="false" id="swflibrary" unless="embedAssets" />
+	<assets path="assets" type="template" include="*" exclude="*.swf|*.fla" embed="false" unless="embedAssets" /> 
 
 </project>

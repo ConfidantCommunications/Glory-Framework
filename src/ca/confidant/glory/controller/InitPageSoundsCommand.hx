@@ -28,16 +28,16 @@ package ca.confidant.glory.controller;
 				for (thisSound in sounds){
 					trace("adding sound:"+thisSound.att.src+":"+thisSound.att.id);
 					//the autoplay setting will get passed as "meta" in the LoadResult
-					var autoPlay:String = (thisSound.att.autoPlay=="true")?"autoPlay":"";
-					lp.getSound("assets/"+thisSound.att.src, true, thisSound.att.id, autoPlay);
-					// var s = Assets.getSound ("assets/"+thisSound.att.src);
+					// var autoPlay:String = (thisSound.att.autoPlay=="true")?"autoPlay":"";
+					// lp.getSound("assets/"+thisSound.att.src,"name of library");
+					var s = Assets.getSound ("assets/"+thisSound.att.src);
 
 
 					//these lines moved to HandleAssetsLoadedCommand:
-					// facade.registerMediator(new SoundMediator(thisSound.att.id,s));
-					// if(thisSound.att.autoPlay=="true"){
-					// 	sendNotification(ApplicationFacade.PLAY_SOUND, thisSound.att.id);
-					// }
+					facade.registerMediator(new SoundMediator(thisSound.att.id,s));
+					if(thisSound.att.autoPlay=="true"){
+						sendNotification(ApplicationFacade.PLAY_SOUND, thisSound.att.id);
+					}
 				}
 			}
         }

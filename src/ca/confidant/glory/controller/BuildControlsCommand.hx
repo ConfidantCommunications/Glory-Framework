@@ -1,9 +1,10 @@
-﻿
-package ca.confidant.glory.controller;
+﻿package ca.confidant.glory.controller;
 
     import flash.display.Sprite;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import lime.graphics.Image;
+	import lime.utils.AssetCache;
 	import haxe.xml.Fast;
 	import openfl.Assets;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
@@ -17,6 +18,8 @@ package ca.confidant.glory.controller;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ControlsRegistryProxy;
 	import ca.confidant.glory.model.LoaderProxy;
+	import ca.confidant.glory.model.CacheProxy;
+	import ca.confidant.glory.model.AssetLibraryProxy;
 
 	/*
 	 * @author Allan Dowdeswell
@@ -26,45 +29,37 @@ package ca.confidant.glory.controller;
     class BuildControlsCommand extends SimpleCommand
     {
 		var pcp:PagesConfigProxy;
-		var csp:ControlsRegistryProxy;
+		var crp:ControlsRegistryProxy;
 		var appMediator:ApplicationMediator;
 		var lp:LoaderProxy;
+		var alp:AssetLibraryProxy;
+		var cp:CacheProxy;
+		var cache:AssetCache;
         override public function execute( note:INotification ) : Void
         {
-			trace("BuildControlsCommand");
+			// trace("BuildControlsCommand");
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
-			csp=cast(facade.retrieveProxy(ControlsRegistryProxy.NAME) , ControlsRegistryProxy);
-			lp=cast(facade.retrieveProxy(LoaderProxy.NAME) , LoaderProxy);
+			crp=cast(facade.retrieveProxy(ControlsRegistryProxy.NAME) , ControlsRegistryProxy);
 			appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
-
+			lp=cast(facade.retrieveProxy(LoaderProxy.NAME) , LoaderProxy);
+			alp=cast(facade.retrieveProxy(AssetLibraryProxy.NAME) , AssetLibraryProxy);
+			cp = cast(facade.retrieveProxy("CacheProxy"),CacheProxy);
+			cache=cp.getCache();
 			var controlsList:List<Fast>=pcp.getAppControls();
 			for (thisControl in controlsList){
 				makeControl(thisControl);
 			}
 			//
-			
+			// var theControls=crp.getControls();
+			// for(control in theControls){
+			// 	appMediator.addDisplayObject(control);
+			// }
         }
 
 		private function makeControl(actor:Fast):Void{
 			try{
 				var ext:String=cast(actor.att.src,String).substr(-3);
 				var a:ControlComponent=new ControlComponent(Std.string(actor.att.action));
-				var acm = new ControlComponentMediator(actor.att.id,a);
-				facade.registerMediator(acm);
-				csp.registerControl(a);
-				
-				if(ext=="svg"){
-					//var theText=
-					lp.getText("assets/"+actor.att.src, actor.att.id);
-					//a.addSVG(theText);
-				} else {
-					//var imageData:BitmapData = 
-					lp.getBitmapData("assets/"+actor.att.src,true, actor.att.id);
-					// var b=new Bitmap (imageData);
-					// a.addBitmap(b);
-				}
-
-
 				a.setInitValues(
 					Std.parseInt(actor.att.x),
 					Std.parseInt(actor.att.y),
@@ -74,8 +69,37 @@ package ca.confidant.glory.controller;
 				a.mouseEnabled=true;
 				a.useHandCursor=true;
 				a.buttonMode=true;
-				appMediator.addDisplayObject(a);
+				var acm = new ControlComponentMediator(actor.att.id,a);
+				facade.registerMediator(acm);
+				crp.registerControl(a);
+				var imageData;
+				var b:Bitmap;
+				if(ext=="svg"){
+					var theText = alp.getLibrary().getText(actor.att.id);
+					a.init(theText);
+					
+				} else {
+					// image should be cached if using Glory in Async mode (embedAssets not set in project.xml)
+					if (cache.exists(actor.att.id)){
+						var image = cache.image.get(actor.att.id);
+						#if flash
+						imageData = image.src;
+						#else
+						imageData = BitmapData.fromImage (image);
+						#end
 
+						// trace("exists:"+actor.att.id);
+					} else {
+						imageData = lp.getBitmapData("assets/"+actor.att.src);//,"name of library"
+						
+						// trace(actor.att.id+" is not in cache.");
+					}
+					// trace("this is my image data sucker:"+imageData);
+					b = new Bitmap (imageData);
+					// a.addBitmap(b);
+					a.init(b);
+				}
+				appMediator.addDisplayObject(a);
 			} catch(e:Dynamic){
 				trace(Std.string(e));
 			}

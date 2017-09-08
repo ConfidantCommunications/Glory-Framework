@@ -33,13 +33,11 @@
 		public function new ()
 		{
 			super ( NAME );
-			//trace("I am Pages Config Proxy!!!!");
+			currentPage=0;
 		}
 
-		public function processXML(rawXML:String){
-			currentPage=0; //arrays start at zero
-			_pagesXML=Xml.parse(rawXML);
-			fast = new haxe.xml.Fast(_pagesXML.firstElement());
+		public function processXML(input:Fast){
+			fast = input;
 			parseXML();
 		}
 		public function getCurrentPage():Map<String,Dynamic>{
@@ -193,6 +191,7 @@
 			for(thispage in fast.nodes.page){
 				var h:Map<String,Dynamic> = new Map<String,Dynamic>();
 				if(thispage.has.id) h.set("id",thispage.att.id);
+				// trace("making page:"+thispage.att.id);
 				//if(thispage.has.y) h.set("y",thispage.att.y);
 				//if(thispage.has.x) h.set("x",thispage.att.x);
 				if(thispage.has.src) h.set("src",thispage.att.src);
@@ -200,7 +199,7 @@
 				if(thispage.has.transitionOutTime) h.set("transitionOutTime",thispage.att.transitionOutTime);
 				if(thispage.has.transitionInTime) h.set("transitionInTime",thispage.att.transitionInTime);
 				if(thispage.hasNode.actor) {
-					//trace("actors:"+thispage.nodes.actor);
+					// trace("--actors:"+thispage.nodes.actor.length);
 					//trace(Type.typeof(thispage.nodes.actor));
 					h.set("actors",thispage.nodes.actor);
 				}

@@ -22,18 +22,15 @@ package ca.confidant.glory.controller;
 
 			switch(theAsset.type){
 
-				case "config":
-					var pcp:PagesConfigProxy=cast(facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
-					pcp.processXML(theAsset.data);
 				
 
 				case "sound":
 					trace("I am making a SoundMediator:"+theAsset.id);
 					facade.registerMediator(new SoundMediator(theAsset.id,theAsset.data));
 					// var pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
-					if(theAsset.meta=="autoPlay"){
-						sendNotification(ApplicationFacade.PLAY_SOUND, theAsset.id);
-					}
+					// if(theAsset.meta=="autoPlay"){
+					// 	sendNotification(ApplicationFacade.PLAY_SOUND, theAsset.id);
+					// }
 				
 
 			}
