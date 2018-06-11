@@ -1,6 +1,4 @@
-﻿
-package ca.confidant.glory.controller;
-
+﻿package ca.confidant.glory.controller.startup;
 
     import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;
@@ -18,8 +16,6 @@ package ca.confidant.glory.controller;
  * This is the fourth and final part of the StartupCommand chain.
  * This command creates the Assets manifest using the items found in the config.xml.
  */
-
-
 
     class Startup3_Assets_Command extends SimpleCommand
     {
@@ -42,29 +38,7 @@ package ca.confidant.glory.controller;
 		private function _onXMLLoaded(e:Event):Void
 		{
 			var ul:URLLoader=cast(e.target,URLLoader);
-			//trace( ul.data );
-			//now create an asset manifest?
 			var xml=new Fast(Xml.parse(ul.data)).node.pages;
-
-			/*
-			//get buttons, actors
-			var am = new AssetManifest();
-			for(button in xml.node.controls.nodes.button){
-				am.assets.push({path:button.att.src, id:button.att.id, type:getAssetType(button.att.src)});
-			}
-			for(page in xml.nodes.page){
-				for(actor in page.nodes.actor){
-					am.assets.push({path:actor.att.src, id:actor.att.id, type:getAssetType(actor.att.src)});
-				}
-			}
-			//trace (am.assets);
-			var al=AssetLibrary.fromManifest(am);
-			Assets.registerLibrary("gloryAssets",al);
-			trace(al); //returns null
-			al.loadImage("bRight").onComplete(function(e){
-				trace("done loading image");
-			}); */
-
 			var pcp:PagesConfigProxy=cast(facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
 			pcp.processXML(xml);
 		}

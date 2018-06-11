@@ -1,8 +1,0 @@
--swf bin/flash/GloryDemo.swf
--main Main
--cp src
--lib openfl
--lib svg
--lib actuate
--lib glory
--lib puremvc-standard

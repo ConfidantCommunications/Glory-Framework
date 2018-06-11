@@ -10,12 +10,10 @@ import flash.Lib;
 
 class GloryFrameworkApp extends Sprite {
 
-	function new()
-	{
+	function new() {
 		super();
 		var facade = ApplicationFacade.getInstance();
 		facade.sendNotification( ApplicationFacade.STARTUP, this );
-
 	}
 
 	// entry point
@@ -36,4 +34,3 @@ class GloryFrameworkApp extends Sprite {
     }
 	#end
 }
-

@@ -1,6 +1,6 @@
 ﻿package ca.confidant.glory.model;
 
-	import flash.display.DisplayObject;
+	import openfl.display.DisplayObject;
     import org.puremvc.haxe.patterns.proxy.Proxy;
 
 

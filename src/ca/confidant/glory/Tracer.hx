@@ -11,7 +11,7 @@ class Tracer {
         haxe.Log.trace = customTrace;
     }
 
-    private static function customTrace( v : Dynamic, ?inf : haxe.PosInfos ) {
+    private static function customTrace( v : Any, ?inf : haxe.PosInfos ) {
         //
     }
 

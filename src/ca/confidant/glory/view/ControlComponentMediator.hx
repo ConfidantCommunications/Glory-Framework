@@ -3,10 +3,10 @@
 	import ca.confidant.glory.view.constants.ControlConstants;
 	import org.puremvc.haxe.patterns.mediator.Mediator;
 	//import Main;
-	import flash.events.MouseEvent;
-	import flash.display.Sprite;
-	import flash.display.Bitmap;
-	import flash.display.DisplayObject;
+	import openfl.events.MouseEvent;
+	import openfl.display.Sprite;
+	import openfl.display.Bitmap;
+	import openfl.display.DisplayObject;
 	import org.puremvc.haxe.interfaces.INotification;
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
@@ -30,16 +30,8 @@
 			control().addEventListener(MouseEvent.MOUSE_OUT,onMouseUp);
 		}
 		private function onMouseDown(e:MouseEvent):Void{
-			var a=cast(e.currentTarget,ControlComponent);
-			if ((a.action==ControlConstants.PAN_DOWN_CONTROL) ||
-				(a.action==ControlConstants.PAN_UP_CONTROL) ||
-				(a.action==ControlConstants.PAN_LEFT_CONTROL) ||
-				(a.action==ControlConstants.PAN_RIGHT_CONTROL)
-			)
-			sendNotification(ApplicationFacade.PAN_TICK,a.action);
 		}
 		private function onMouseUp(e:MouseEvent):Void{
-			sendNotification(ApplicationFacade.PAN_STOP);
 		}
 		private function onControlClicked(e:MouseEvent):Void{
 			var a=cast(e.currentTarget,ControlComponent);
@@ -56,7 +48,7 @@
 				
 				switch(actionArray[0]){
 					case "transitionOut":
-						sendNotification(ApplicationFacade.REMOVE_PAGE, actionArray[1]);
+						// sendNotification(ApplicationFacade.REMOVE_PAGE, actionArray[1]);
 					case ControlConstants.PAGE_SKIP_TO:
 						sendNotification(ApplicationFacade.CHANGE_PAGE, actionArray[1]);
 					case ControlConstants.PAGE_FORWARD:

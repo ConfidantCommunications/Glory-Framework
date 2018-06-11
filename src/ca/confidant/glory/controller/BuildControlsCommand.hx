@@ -9,6 +9,7 @@
 	import openfl.Assets;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;
+	import org.puremvc.haxe.patterns.command.AsyncCommand;	 
     import ca.confidant.glory.view.PageMediator;
 	import ca.confidant.glory.view.ApplicationMediator;
 	import ca.confidant.glory.view.ControlComponentMediator;
@@ -17,43 +18,39 @@
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ControlsRegistryProxy;
-	import ca.confidant.glory.model.LoaderProxy;
+	// import ca.confidant.glory.model.LoaderProxy;
 	import ca.confidant.glory.model.CacheProxy;
 	import ca.confidant.glory.model.AssetLibraryProxy;
-
+	import haxe.ds.Either;
 	/*
 	 * @author Allan Dowdeswell
-	 * This is triggered by the GotoIntroCommand, right before the first page is built. 
+	 * This is triggered by the GotoIntroMacro, right before the first page is built. 
 	 * It retrieves the configuration info from the PagesConfigProxy and sets up the persistent navigation controls.
 	 */
-    class BuildControlsCommand extends SimpleCommand
+    class BuildControlsCommand extends AsyncCommand
     {
 		var pcp:PagesConfigProxy;
 		var crp:ControlsRegistryProxy;
 		var appMediator:ApplicationMediator;
-		var lp:LoaderProxy;
+		// var lp:LoaderProxy;
 		var alp:AssetLibraryProxy;
 		var cp:CacheProxy;
 		var cache:AssetCache;
         override public function execute( note:INotification ) : Void
         {
-			// trace("BuildControlsCommand");
+			trace("BuildControlsCommand");
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			crp=cast(facade.retrieveProxy(ControlsRegistryProxy.NAME) , ControlsRegistryProxy);
 			appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
-			lp=cast(facade.retrieveProxy(LoaderProxy.NAME) , LoaderProxy);
-			alp=cast(facade.retrieveProxy(AssetLibraryProxy.NAME) , AssetLibraryProxy);
+			// lp=cast(facade.retrieveProxy(LoaderProxy.NAME) , LoaderProxy);
+			alp=cast(facade.retrieveProxy("gloryControls") , AssetLibraryProxy);
 			cp = cast(facade.retrieveProxy("CacheProxy"),CacheProxy);
 			cache=cp.getCache();
 			var controlsList:List<Fast>=pcp.getAppControls();
 			for (thisControl in controlsList){
 				makeControl(thisControl);
 			}
-			//
-			// var theControls=crp.getControls();
-			// for(control in theControls){
-			// 	appMediator.addDisplayObject(control);
-			// }
+			commandComplete();
         }
 
 		private function makeControl(actor:Fast):Void{
@@ -72,32 +69,46 @@
 				var acm = new ControlComponentMediator(actor.att.id,a);
 				facade.registerMediator(acm);
 				crp.registerControl(a);
-				var imageData;
 				var b:Bitmap;
 				if(ext=="svg"){
-					var theText = alp.getLibrary().getText(actor.att.id);
-					a.init(theText);
+					var theText:String = alp.getLibrary().getText(actor.att.id);
+					a.addSVG(theText);
+					a.init();
 					
 				} else {
 					// image should be cached if using Glory in Async mode (embedAssets not set in project.xml)
-					if (cache.exists(actor.att.id)){
+					/*if (cache.exists(actor.att.id)){
 						var image = cache.image.get(actor.att.id);
 						#if flash
-						imageData = image.src;
+						var imageData = image.src;
 						#else
-						imageData = BitmapData.fromImage (image);
+						var imageData = BitmapData.fromImage (image);
 						#end
+						// trace("this is my image data sucker:"+imageData);
+						b = new Bitmap (imageData);
+						// a.addBitmap(b);
+						a.addBitmap(b);
+						a.init();
 
 						// trace("exists:"+actor.att.id);
 					} else {
-						imageData = lp.getBitmapData("assets/"+actor.att.src);//,"name of library"
+						trace("no cached item:"+actor.att.id);
+						// imageData = lp.getBitmapData("assets/"+actor.att.src);//,"name of library"
 						
 						// trace(actor.att.id+" is not in cache.");
-					}
-					// trace("this is my image data sucker:"+imageData);
-					b = new Bitmap (imageData);
-					// a.addBitmap(b);
-					a.init(b);
+					} */
+					// stolen from buildpagecommand
+					var imageData;
+					
+					var image = alp.getLibrary().getImage("assets/"+actor.att.src);//,"name of library"
+					#if flash
+					imageData = image.src;
+					#else
+					imageData = BitmapData.fromImage (image);
+					#end
+					var b = new Bitmap (imageData);
+					a.addBitmap(b);
+					a.init();
 				}
 				appMediator.addDisplayObject(a);
 			} catch(e:Dynamic){

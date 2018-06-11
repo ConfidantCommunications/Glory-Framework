@@ -18,6 +18,9 @@ class ControlComponent extends ActorComponent {
 		super ();
 		//this.defaultBitmap=bMap;
 		this.action=action;
+		// graphics.beginFill(0xFF0000);
+		// graphics.drawRect(0,0,10,10);
+		// graphics.endFill();
 	}
 	// public function addBitmap(bMap:Bitmap){
 	// 	// this.defaultBitmap=bMap;

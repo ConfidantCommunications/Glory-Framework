@@ -1,8 +1,8 @@
 ﻿package ca.confidant.glory.controller;
-    import flash.display.Sprite;
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
-	import flash.display.DisplayObject;
+    import openfl.display.Sprite;
+	import openfl.display.Bitmap;
+	import openfl.display.BitmapData;
+	import openfl.display.DisplayObject;
 	import haxe.xml.Fast;
 	import openfl.Assets;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
@@ -17,37 +17,39 @@
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ActorComponentConfigProxy;
-	import ca.confidant.glory.model.LoaderProxy;
+	// import ca.confidant.glory.model.LoaderProxy;
 	import ca.confidant.glory.model.CacheProxy;
 	import ca.confidant.glory.model.AssetLibraryProxy;
-	import lime.utils.AssetCache;
+	import ca.confidant.glory.model.ChangePageDataProxy;
+	// import lime.utils.AssetCache;
 	import openfl.utils.AssetType;
 	//import ca.confidant.glory.controller.ClassConverter;
 	
 	/* 
 	 * @author Allan Dowdeswell
-	 * This is triggered first by the GotoIntroCommand, then by calls to the ChangePageCommand. 
-	 * It retrieves configuration information from the PageConfigProxy and puts the page together
-	 * with the necessary mediators.
+	 * This is triggered by the AsyncBuildPageMacro after assets are loaded.
+	 * It retrieves configuration information from the PageConfigProxy and puts the page together with the necessary mediators.
 	 */
     class BuildPageCommand extends SimpleCommand
     {
 		var pcp:PagesConfigProxy;
 		var appMediator:ApplicationMediator;
-		var lp:LoaderProxy;
+		// var lp:LoaderProxy;
 		var alp:AssetLibraryProxy;
 		var cp:CacheProxy;
-		var cache:AssetCache;
+		// var cache:AssetCache;
+		var data:ChangePageDataProxy;
 		
 		public function new(){
 			super();
 		}
-		
+
         override public function execute( note:INotification ) : Void
         {
-			trace('BuildPageCommand');
+			data=cast(facade.retrieveProxy(ChangePageDataProxy.NAME) , ChangePageDataProxy);
+			var pageId=data.newPage;//cast(note.getBody(),String);//current page
+			trace('BuildPageCommand:'+data.newPage);
 
-			var pageId=cast(note.getBody(),String);//current page
 			try{
 				var oldpm=cast(facade.retrieveMediator(pageId),PageMediator);
 				//if this page exists, we don't want to build it again, so exit
@@ -57,11 +59,11 @@
 			}
 
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
-			lp=cast(facade.retrieveProxy(LoaderProxy.NAME) , LoaderProxy);
+			// lp=cast(facade.retrieveProxy(LoaderProxy.NAME) , LoaderProxy);
 			appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
-			alp=cast(facade.retrieveProxy(AssetLibraryProxy.NAME) , AssetLibraryProxy);
+			alp=cast(facade.retrieveProxy(pageId) , AssetLibraryProxy);
 			cp = cast(facade.retrieveProxy("CacheProxy"),CacheProxy);
-			cache=cp.getCache();
+			// cache=cp.getCache();
 
 			
 			//Custom page classes get handled here:
@@ -77,7 +79,7 @@
 				appMediator.addDisplayObject(s,0);
 			}
 			
-			//trace("page holder added: "+pageId);
+			trace("page holder added: "+pageId);
 			var pm = new PageMediator(pageId,s);
 			facade.registerMediator(pm);
 			s.transitionIn();
@@ -103,6 +105,7 @@
 				//var newy=thisControl.y;
 				//thisControl.y=newy;
 			}
+			// trace("the pm:"+pm);
         }
 		private function makeActor(actor:Fast):ActorComponent{
 			var ext:String=cast(actor.att.src,String).substr(-3);
@@ -136,12 +139,14 @@
 			switch(ext){
 				case "svg":
 					var theText = alp.getLibrary().getText(actor.att.id);
-					a.init(theText);
+					a.addSVG(theText);
+					a.init();
 				case "swf":
 					// lp.getMovieClip (actor.att.src, actor.att.id);
 					if (alp.getLibrary().isLocal (actor.att.id, cast AssetType.MOVIE_CLIP)) {
 						var mc = alp.getLibrary().getMovieClip (actor.att.id);
 						a.addChild(mc);
+						a.init();
 					} else {
 						trace ("MovieClip asset \"" + actor.att.id + "\" exists, but only asynchronously");
 						
@@ -149,10 +154,9 @@
 				
 				case "jpg"|"gif"|"png": 
 					// image should be cached if using Glory in Async mode (embedAssets not set in project.xml)
-					//TODO: change these conditions below to use embedAssets metadata
 					var imageData;
-					if (cache.exists(actor.att.id)){
-						var image = cache.image.get(actor.att.id);
+					/*if (cp.getCache().exists(actor.att.id)){
+						var image = cp.getCache().image.get(actor.att.id);
 						#if flash
 						imageData = image.src;
 						#else
@@ -161,14 +165,21 @@
 
 						trace("exists:"+actor.att.id);
 					} else {
-						imageData = lp.getBitmapData("assets/"+actor.att.src);//,"name of library"
+						imageData = alp.getLibrary().getImage("assets/"+actor.att.src);//,"name of library"
 						
 						trace(actor.att.id+" is not in cache.");
-					}
-					
+					}*/
+					var image = alp.getLibrary().getImage("assets/"+actor.att.src);//,"name of library"
+					#if flash
+					imageData = image.src;
+					#else
+					imageData = BitmapData.fromImage (image);
+					// trace("imageData:"+imageData);
+					#end
 					var b = new Bitmap (imageData);
-					// a.addBitmap(b);
-					a.init(b);
+					trace("image:"+b);
+					a.addBitmap(b);
+					a.init();
 				default:
 					trace("nothing");
 			}

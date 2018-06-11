@@ -1,14 +1,14 @@
 ﻿
 package ca.confidant.glory.view;
 
-	import flash.display.DisplayObject;
+	import openfl.display.DisplayObject;
 	import org.puremvc.haxe.patterns.mediator.Mediator;
 	import ca.confidant.glory.GloryFrameworkApp;
 
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import org.puremvc.haxe.interfaces.INotification;
-	import ca.confidant.glory.model.LoaderProxy;
+	// import ca.confidant.glory.model.LoaderProxy;
 	import ca.confidant.glory.model.ControlsRegistryProxy;
 /*
  * @author Allan Dowdeswell
@@ -18,7 +18,7 @@ package ca.confidant.glory.view;
 	class ApplicationMediator extends Mediator{
 
 		public static inline var NAME:String = 'ApplicationMediator';
-		private var loaderProxy:LoaderProxy;
+		// private var loaderProxy:LoaderProxy;
 		private var pagesConfigProxy:PagesConfigProxy;
 
 		public function new ( viewComponent:GloryFrameworkApp ) {

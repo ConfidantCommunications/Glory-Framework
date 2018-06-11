@@ -1,19 +1,20 @@
 ﻿package ca.confidant.glory.view;
-	import ca.confidant.glory.view.components.ActorComponent;
-	import ca.confidant.glory.view.constants.ControlConstants;
 
-	import org.puremvc.haxe.patterns.mediator.Mediator;
-	import flash.events.MouseEvent;
-	import flash.events.Event;
-	import flash.display.Sprite;
-	import flash.display.Bitmap;
-	import flash.display.DisplayObject;
-	import openfl.Assets;
-	import org.puremvc.haxe.interfaces.INotification;
-	import ca.confidant.glory.ApplicationFacade;
-	import ca.confidant.glory.model.PagesConfigProxy;
-	import ca.confidant.glory.model.ActorComponentConfigProxy;
-	// using ca.confidant.glory.model.LoaderProxy.LoadResult;
+import ca.confidant.glory.view.components.ActorComponent;
+import ca.confidant.glory.view.constants.ControlConstants;
+
+import org.puremvc.haxe.patterns.mediator.Mediator;
+import flash.events.MouseEvent;
+import flash.events.Event;
+import flash.display.Sprite;
+import flash.display.Bitmap;
+import openfl.display.DisplayObject;
+import openfl.Assets;
+import org.puremvc.haxe.interfaces.INotification;
+import ca.confidant.glory.ApplicationFacade;
+import ca.confidant.glory.model.PagesConfigProxy;
+import ca.confidant.glory.model.ActorComponentConfigProxy;
+// using ca.confidant.glory.model.LoaderProxy.LoadResult;
 /**
  * @author Allan Dowdeswell
  * The ActorComponentMediator mediates between ActorComponents on a page and the framework. This is created via the BuildPageCommand and destroyed with the RemovePageCommand.
@@ -66,7 +67,7 @@
 						var actionArray:Array<String>=thisAction.split(":");
 						
 						switch(actionArray[0]){
-							case "transitionOut":
+							case "removePage":
 								sendNotification(ApplicationFacade.REMOVE_PAGE, actionArray[1]);
 							case "pageSkipTo":
 								sendNotification(ApplicationFacade.CHANGE_PAGE, actionArray[1]);
@@ -87,61 +88,13 @@
 		}
 		override public function listNotificationInterests():Array<String>
         {
-            return [
-					ApplicationFacade.TIMER_TICK,
-					ApplicationFacade.PAN_TICK,
-					ApplicationFacade.PAN_STOP
-					// ApplicationFacade.HANDLE_LOADED_ASSET
-                   ];
+            return [ ];
         }
 
         override public function handleNotification( note:INotification ):Void
         {
-			switch ( note.getName() ) {
 
-            	case ApplicationFacade.TIMER_TICK:
-					//trace("timerTick");
-				case ApplicationFacade.PAN_TICK:
-					switch(note.getBody()){
-						case ControlConstants.PAN_UP_CONTROL:
-							panXY={x:0,y:-4};
-						case ControlConstants.PAN_DOWN_CONTROL:
-							panXY={x:0,y:4};
-						case ControlConstants.PAN_LEFT_CONTROL:
-							panXY={x:-4,y:0};
-						case ControlConstants.PAN_RIGHT_CONTROL:
-							panXY={x:4,y:0};
-					}
-
-					actor().addEventListener(Event.ENTER_FRAME,onPanTick);
-				case ApplicationFacade.PAN_STOP:
-					actor().removeEventListener(Event.ENTER_FRAME,onPanTick);
-				// case ApplicationFacade.HANDLE_LOADED_ASSET:
-				// 	//note will have a destinationActor,type,data
-				// 	var theAsset:LoadResult=note.getBody();
-				// 	//first check if the asset is for this actor/mediator
-				// 	if(theAsset.destinationActor==mediatorName){
-				// 		switch (theAsset.type){
-				// 			case "bitmap":
-				// 				var b=new Bitmap (theAsset.data);
-				// 				b.smoothing=true;
-				// 				actor().init(b);
-				// 			case "svg":
-				// 				var s:String=theAsset.data;
-				// 				actor().init(s);
-				// 			default:
-				// 				//must be a swf
-				// 				var mc:DisplayObject=cast(theAsset.data,DisplayObject);
-				// 				actor().init(mc);
-				// 		}
-				// 	}
-
-            }
         }
-		private function onPanTick(e:Dynamic):Void{
-			actor().x+=panXY.x;
-			actor().y+=panXY.y;
-		}
 
 		private function actor():ActorComponent {
 

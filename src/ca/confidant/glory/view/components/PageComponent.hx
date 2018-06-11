@@ -9,6 +9,7 @@ import motion.easing.Quad;
  * Make one then add a bitmap or svg.
  */
 class PageComponent extends Sprite {
+	//this is used by custom page classes; do not remove:
 	private var myActors:Map<String,ActorComponent>;
 
 	public function new () {
@@ -20,6 +21,7 @@ class PageComponent extends Sprite {
 	}
 	
 	public function addActor(key:String,spr:ActorComponent){
+		trace("adding actor:"+key);
 		this.addChild(spr);
 		myActors.set(key,spr);	
 	}
@@ -29,6 +31,9 @@ class PageComponent extends Sprite {
 	 */
 	public function init():Void{
 		trace ("init:"+this.name);
+		// graphics.beginFill(0x0000FF);
+		// graphics.drawRect(0,0,50,50);
+		// graphics.endFill();
 	}
 	/*
 	 * Gets called after page build
@@ -44,7 +49,9 @@ class PageComponent extends Sprite {
 	 */	
 	public function transitionOut():Void{
 		trace(this.name+" out!");
-		Actuate.tween (this, 1, { alpha: 0 }, false).ease (Quad.easeOut);//.onComplete (animateCircle, [ circle ])
+		Actuate.tween (this, 1, { alpha: 0 }, false).ease (Quad.easeOut).onComplete (function(){
+			trace("animation complete");
+		});
 		
 	}
 	

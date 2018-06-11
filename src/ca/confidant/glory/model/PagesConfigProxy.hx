@@ -7,7 +7,7 @@
 	/*
 	 * @author Allan Dowdeswell
 	 * This proxy contains most of our useful data and is referenced when building and removing application pieces.
-	 * After parsing the config XML, this proxy will send the notification triggering the GotoIntroCommand.
+	 * After parsing the config XML, this proxy will send the notification triggering the GotoIntroMacro.
 	 * 
 	 */
 	
