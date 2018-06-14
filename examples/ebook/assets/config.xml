@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages>
 	<controls>
-		<button id="bRight" action="pageForward,transitionOut:options" z="16" x="849" y="580" width="111" height="60" src="nav/bRight.png"></button>
-		<button id="bLeft" action="pageBackward,transitionOut:options" z="17" x="0" y="580" width="111" height="60" src="nav/bLeft.png"></button>
+		<button id="bRight" action="pageForward,removePage:options" z="16" x="849" y="580" width="111" height="60" src="nav/bRight.png"></button>
+		<button id="bLeft" action="pageBackward,removePage:options" z="17" x="0" y="580" width="111" height="60" src="nav/bLeft.png"></button>
 		<button id="bOptions" action="pageSkipTo:options" z="18" x="849" y="-11" width="111" height="71" src="nav/bOptions.png"></button>
-		<button id="bHome" action="pageSkipTo:title,transitionOut:options" z="19" x="0" y="0" width="111" height="60" src="nav/bHome.png"></button>
-		<!--
-		<button id="panLeft" action="panLeft" z="20" x="306" y="0" width="30" height="30" src="nav/panLeft.png"></button>
-		<button id="panRight" action="panRight" z="21" x="407" y="0" width="30" height="30" src="nav/panRight.png"></button>
-		<button id="panUp" action="panUp" z="20" x="356" y="200" width="30" height="30" src="nav/panLeft.png"></button>
-		<button id="panDown" action="panDown" z="21" x="356" y="240" width="30" height="30" src="nav/panRight.png"></button> -->
+		<button id="bHome" action="pageSkipTo:title,removePage:options" z="19" x="0" y="0" width="111" height="60" src="nav/bHome.png"></button>
+		
 	</controls>
 	<page id="title" type="normal">
 		<actor id="bg1" z="0" type="prop" x="0" y="0" width="960" height="640" src="title/title.jpg"></actor>
 	</page>
 	<page id="options" type="overlay">
 		<actor id="background" type="prop" z="0" x="0" y="0" width="960" height="640" src="options/actor_0000_background.png"></actor>
-		<actor id="duckButton" type="control" action="pageSkipTo:svg,transitionOut:options" z="1" x="361" y="352" width="223" height="209" src="options/actor_0001_duck.png"></actor>
-		<actor id="swfBoy" type="control" action="pageSkipTo:swfPage,transitionOut:options" z="1" x="601" y="400" width="200" height="214" src="options/swfBoy.png"></actor>
-		<actor id="home" type="control" action="pageSkipTo:title,transitionOut:options" z="2" x="132" y="136" width="252" height="264" src="options/actor_0002_home.png"></actor>
-		<actor id="cow" type="control" action="pageSkipTo:deal,transitionOut:options" z="3" x="351" y="150" width="219" height="220" src="options/actor_0003_cow.png"></actor>
-		<actor id="easyXML" type="control" action="pageSkipTo:easy,transitionOut:options" z="4" x="551" y="136" width="273" height="246" src="options/actor_0004_easyXML.png"></actor>
-		<actor id="limerick" type="control" action="pageSkipTo:limerickPage,transitionOut:options" z="5" x="135" y="366" width="198" height="185" src="options/actor_0005_limerick.png"></actor>
-		<actor id="close" z="6" type="control" action="transitionOut:options" x="860" y="40" width="50" height="50" src="nav/close.png" ></actor>
+		<actor id="duckButton" type="control" action="pageSkipTo:svg,removePage:options" z="1" x="361" y="352" width="223" height="209" src="options/actor_0001_duck.png"></actor>
+		<actor id="swfBoy" type="control" action="pageSkipTo:swfPage,removePage:options" z="1" x="601" y="400" width="200" height="214" src="options/swfBoy.png"></actor>
+		<actor id="home" type="control" action="pageSkipTo:title,removePage:options" z="2" x="132" y="136" width="252" height="264" src="options/actor_0002_home.png"></actor>
+		<actor id="cow" type="control" action="pageSkipTo:deal,removePage:options" z="3" x="351" y="150" width="219" height="220" src="options/actor_0003_cow.png"></actor>
+		<actor id="easyXML" type="control" action="pageSkipTo:easy,removePage:options" z="4" x="551" y="136" width="273" height="246" src="options/actor_0004_easyXML.png"></actor>
+		<actor id="limerick" type="control" action="pageSkipTo:limerickPage,removePage:options" z="5" x="135" y="366" width="198" height="185" src="options/actor_0005_limerick.png"></actor>
+		<actor id="close" z="6" type="control" action="removePage:options" x="860" y="40" width="50" height="50" src="nav/close.png" ></actor>
 		<actor id="choose" z="7" type="prop" x="244" y="41" width="461" height="109" src="options/choose.png" ></actor>
 	</page>
 	<!-- Remember, transitionOutTime is the delay in seconds before destroying the page. Use a custom page class to adjust the actual tween time for fadeouts, etc. -->

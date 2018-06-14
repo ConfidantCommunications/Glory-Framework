@@ -10,7 +10,8 @@
 	import org.puremvc.haxe.interfaces.INotification;
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
-	// using ca.confidant.glory.model.LoaderProxy.LoadResult;
+	import ca.confidant.glory.DataTypes;
+	import ca.confidant.glory.controller.ChangePageHelper;
 /**
  * The ControlComponentMediator mediates between ControlComponents on a page and the framework.
  *	@author Allan Dowdeswell
@@ -45,16 +46,18 @@
 			for(thisAction in actionsArray){
 				
 				var actionArray:Array<String>=thisAction.split(":");
-				
+				// if(actionArray[0]==ControlConstants.PAGE_SKIP_TO){
+				// 	trace("okay");
+				// }
 				switch(actionArray[0]){
-					case "transitionOut":
-						// sendNotification(ApplicationFacade.REMOVE_PAGE, actionArray[1]);
+					case ControlConstants.REMOVE_PAGE:
+						sendNotification(ApplicationFacade.REMOVE_PAGE, {newPage:"",oldPage:actionArray[1],action:""});
 					case ControlConstants.PAGE_SKIP_TO:
-						sendNotification(ApplicationFacade.CHANGE_PAGE, actionArray[1]);
+						sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification(actionArray[1]));
 					case ControlConstants.PAGE_FORWARD:
-						sendNotification(ApplicationFacade.CHANGE_PAGE, ControlConstants.PAGE_FORWARD);
+						sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification("",ControlConstants.PAGE_FORWARD));
 					case ControlConstants.PAGE_BACKWARD:
-						sendNotification(ApplicationFacade.CHANGE_PAGE, ControlConstants.PAGE_BACKWARD);
+						sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification("",ControlConstants.PAGE_BACKWARD));
 					/*case ControlConstants.TOGGLE_MENU:
 						trace("toggleOptions");
 						sendNotification(ApplicationFacade.TOGGLE_OPTIONS);

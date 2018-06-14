@@ -9,9 +9,9 @@ package ca.confidant.glory.controller;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	// import ca.confidant.glory.model.LoaderProxy;
 	import ca.confidant.glory.model.CacheProxy;
-	import ca.confidant.glory.model.ChangePageDataProxy;
 	// import ca.confidant.glory.model.StateProxy;
 	import ca.confidant.glory.view.constants.ControlConstants;
+	import ca.confidant.glory.DataTypes;
 	/*
 	 * @author Allan Dowdeswell
 	 * This is part of the chain described by AsyncChangePageMacro. It will happen after the ChangePageCommand fires the commandComplete();
@@ -22,11 +22,11 @@ package ca.confidant.glory.controller;
         override public function execute( note:INotification ) : Void
         {
 			trace('InitPageSoundsCommand');
+			var data:ChangePageData = note.getBody();
 			// var sp=cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 			// if(sp.getState()==GloryState.TRANSITIONING) return;
 			var pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			// var action=cast(note.getBody(),String);	
-			var data:ChangePageDataProxy=cast(facade.retrieveProxy(ChangePageDataProxy.NAME) , ChangePageDataProxy);
 /* 
 			var pageId:String;	
 			switch(action){

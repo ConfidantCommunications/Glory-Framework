@@ -12,27 +12,26 @@ package ca.confidant.glory.controller;
 	import ca.confidant.glory.view.ApplicationMediator;
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
-	import ca.confidant.glory.model.ChangePageDataProxy;
 	import org.puremvc.haxe.patterns.command.AsyncCommand;
+
+	import ca.confidant.glory.DataTypes;
 	/*
 	 * @author Allan Dowdeswell
-	 * This command is triggered by the ChangePageCommand. 
+	 * This command is triggered by the ChangePageCommand, or directly by a control. 
 	 * It disposes of on-screen assets and their mediators/proxies that aren't needed.
 	 */
     class RemovePageCommand extends SimpleCommand
     {
 		var pcp:PagesConfigProxy;
 		var appMediator:ApplicationMediator;
-		var data:ChangePageDataProxy;
         override public function execute( note:INotification ) : Void
         {
-			data=cast(facade.retrieveProxy(ChangePageDataProxy.NAME) , ChangePageDataProxy);
-			// var pageId=cast(note.getBody(),String);//current page
+			var data:ChangePageData = note.getBody();
 
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
 
-			if(pcp.getPageById(data.newPage).get("type")=="overlay"){
+			if((data.newPage != "") && (pcp.getPageById(data.newPage).get("type")=="overlay")){
 				trace("overlay! not removing that…");
 				return;
 			}
@@ -62,7 +61,6 @@ package ca.confidant.glory.controller;
 						child=null;
 					}
 								
-					//kill the pageMediator
 					facade.removeMediator(data.oldPage);
 					pageMediator=null;
 					appMediator.removeDisplayObject(s);

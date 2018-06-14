@@ -27,7 +27,7 @@
         public static inline var SET_CONTENT:String					= "setContent";
         public static inline var BUILD_PAGE:String					= "buildPage";
         public static inline var REMOVE_PAGE:String					= "removePage";
-        public static inline var BUILD_CONTROLS:String				= "buildControls";
+        // public static inline var BUILD_CONTROLS:String				= "buildControls";
         public static inline var CHANGE_PAGE:String					= "changePage";
         public static inline var HTTP_LINK:String					= "httpLink";
         public static inline var TIMER_TICK:String					= "timerTick";

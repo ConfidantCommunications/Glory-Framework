@@ -14,6 +14,7 @@ import org.puremvc.haxe.interfaces.INotification;
 import ca.confidant.glory.ApplicationFacade;
 import ca.confidant.glory.model.PagesConfigProxy;
 import ca.confidant.glory.model.ActorComponentConfigProxy;
+import ca.confidant.glory.controller.ChangePageHelper;
 // using ca.confidant.glory.model.LoaderProxy.LoadResult;
 /**
  * @author Allan Dowdeswell
@@ -55,6 +56,9 @@ import ca.confidant.glory.model.ActorComponentConfigProxy;
 		private function onActorClicked(e:MouseEvent):Void{
 			var a=cast(e.currentTarget, Sprite);
 			trace(a.name+":"+config.type+":"+config.action);
+
+
+
 			switch(config.type){
 
 				case ControlConstants.CONTROL:
@@ -66,16 +70,19 @@ import ca.confidant.glory.model.ActorComponentConfigProxy;
 						
 						var actionArray:Array<String>=thisAction.split(":");
 						
+						// if(actionArray[0]==ControlConstants.PAGE_SKIP_TO){
+						// 	trace("okay");
+						// }
 						switch(actionArray[0]){
-							case "removePage":
-								sendNotification(ApplicationFacade.REMOVE_PAGE, actionArray[1]);
-							case "pageSkipTo":
-								sendNotification(ApplicationFacade.CHANGE_PAGE, actionArray[1]);
-							case "pageForward":
-								sendNotification(ApplicationFacade.CHANGE_PAGE, ControlConstants.PAGE_FORWARD);
-							case "pageBackward":
-								sendNotification(ApplicationFacade.CHANGE_PAGE, ControlConstants.PAGE_BACKWARD);
-							case "playSound":
+							case ControlConstants.REMOVE_PAGE:
+								sendNotification(ApplicationFacade.REMOVE_PAGE, {newPage:"",oldPage:actionArray[1],action:""});
+							case ControlConstants.PAGE_SKIP_TO:
+								sendNotification(ApplicationFacade.CHANGE_PAGE,ChangePageHelper.instance.buildNotification(actionArray[1]));
+							case ControlConstants.PAGE_FORWARD:
+								sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification("",ControlConstants.PAGE_FORWARD));
+							case ControlConstants.PAGE_BACKWARD:
+								sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification("",ControlConstants.PAGE_BACKWARD));
+							case ControlConstants.PLAY_SOUND:
 								sendNotification(ApplicationFacade.PLAY_SOUND, actionArray[1]);
 									//var sound = Assets.getSound ("assets/p1/limerickPCM.wav");
 									//sound.play ();

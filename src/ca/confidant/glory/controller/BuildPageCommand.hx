@@ -20,7 +20,7 @@
 	// import ca.confidant.glory.model.LoaderProxy;
 	import ca.confidant.glory.model.CacheProxy;
 	import ca.confidant.glory.model.AssetLibraryProxy;
-	import ca.confidant.glory.model.ChangePageDataProxy;
+	import ca.confidant.glory.DataTypes;
 	// import lime.utils.AssetCache;
 	import openfl.utils.AssetType;
 	//import ca.confidant.glory.controller.ClassConverter;
@@ -37,8 +37,6 @@
 		// var lp:LoaderProxy;
 		var alp:AssetLibraryProxy;
 		var cp:CacheProxy;
-		// var cache:AssetCache;
-		var data:ChangePageDataProxy;
 		
 		public function new(){
 			super();
@@ -46,9 +44,9 @@
 
         override public function execute( note:INotification ) : Void
         {
-			data=cast(facade.retrieveProxy(ChangePageDataProxy.NAME) , ChangePageDataProxy);
+			var data:ChangePageData=note.getBody();
 			var pageId=data.newPage;//cast(note.getBody(),String);//current page
-			trace('BuildPageCommand:'+data.newPage);
+			trace('BuildPageCommand:'+data);
 
 			try{
 				var oldpm=cast(facade.retrieveMediator(pageId),PageMediator);
@@ -73,7 +71,7 @@
 			
 			s.name=pageId;
 
-			if(pcp.getPageById(pageId).get("type")=="overlay"){
+			if((data.newPage != null) && (pcp.getPageById(pageId).get("type")=="overlay")){
 				appMediator.addDisplayObject(s,-1);
 			} else {
 				appMediator.addDisplayObject(s,0);

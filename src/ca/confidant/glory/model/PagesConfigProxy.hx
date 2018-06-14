@@ -72,7 +72,7 @@
 		public function getNextPage():Map<String,Dynamic>{
 			
 			var j:Int=1;
-			
+			trace("getNextPage:"+currentPage+":"+allPages.length);
 			while((currentPage+j)<allPages.length){
 				//check if normal page
 				if(allPages[currentPage+j].get("type")=="normal") {
@@ -84,7 +84,7 @@
 				}				
 			} 
 			
-			return null;
+			return allPages[currentPage];
 			
 			
 		}
@@ -103,7 +103,7 @@
 				}				
 			} 
 			
-			return null;
+			return allPages[currentPage];
 			
 		}
 		public function getPageTransitionOutTime(pageId:String):Int{
@@ -215,7 +215,7 @@
 
 			}
 
-			sendNotification(ApplicationFacade.PAGES_CONFIG_READY);
+			sendNotification(ApplicationFacade.PAGES_CONFIG_READY,{action:"gotoIntro"});
 
 		}
 

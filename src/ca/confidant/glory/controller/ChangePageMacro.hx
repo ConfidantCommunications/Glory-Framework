@@ -11,15 +11,14 @@
 		
 		override function initializeAsyncMacroCommand () : Void
 		{
-			// trace("ChangePageMacro");
-			addSubCommand( ChangePageSetup );//sets up a ChangePageDataProxy for use by following commands
+			//addSubCommand( ChangePageSetup );//moved to ChangePageHelper
 			addSubCommand( PageTransitionOutCommand );
 			addSubCommand( RemovePageCommand );
 			addSubCommand( DestroyPageSoundsCommand );
 			addSubCommand( AsyncLoadAssetsCommand );
 			addSubCommand( BuildPageCommand );
 			addSubCommand( InitPageSoundsCommand );
-			addSubCommand( ChangePageCleanup );//sets transition state and current page, removes ChangePageDataProxy
+			addSubCommand( ChangePageCleanup );
 		}
 
     }

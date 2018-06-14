@@ -43,8 +43,7 @@ package ca.confidant.glory.controller;
 	// import ca.confidant.glory.model.LoaderProxy;
 	import ca.confidant.glory.model.CacheProxy;
 	import ca.confidant.glory.model.AssetLibraryProxy;
-	import ca.confidant.glory.model.ChangePageDataProxy;
-	// import ca.confidant.glory.GloryAssetLibrary;
+	import ca.confidant.glory.DataTypes;
 	
 	/* 
 	 * @author Allan Dowdeswell
@@ -65,7 +64,6 @@ package ca.confidant.glory.controller;
 		// var pendingLoads:Int;
 		var cp:CacheProxy;
 		var assetsList:List<Fast>;
-		var data:ChangePageDataProxy;
 		public function new(){
 			super();
 		}
@@ -77,13 +75,9 @@ package ca.confidant.glory.controller;
         {
 			trace('AsyncLoadAssetsCommand');
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
-			try{
-				data=cast(facade.retrieveProxy(ChangePageDataProxy.NAME) , ChangePageDataProxy);
-				pageId=data.newPage;
-
-			} catch (e:Any){
-
-			}
+			var data:ChangePageData=note.getBody();
+			trace ("data:"+note.getBody());
+			pageId=data.newPage;
 
 			if(pageId==null){
 				assetsList=pcp.getAppControls();

@@ -17,7 +17,7 @@
 	import ca.confidant.glory.model.StateProxy;
 	import ca.confidant.glory.view.constants.ControlConstants;
 	import ca.confidant.glory.model.ControlsRegistryProxy;
-	import ca.confidant.glory.model.ChangePageDataProxy;
+	import ca.confidant.glory.DataTypes;
 	import openfl.display.DisplayObject;
 	import haxe.Timer;
 	/*
@@ -29,16 +29,15 @@
     {
 		var pcp:PagesConfigProxy;
 		var sp:StateProxy;
-		var data:ChangePageDataProxy;
         override public function execute( note:INotification ) : Void
         {
 			sp=cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
-			data=cast(facade.retrieveProxy(ChangePageDataProxy.NAME) , ChangePageDataProxy);
-			pcp.setCurrentPageById(data.newPage);
+			var data=note.getBody();
+			if(pcp.getPageById(data.newPage).get("type")!="overlay")
+				pcp.setCurrentPageById(data.newPage);
 			sp.setState(GloryState.READY);
-			facade.removeProxy(ChangePageDataProxy.NAME);
-			data=null;
+			
         }
 
     }
