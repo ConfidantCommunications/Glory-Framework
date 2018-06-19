@@ -63,7 +63,6 @@ import ca.confidant.glory.controller.ChangePageHelper;
 
 				case ControlConstants.CONTROL:
 					var pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
-					//trace(pcp.getPageById(this.mediatorName));
 					var actionsArray:Array<String>=config.action.split(",");
 					
 					for(thisAction in actionsArray){

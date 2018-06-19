@@ -21,7 +21,7 @@
 
 package ca.confidant.glory.controller;
 	import haxe.xml.Fast;
-	import openfl.Assets;
+	import openfl.utils.Assets;
 	import openfl.utils.AssetLibrary;
 	import openfl.utils.AssetManifest;
 	import lime.utils.AssetType;
@@ -86,18 +86,19 @@ package ca.confidant.glory.controller;
 			}
 		
 			var manifest = new AssetManifest();
-			for(button in assetsList){
-				//manifest.assets.push({path:"assets/"+button.att.src, id:button.att.id, type:getAssetType(button.att.src)});//,size:100
+			for(theAsset in assetsList){
+				//manifest.assets.push({path:"assets/"+theAsset.att.src, id:theAsset.att.id, type:getAssetType(theAsset.att.src)});//,size:100
 
-				switch(getAssetType(button.att.src)){
+				switch(getAssetType(theAsset.att.src)){
 					case AssetType.IMAGE:
-						manifest.addBitmapData ("assets/" + button.att.src);
+						manifest.addBitmapData ("assets/" + theAsset.att.src);
 					case AssetType.TEXT:
-						manifest.addText("assets/" + button.att.src);
+						manifest.addText("assets/" + theAsset.att.src);
 					case AssetType.BINARY:
-						manifest.addBytes("assets/" + button.att.src);
+						//do we need a different libraryType in manifest?
+						manifest.addBytes("assets/" + theAsset.att.src);
 					default:
-						manifest.addBytes("assets/" + button.att.src);
+						manifest.addBytes("assets/" + theAsset.att.src);
 
 				}
 
@@ -111,55 +112,52 @@ package ca.confidant.glory.controller;
 				// manifest.addSound ([ "sounds/" + sound + ".ogg", "sounds/" + sound + ".mp3", "sounds/" + sound + ".wav" ], id);
 
 			}
-			// pendingLoads=manifest.assets.length;
-			// trace (manifest.assets);
-			// var libName:String = (pageId==null) ? "gloryControls" : pageId;
-			// // var al = AssetLibrary.fromManifest(manifest);
-			// facade.registerProxy(new AssetLibraryProxy(al,libName));
 
 			cp = cast(facade.retrieveProxy("CacheProxy"),CacheProxy);
-			//trace(libName+" getlibrary:"+Assets.getLibrary(libName));
-			// trace("theLibrary:");
-			// trace(al);
-			// Assets.registerLibrary(libName,al);
-			// Assets.loadLibrary(libName); 
-			// al.load(); //load all assets?
 
-			//this loads but may not be associating the assets with the assetlibrary
-			/*for (thisAsset in manifest.assets){
+			// 1.test if it's a swf page, else load from manifest.
+			var swflib:String = "";
+			if(pageId != null) swflib=pcp.getPage(pageId).get("swflibrary");
+			if(swflib!=""){
+				// swflib ="/assets/"+swflib+".bundle/library.json";
+				swflib="/assets/"+swflib+".bundle";
+				//AssetLibrary.loadFromFile needs a manifest file or bundle, not a swf file
+				AssetLibrary.loadFromFile (swflib,"").onComplete( function (library:AssetLibrary) {
+					var libName:String = (pageId==null) ? "gloryControls" : pageId;
+					
+					Assets.registerLibrary (libName, library);
+					trace ("SWF library loaded");
+					facade.registerProxy(new AssetLibraryProxy(library,libName));
 
-				al.loadAsset(thisAsset.id,thisAsset.type).onComplete(function(e){
-					//trace("loaded asset:"+thisAsset.id,thisAsset.type,e);
-					var cache=cp.getCache();
-					cache.set(thisAsset.id,thisAsset.type,e);
-					pendingLoads--;
-					if(pendingLoads==0){
-						// trace("commandcomplete:assetLoading");
 						commandComplete(); 
-					}
 				});
 
-			}*/
+			} else {
+				//not a swflibrary
+				AssetLibrary.loadFromManifest (manifest).onComplete (function (library) {
+							var libName:String = (pageId==null) ? "gloryControls" : pageId;
+							
+							Assets.registerLibrary (libName, library);
+							
+							trace("completed loading");
+							
+							// var al = AssetLibrary.fromManifest(manifest);
+							facade.registerProxy(new AssetLibraryProxy(library,libName));
+
+							commandComplete(); 
+							
+						}).onError (function (e) {
+							
+							trace (e);
+							
+				});
+
+			}
+
 
 
 			
-			AssetLibrary.loadFromManifest (manifest).onComplete (function (library) {
-						var libName:String = (pageId==null) ? "gloryControls" : pageId;
-						
-						Assets.registerLibrary (libName, library);
-						
-						trace("completed loading");
-						
-						// var al = AssetLibrary.fromManifest(manifest);
-						facade.registerProxy(new AssetLibraryProxy(library,libName));
-
-						commandComplete(); 
-						
-					}).onError (function (e) {
-						
-						trace (e);
-						
-			});
+			
         }
 
 		private function getAssetType(path:String):AssetType {

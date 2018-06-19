@@ -31,7 +31,7 @@ package ca.confidant.glory.controller;
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
 
-			if((data.newPage != "") && (pcp.getPageById(data.newPage).get("type")=="overlay")){
+			if((data.newPage != "") && (pcp.getPage(data.newPage).get("type")=="overlay")){
 				trace("overlay! not removing that…");
 				return;
 			}

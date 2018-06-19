@@ -8,3 +8,4 @@
 /.project
 .DS_Store
 .vscode
+checkstyle.json

@@ -3,7 +3,6 @@
 	import org.puremvc.haxe.interfaces.INotification;
 	import org.puremvc.haxe.patterns.command.AsyncCommand;	
 	import ca.confidant.glory.model.PagesConfigProxy;
-	import ca.confidant.glory.model.StateProxy;
 	import ca.confidant.glory.DataTypes;
 	
 	import haxe.Timer;
@@ -15,13 +14,12 @@
     class PageTransitionOutCommand extends AsyncCommand
     {
 		var pcp:PagesConfigProxy;
-		var sp:StateProxy;
         override public function execute( note:INotification ) : Void
         {
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			var data:ChangePageData = note.getBody();
 			trace("PageTransitionOutCommand:"+data);
-			if ((data.newPage != null) && (pcp.getPageById(data.newPage).get("type")=="overlay")){
+			if ((data.newPage != null) && (pcp.getPage(data.newPage).get("type")=="overlay")){
 				trace("overlay! not removing old page.");
 				commandComplete();
 			} else if (data.newPage!=data.oldPage) {

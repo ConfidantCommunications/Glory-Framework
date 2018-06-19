@@ -20,7 +20,7 @@ class PageComponent extends Sprite {
 		this.alpha=0;
 	}
 	
-	public function addActor(key:String,spr:ActorComponent){
+	public function addActor(key:String,spr:ActorComponent):Void{
 		trace("adding actor:"+key);
 		this.addChild(spr);
 		myActors.set(key,spr);	

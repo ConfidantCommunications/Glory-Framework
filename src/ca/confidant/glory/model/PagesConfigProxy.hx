@@ -60,12 +60,11 @@
 				}
 			}
 		}
-		public function getPageById(id:String):Map<String,Dynamic>{
-			for(i in 0...allPages.length){
-				if(allPages[i].get("id")==id){
-					return allPages[i];
+		public function getPage(id:String):Map<String,Dynamic>{
+			for(thispage in allPages){
+				if(thispage.get("id")==id){
+					return thispage;
 				}
-				
 			}
 			return null;
 		}
@@ -169,14 +168,6 @@
 			}
 			return "#";
 		}
-		private function getPage(pageId:String):Map<String,Dynamic>{
-			for(thispage in allPages){
-				if(thispage.get("id")==pageId){
-					return thispage;
-				}
-			}
-			return null;
-		}
 		public function numpages():Int{
 			return allPages.length;
 		}
@@ -191,9 +182,11 @@
 			for(thispage in fast.nodes.page){
 				var h:Map<String,Dynamic> = new Map<String,Dynamic>();
 				if(thispage.has.id) h.set("id",thispage.att.id);
-				// trace("making page:"+thispage.att.id);
-				//if(thispage.has.y) h.set("y",thispage.att.y);
-				//if(thispage.has.x) h.set("x",thispage.att.x);
+				if(thispage.has.swflibrary) {
+					h.set("swflibrary",thispage.att.swflibrary);
+				} else{
+					h.set("swflibrary","");
+				}
 				if(thispage.has.src) h.set("src",thispage.att.src);
 				if(thispage.has.type) h.set("type",thispage.att.type);
 				if(thispage.has.transitionOutTime) h.set("transitionOutTime",thispage.att.transitionOutTime);

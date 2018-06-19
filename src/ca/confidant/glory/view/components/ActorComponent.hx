@@ -33,20 +33,6 @@ class ActorComponent extends Sprite {
 	}
 	public function init():Void{
 		trace("init for "+this.name);
-		// graphics.beginFill(0x00FF00);
-		// graphics.drawRect(0,0,10,30);
-		// graphics.endFill();
-
-		/*switch(graphic){
-			case Left(l): 
-				addChild(graphic);
-			case Right(r):
-				var svg = new SVG (graphic); 
-				svg.render(this.graphics);
-			default:
-				trace("bad init value:"+graphic);
-
-		}*/
 		this.x=_initX;
 		this.y=_initY;
 		this.width=_initW;
@@ -57,6 +43,7 @@ class ActorComponent extends Sprite {
 		addChild(bMap);
 	}
 	public function addSVG(t:String):Void {
+		// trace("rendering SVG:"+t);
 		var svg = new SVG (t); 
 		svg.render(this.graphics);
 	}

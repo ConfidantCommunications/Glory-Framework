@@ -17,7 +17,7 @@
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ActorComponentConfigProxy;
-	// import ca.confidant.glory.model.LoaderProxy;
+	import ca.confidant.glory.model.StateProxy;
 	import ca.confidant.glory.model.CacheProxy;
 	import ca.confidant.glory.model.AssetLibraryProxy;
 	import ca.confidant.glory.DataTypes;
@@ -37,7 +37,7 @@
 		// var lp:LoaderProxy;
 		var alp:AssetLibraryProxy;
 		var cp:CacheProxy;
-		
+		var sp:StateProxy;
 		public function new(){
 			super();
 		}
@@ -47,7 +47,7 @@
 			var data:ChangePageData=note.getBody();
 			var pageId=data.newPage;//cast(note.getBody(),String);//current page
 			trace('BuildPageCommand:'+data);
-
+			sp = cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 			try{
 				var oldpm=cast(facade.retrieveMediator(pageId),PageMediator);
 				//if this page exists, we don't want to build it again, so exit
@@ -71,7 +71,7 @@
 			
 			s.name=pageId;
 
-			if((data.newPage != null) && (pcp.getPageById(pageId).get("type")=="overlay")){
+			if((data.newPage != null) && (pcp.getPage(pageId).get("type")=="overlay")){
 				appMediator.addDisplayObject(s,-1);
 			} else {
 				appMediator.addDisplayObject(s,0);
@@ -80,6 +80,7 @@
 			trace("page holder added: "+pageId);
 			var pm = new PageMediator(pageId,s);
 			facade.registerMediator(pm);
+			sp.setState(GloryState.TRANSITIONING);
 			s.transitionIn();
 
 			var actorsList=pcp.getPageActors(pageId);
@@ -136,13 +137,13 @@
 			facade.registerMediator(acm);
 			switch(ext){
 				case "svg":
-					var theText = alp.getLibrary().getText(actor.att.id);
+					var theText = alp.getLibrary().getText("assets/"+actor.att.src);
 					a.addSVG(theText);
 					a.init();
 				case "swf":
 					// lp.getMovieClip (actor.att.src, actor.att.id);
 					if (alp.getLibrary().isLocal (actor.att.id, cast AssetType.MOVIE_CLIP)) {
-						var mc = alp.getLibrary().getMovieClip (actor.att.id);
+						var mc = alp.getLibrary().getMovieClip ("assets/"+actor.att.src);
 						a.addChild(mc);
 						a.init();
 					} else {
@@ -151,22 +152,7 @@
 					}
 				
 				case "jpg"|"gif"|"png": 
-					// image should be cached if using Glory in Async mode (embedAssets not set in project.xml)
 					var imageData;
-					/*if (cp.getCache().exists(actor.att.id)){
-						var image = cp.getCache().image.get(actor.att.id);
-						#if flash
-						imageData = image.src;
-						#else
-						imageData = BitmapData.fromImage (image);
-						#end
-
-						trace("exists:"+actor.att.id);
-					} else {
-						imageData = alp.getLibrary().getImage("assets/"+actor.att.src);//,"name of library"
-						
-						trace(actor.att.id+" is not in cache.");
-					}*/
 					var image = alp.getLibrary().getImage("assets/"+actor.att.src);//,"name of library"
 					#if flash
 					imageData = image.src;
@@ -179,8 +165,15 @@
 					a.addBitmap(b);
 					a.init();
 				default:
-					trace("nothing");
+					if(actor.att.src != ""){
+						//assume it's a bundled flash asset with no swf extension
+						var mc = alp.getLibrary().getMovieClip (actor.att.src);
+						a.addChild(mc);
+					}
 			}
+
+
+
 			return a;
 			//} catch(e:Dynamic){
 				//trace(Std.string(e));

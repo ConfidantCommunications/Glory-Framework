@@ -28,7 +28,7 @@
 	<page id="easy" type="normal">
 		<actor id="bgEasy" z="0" type="prop" x="0" y="0" width="960" height="640" src="easyXML.jpg" ></actor>
 	</page>
-	<page id="limerickPage" type="normal" original="~/Documents/Apps/Limericks/Art/1.%20Fireshoes/"  transitionOutTime="0.5">
+	<page id="limerickPage" type="normal" original="~/Documents/Apps/Limericks/Art/1.%20Fireshoes/"  transitionOutTime="1">
 		<actor id="bg3" z="0" type="prop" x="0" y="0" width="960" height="640" src="p1/pageObject_0000_bg.jpg"></actor>
 		<actor id="skin" z="1" type="prop" x="196" y="122" width="368" height="396" src="p1/pageObject_0001_skin.png"></actor>
 		<actor id="hose" z="2" type="prop" x="236" y="135" width="250" height="281" src="p1/pageObject_0002_hose.png"></actor>
@@ -48,7 +48,7 @@
 		<actor id="duck" z="1" type="prop" x="0" y="0" width="962" height="640" src="duck.svg" ></actor>
 		<actor id="star1" z="1" type="prop" x="100" y="120" width="100" height="100" src="star.svg" ></actor>
 	</page>
-	<page id="swfPage" type="normal">
-		<actor id="littleboy" z="1" type="prop" x="0" y="0" width="962" height="640" src="swflibrary:LittleBoy" ></actor>
+	<page id="swfPage" type="normal" swflibrary="swflibrary"><!--Currently library must be generated using `openfl process swflibrary.swf swflibrary.bundle`-->
+		<actor id="LittleBoy" z="1" type="prop" x="0" y="0" width="962" height="640" src="LittleBoy" ></actor>
 	</page>
 </pages>

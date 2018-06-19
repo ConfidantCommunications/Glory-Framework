@@ -14,28 +14,33 @@ class Psvg extends PageComponent{
 		this.alpha=1;
 		x=-960;
 	}
-	override public function init(){
+	override public function init():Void{
+		trace("custom init!");
 		star=myActors.get("star1");
 		startTimer();
 		//transitionIn();
 	}
 	public function startTimer(i:Int=50):Void{
-		//trace("startTimer!");
+		trace("startTimer!");
 		myTimer=new Timer(i);
 		myTimer.run = onTimerTick;
 	}
 	private function onTimerTick():Void{
+		// trace("onTimerTick");
 		star.rotation+=20;
 	}
 	override public function transitionIn():Void{
-		trace(this.name+" in!");
-		Actuate.tween (this, 1, { x: 0 }, false).ease (Quad.easeIn);//.onComplete (animateCircle, [ circle ])
+		trace(this.name+" custom in!");
+		Actuate.tween (this, 1, { x: 0 }, false).ease (Quad.easeIn).onComplete (init, [  ]);
+		
+
+
 	}
 	/*
 	 * Gets called before page destroy
 	 */	
 	override public function transitionOut():Void{
-		//trace(this.name+" out!");
+		trace(this.name+" custom out!");
 		Actuate.tween (this, 1, { alpha:0 }, false).ease (Quad.easeOut);//.onComplete (animateCircle, [ circle ])
 	}
 }

@@ -23,17 +23,11 @@
 
         override public function execute( note:INotification ) : Void
         {
-			trace("startup2");
-			// var mf=new AssetManifest();
 			var loader=new URLLoader();
 							
 			loader.addEventListener (Event.COMPLETE, _onXMLLoaded);
 			loader.load (new URLRequest ("assets/config.xml"));
 
-			//trace(Assets.getLibrary("default"));
-
-			//need to try this:
-			// Assets.loadText("assets/config.xml").onComplete(_onXMLLoaded);
         }
 		private function _onXMLLoaded(e:Event):Void
 		{

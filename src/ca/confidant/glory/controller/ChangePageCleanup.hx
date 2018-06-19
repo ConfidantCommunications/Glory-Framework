@@ -34,10 +34,8 @@
 			sp=cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			var data=note.getBody();
-			if(pcp.getPageById(data.newPage).get("type")!="overlay")
-				pcp.setCurrentPageById(data.newPage);
+			if(pcp.getPage(data.newPage).get("type")!="overlay") pcp.setCurrentPageById(data.newPage);
 			sp.setState(GloryState.READY);
-			
         }
 
     }

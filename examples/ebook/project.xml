@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 
-	<!-- http://www.haxenme.org/developers/documentation/nmml-project-files/ -->
+	<!-- http://www.openfl.org/lime/docs/project-files/xml-format/ -->
 	<meta title="Glory Framework Demo" package="ca.confidant.gloryDemo" version="1.0.0" company="Confidant Communications" />
 	<app main="Main" path="bin" file="GloryDemo" />
-	<window width="960" height="640" fps="30" background="0xfff6e2" orientation="landscape" hardware="true" />
+	<!--Remove the appMode tag below to only load assets when a page requires them (asynchronous loading). This is useful for building website-style Glory projects. 
+	<define name="appMode" />-->
+
+	<window fps="60" fullscreen="false" if="appMode" />
+	<window fps="60" fullscreen="true" resizable="true" borderless="false" vsync="false" unless="appMode" />
+	<window width="960" height="640" background="0xfff6e2" orientation="auto" />
+	<window hardware="true" allow-shaders="true" require-shaders="true" depth-buffer="false" stencil-buffer="false" />
 
  	<set name="BUILD_DIR" value="bin" />
 
@@ -23,15 +29,12 @@
 	<haxedef name="advanced-telemetry" if="flash debug" />
 	<!--haxeflag name="--macro" value="keep('org.puremvc.haxe')" / -->
 	<icon path="assets/G.png" />
-	<!--Remove the embedAssets tag below to only load assets when a page requires them (asynchronous loading). This is useful for building website-style Glory projects. 
-	<define name="embedAssets" />-->
 
-	<library path="assets/swflibrary.swf" preload="true" id="swflibrary" if="embedAssets" />
-	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="true" if="embedAssets" />
-	<!--  type="template" (below) will copy the assets to the bin folder without creating an asset manifest in the compiled javascript -->
-	<!-- I am now building the Assets library on the fly via Startup3_Assets_Command -->
+	<library path="assets/swflibrary.swf" preload="true" id="swflibrary" if="appMode" />
+	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="true" if="appMode" />
 	
-	<library path="assets/swflibrary.swf" type="template" preload="false" id="swflibrary" unless="embedAssets" />
-	<assets path="assets" type="template" include="*" exclude="*.swf|*.fla" embed="false" unless="embedAssets" /> 
+	<!--Using type="template" copies the assets to the bin folder without creating an asset manifest in the compiled javascript -->
+	
+	<assets path="assets" type="template" include="*" exclude="*.fla" embed="false" unless="appMode" /> 
 
 </project>
