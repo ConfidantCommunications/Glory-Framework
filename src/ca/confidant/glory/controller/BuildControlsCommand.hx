@@ -4,7 +4,6 @@
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import lime.graphics.Image;
-	import lime.utils.AssetCache;
 	import haxe.xml.Fast;
 	import openfl.Assets;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
@@ -18,8 +17,6 @@
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ControlsRegistryProxy;
-	// import ca.confidant.glory.model.LoaderProxy;
-	import ca.confidant.glory.model.CacheProxy;
 	import ca.confidant.glory.model.AssetLibraryProxy;
 	import haxe.ds.Either;
 	/*
@@ -34,8 +31,6 @@
 		var appMediator:ApplicationMediator;
 		// var lp:LoaderProxy;
 		var alp:AssetLibraryProxy;
-		var cp:CacheProxy;
-		var cache:AssetCache;
         override public function execute( note:INotification ) : Void
         {
 			trace("BuildControlsCommand");
@@ -44,8 +39,6 @@
 			appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
 			// lp=cast(facade.retrieveProxy(LoaderProxy.NAME) , LoaderProxy);
 			alp=cast(facade.retrieveProxy("gloryControls") , AssetLibraryProxy);
-			cp = cast(facade.retrieveProxy("CacheProxy"),CacheProxy);
-			cache=cp.getCache();
 			var controlsList:List<Fast>=pcp.getAppControls();
 			for (thisControl in controlsList){
 				makeControl(thisControl);
@@ -76,27 +69,6 @@
 					a.init();
 					
 				} else {
-					// image should be cached if using Glory in Async mode (embedAssets not set in project.xml)
-					/*if (cache.exists(actor.att.id)){
-						var image = cache.image.get(actor.att.id);
-						#if flash
-						var imageData = image.src;
-						#else
-						var imageData = BitmapData.fromImage (image);
-						#end
-						// trace("this is my image data sucker:"+imageData);
-						b = new Bitmap (imageData);
-						// a.addBitmap(b);
-						a.addBitmap(b);
-						a.init();
-
-						// trace("exists:"+actor.att.id);
-					} else {
-						trace("no cached item:"+actor.att.id);
-						// imageData = lp.getBitmapData("assets/"+actor.att.src);//,"name of library"
-						
-						// trace(actor.att.id+" is not in cache.");
-					} */
 					// stolen from buildpagecommand
 					var imageData;
 					

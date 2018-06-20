@@ -21,6 +21,9 @@
 			//mySound.addEventListener(());
 
 		}
+		public function removeSound():Void {
+			mySound = null;
+		}
 
 		private function addListeners():Void{
 

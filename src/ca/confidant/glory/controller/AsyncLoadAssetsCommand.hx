@@ -40,8 +40,6 @@ package ca.confidant.glory.controller;
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ActorComponentConfigProxy;
-	// import ca.confidant.glory.model.LoaderProxy;
-	import ca.confidant.glory.model.CacheProxy;
 	import ca.confidant.glory.model.AssetLibraryProxy;
 	import ca.confidant.glory.DataTypes;
 	
@@ -58,11 +56,9 @@ package ca.confidant.glory.controller;
 		var pcp:PagesConfigProxy;
 		var crp:ControlsRegistryProxy;
 		var appMediator:ApplicationMediator;
-		// var lp:LoaderProxy;
 		var pageId:String;
 		var oldpm:PageMediator;
 		// var pendingLoads:Int;
-		var cp:CacheProxy;
 		var assetsList:List<Fast>;
 		public function new(){
 			super();
@@ -106,14 +102,15 @@ package ca.confidant.glory.controller;
 
 			}
 			var sounds=pcp.getPageSounds(pageId);
+			// here the src is potentially multiple sources, so split them
 			for(sound in sounds){
+				var soundArray = sound.att.src.split(",");
+				soundArray = soundArray.map(function (v) return "assets/"+v);
+				if(soundArray.length>0) manifest.addSound(soundArray,sound.att.id);
 				// manifest.assets.push({path:"assets/"+sound.att.src, id:sound.att.id, type:getAssetType(sound.att.src)});//,size:100
-				manifest.addSound(["assets/" + sound]);
 				// manifest.addSound ([ "sounds/" + sound + ".ogg", "sounds/" + sound + ".mp3", "sounds/" + sound + ".wav" ], id);
 
 			}
-
-			cp = cast(facade.retrieveProxy("CacheProxy"),CacheProxy);
 
 			// 1.test if it's a swf page, else load from manifest.
 			var swflib:String = "";

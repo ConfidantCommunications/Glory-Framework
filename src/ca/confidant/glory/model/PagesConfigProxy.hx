@@ -197,7 +197,7 @@
 					h.set("actors",thispage.nodes.actor);
 				}
 				if(thispage.hasNode.sound) {
-					//trace("hasSounds:"+thispage.att.id);
+					trace("hasSounds:"+thispage.att.id);
 					h.set("sounds",thispage.nodes.sound);
 					
 				}

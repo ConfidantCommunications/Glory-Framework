@@ -18,12 +18,9 @@
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ActorComponentConfigProxy;
 	import ca.confidant.glory.model.StateProxy;
-	import ca.confidant.glory.model.CacheProxy;
 	import ca.confidant.glory.model.AssetLibraryProxy;
 	import ca.confidant.glory.DataTypes;
-	// import lime.utils.AssetCache;
 	import openfl.utils.AssetType;
-	//import ca.confidant.glory.controller.ClassConverter;
 	
 	/* 
 	 * @author Allan Dowdeswell
@@ -36,7 +33,6 @@
 		var appMediator:ApplicationMediator;
 		// var lp:LoaderProxy;
 		var alp:AssetLibraryProxy;
-		var cp:CacheProxy;
 		var sp:StateProxy;
 		public function new(){
 			super();
@@ -45,7 +41,7 @@
         override public function execute( note:INotification ) : Void
         {
 			var data:ChangePageData=note.getBody();
-			var pageId=data.newPage;//cast(note.getBody(),String);//current page
+			var pageId=data.newPage;
 			trace('BuildPageCommand:'+data);
 			sp = cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 			try{
@@ -57,11 +53,8 @@
 			}
 
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
-			// lp=cast(facade.retrieveProxy(LoaderProxy.NAME) , LoaderProxy);
 			appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
 			alp=cast(facade.retrieveProxy(pageId) , AssetLibraryProxy);
-			cp = cast(facade.retrieveProxy("CacheProxy"),CacheProxy);
-			// cache=cp.getCache();
 
 			
 			//Custom page classes get handled here:
@@ -84,13 +77,11 @@
 			s.transitionIn();
 
 			var actorsList=pcp.getPageActors(pageId);
-			//trace("length:"+actorsList.length);
 			if (actorsList.length>0){
 				for (thisActor in actorsList){
 					trace("makeActor: "+thisActor.att.id);
 					var actor = makeActor(thisActor);
 					s.addActor(thisActor.att.id, actor);
-					//appMediator.addDisplayObject(makeActor(thisActor),0);
 				}
 			}
 			var crp=cast(facade.retrieveProxy(ControlsRegistryProxy.NAME),ControlsRegistryProxy);
@@ -98,13 +89,7 @@
 			for(thisControl in controls){
 				appMediator.getApp().removeChild(thisControl);
 				appMediator.getApp().addChild(thisControl);
-				//trace("control:"+thisControl.x+":"+thisControl.y);
-				//var newx=thisControl.x;
-				//thisControl.x=newx;
-				//var newy=thisControl.y;
-				//thisControl.y=newy;
 			}
-			// trace("the pm:"+pm);
         }
 		private function makeActor(actor:Fast):ActorComponent{
 			var ext:String=cast(actor.att.src,String).substr(-3);

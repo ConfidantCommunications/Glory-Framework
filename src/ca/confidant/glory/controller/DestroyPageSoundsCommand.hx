@@ -25,8 +25,20 @@
 				
 				if (sounds.length>0){
 					for (thisSound in sounds){
-						trace("Removed sound:"+thisSound.att.id);
-						facade.removeMediator(thisSound.att.id);
+						try{
+							trace("Removed sound:"+thisSound.att.id);
+							var m = cast(facade.retrieveMediator(thisSound.att.id) , SoundMediator);
+							if(m != null) {
+								m.removeSound();
+								facade.removeMediator(thisSound.att.id);
+								m=null;
+							}
+							thisSound = null;
+							
+						} catch (e:Dynamic){
+							trace(e);
+						}
+
 					}
 				}
 			}
