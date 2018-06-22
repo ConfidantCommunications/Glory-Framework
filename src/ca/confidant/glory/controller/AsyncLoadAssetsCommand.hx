@@ -24,7 +24,7 @@ package ca.confidant.glory.controller;
 	import openfl.utils.Assets;
 	import openfl.utils.AssetLibrary;
 	import openfl.utils.AssetManifest;
-	import lime.utils.AssetType;
+	import openfl.utils.AssetType;
 	import openfl.display.BitmapData;
     // import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;
@@ -82,8 +82,8 @@ package ca.confidant.glory.controller;
 			}
 		
 			var manifest = new AssetManifest();
+			manifest.libraryType = "openfl.utils.AssetLibrary";
 			for(theAsset in assetsList){
-				//manifest.assets.push({path:"assets/"+theAsset.att.src, id:theAsset.att.id, type:getAssetType(theAsset.att.src)});//,size:100
 
 				switch(getAssetType(theAsset.att.src)){
 					case AssetType.IMAGE:
@@ -91,14 +91,11 @@ package ca.confidant.glory.controller;
 					case AssetType.TEXT:
 						manifest.addText("assets/" + theAsset.att.src);
 					case AssetType.BINARY:
-						//do we need a different libraryType in manifest?
 						manifest.addBytes("assets/" + theAsset.att.src);
 					default:
 						manifest.addBytes("assets/" + theAsset.att.src);
 
 				}
-
-
 
 			}
 			var sounds=pcp.getPageSounds(pageId);
@@ -133,13 +130,13 @@ package ca.confidant.glory.controller;
 				//not a swflibrary
 				AssetLibrary.loadFromManifest (manifest).onComplete (function (library) {
 							var libName:String = (pageId==null) ? "gloryControls" : pageId;
-							
-							Assets.registerLibrary (libName, library);
+							var theLibrary = cast(library,openfl.utils.AssetLibrary);
+							Assets.registerLibrary (libName, theLibrary);
 							
 							trace("completed loading");
 							
 							// var al = AssetLibrary.fromManifest(manifest);
-							facade.registerProxy(new AssetLibraryProxy(library,libName));
+							facade.registerProxy(new AssetLibraryProxy(theLibrary, libName));
 
 							commandComplete(); 
 							

@@ -1,11 +1,8 @@
 ﻿package ca.confidant.glory.model;
 
-	import lime.graphics.Image;
-	import lime.utils.AssetCache;
 	import org.puremvc.haxe.patterns.proxy.Proxy;
     import ca.confidant.glory.ApplicationFacade;
 	import openfl.utils.AssetLibrary;
-    // import ca.confidant.glory.GloryAssetLibrary;
 	/*
 	 * Created by the AsyncLoadAssetsCommand, 
 	 * this retains a reference to a unique Glory Asset Library for every page.

@@ -5,7 +5,6 @@
 	import openfl.Assets;
 	import openfl.utils.AssetLibrary;
 	import haxe.xml.Fast;
-	// import lime.utils.AssetManifest;
 	import lime.utils.AssetType;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import openfl.net.URLLoader;
