@@ -3,6 +3,13 @@
 	import openfl.display.Bitmap;
 	import openfl.display.BitmapData;
 	import openfl.display.DisplayObject;
+	import openfl.display.MovieClip;
+	import openfl.display.Loader;
+	import openfl.system.LoaderContext;
+	import openfl.system.ApplicationDomain;
+	import openfl.events.Event;
+	import openfl.net.URLRequest;
+	import format.swf.SWFTimelineContainer;
 	import haxe.xml.Fast;
 	import openfl.Assets;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
@@ -21,6 +28,7 @@
 	import ca.confidant.glory.model.AssetLibraryProxy;
 	import ca.confidant.glory.DataTypes;
 	import openfl.utils.AssetType;
+	import openfl.utils.ByteArray;
 	
 	/* 
 	 * @author Allan Dowdeswell
@@ -34,6 +42,7 @@
 		// var lp:LoaderProxy;
 		var alp:AssetLibraryProxy;
 		var sp:StateProxy;
+		
 		public function new(){
 			super();
 		}
@@ -42,6 +51,7 @@
         {
 			var data:ChangePageData=note.getBody();
 			var pageId=data.newPage;
+			trace("-----------------------------");
 			trace('BuildPageCommand:'+data);
 			sp = cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 			try{
@@ -62,7 +72,7 @@
 			var a_class = Type.resolveClass( class_name );
 			var s = ( a_class != null ) ? Type.createInstance( a_class,[] ) : new PageComponent();
 			
-			s.name=pageId;
+			s.name = pageId;
 
 			if((data.newPage != null) && (pcp.getPage(pageId).get("type")=="overlay")){
 				appMediator.addDisplayObject(s,-1);
@@ -73,14 +83,13 @@
 			trace("page holder added: "+pageId);
 			var pm = new PageMediator(pageId,s);
 			facade.registerMediator(pm);
-			sp.setState(GloryState.TRANSITIONING);
-			s.transitionIn();
 
 			var actorsList=pcp.getPageActors(pageId);
 			if (actorsList.length>0){
 				for (thisActor in actorsList){
 					trace("makeActor: "+thisActor.att.id);
-					var actor = makeActor(thisActor);
+					var swflib = pcp.getPage(pageId).get("swflibrary");
+					var actor = makeActor(thisActor,swflib);
 					s.addActor(thisActor.att.id, actor);
 				}
 			}
@@ -90,8 +99,10 @@
 				appMediator.getApp().removeChild(thisControl);
 				appMediator.getApp().addChild(thisControl);
 			}
+			sp.setState(GloryState.TRANSITIONING);
+			s.transitionIn();
         }
-		private function makeActor(actor:Fast):ActorComponent{
+		private function makeActor(actor:Fast, ?swflib:String):ActorComponent{
 			var ext:String=cast(actor.att.src,String).substr(-3);
 			var a=new ActorComponent();
 			//embed info from config, used once bitmaps are filled
@@ -126,16 +137,7 @@
 					a.addSVG(theText);
 					a.init();
 				case "swf":
-					// lp.getMovieClip (actor.att.src, actor.att.id);
-					if (alp.getLibrary().isLocal (actor.att.id, cast AssetType.MOVIE_CLIP)) {
-						var mc = alp.getLibrary().getMovieClip ("assets/"+actor.att.src);
-						a.addChild(mc);
-						a.init();
-					} else {
-						trace ("MovieClip asset \"" + actor.att.id + "\" exists, but only asynchronously");
-						
-					}
-				
+					trace("deprecated: Do not use swf extension");
 				case "jpg"|"gif"|"png": 
 					var imageData;
 					var image = alp.getLibrary().getImage("assets/"+actor.att.src);//,"name of library"
@@ -151,18 +153,46 @@
 					a.init();
 				default:
 					if(actor.att.src != ""){
-						//assume it's a bundled flash asset with no swf extension
-						var mc = alp.getLibrary().getMovieClip (actor.att.src);
+
+						#if flash
+						if(swflib!=""){
+							trace("adding a swf file asset");
+							var id = "/assets/"+swflib+".swf";
+							//it got added as bytes earlier...
+							// trace(alp.getLibrary().list("BINARY"));
+							var bytes = alp.getLibrary().getBytes (id);
+							// var ba = ByteArray.fromBytes(bytes);
+							var mc:MovieClip; 
+							var context = new LoaderContext (false, ApplicationDomain.currentDomain, null);
+							context.allowCodeImport = true;
+							var loader = new Loader ();
+							loader.contentLoaderInfo.addEventListener (Event.COMPLETE, function (_) {
+								trace("done:"+loader.content);
+								mc = cast Type.createInstance (ApplicationDomain.currentDomain.getDefinition (actor.att.src), []);
+								trace("mc:"+mc);
+								a.addChild(mc);
+								a.init();
+							});
+							loader.loadBytes (bytes, context);
+							// loader.load (new URLRequest (id), context);
+							// if (swf.symbols.exists 
+						}	
+						
+
+						#else
+						//assume it's a .bundle flash asset with no swf extension
+						trace("adding a .bundle movieclip");
+						var mc = alp.getLibrary().getMovieClip (actor.att.src);//LittleBoy
 						a.addChild(mc);
+						a.init();
+						#end
+
 					}
 			}
 
 
 
 			return a;
-			//} catch(e:Dynamic){
-				//trace(Std.string(e));
-			//}
 		}
 
     }

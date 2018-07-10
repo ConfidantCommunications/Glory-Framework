@@ -18,6 +18,9 @@
         {
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			var data:ChangePageData = note.getBody();
+			#if (flash && debug)
+			trace("//"); //clears display
+			#end
 			trace("PageTransitionOutCommand:"+data);
 			if ((data.newPage != null) && (pcp.getPage(data.newPage).get("type")=="overlay")){
 				trace("overlay! not removing old page.");

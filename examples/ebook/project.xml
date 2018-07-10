@@ -2,7 +2,7 @@
 <project>
 
 	<!-- http://www.openfl.org/lime/docs/project-files/xml-format/ -->
-	<meta title="Glory Framework Demo" package="ca.confidant.gloryDemo" version="1.0.0" company="Confidant Communications" />
+	<meta title="Glory Framework Demo" package="ca.confidant.gloryDemo" version="2.0.0" company="Confidant Communications" />
 	<app main="Main" path="bin" file="GloryDemo" />
 	<!--Remove the appMode tag below to only load assets when a page requires them (asynchronous loading). This is useful for building website-style Glory projects. 
 	<define name="appMode" />-->
@@ -22,8 +22,13 @@
 	<haxelib name="glory" />
 	<haxelib name="puremvc-standard" />
 	<haxelib name="puremvc-asynccommand-standard" />
-	<haxelib name="swf" />
-	<!--haxelib name="monsterdebugger" / -->
+	<haxelib name="format" />
+	<!--<haxelib name="monsterdebugger" if="flash debug" />
+	library path="monsterdebugger.swf" generate="true" preload="true" if="flash debug" /
+	<haxeflag name="-swf-lib" value="MonsterDebugger.swc" if="flash debug" />
+	<haxeflag name="-swf-lib" value="mx.swc" if="flash debug" />-->
+
+
 	<!-- enable flash debug-->
 	<haxedef name="fdb" if="flash debug" /> 
 	<!-- enable telemetry profiling for hxScout, etc. -->

@@ -18,7 +18,7 @@
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ControlsRegistryProxy;
 	import ca.confidant.glory.model.AssetLibraryProxy;
-	import haxe.ds.Either;
+	
 	/*
 	 * @author Allan Dowdeswell
 	 * This is triggered by the GotoIntroMacro, right before the first page is built. 
