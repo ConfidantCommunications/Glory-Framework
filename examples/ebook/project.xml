@@ -4,7 +4,8 @@
 	<!-- http://www.openfl.org/lime/docs/project-files/xml-format/ -->
 	<meta title="Glory Framework Demo" package="ca.confidant.gloryDemo" version="2.0.0" company="Confidant Communications" />
 	<app main="Main" path="bin" file="GloryDemo" />
-	<!--Remove the appMode tag below to only load assets when a page requires them (asynchronous loading). This is useful for building website-style Glory projects. 
+	<!--Enable the appMode tag below to embed all assets. 
+	Otherwise, Glory will load assets only when a page requires them (asynchronous loading). This is useful for building website-style Glory projects. 
 	<define name="appMode" />-->
 
 	<window fps="60" fullscreen="false" if="appMode" />
@@ -38,7 +39,12 @@
 
 	<library path="assets/swflibrary.swf" preload="true" id="swflibrary" if="appMode" />
 	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="true" if="appMode" />
-	
+	<assets path="assets" if="appMode">
+		<sound path="p1/limerickPCM.ogg" id="s_limerickPage" />
+		<sound path="p1/limerickPCM.wav" id="s_limerickPage" />
+		<sound path="p1/limerickPCM.mp3" id="s_limerickPage" />
+	</assets>
+
 	<!--Using type="template" copies the assets to the bin folder without creating an asset manifest in the compiled javascript -->
 	
 	<assets path="assets" type="template" include="*" exclude="*.fla" embed="false" unless="appMode" /> 

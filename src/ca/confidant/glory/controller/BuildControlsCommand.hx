@@ -6,6 +6,7 @@
 	import lime.graphics.Image;
 	import haxe.xml.Fast;
 	import openfl.Assets;
+	import lime.utils.Assets in LimeAssets;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;
 	import org.puremvc.haxe.patterns.command.AsyncCommand;	 
@@ -37,8 +38,9 @@
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			crp=cast(facade.retrieveProxy(ControlsRegistryProxy.NAME) , ControlsRegistryProxy);
 			appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
-			// lp=cast(facade.retrieveProxy(LoaderProxy.NAME) , LoaderProxy);
+			#if !appMode
 			alp=cast(facade.retrieveProxy("gloryControls") , AssetLibraryProxy);
+			#end
 			var controlsList:List<Fast>=pcp.getAppControls();
 			for (thisControl in controlsList){
 				makeControl(thisControl);
@@ -64,7 +66,11 @@
 				crp.registerControl(a);
 				var b:Bitmap;
 				if(ext=="svg"){
-					var theText:String = alp.getLibrary().getText(actor.att.id);
+					#if appMode
+					var theText:String = Assets.getText(actor.att.id);
+					#else
+					var theText = alp.getLibrary().getText("assets/"+actor.att.src);
+					#end
 					a.addSVG(theText);
 					a.init();
 					
@@ -72,7 +78,12 @@
 					// stolen from buildpagecommand
 					var imageData;
 					
-					var image = alp.getLibrary().getImage("assets/"+actor.att.src);//,"name of library"
+					#if appMode
+					var image = LimeAssets.getImage("assets/"+actor.att.src);
+					#else
+					var image = alp.getLibrary().getImage("assets/"+actor.att.src);
+					#end
+
 					#if flash
 					imageData = image.src;
 					#else

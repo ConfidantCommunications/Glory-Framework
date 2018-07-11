@@ -76,7 +76,10 @@ package ca.confidant.glory.controller;
          */
         override public function execute( note:INotification ) : Void
         {
-
+			#if appMode
+			//assets already embedded, so exit
+			commandComplete();
+			#else
 			trace('AsyncLoadAssetsCommand');
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			var data:ChangePageData=note.getBody();
@@ -152,8 +155,8 @@ package ca.confidant.glory.controller;
 			}
 
 
-
-			
+			//end of non-appMode code
+			#end
 			
         }
 		private function manifestLoad(manifest:AssetManifest,name:String):Void {
@@ -161,14 +164,11 @@ package ca.confidant.glory.controller;
 			AssetLibrary.loadFromManifest (manifest).onComplete (function (library) {
 				trace("completed loading");
 				var theLibrary= cast(library,openfl.utils.AssetLibrary);
-
-
-				trace("theLibrary:"+theLibrary);
+				// trace("theLibrary:"+theLibrary);
 					Assets.registerLibrary (name, theLibrary);
-				
-				trace("registered:"+name);
+				// trace("registered:"+name);
 				facade.registerProxy(new AssetLibraryProxy(theLibrary, name));
-				trace("proxy too.");
+				// trace("proxy too.");
 				commandComplete(); 
 				
 			}).onError (function (e) {

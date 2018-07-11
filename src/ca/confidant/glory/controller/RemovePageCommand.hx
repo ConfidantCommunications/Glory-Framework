@@ -26,6 +26,7 @@ package ca.confidant.glory.controller;
 		var appMediator:ApplicationMediator;
         override public function execute( note:INotification ) : Void
         {
+			trace("removing page");
 			var data:ChangePageData = note.getBody();
 
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
@@ -35,7 +36,6 @@ package ca.confidant.glory.controller;
 				trace("overlay! not removing that…");
 				return;
 			}
-			trace("removing page");
 			trace("old:"+data.oldPage);
 			trace("new:"+data.newPage);
 			

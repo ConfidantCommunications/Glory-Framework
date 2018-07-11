@@ -24,15 +24,20 @@
 			var pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			var sounds=pcp.getPageSounds(data.newPage);
 			// var cp=cast(facade.retrieveProxy(CacheProxy.NAME),CacheProxy);
+			#if !appMode
 			var alp=cast(facade.retrieveProxy(data.newPage) , AssetLibraryProxy);
-
+			#end
 			if (sounds.length>0){
 				for (thisSound in sounds){
 					// trace("adding sound:"+thisSound.att.src+":"+thisSound.att.id);
-					
+					#if appMode
+					trace("sounds:"+Assets.getLibrary("default").list("SOUND"));
+					var s = Assets.getSound(thisSound.att.id);
+					#else
 					var buf = alp.getLibrary().getAudioBuffer(thisSound.att.id);
-					// trace("buffer:"+buf);
 					var s = Sound.fromAudioBuffer(buf);
+					#end
+					// trace("buffer:"+buf);
 					// trace("sound:"+s);
 					facade.registerMediator(new SoundMediator(thisSound.att.id, s));
 

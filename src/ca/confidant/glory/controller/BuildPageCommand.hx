@@ -12,6 +12,7 @@
 	import format.swf.SWFTimelineContainer;
 	import haxe.xml.Fast;
 	import openfl.Assets;
+	import lime.utils.Assets in LimeAssets;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;
     import ca.confidant.glory.view.PageMediator;
@@ -64,8 +65,9 @@
 
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
+			#if !appMode
 			alp=cast(facade.retrieveProxy(pageId) , AssetLibraryProxy);
-
+			#end
 			
 			//Custom page classes get handled here:
 			var class_name:String = "pages.P"+pageId;
@@ -133,14 +135,25 @@
 			facade.registerMediator(acm);
 			switch(ext){
 				case "svg":
+					#if appMode
+					var theText:String = Assets.getText("assets/"+actor.att.src);
+					#else
 					var theText = alp.getLibrary().getText("assets/"+actor.att.src);
+					#end
 					a.addSVG(theText);
 					a.init();
 				case "swf":
 					trace("deprecated: Do not use swf extension");
 				case "jpg"|"gif"|"png": 
 					var imageData;
+					
+					#if appMode
+					var image = LimeAssets.getImage("assets/"+actor.att.src);
+					#else
 					var image = alp.getLibrary().getImage("assets/"+actor.att.src);//,"name of library"
+					#end
+
+
 					#if flash
 					imageData = image.src;
 					#else
@@ -153,38 +166,44 @@
 					a.init();
 				default:
 					if(actor.att.src != ""){
-
-						#if flash
-						if(swflib!=""){
-							trace("adding a swf file asset");
-							var id = "/assets/"+swflib+".swf";
-							//it got added as bytes earlier...
-							// trace(alp.getLibrary().list("BINARY"));
-							var bytes = alp.getLibrary().getBytes (id);
-							// var ba = ByteArray.fromBytes(bytes);
-							var mc:MovieClip; 
-							var context = new LoaderContext (false, ApplicationDomain.currentDomain, null);
-							context.allowCodeImport = true;
-							var loader = new Loader ();
-							loader.contentLoaderInfo.addEventListener (Event.COMPLETE, function (_) {
-								trace("done:"+loader.content);
-								mc = cast Type.createInstance (ApplicationDomain.currentDomain.getDefinition (actor.att.src), []);
-								trace("mc:"+mc);
-								a.addChild(mc);
-								a.init();
-							});
-							loader.loadBytes (bytes, context);
-							// loader.load (new URLRequest (id), context);
-							// if (swf.symbols.exists 
-						}	
-						
-
+						#if appMode
+							var swfPath = swflib+":"+actor.att.src;
+							var mc = Assets.getMovieClip (swfPath);
+							a.addChild(mc);
+							a.init();
 						#else
-						//assume it's a .bundle flash asset with no swf extension
-						trace("adding a .bundle movieclip");
-						var mc = alp.getLibrary().getMovieClip (actor.att.src);//LittleBoy
-						a.addChild(mc);
-						a.init();
+							#if flash
+							if(swflib!=""){
+								trace("adding a swf file asset");
+								var id = "/assets/"+swflib+".swf";
+								//it got added as bytes earlier...
+								// trace(alp.getLibrary().list("BINARY"));
+								var bytes = alp.getLibrary().getBytes (id);
+								// var ba = ByteArray.fromBytes(bytes);
+								var mc:MovieClip; 
+								var context = new LoaderContext (false, ApplicationDomain.currentDomain, null);
+								context.allowCodeImport = true;
+								var loader = new Loader ();
+								loader.contentLoaderInfo.addEventListener (Event.COMPLETE, function (_) {
+									trace("done:"+loader.content);
+									mc = cast Type.createInstance (ApplicationDomain.currentDomain.getDefinition (actor.att.src), []);
+									trace("mc:"+mc);
+									a.addChild(mc);
+									a.init();
+								});
+								loader.loadBytes (bytes, context);
+								// loader.load (new URLRequest (id), context);
+								// if (swf.symbols.exists 
+							}	
+							
+
+							#else
+							//assume it's a .bundle flash asset with no swf extension
+							trace("adding a .bundle movieclip");
+							var mc = alp.getLibrary().getMovieClip (actor.att.src);//LittleBoy
+							a.addChild(mc);
+							a.init();
+							#end
 						#end
 
 					}
