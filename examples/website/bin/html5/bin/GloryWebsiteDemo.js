@@ -1056,7 +1056,7 @@ $hxClasses["ApplicationMain"] = ApplicationMain;
 ApplicationMain.__name__ = ["ApplicationMain"];
 ApplicationMain.main = function() {
 	var projectName = "GloryWebsiteDemo";
-	var config = { build : "49", company : "Confidant Communications", file : "GloryWebsiteDemo", fps : 60, name : "Glory Framework Website Demo", orientation : "", packageName : "ca.confidant.gloryDemo", version : "1.0.0", windows : [{ allowHighDPI : false, alwaysOnTop : false, antialiasing : 0, background : 16774882, borderless : false, colorDepth : 32, depthBuffer : true, display : 0, fullscreen : true, hardware : true, height : null, hidden : false, maximized : false, minimized : false, parameters : { }, resizable : true, stencilBuffer : true, title : "Glory Framework Website Demo", vsync : false, width : null, x : null, y : null}]};
+	var config = { build : "50", company : "Confidant Communications", file : "GloryWebsiteDemo", fps : 60, name : "Glory Framework Website Demo", orientation : "", packageName : "ca.confidant.gloryDemo", version : "1.0.0", windows : [{ allowHighDPI : false, alwaysOnTop : false, antialiasing : 0, background : 16774882, borderless : false, colorDepth : 32, depthBuffer : true, display : 0, fullscreen : true, hardware : true, height : null, hidden : false, maximized : false, minimized : false, parameters : { }, resizable : true, stencilBuffer : true, title : "Glory Framework Website Demo", vsync : false, width : null, x : null, y : null}]};
 	lime_system_System.__registerEntryPoint(projectName,ApplicationMain.create,config);
 };
 ApplicationMain.create = function(config) {
@@ -5500,7 +5500,7 @@ ca_confidant_glory_controller_BuildControlsCleanup.__name__ = ["ca","confidant",
 ca_confidant_glory_controller_BuildControlsCleanup.__super__ = org_puremvc_haxe_patterns_command_SimpleCommand;
 ca_confidant_glory_controller_BuildControlsCleanup.prototype = $extend(org_puremvc_haxe_patterns_command_SimpleCommand.prototype,{
 	execute: function(note) {
-		haxe_Log.trace("BuildControlsCleanup",{ fileName : "BuildControlsCleanup.hx", lineNumber : 16, className : "ca.confidant.glory.controller.BuildControlsCleanup", methodName : "execute"});
+		haxe_Log.trace("BuildControlsCleanup",{ fileName : "BuildControlsCleanup.hx", lineNumber : 36, className : "ca.confidant.glory.controller.BuildControlsCleanup", methodName : "execute"});
 		this.sendNotification("changePage",ca_confidant_glory_controller_ChangePageHelper.instance.buildNotification("title"));
 	}
 	,__class__: ca_confidant_glory_controller_BuildControlsCleanup
@@ -5747,7 +5747,7 @@ ca_confidant_glory_controller_DestroyPageSoundsCommand.__name__ = ["ca","confida
 ca_confidant_glory_controller_DestroyPageSoundsCommand.__super__ = org_puremvc_haxe_patterns_command_SimpleCommand;
 ca_confidant_glory_controller_DestroyPageSoundsCommand.prototype = $extend(org_puremvc_haxe_patterns_command_SimpleCommand.prototype,{
 	execute: function(note) {
-		haxe_Log.trace("DestroyPageSoundsCommand",{ fileName : "DestroyPageSoundsCommand.hx", lineNumber : 20, className : "ca.confidant.glory.controller.DestroyPageSoundsCommand", methodName : "execute"});
+		haxe_Log.trace("DestroyPageSoundsCommand",{ fileName : "DestroyPageSoundsCommand.hx", lineNumber : 40, className : "ca.confidant.glory.controller.DestroyPageSoundsCommand", methodName : "execute"});
 		var pcp = js_Boot.__cast(this.facade.retrieveProxy("pagesConfigProxy") , ca_confidant_glory_model_PagesConfigProxy);
 		var data = note.getBody();
 		if(data.newPage != data.oldPage) {
@@ -5759,7 +5759,7 @@ ca_confidant_glory_controller_DestroyPageSoundsCommand.prototype = $extend(org_p
 					_g_head = _g_head.next;
 					var thisSound = val;
 					try {
-						haxe_Log.trace("Removed sound:" + thisSound.att.resolve("id"),{ fileName : "DestroyPageSoundsCommand.hx", lineNumber : 29, className : "ca.confidant.glory.controller.DestroyPageSoundsCommand", methodName : "execute"});
+						haxe_Log.trace("Removed sound:" + thisSound.att.resolve("id"),{ fileName : "DestroyPageSoundsCommand.hx", lineNumber : 49, className : "ca.confidant.glory.controller.DestroyPageSoundsCommand", methodName : "execute"});
 						var m = js_Boot.__cast(this.facade.retrieveMediator(thisSound.att.resolve("id")) , ca_confidant_glory_view_SoundMediator);
 						if(m != null) {
 							m.removeSound();
@@ -5770,7 +5770,7 @@ ca_confidant_glory_controller_DestroyPageSoundsCommand.prototype = $extend(org_p
 					} catch( e ) {
 						haxe_CallStack.lastException = e;
 						if (e instanceof js__$Boot_HaxeError) e = e.val;
-						haxe_Log.trace(e,{ fileName : "DestroyPageSoundsCommand.hx", lineNumber : 39, className : "ca.confidant.glory.controller.DestroyPageSoundsCommand", methodName : "execute"});
+						haxe_Log.trace(e,{ fileName : "DestroyPageSoundsCommand.hx", lineNumber : 59, className : "ca.confidant.glory.controller.DestroyPageSoundsCommand", methodName : "execute"});
 					}
 				}
 			}
@@ -5786,7 +5786,7 @@ ca_confidant_glory_controller_GotoIntroMacro.__name__ = ["ca","confidant","glory
 ca_confidant_glory_controller_GotoIntroMacro.__super__ = org_puremvc_haxe_patterns_command_AsyncMacroCommand;
 ca_confidant_glory_controller_GotoIntroMacro.prototype = $extend(org_puremvc_haxe_patterns_command_AsyncMacroCommand.prototype,{
 	initializeAsyncMacroCommand: function() {
-		haxe_Log.trace("GotoIntroMacro",{ fileName : "GotoIntroMacro.hx", lineNumber : 16, className : "ca.confidant.glory.controller.GotoIntroMacro", methodName : "initializeAsyncMacroCommand"});
+		haxe_Log.trace("GotoIntroMacro",{ fileName : "GotoIntroMacro.hx", lineNumber : 36, className : "ca.confidant.glory.controller.GotoIntroMacro", methodName : "initializeAsyncMacroCommand"});
 		this.addSubCommand(ca_confidant_glory_controller_AsyncLoadAssetsCommand);
 		this.addSubCommand(ca_confidant_glory_controller_BuildControlsCommand);
 		this.addSubCommand(ca_confidant_glory_controller_BuildControlsCleanup);
@@ -5813,7 +5813,7 @@ ca_confidant_glory_controller_HttpLinkCommand.__name__ = ["ca","confidant","glor
 ca_confidant_glory_controller_HttpLinkCommand.__super__ = org_puremvc_haxe_patterns_command_SimpleCommand;
 ca_confidant_glory_controller_HttpLinkCommand.prototype = $extend(org_puremvc_haxe_patterns_command_SimpleCommand.prototype,{
 	execute: function(note) {
-		haxe_Log.trace("HttpLinkCommand:" + js_Boot.__cast(note.getBody() , String),{ fileName : "HttpLinkCommand.hx", lineNumber : 26, className : "ca.confidant.glory.controller.HttpLinkCommand", methodName : "execute"});
+		haxe_Log.trace("HttpLinkCommand:" + js_Boot.__cast(note.getBody() , String),{ fileName : "HttpLinkCommand.hx", lineNumber : 44, className : "ca.confidant.glory.controller.HttpLinkCommand", methodName : "execute"});
 		var request = new openfl_net_URLRequest("http://" + js_Boot.__cast(note.getBody() , String));
 		request.method = "POST";
 		openfl_Lib.navigateToURL(request);
@@ -5828,7 +5828,7 @@ ca_confidant_glory_controller_InitPageSoundsCommand.__name__ = ["ca","confidant"
 ca_confidant_glory_controller_InitPageSoundsCommand.__super__ = org_puremvc_haxe_patterns_command_SimpleCommand;
 ca_confidant_glory_controller_InitPageSoundsCommand.prototype = $extend(org_puremvc_haxe_patterns_command_SimpleCommand.prototype,{
 	execute: function(note) {
-		haxe_Log.trace("InitPageSoundsCommand",{ fileName : "InitPageSoundsCommand.hx", lineNumber : 22, className : "ca.confidant.glory.controller.InitPageSoundsCommand", methodName : "execute"});
+		haxe_Log.trace("InitPageSoundsCommand",{ fileName : "InitPageSoundsCommand.hx", lineNumber : 42, className : "ca.confidant.glory.controller.InitPageSoundsCommand", methodName : "execute"});
 		var data = note.getBody();
 		var pcp = js_Boot.__cast(this.facade.retrieveProxy("pagesConfigProxy") , ca_confidant_glory_model_PagesConfigProxy);
 		var sounds = pcp.getPageSounds(data.newPage);
@@ -6036,7 +6036,7 @@ ca_confidant_glory_controller_PageTransitionOutCommand.prototype = $extend(org_p
 		var _gthis = this;
 		this.pcp = js_Boot.__cast(this.facade.retrieveProxy("pagesConfigProxy") , ca_confidant_glory_model_PagesConfigProxy);
 		var data = note.getBody();
-		haxe_Log.trace("PageTransitionOutCommand:" + Std.string(data),{ fileName : "PageTransitionOutCommand.hx", lineNumber : 24, className : "ca.confidant.glory.controller.PageTransitionOutCommand", methodName : "execute"});
+		haxe_Log.trace("PageTransitionOutCommand:" + Std.string(data),{ fileName : "PageTransitionOutCommand.hx", lineNumber : 44, className : "ca.confidant.glory.controller.PageTransitionOutCommand", methodName : "execute"});
 		var tmp;
 		if(data.newPage != null) {
 			var _this = this.pcp.getPage(data.newPage);
@@ -6045,11 +6045,11 @@ ca_confidant_glory_controller_PageTransitionOutCommand.prototype = $extend(org_p
 			tmp = false;
 		}
 		if(tmp) {
-			haxe_Log.trace("overlay! not removing old page.",{ fileName : "PageTransitionOutCommand.hx", lineNumber : 26, className : "ca.confidant.glory.controller.PageTransitionOutCommand", methodName : "execute"});
+			haxe_Log.trace("overlay! not removing old page.",{ fileName : "PageTransitionOutCommand.hx", lineNumber : 46, className : "ca.confidant.glory.controller.PageTransitionOutCommand", methodName : "execute"});
 			this.commandComplete();
 		} else if(data.newPage != data.oldPage) {
 			this.doTransition(data.oldPage,"out");
-			haxe_Log.trace("transitionTime:" + this.pcp.getPageTransitionOutTime(data.oldPage),{ fileName : "PageTransitionOutCommand.hx", lineNumber : 30, className : "ca.confidant.glory.controller.PageTransitionOutCommand", methodName : "execute"});
+			haxe_Log.trace("transitionTime:" + this.pcp.getPageTransitionOutTime(data.oldPage),{ fileName : "PageTransitionOutCommand.hx", lineNumber : 50, className : "ca.confidant.glory.controller.PageTransitionOutCommand", methodName : "execute"});
 			var waitTimerOut = new haxe_Timer(this.pcp.getPageTransitionOutTime(data.oldPage) * 1000);
 			waitTimerOut.run = function() {
 				waitTimerOut.stop();
@@ -6086,7 +6086,7 @@ ca_confidant_glory_controller_RemovePageCommand.prototype = $extend(org_puremvc_
 	pcp: null
 	,appMediator: null
 	,execute: function(note) {
-		haxe_Log.trace("removing page",{ fileName : "RemovePageCommand.hx", lineNumber : 29, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
+		haxe_Log.trace("removing page",{ fileName : "RemovePageCommand.hx", lineNumber : 48, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
 		var data = note.getBody();
 		this.pcp = js_Boot.__cast(this.facade.retrieveProxy("pagesConfigProxy") , ca_confidant_glory_model_PagesConfigProxy);
 		this.appMediator = js_Boot.__cast(this.facade.retrieveMediator("ApplicationMediator") , ca_confidant_glory_view_ApplicationMediator);
@@ -6098,16 +6098,16 @@ ca_confidant_glory_controller_RemovePageCommand.prototype = $extend(org_puremvc_
 			tmp = false;
 		}
 		if(tmp) {
-			haxe_Log.trace("overlay! not removing that…",{ fileName : "RemovePageCommand.hx", lineNumber : 36, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
+			haxe_Log.trace("overlay! not removing that…",{ fileName : "RemovePageCommand.hx", lineNumber : 55, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
 			return;
 		}
-		haxe_Log.trace("old:" + data.oldPage,{ fileName : "RemovePageCommand.hx", lineNumber : 39, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
-		haxe_Log.trace("new:" + data.newPage,{ fileName : "RemovePageCommand.hx", lineNumber : 40, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
+		haxe_Log.trace("old:" + data.oldPage,{ fileName : "RemovePageCommand.hx", lineNumber : 58, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
+		haxe_Log.trace("new:" + data.newPage,{ fileName : "RemovePageCommand.hx", lineNumber : 59, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
 		try {
 			if(data.newPage != data.oldPage) {
-				haxe_Log.trace("removing pageMediator:" + data.oldPage,{ fileName : "RemovePageCommand.hx", lineNumber : 45, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
+				haxe_Log.trace("removing pageMediator:" + data.oldPage,{ fileName : "RemovePageCommand.hx", lineNumber : 64, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
 				var pageMediator = js_Boot.__cast(this.facade.retrieveMediator(data.oldPage) , ca_confidant_glory_view_PageMediator);
-				haxe_Log.trace("done",{ fileName : "RemovePageCommand.hx", lineNumber : 47, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
+				haxe_Log.trace("done",{ fileName : "RemovePageCommand.hx", lineNumber : 66, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
 				var s = js_Boot.__cast(pageMediator.getViewComponent() , openfl_display_Sprite);
 				while(s.get_numChildren() > 0) {
 					var child = s.getChildAt(0);
@@ -6128,7 +6128,7 @@ ca_confidant_glory_controller_RemovePageCommand.prototype = $extend(org_puremvc_
 		} catch( e ) {
 			haxe_CallStack.lastException = e;
 			if (e instanceof js__$Boot_HaxeError) e = e.val;
-			haxe_Log.trace(e,{ fileName : "RemovePageCommand.hx", lineNumber : 70, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
+			haxe_Log.trace(e,{ fileName : "RemovePageCommand.hx", lineNumber : 89, className : "ca.confidant.glory.controller.RemovePageCommand", methodName : "execute"});
 		}
 	}
 	,__class__: ca_confidant_glory_controller_RemovePageCommand
@@ -6181,7 +6181,7 @@ ca_confidant_glory_controller_TimerDisableCommand.__name__ = ["ca","confidant","
 ca_confidant_glory_controller_TimerDisableCommand.__super__ = org_puremvc_haxe_patterns_command_SimpleCommand;
 ca_confidant_glory_controller_TimerDisableCommand.prototype = $extend(org_puremvc_haxe_patterns_command_SimpleCommand.prototype,{
 	execute: function(note) {
-		haxe_Log.trace("TimerDisableCommand",{ fileName : "TimerDisableCommand.hx", lineNumber : 22, className : "ca.confidant.glory.controller.TimerDisableCommand", methodName : "execute"});
+		haxe_Log.trace("TimerDisableCommand",{ fileName : "TimerDisableCommand.hx", lineNumber : 41, className : "ca.confidant.glory.controller.TimerDisableCommand", methodName : "execute"});
 		if(this.facade.hasProxy(ca_confidant_glory_model_TickerProxy.NAME)) {
 			var p = js_Boot.__cast(this.facade.retrieveProxy(ca_confidant_glory_model_TickerProxy.NAME) , ca_confidant_glory_model_TickerProxy);
 			p.stopTimer();
@@ -6239,7 +6239,7 @@ ca_confidant_glory_controller_startup_Startup1_$App_$Command.prototype = $extend
 	execute: function(note) {
 		var app = js_Boot.__cast(note.getBody() , ca_confidant_glory_GloryFrameworkApp);
 		this.facade.registerMediator(new ca_confidant_glory_view_ApplicationMediator(app));
-		haxe_Log.trace("app stage:" + Std.string(app.stage),{ fileName : "Startup1_App_Command.hx", lineNumber : 23, className : "ca.confidant.glory.controller.startup.Startup1_App_Command", methodName : "execute"});
+		haxe_Log.trace("app stage:" + Std.string(app.stage),{ fileName : "Startup1_App_Command.hx", lineNumber : 42, className : "ca.confidant.glory.controller.startup.Startup1_App_Command", methodName : "execute"});
 		this.facade.registerMediator(new ca_confidant_glory_view_StageMediator(app.stage));
 	}
 	,__class__: ca_confidant_glory_controller_startup_Startup1_$App_$Command
@@ -6430,7 +6430,7 @@ ca_confidant_glory_model_PagesConfigProxy.prototype = $extend(org_puremvc_haxe_p
 	}
 	,getNextPage: function() {
 		var j = 1;
-		haxe_Log.trace("getNextPage:" + this.currentPage + ":" + this.allPages.length,{ fileName : "PagesConfigProxy.hx", lineNumber : 74, className : "ca.confidant.glory.model.PagesConfigProxy", methodName : "getNextPage"});
+		haxe_Log.trace("getNextPage:" + this.currentPage + ":" + this.allPages.length,{ fileName : "PagesConfigProxy.hx", lineNumber : 94, className : "ca.confidant.glory.model.PagesConfigProxy", methodName : "getNextPage"});
 		while(this.currentPage + j < this.allPages.length) {
 			var _this = this.allPages[this.currentPage + j];
 			if((__map_reserved["type"] != null ? _this.getReserved("type") : _this.h["type"]) == "normal") {
@@ -6584,7 +6584,7 @@ ca_confidant_glory_model_PagesConfigProxy.prototype = $extend(org_puremvc_haxe_p
 				}
 			}
 			if(thispage.hasNode.resolve("sound")) {
-				haxe_Log.trace("hasSounds:" + thispage.att.resolve("id"),{ fileName : "PagesConfigProxy.hx", lineNumber : 200, className : "ca.confidant.glory.model.PagesConfigProxy", methodName : "parseXML"});
+				haxe_Log.trace("hasSounds:" + thispage.att.resolve("id"),{ fileName : "PagesConfigProxy.hx", lineNumber : 220, className : "ca.confidant.glory.model.PagesConfigProxy", methodName : "parseXML"});
 				var value7 = thispage.nodes.resolve("sound");
 				if(__map_reserved["sounds"] != null) {
 					h.setReserved("sounds",value7);
@@ -6720,7 +6720,7 @@ ca_confidant_glory_view_ActorComponentMediator.prototype = $extend(org_puremvc_h
 	}
 	,onActorClicked: function(e) {
 		var a = js_Boot.__cast(e.currentTarget , openfl_display_Sprite);
-		haxe_Log.trace(a.get_name() + ":" + this.config.type + ":" + this.config.action,{ fileName : "ActorComponentMediator.hx", lineNumber : 53, className : "ca.confidant.glory.view.ActorComponentMediator", methodName : "onActorClicked"});
+		haxe_Log.trace(a.get_name() + ":" + this.config.type + ":" + this.config.action,{ fileName : "ActorComponentMediator.hx", lineNumber : 73, className : "ca.confidant.glory.view.ActorComponentMediator", methodName : "onActorClicked"});
 		var _g = this.config.type;
 		if(_g == "control") {
 			var pcp = js_Boot.__cast(this.facade.retrieveProxy("pagesConfigProxy") , ca_confidant_glory_model_PagesConfigProxy);
@@ -6793,7 +6793,7 @@ ca_confidant_glory_view_ApplicationMediator.prototype = $extend(org_puremvc_haxe
 		var _g = this.getApp().get_numChildren();
 		while(_g1 < _g) {
 			var i = _g1++;
-			haxe_Log.trace("layer:" + this.getApp().getChildAt(i).get_name() + ":" + i,{ fileName : "ApplicationMediator.hx", lineNumber : 54, className : "ca.confidant.glory.view.ApplicationMediator", methodName : "reportLayers"});
+			haxe_Log.trace("layer:" + this.getApp().getChildAt(i).get_name() + ":" + i,{ fileName : "ApplicationMediator.hx", lineNumber : 73, className : "ca.confidant.glory.view.ApplicationMediator", methodName : "reportLayers"});
 		}
 	}
 	,getIndex: function(d) {
@@ -6857,7 +6857,7 @@ ca_confidant_glory_view_SoundMediator.prototype = $extend(org_puremvc_haxe_patte
 	,handleNotification: function(note) {
 		var _g = note.getName();
 		if(_g == "playSound") {
-			haxe_Log.trace("I heard you!" + Std.string(note.getBody()) + ":" + this.mediatorName,{ fileName : "SoundMediator.hx", lineNumber : 45, className : "ca.confidant.glory.view.SoundMediator", methodName : "handleNotification"});
+			haxe_Log.trace("I heard you!" + Std.string(note.getBody()) + ":" + this.mediatorName,{ fileName : "SoundMediator.hx", lineNumber : 65, className : "ca.confidant.glory.view.SoundMediator", methodName : "handleNotification"});
 			if(this.mediatorName == note.getBody()) {
 				if(this.sc != null) {
 					this.sc.stop();
@@ -6904,7 +6904,7 @@ ca_confidant_glory_view_StageMediator.prototype = $extend(org_puremvc_haxe_patte
 	,onMouseUp: function(event) {
 	}
 	,onMouseWheel: function(event) {
-		haxe_Log.trace("mouseWheel!",{ fileName : "StageMediator.hx", lineNumber : 82, className : "ca.confidant.glory.view.StageMediator", methodName : "onMouseWheel"});
+		haxe_Log.trace("mouseWheel!",{ fileName : "StageMediator.hx", lineNumber : 102, className : "ca.confidant.glory.view.StageMediator", methodName : "onMouseWheel"});
 	}
 	,onMouseMove: function(event) {
 		var p = new openfl_geom_Point();
@@ -6967,7 +6967,7 @@ ca_confidant_glory_view_components_ActorComponent.prototype = $extend(openfl_dis
 var ca_confidant_glory_view_components_PageComponent = function() {
 	openfl_display_Sprite.call(this);
 	this.myActors = new haxe_ds_StringMap();
-	haxe_Log.trace("new Page!",{ fileName : "PageComponent.hx", lineNumber : 19, className : "ca.confidant.glory.view.components.PageComponent", methodName : "new"});
+	haxe_Log.trace("new Page!",{ fileName : "PageComponent.hx", lineNumber : 39, className : "ca.confidant.glory.view.components.PageComponent", methodName : "new"});
 	this.set_alpha(0);
 };
 $hxClasses["ca.confidant.glory.view.components.PageComponent"] = ca_confidant_glory_view_components_PageComponent;
@@ -6976,7 +6976,7 @@ ca_confidant_glory_view_components_PageComponent.__super__ = openfl_display_Spri
 ca_confidant_glory_view_components_PageComponent.prototype = $extend(openfl_display_Sprite.prototype,{
 	myActors: null
 	,addActor: function(key,spr) {
-		haxe_Log.trace("adding actor:" + key,{ fileName : "PageComponent.hx", lineNumber : 24, className : "ca.confidant.glory.view.components.PageComponent", methodName : "addActor"});
+		haxe_Log.trace("adding actor:" + key,{ fileName : "PageComponent.hx", lineNumber : 44, className : "ca.confidant.glory.view.components.PageComponent", methodName : "addActor"});
 		this.addChild(spr);
 		var _this = this.myActors;
 		if(__map_reserved[key] != null) {
@@ -6986,16 +6986,16 @@ ca_confidant_glory_view_components_PageComponent.prototype = $extend(openfl_disp
 		}
 	}
 	,init: function() {
-		haxe_Log.trace("init:" + this.get_name(),{ fileName : "PageComponent.hx", lineNumber : 33, className : "ca.confidant.glory.view.components.PageComponent", methodName : "init"});
+		haxe_Log.trace("init:" + this.get_name(),{ fileName : "PageComponent.hx", lineNumber : 53, className : "ca.confidant.glory.view.components.PageComponent", methodName : "init"});
 	}
 	,transitionIn: function() {
-		haxe_Log.trace(this.get_name() + " in!",{ fileName : "PageComponent.hx", lineNumber : 42, className : "ca.confidant.glory.view.components.PageComponent", methodName : "transitionIn"});
+		haxe_Log.trace(this.get_name() + " in!",{ fileName : "PageComponent.hx", lineNumber : 62, className : "ca.confidant.glory.view.components.PageComponent", methodName : "transitionIn"});
 		motion_Actuate.tween(this,1,{ alpha : 1},false).ease(motion_easing_Quad.get_easeIn()).onComplete($bind(this,this.init),[]);
 	}
 	,transitionOut: function() {
-		haxe_Log.trace(this.get_name() + " out!",{ fileName : "PageComponent.hx", lineNumber : 51, className : "ca.confidant.glory.view.components.PageComponent", methodName : "transitionOut"});
+		haxe_Log.trace(this.get_name() + " out!",{ fileName : "PageComponent.hx", lineNumber : 71, className : "ca.confidant.glory.view.components.PageComponent", methodName : "transitionOut"});
 		motion_Actuate.tween(this,1,{ alpha : 0},false).ease(motion_easing_Quad.get_easeOut()).onComplete(function() {
-			haxe_Log.trace("animation complete",{ fileName : "PageComponent.hx", lineNumber : 53, className : "ca.confidant.glory.view.components.PageComponent", methodName : "transitionOut"});
+			haxe_Log.trace("animation complete",{ fileName : "PageComponent.hx", lineNumber : 73, className : "ca.confidant.glory.view.components.PageComponent", methodName : "transitionOut"});
 		});
 	}
 	,__class__: ca_confidant_glory_view_components_PageComponent
@@ -38681,7 +38681,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 491386;
+	this.version = 683107;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = ["lime","utils","AssetCache"];

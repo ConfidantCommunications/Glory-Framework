@@ -24,7 +24,7 @@ import haxe.macro.Expr;
 		
 		var config = {
 			
-			build: "49",
+			build: "50",
 			company: "Confidant Communications",
 			file: "GloryWebsiteDemo",
 			fps: 60,
