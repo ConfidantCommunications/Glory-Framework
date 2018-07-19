@@ -40,18 +40,16 @@
 		public static inline var INIT_PAGE_SOUNDS:String			= "initPageSounds";
 		public static inline var DESTROY_PAGE_SOUNDS:String			= "destroyPageSounds";
 		public static inline var DO_TRANSITION:String				= "doTransition";
-        // public static inline var HANDLE_LOADED_ASSET:String         = "handleLoadedAsset";
+        public static inline var FULL_SCREEN_CHANGE:String          = "fullScreenChange";
+        public static inline var FULL_SCREEN_REQUEST:String         = "fullScreenRequest";
 		
         private static var instance : ApplicationFacade;
-
-
 
         public static function getInstance() : ApplicationFacade {
             if ( instance == null )
             		instance = new ApplicationFacade( );
             return instance;
         }
-
 
         override private function initializeController( ) : Void
         {

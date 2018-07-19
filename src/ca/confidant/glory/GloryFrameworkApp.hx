@@ -2,7 +2,6 @@ package ca.confidant.glory;
 import ca.confidant.glory.ApplicationFacade;
 import flash.display.Sprite;
 import flash.Lib;
-
 import openfl.text.TextField;
 /*
  * @author Allan Dowdeswell

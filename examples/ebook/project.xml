@@ -23,7 +23,7 @@
 	<haxelib name="glory" />
 	<haxelib name="puremvc-standard" />
 	<haxelib name="puremvc-asynccommand-standard" />
-	<haxelib name="format" />
+	<haxelib name="advanced-layout" />
 	<!--<haxelib name="monsterdebugger" if="flash debug" />
 	library path="monsterdebugger.swf" generate="true" preload="true" if="flash debug" /
 	<haxeflag name="-swf-lib" value="MonsterDebugger.swc" if="flash debug" />

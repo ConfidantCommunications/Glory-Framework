@@ -6,6 +6,7 @@ package ca.confidant.glory.controller.startup;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;
 	import ca.confidant.glory.view.ApplicationMediator;
+	import ca.confidant.glory.view.StageMediator;
 	
 	/*
 	 * @author Allan Dowdeswell
@@ -18,8 +19,8 @@ package ca.confidant.glory.controller.startup;
         {
 			//trace("startup1");
 			var app:GloryFrameworkApp=cast( note.getBody() , GloryFrameworkApp);
-			var appMediator:ApplicationMediator = new ApplicationMediator(app);
-			facade.registerMediator(appMediator);
-
+			facade.registerMediator(new ApplicationMediator(app));
+			trace("app stage:"+app.stage);
+			facade.registerMediator(new StageMediator(app.stage));
         }
     }

@@ -139,14 +139,14 @@
 		}
 		public function getAppControls():List<Fast>{
 			//trace("getAppControls");
-			if (fast.node.controls.hasNode.button){
-				return fast.node.controls.nodes.button;
+			if (fast.node.controls.hasNode.actor){
+				return fast.node.controls.nodes.actor;
 			}
 			return new List<Fast>();
 		}
 		public function getControlHref(controlId:String):String{
-			if (fast.node.controls.hasNode.button){
-				for(node in fast.node.controls.nodes.button){
+			if (fast.node.controls.hasNode.actor){
+				for(node in fast.node.controls.nodes.actor){
 					//trace("getControlHref:"+node.att.id);
 					if(node.att.id==controlId){
 						return node.att.href;

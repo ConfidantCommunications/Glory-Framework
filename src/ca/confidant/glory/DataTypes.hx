@@ -7,3 +7,7 @@ typedef ChangePageData = {
 	?oldPage:String,
 	?action:String
 }
+typedef StageSizeData = {
+	w:Int,
+	h:Int
+}

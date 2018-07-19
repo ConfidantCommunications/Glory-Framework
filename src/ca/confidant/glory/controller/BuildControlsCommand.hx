@@ -1,4 +1,24 @@
-﻿package ca.confidant.glory.controller;
+﻿/*
+ * Copyright (c) 2018 D. Allan Dowdeswell
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+ * Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+ * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+ * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+package ca.confidant.glory.controller;
 
     import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -12,13 +32,11 @@
 	import org.puremvc.haxe.patterns.command.AsyncCommand;	 
     import ca.confidant.glory.view.PageMediator;
 	import ca.confidant.glory.view.ApplicationMediator;
-	import ca.confidant.glory.view.ControlComponentMediator;
-	import ca.confidant.glory.view.components.ControlComponent;
-
 	import ca.confidant.glory.ApplicationFacade;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.model.ControlsRegistryProxy;
 	import ca.confidant.glory.model.AssetLibraryProxy;
+	import ca.confidant.glory.controller.ActorComponentFactory;
 	
 	/*
 	 * @author Allan Dowdeswell
@@ -43,60 +61,11 @@
 			#end
 			var controlsList:List<Fast>=pcp.getAppControls();
 			for (thisControl in controlsList){
-				makeControl(thisControl);
+				// makeControl(thisControl);
+				var a = ActorComponentFactory.instance.create("gloryControls",thisControl);
+				crp.registerControl(a);
 			}
 			commandComplete();
         }
-
-		private function makeControl(actor:Fast):Void{
-			try{
-				var ext:String=cast(actor.att.src,String).substr(-3);
-				var a:ControlComponent=new ControlComponent(Std.string(actor.att.action));
-				a.setInitValues(
-					Std.parseInt(actor.att.x),
-					Std.parseInt(actor.att.y),
-					Std.parseInt(actor.att.width),
-					Std.parseInt(actor.att.height)
-				);
-				a.mouseEnabled=true;
-				a.useHandCursor=true;
-				a.buttonMode=true;
-				var acm = new ControlComponentMediator(actor.att.id,a);
-				facade.registerMediator(acm);
-				crp.registerControl(a);
-				var b:Bitmap;
-				if(ext=="svg"){
-					#if appMode
-					var theText:String = Assets.getText(actor.att.id);
-					#else
-					var theText = alp.getLibrary().getText("assets/"+actor.att.src);
-					#end
-					a.addSVG(theText);
-					a.init();
-					
-				} else {
-					// stolen from buildpagecommand
-					var imageData;
-					
-					#if appMode
-					var image = LimeAssets.getImage("assets/"+actor.att.src);
-					#else
-					var image = alp.getLibrary().getImage("assets/"+actor.att.src);
-					#end
-
-					#if flash
-					imageData = image.src;
-					#else
-					imageData = BitmapData.fromImage (image);
-					#end
-					var b = new Bitmap (imageData);
-					a.addBitmap(b);
-					a.init();
-				}
-				appMediator.addDisplayObject(a);
-			} catch(e:Dynamic){
-				trace(Std.string(e));
-			}
-		}
 
     }

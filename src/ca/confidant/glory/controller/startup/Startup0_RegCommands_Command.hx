@@ -23,14 +23,12 @@ package ca.confidant.glory.controller.startup;
 	override public function execute( note:INotification ) : Void
         {
 			facade.registerCommand(ApplicationFacade.PAGES_CONFIG_READY,GotoIntroMacro);
-			// facade.registerCommand(ApplicationFacade.BUILD_CONTROLS,AsyncBuildControlsMacro);
-			// facade.registerCommand(ApplicationFacade.BUILD_PAGE,AsyncBuildPageMacro);
 			facade.registerCommand(ApplicationFacade.REMOVE_PAGE,RemovePageCommand);
-			facade.registerCommand(ApplicationFacade.CHANGE_PAGE,ChangePageMacro);//ChangePageCommand
-			//facade.registerCommand(ApplicationFacade.HTTP_LINK,HttpLinkCommand);
+			facade.registerCommand(ApplicationFacade.CHANGE_PAGE,ChangePageMacro);
+			facade.registerCommand(ApplicationFacade.HTTP_LINK,HttpLinkCommand);
+			facade.registerCommand(ApplicationFacade.STAGE_RESIZE,HandleStageResizeCommand);
 			facade.registerCommand(ApplicationFacade.TIMER_ENABLE,TimerEnableCommand);
 			facade.registerCommand(ApplicationFacade.TIMER_DISABLE,TimerDisableCommand);
-
 			facade.registerCommand(ApplicationFacade.INIT_PAGE_SOUNDS,InitPageSoundsCommand);
 			facade.registerCommand(ApplicationFacade.DESTROY_PAGE_SOUNDS,DestroyPageSoundsCommand);
 

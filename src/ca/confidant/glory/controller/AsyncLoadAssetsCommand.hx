@@ -109,7 +109,7 @@ package ca.confidant.glory.controller;
 					manifestLoad(manifest,libName);
 
 				#else
-					swflib="/assets/"+swflib+".bundle";
+					swflib="assets/"+swflib+".bundle";
 					//AssetLibrary.loadFromFile needs a manifest file or bundle, not a swf file
 					AssetLibrary.loadFromFile (swflib,"").onComplete( function (library:AssetLibrary) {
 						Assets.registerLibrary (libName, library);

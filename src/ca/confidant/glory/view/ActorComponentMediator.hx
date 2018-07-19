@@ -24,15 +24,10 @@ import ca.confidant.glory.controller.ChangePageHelper;
  *	@param viewComponent A reference to an ActorComponent.
  *	@param accp The ActorComponentConfigProxy which is created along with this Mediator. A repository for actor-specific data.
  */
- 	typedef PanXY={
-		var x:Int;
-		var y:Int;
-	}
 	class ActorComponentMediator extends Mediator {
 
 		private var config:ActorComponentConfigProxy;
 		private var type:String;
-		private var panXY:PanXY;
 		public function new ( id:String,viewComponent:ActorComponent,accp:ActorComponentConfigProxy ) {
 			super( id, viewComponent );
 			this.config=accp;
@@ -83,6 +78,8 @@ import ca.confidant.glory.controller.ChangePageHelper;
 								sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification("",ControlConstants.PAGE_BACKWARD));
 							case ControlConstants.PLAY_SOUND:
 								sendNotification(ApplicationFacade.PLAY_SOUND, actionArray[1]);
+							case ControlConstants.HTTP_LINK:
+								sendNotification(ApplicationFacade.HTTP_LINK, actionArray[1]);
 									//var sound = Assets.getSound ("assets/p1/limerickPCM.wav");
 									//sound.play ();
 								//TODO: BUILD AN ACTIVE SOUNDS PROXY

@@ -1,1 +1,115 @@
-﻿package ca.confidant.glory.view;    import flash.events.Event;    import flash.display.Stage;	import flash.geom.Rectangle;	import flash.events.MouseEvent;        import org.puremvc.as3.patterns.mediator.Mediator;    import ca.confidant.glory.ApplicationFacade;    import flash.geom.Point;    import flash.events.FullScreenEvent;	import flash.display.StageDisplayState;        /**     * @author Allan Dowdeswell     * A Mediator for interacting with the Stage.     * Not currently used.     */    class StageMediator extends Mediator    {        // Cannonical name of the Mediator        public static inline var NAME:String = 'StageMediator';		//private var widgetsStateProxy:WidgetsStateProxy;        /**         * Constructor.          */        public function StageMediator( viewComponent:Object )         {            // pass the viewComponent to the superclass where             // it will be stored in the inherited viewComponent property            super( NAME, viewComponent );               // stage.addEventListener( MouseEvent.MOUSE_UP, onMouseUp );            //stage.addEventListener( MouseEvent.MOUSE_WHEEL, onMouseWheel );            //stage.addEventListener( MouseEvent.MOUSE_MOVE, onMouseMove );            stage.addEventListener(FullScreenEvent.FULL_SCREEN,onFullScreenChange);           //stage.addEventListener( Event.RESIZE, onScreenResize );        }		/*private function onScreenResize(e:Event):void{			sendNotification( ApplicationFacade.STAGE_RESIZE, {w:stage.stageWidth,h:stage.stageHeight} );		}*/		private function onFullScreenChange(e:FullScreenEvent):Void{			//sendNotification( ApplicationFacade.CONSOLE_LOG, "fullscreen change!" );			//widgetsStateProxy.setFullScreenState(true);			if(e.fullScreen){				sendNotification( ApplicationFacade.FULL_SCREEN_CHANGE, {full:e.fullScreen,w:stage.fullScreenWidth,h:stage.fullScreenHeight} );			} else {				sendNotification( ApplicationFacade.FULL_SCREEN_CHANGE, {full:e.fullScreen,w:stage.stageWidth,h:stage.stageHeight} );			}			//sendNotification( ApplicationFacade.CONSOLE_LOG, "another stageWidth:"+stage.stageWidth);		}        override public function listNotificationInterests():Array         {            return [ 					ApplicationFacade.FULL_SCREEN_REQUEST                   ];        }        override public function handleNotification( note:INotification ):Void         {            switch ( note.getName() ) {                              case ApplicationFacade.FULL_SCREEN_REQUEST:					stage.displayState=StageDisplayState.FULL_SCREEN;                    break;            }        }		// The user has released the mouse over the stage        private function onMouseUp(event:MouseEvent):Void		{			//sendNotification( ApplicationFacade.SPRITE_DROP );		}                    		// The user has released the mouse over the stage        private function onMouseWheel(event:MouseEvent):Void		{			trace("mouseWheel!");			//sendNotification( ApplicationFacade.SPRITE_SCALE, event.delta );		}       		// The user has released the mouse over the stage        private function onMouseMove(event:MouseEvent):Void		{			//trace("mouseMove!");			var p:Point=new Point();			p.x=stage.mouseX;			p.y=stage.mouseY;			///sendNotification( ApplicationFacade.MOUSEMOVE, p );		}		        private function get stage():Stage{            return viewComponent as Stage;        }		public function setFullScreenRect(r:Rectangle):Void{			stage.fullScreenSourceRect=r;		}		public function getStageWidth():uint{			return stage.stageWidth;		}		public function getStageHeight():uint{			return stage.stageHeight;		}		public function getFullScreenHeight():int{			return stage.fullScreenHeight;		}		public function getFullScreenWidth():int{			return stage.fullScreenWidth;		}		    }
+﻿package ca.confidant.glory.view;
+    import openfl.events.Event;
+    import openfl.display.Stage;
+	import openfl.geom.Rectangle;
+	import openfl.events.MouseEvent;
+    import ca.confidant.glory.ApplicationFacade;
+    import openfl.geom.Point;
+    import openfl.events.FullScreenEvent;
+	import openfl.display.StageDisplayState;
+	import org.puremvc.haxe.patterns.mediator.Mediator;
+	import org.puremvc.haxe.interfaces.INotification;
+    
+    /**
+     * @author Allan Dowdeswell
+     * A Mediator for interacting with the Stage.
+     */
+    class StageMediator extends Mediator
+    {
+        // Cannonical name of the Mediator
+        public static inline var NAME:String = 'StageMediator';
+		//private var widgetsStateProxy:WidgetsStateProxy;
+        /**
+         * Constructor. 
+         */
+        public function new( viewComponent:Stage ) 
+        {
+            // pass the viewComponent to the superclass where 
+            // it will be stored in the inherited viewComponent property
+            super( NAME, viewComponent );
+			
+            //stage.addEventListener( MouseEvent.MOUSE_UP, onMouseUp );
+            //stage.addEventListener( MouseEvent.MOUSE_WHEEL, onMouseWheel );
+            //stage.addEventListener( MouseEvent.MOUSE_MOVE, onMouseMove );
+
+        	viewComponent.addEventListener(FullScreenEvent.FULL_SCREEN, onFullScreenChange);
+    		viewComponent.addEventListener( Event.RESIZE, onScreenResize );
+        }
+
+        override public function listNotificationInterests():Array<String> 
+        {
+            return [ 
+					ApplicationFacade.FULL_SCREEN_REQUEST
+                   ];
+        }
+
+        override public function handleNotification( note:INotification ):Void 
+        {
+            switch ( note.getName() ) {
+                
+
+              case ApplicationFacade.FULL_SCREEN_REQUEST:
+					getStage().displayState = StageDisplayState.FULL_SCREEN;
+            }
+        }
+
+		private function onScreenResize(e:Event):Void{
+			
+			sendNotification( ApplicationFacade.STAGE_RESIZE, { w:getStage().stageWidth,h:getStage().stageHeight} );
+
+		}
+		private function onFullScreenChange(e:FullScreenEvent):Void{
+			//sendNotification( ApplicationFacade.CONSOLE_LOG, "fullscreen change!" );
+			//widgetsStateProxy.setFullScreenState(true);
+			if(e.fullScreen){
+				sendNotification( ApplicationFacade.FULL_SCREEN_CHANGE, {full:e.fullScreen,w:getStage().fullScreenWidth,h:getStage().fullScreenHeight} );
+			} else {
+				sendNotification( ApplicationFacade.FULL_SCREEN_CHANGE, {full:e.fullScreen,w:getStage().stageWidth,h:getStage().stageHeight} );
+
+			}
+
+		}
+
+		// The user has released the mouse over the stage
+        private function onMouseUp(event:MouseEvent):Void
+		{
+			//sendNotification( ApplicationFacade.SPRITE_DROP );
+		}
+                    
+		// The user has released the mouse over the stage
+        private function onMouseWheel(event:MouseEvent):Void
+		{
+			trace("mouseWheel!");
+			//sendNotification( ApplicationFacade.SPRITE_SCALE, event.delta );
+		}       
+		// The user has released the mouse over the stage
+        private function onMouseMove(event:MouseEvent):Void
+		{
+			//trace("mouseMove!");
+			var p:Point=new Point();
+			p.x=getStage().mouseX;
+			p.y=getStage().mouseY;
+		}
+		
+        private function getStage():Stage{
+            return cast(viewComponent , Stage);
+        }
+		// public function setFullScreenRect(r:Rectangle):Void{
+		// 	getStage().fullScreenSourceRect=r;
+			
+			
+		// }
+		public function getStageWidth():Int{
+			return getStage().stageWidth;
+		}
+		public function getStageHeight():Int{
+			return getStage().stageHeight;
+		}
+		public function getFullScreenHeight():Int{
+			return getStage().fullScreenHeight;
+		}
+		public function getFullScreenWidth():Int{
+			return getStage().fullScreenWidth;
+		}
+		
+    }

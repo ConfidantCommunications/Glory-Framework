@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages>
 	<controls>
-		<button id="bRight" action="pageForward,removePage:options" z="16" x="849" y="580" width="111" height="60" src="nav/bRight.png"></button>
-		<button id="bLeft" action="pageBackward,removePage:options" z="17" x="0" y="580" width="111" height="60" src="nav/bLeft.png"></button>
-		<button id="bOptions" action="pageSkipTo:options" z="18" x="849" y="-11" width="111" height="71" src="nav/bOptions.png"></button>
-		<button id="bHome" action="pageSkipTo:title,removePage:options" z="19" x="0" y="0" width="111" height="60" src="nav/bHome.png"></button>
-		
+		<actor id="bRight" type="control" action="pageForward,removePage:options" z="16" x="849" y="580" width="111" height="60" src="nav/bRight.png"></actor>
+		<actor id="bLeft" type="control" action="pageBackward,removePage:options" z="17" x="0" y="580" width="111" height="60" src="nav/bLeft.png"></actor>
+		<actor id="bOptions" type="control" action="pageSkipTo:options" z="18" x="849" y="-11" width="111" height="71" src="nav/bOptions.png"></actor>
+		<actor id="bHome" type="control" action="pageSkipTo:title,removePage:options" z="19" x="0" y="0" width="111" height="60" src="nav/bHome.png"></actor>
 	</controls>
 	<page id="title" type="normal">
 		<actor id="bg1" z="0" type="prop" x="0" y="0" width="960" height="640" src="title/title.jpg"></actor>
