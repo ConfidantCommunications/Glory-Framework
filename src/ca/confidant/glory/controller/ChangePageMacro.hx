@@ -38,6 +38,9 @@ package ca.confidant.glory.controller;
 			addSubCommand( BuildPageCommand );
 			addSubCommand( InitPageSoundsCommand );
 			addSubCommand( ChangePageCleanup );
+			#if js
+			addSubCommand( UpdatePushStateCommand );
+			#end
 		}
 
     }

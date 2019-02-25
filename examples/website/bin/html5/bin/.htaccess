@@ -1,0 +1,21 @@
+DirectoryIndex index.php
+
+
+
+RewriteEngine On
+
+
+
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [QSA,L] 
+
+
+
+
+##### No directory listings -- BEGIN
+#IndexIgnore *
+Options -Indexes
+##### No directory listings -- END

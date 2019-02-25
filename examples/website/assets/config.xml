@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pages>
+<pages basePath="/">
 	<controls>
 		<actor id="bRight" type="control" action="pageForward,removePage:options" z="16" x="849" y="580" width="111" height="60" src="nav/bRight.png" layout="alignRight,alignBottom"></actor>
 		<actor id="bLeft" type="control" action="pageBackward,removePage:options" z="17" x="0" y="580" width="111" height="60" src="nav/bLeft.png" layout="alignLeft,alignBottom"></actor>
-		<actor id="bOptions" type="control" action="pageSkipTo:options" z="18" x="849" y="-11" width="111" height="71" src="nav/bOptions.png" layout="alignTop,alignRight"></actor>
+		<actor id="bOptions" type="control" action="pageSkipTo:options" z="18" x="849" y="-11" width="111" height="60" src="nav/bOptions.png" layout="alignTop,alignRight"></actor>
 		<actor id="bHome" type="control" action="pageSkipTo:title,removePage:options" z="19" x="0" y="0" width="111" height="60" src="nav/bHome.png" layout="alignLeft,alignTop"></actor>
 	</controls>
 
 	<page id="title" type="normal">
-		<actor id="haxeLogo" type="control" action="httpLink:haxe.org/" z="20" x="0" y="100" width="200" height="200" src="title/haxe-opt.svg" layout="fillPercentWidth:0.5,maintainAspectRatio,centerX,centerY"></actor>
+		<actor id="haxeLogo" type="control" action="httpLink:haxe.org/" z="20" x="0" y="100" width="200" height="200" src="title/haxe-opt.svg" layout="fillPercentWidth:0.2,maintainAspectRatio,centerX,centerY"></actor>
 	</page>
 	
-	<page id="svg" type="normal">
-		<actor id="duck" z="1" type="prop" x="0" y="0" width="962" height="640" src="duck.svg" ></actor>
-		<actor id="star1" z="1" type="prop" x="100" y="120" width="100" height="100" src="star.svg" ></actor>
+	<page id="bear" type="normal">
+		<actor id="bearActor" z="1" type="prop" x="0" y="0" width="288" height="288" src="bear.svg"  layout="fillPercentHeight:0.5,maintainAspectRatio,centerX,centerY" ></actor>
 	</page>
 
 </pages>

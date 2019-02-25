@@ -24,6 +24,7 @@
 	<haxelib name="puremvc-standard" />
 	<haxelib name="puremvc-asynccommand-standard" />
 	<haxelib name="advanced-layout" />
+	<!--haxelib name="pushstate" if="html5" / now forked locally-->
 	
 	<assets path="assets/fonts" rename="fonts" />
 	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="true" if="appMode" />

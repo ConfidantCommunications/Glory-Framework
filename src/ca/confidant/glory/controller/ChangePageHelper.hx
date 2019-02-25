@@ -34,8 +34,7 @@ import ca.confidant.glory.view.constants.ControlConstants;
 	 * @author Allan Dowdeswell
 	 * This singleton generates proper notifications for building pages.
 	 */
-    class ChangePageHelper
-    {
+	class ChangePageHelper {
 		var pcp:PagesConfigProxy;
 		var sp:StateProxy;
 		private var facade: IFacade;
@@ -45,12 +44,11 @@ import ca.confidant.glory.view.constants.ControlConstants;
 			facade = Facade.getInstance();
 		};
 
-        public function buildNotification( data:String = "", ?action:String ) : ChangePageData
-        {
+    public function buildNotification( data:String = "", ?action:String, ?fromBrowser:Bool ) : ChangePageData {
 			trace("building a notification:"+data+":"+action);
 			sp=cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 			
-			if(sp.getState()==GloryState.TRANSITIONING) {
+			if(sp.getState() == GloryState.TRANSITIONING) {
 				trace("Transition in progress! Canceling page change.");
 				return {};
 			};
@@ -73,9 +71,14 @@ import ca.confidant.glory.view.constants.ControlConstants;
 				}
 
 			}
+			// if(inPageId == outPageId) {
+			// 	trace("Already here! ");
+			// 	// return {};
+			// };
 			// trace("newPage:"+inPageId);
 			
-			return {newPage:inPageId, oldPage:outPageId, action:action};
-        }
+			var updatePS = fromBrowser ? false : true;
+			return {newPage:inPageId, oldPage:outPageId, action:action, updatePushState:updatePS};
+			}
 
-    }
+	}

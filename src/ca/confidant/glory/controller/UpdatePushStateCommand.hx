@@ -18,28 +18,37 @@
  * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-package ca.confidant.glory.controller.startup;
-
-    //import js.Dom;
-
-    import org.puremvc.haxe.patterns.command.SimpleCommand;
+package ca.confidant.glory.controller;
+	import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;
-	import ca.confidant.glory.view.ApplicationMediator;
-	import ca.confidant.glory.view.StageMediator;
+	import ca.confidant.glory.model.PagesConfigProxy;
 	import ca.confidant.glory.view.ExternalInterfaceMediator;
-	
 	/*
 	 * @author Allan Dowdeswell
-	 * This is the second step in the chain triggered by the StartupCommand.
+	 * This command manipulates the browser address URL and history after page change.
 	 */
-    class Startup1_App_Command extends SimpleCommand
+  class UpdatePushStateCommand extends SimpleCommand
     {
+			var pcp:PagesConfigProxy;
+			var eim:ExternalInterfaceMediator;
+		// var sp:StateProxy;
+			override public function execute( note:INotification ) : Void
+			{
+				trace("UpdatePushStateCommand");
+				pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
+				eim=cast(facade.retrieveMediator(ExternalInterfaceMediator.NAME) , ExternalInterfaceMediator);
+				var data=note.getBody();
+				
+				if (
+						(data.newPage != null) 
+						&& (pcp.getPage(data.newPage).get("type")!="overlay")
+						&& (data.newPage!=data.oldPage)
+						&& (data.updatePushState == true)
+					){
+						eim.updatePushState("/"+data.newPage);
+					}
+				// sp=cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
+				// sp.setState(GloryState.READY);
+      }
 
-	override public function execute( note:INotification ) : Void
-        {
-			var app:GloryFrameworkApp = cast( note.getBody() , GloryFrameworkApp);
-			facade.registerMediator(new ApplicationMediator(app));
-			trace("app stage:"+app.stage);
-			facade.registerMediator(new StageMediator(app.stage));
-        }
     }

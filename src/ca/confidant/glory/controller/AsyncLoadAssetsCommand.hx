@@ -30,7 +30,7 @@ package ca.confidant.glory.controller;
 	import openfl.display.Loader;
 	import openfl.events.Event;
 	import openfl.net.URLRequest;
-	import openfl._internal.swf.SWFLibrary;
+	// import openfl._internal.formats.swf.SWFLibrary;
 	import format.*;
     // import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;

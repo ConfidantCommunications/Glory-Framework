@@ -38,12 +38,7 @@ package ca.confidant.glory.model;
 		private var _pagesXML:Xml;
 		private var fast:haxe.xml.Fast;
 		private var allPages:Array<Map<String,Dynamic>>;
-
 		private var imageItems:Array<Dynamic>;
-		// private var randomPicks:Array<Dynamic>;
-		// private var positions:Array<Map<String,Dynamic>>;
-		// private var randomPositions:Array<Dynamic>;
-
 		private var chosenpages:Array<Dynamic>;
 		private var chosenLayout:String;
 		private var currentPage:Int;
@@ -64,14 +59,14 @@ package ca.confidant.glory.model;
 			return allPages[currentPage];
 		}
 		
-		
+		/*
 		public function setPageOutTime(id:String,t:Int):Void{
 			for(i in 0...allPages.length){
 				if(allPages[i].get("id")==id){
 					//currentPage=i;
 				}
 			}
-		}
+		}*/
 		
 		public function setCurrentPageById(id:String):Void{
 			for(i in 0...allPages.length){
@@ -158,7 +153,6 @@ package ca.confidant.glory.model;
 			}
 		}
 		public function getAppControls():List<Fast>{
-			//trace("getAppControls");
 			if (fast.node.controls.hasNode.actor){
 				return fast.node.controls.nodes.actor;
 			}
@@ -167,7 +161,6 @@ package ca.confidant.glory.model;
 		public function getControlHref(controlId:String):String{
 			if (fast.node.controls.hasNode.actor){
 				for(node in fast.node.controls.nodes.actor){
-					//trace("getControlHref:"+node.att.id);
 					if(node.att.id==controlId){
 						return node.att.href;
 					}
@@ -179,12 +172,10 @@ package ca.confidant.glory.model;
 		public function getActorHref(controlId:String):String{
 			if (fast.node.page.hasNode.actor){
 				for(node in fast.node.page.nodes.actor){
-					//trace("getControlHref:"+node.att.id);
 					if(node.att.id==controlId){
 						return node.att.href;
 					}
 				}
-
 			}
 			return "#";
 		}

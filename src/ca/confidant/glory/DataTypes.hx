@@ -25,7 +25,8 @@ import org.puremvc.haxe.interfaces.INotification;
 typedef ChangePageData = {
 	?newPage:String,
 	?oldPage:String,
-	?action:String
+	?action:String,
+	?updatePushState:Bool
 }
 typedef StageSizeData = {
 	w:Int,

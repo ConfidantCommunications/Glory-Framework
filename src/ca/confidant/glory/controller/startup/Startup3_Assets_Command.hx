@@ -30,18 +30,23 @@ package ca.confidant.glory.controller.startup;
 	import openfl.net.URLLoader;
 	import openfl.events.Event;
 	import openfl.net.URLRequest;
+	import ca.confidant.glory.view.ExternalInterfaceMediator;
 /**
  * @author Allan Dowdeswell
  * This is the fourth and final part of the StartupCommand chain.
  * This command creates the Assets manifest using the items found in the config.xml.
  */
-
     class Startup3_Assets_Command extends SimpleCommand
     {
 
 
         override public function execute( note:INotification ) : Void
         {
+			trace("startup3");
+			#if js
+			//todo: add other compiler clauses for other targets
+			facade.registerMediator(new ExternalInterfaceMediator(js.Browser.window));
+			#end
 			var loader=new URLLoader();
 							
 			loader.addEventListener (Event.COMPLETE, _onXMLLoaded);
@@ -54,5 +59,22 @@ package ca.confidant.glory.controller.startup;
 			var xml=new Fast(Xml.parse(ul.data)).node.pages;
 			var pcp:PagesConfigProxy=cast(facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
 			pcp.processXML(xml);
+
+			#if js
+			//set up pushstate
+			// var p = xml.node.pages;
+			var basePath:String = "";
+			if (xml.has.basePath){
+				basePath = xml.att.basePath;
+			}
+			trace("eim setup");
+			var eim = cast( facade.retrieveMediator(ExternalInterfaceMediator.NAME),ExternalInterfaceMediator);
+			eim.setupPushState(basePath);
+
+
+
+			// PushState.addEventListener(psListener);
+			// PushState.push("/");
+			#end
 		}
     }

@@ -21,73 +21,96 @@
 package ca.confidant.glory.view;
 
     
-    import org.puremvc.as3.interfaces.*;
-    import org.puremvc.as3.patterns.mediator.Mediator;
-	
+    import org.puremvc.haxe.interfaces.*;
+    import org.puremvc.haxe.patterns.mediator.Mediator;
 	import ca.confidant.glory.ApplicationFacade;
-  
-	import flash.events.*;
-	import flash.external.ExternalInterface;
-    
+    import ca.confidant.glory.controller.ChangePageHelper;
+	import openfl.events.*;
+	import openfl.external.ExternalInterface;
+	#if js
+    import js.Browser.*;
+	import pushstate.PushState; //now forked locally
+	#end
     /**
      * @author Allan Dowdeswell
      * A Mediator for interacting with the External Interface, i.e. calling target-specific functions. 
-     * Not currently used.
+     * 
      */
-    public class ExternalInterfaceMediator extends Mediator implements IMediator
+    @:expose
+    class ExternalInterfaceMediator extends Mediator implements IMediator
     {
        
 	   /**
          * Constructor. 
          */
-		public static const NAME:String = "ExternalInterfaceMediator";
-        public function ExternalInterfaceMediator( viewComponent:Object ) 
-        {
-
-            super( NAME, viewComponent );
+		public static inline var NAME:String = "ExternalInterfaceMediator";
+        // public var basePath:String;
+        public function new ( viewComponent:Any ) {
+			super( NAME, viewComponent );
     		
-			/*// Retrieve reference to frequently consulted Proxies
-			spriteDataProxy = facade.retrieveProxy( SpriteDataProxy.NAME ) as SpriteDataProxy;
-
-			// Listen for events from the view component 
-            app.addEventListener( HelloSprite.SPRITE_DIVIDE, onSpriteDivide );
-            */
-			ExternalInterface.call( "console.log" , "I'm here");
         }
 
 
-        override public function listNotificationInterests():Array 
+        override public function listNotificationInterests():Array<String>
         {
             return [ 
-            		 ApplicationFacade.CALL_EXTERNAL_FUNCTION,
-					 ApplicationFacade.CONSOLE_LOG
+            		//  ApplicationFacade.CALL_EXTERNAL_FUNCTION,
+					//  ApplicationFacade.CONSOLE_LOG
                    ];
         }
 
 
-        override public function handleNotification( note:INotification ):void 
+        override public function handleNotification( note:INotification ):Void 
         {
-            switch ( note.getName() ) {
-                
+            // switch ( note.getName() ) {
+                /*
                 case ApplicationFacade.CALL_EXTERNAL_FUNCTION:
-					var theCall:Object = note.getBody() as Object;
+					var theCall = note.getBody();
 					if (ExternalInterface.available) {
 						ExternalInterface.call(theCall.theFunction, theCall.theParameters);
 						//ExternalInterface.call( "console.log" , "external interface is working");
 					}
-				break;
                 
                 case ApplicationFacade.CONSOLE_LOG:
-					var msg:String = note.getBody() as String;
+					var msg:String = note.getBody();
 					if (ExternalInterface.available) {
 						ExternalInterface.call( "console.log" , msg);
 					}
-				break;
-
             }
+                */
         }
-		
-        protected function get stage():Stage{
-            return viewComponent as Stage;
+		public function setupPushState(bp:String):Void{
+            trace("setupPushState");
+            PushState.init( bp );//basePath, true, false//basepath,trigger,ignoreAnchors
+            PushState.addEventListener(
+                psListen
+            );
+            // window.onpopstate = PushState.handleOnPopState; //manually add in same manner as PushState
+            // });
+
+        }
+        /*
+        	Used when in HTML5 target, this listener fires when the user navigates the browser history using browser controls.
+            
+            @param url - This is the browser url which will correspond to the page id in the config.xml
+            @param state - This reports info about the data used, cached or otherwise.
+        **/
+        public function psListen (url:String, state:Dynamic):Void{
+                
+
+                //https://github.com/jasononeil/hxpushstate/blob/master/demo/Test.hx
+				trace("pushstate heard:"+url);
+                if (url=="") url="title";
+                //send a notification with fromBrowser as true. This prevents a new call to updatePushState.
+                sendNotification(ApplicationFacade.CHANGE_PAGE,ChangePageHelper.instance.buildNotification(url,null,true));
+				// trace("pushstate saw:"+state);
+				// trace("pushstate felt:"+uploads);
+				
+        }
+        /*
+            This gets called by the UpdatePushStateCommand if the page change was initiated from within Glory and not the browser.
+        */
+        public function updatePushState(path:String):Void {
+            PushState.push(path);
         }
     }

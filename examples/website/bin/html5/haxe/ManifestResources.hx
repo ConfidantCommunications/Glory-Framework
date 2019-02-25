@@ -1,7 +1,6 @@
 package;
 
 
-import lime.app.Config;
 import lime.utils.AssetLibrary;
 import lime.utils.AssetManifest;
 import lime.utils.Assets;
@@ -20,7 +19,7 @@ import sys.FileSystem;
 	public static var preloadLibraryNames:Array<String>;
 	
 	
-	public static function init (config:Config):Void {
+	public static function init (config:Dynamic):Void {
 		
 		preloadLibraries = new Array ();
 		preloadLibraryNames = new Array ();
@@ -53,6 +52,17 @@ import sys.FileSystem;
 		
 		var data, manifest, library;
 		
+		#if kha
+		
+		null
+		library = AssetLibrary.fromManifest (manifest);
+		Assets.registerLibrary ("null", library);
+		
+		if (library != null) preloadLibraries.push (library);
+		else preloadLibraryNames.push ("null");
+		
+		#else
+		
 		data = '{"name":null,"assets":"ah","rootPath":null,"version":2,"libraryArgs":[],"libraryType":null}';
 		manifest = AssetManifest.parse (data, rootPath);
 		library = AssetLibrary.fromManifest (manifest);
@@ -64,11 +74,19 @@ import sys.FileSystem;
 		else preloadLibraryNames.push ("default");
 		
 		
+		#end
+		
 	}
 	
 	
 }
 
+
+#if kha
+
+null
+
+#else
 
 #if !display
 #if flash
@@ -90,7 +108,13 @@ import sys.FileSystem;
 
 #if (openfl && !flash)
 
+#if html5
 
+#else
 
 #end
+
+#end
+#end
+
 #end

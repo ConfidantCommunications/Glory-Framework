@@ -20,98 +20,129 @@ import haxe.macro.Expr;
 	
 	public static function main () {
 		
-		var projectName = "GloryWebsiteDemo";
-		
-		var config = {
-			
-			build: "50",
-			company: "Confidant Communications",
-			file: "GloryWebsiteDemo",
-			fps: 60,
-			name: "Glory Framework Website Demo",
-			orientation: "",
-			packageName: "ca.confidant.gloryDemo",
-			version: "1.0.0",
-			windows: [
-				
-				{
-					allowHighDPI: false,
-					alwaysOnTop: false,
-					antialiasing: 0,
-					background: 16774882,
-					borderless: false,
-					colorDepth: 32,
-					depthBuffer: true,
-					display: 0,
-					fullscreen: true,
-					hardware: true,
-					height: null,
-					hidden: #if munit true #else false #end,
-					maximized: false,
-					minimized: false,
-					parameters: {},
-					resizable: true,
-					stencilBuffer: true,
-					title: "Glory Framework Website Demo",
-					vsync: false,
-					width: null,
-					x: null,
-					y: null
-				},
-			]
-			
-		};
-		
-		lime.system.System.__registerEntryPoint (projectName, create, config);
-		
-		#if sys
-		lime.system.System.__parseArguments (config);
-		#end
-		
-		#if (hxtelemetry && !macro)
-		var telemetry = new hxtelemetry.HxTelemetry.Config ();
-		telemetry.allocations = true;
-		telemetry.host = "localhost";
-		telemetry.app_name = config.name;
-		Reflect.setField (config, "telemetry", telemetry);
-		#end
+		lime.system.System.__registerEntryPoint ("GloryWebsiteDemo", create);
 		
 		#if (js && html5)
 		#if (munit || utest)
-		lime.system.System.embed (projectName, null, null, null, config);
+		lime.system.System.embed ("GloryWebsiteDemo", null, null, null);
 		#end
 		#else
-		create (config);
+		create (null);
 		#end
 		
 	}
 	
 	
-	public static function create (config:lime.app.Config):Void {
+	public static function create (config):Void {
 		
 		var app = new openfl.display.Application ();
-		app.create (config);
 		
 		ManifestResources.init (config);
 		
+		app.meta["build"] = "52";
+		app.meta["company"] = "Confidant Communications";
+		app.meta["file"] = "GloryWebsiteDemo";
+		app.meta["name"] = "Glory Framework Website Demo";
+		app.meta["packageName"] = "ca.confidant.gloryDemo";
+		app.meta["version"] = "1.0.0";
+		
+		
+		
+		#if !flash
+		
+		var attributes:lime.ui.WindowAttributes = {
+			
+			allowHighDPI: false,
+			alwaysOnTop: false,
+			borderless: false,
+			// display: 0,
+			element: null,
+			frameRate: 60,
+			#if !web fullscreen: true, #end
+			height: null,
+			hidden: #if munit true #else false #end,
+			maximized: false,
+			minimized: false,
+			parameters: {},
+			resizable: true,
+			title: "Glory Framework Website Demo",
+			width: null,
+			x: null,
+			y: null,
+			
+		};
+		
+		attributes.context = {
+			
+			antialiasing: 0,
+			background: 16774882,
+			colorDepth: 32,
+			depth: false,
+			hardware: true,
+			stencil: false,
+			type: null,
+			vsync: false
+			
+		};
+		
+		if (app.window == null) {
+			
+			if (config != null) {
+				
+				for (field in Reflect.fields (config)) {
+					
+					if (Reflect.hasField (attributes, field)) {
+						
+						Reflect.setField (attributes, field, Reflect.field (config, field));
+						
+					} else if (Reflect.hasField (attributes.context, field)) {
+						
+						Reflect.setField (attributes.context, field, Reflect.field (config, field));
+						
+					}
+					
+				}
+				
+			}
+			
+			#if sys
+			lime.system.System.__parseArguments (attributes);
+			#end
+			
+		}
+		
+		app.createWindow (attributes);
+		
+		#elseif !air
+		
+		app.window.context.attributes.background = 16774882;
+		app.window.frameRate = 60;
+		
+		#end
+		
 		var preloader = getPreloader ();
-		app.setPreloader (preloader);
-		preloader.create (config);
-		preloader.onComplete.add (start.bind (app.window.stage));
+		app.preloader.onProgress.add (function (loaded, total) {
+			@:privateAccess preloader.update (loaded, total);
+		});
+		app.preloader.onComplete.add (function () {
+			@:privateAccess preloader.start ();
+		});
+		
+		preloader.onComplete.add (start.bind (cast (app.window, openfl.display.Window).stage));
 		
 		for (library in ManifestResources.preloadLibraries) {
 			
-			preloader.addLibrary (library);
+			app.preloader.addLibrary (library);
 			
 		}
 		
 		for (name in ManifestResources.preloadLibraryNames) {
 			
-			preloader.addLibraryName (name);
+			app.preloader.addLibraryName (name);
 			
 		}
 		
-		preloader.load ();
+		app.preloader.load ();
 		
 		var result = app.exec ();
 		

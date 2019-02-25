@@ -16,10 +16,9 @@
 	<script type="text/javascript" src="./lib/howler.min.js"></script>
 	<script type="text/javascript" src="./lib/pako.min.js"></script>
 	<script type="text/javascript" src="./lib/FileSaver.min.js"></script>
-	<script type="text/javascript" src="./GloryWebsiteDemo.js"></script>
 	
 	<script>
-		window.addEventListener ("touchmove", function (event) { event.preventDefault (); }, { capture: false, passive: false });
+		window.addEventListener ("touchmove", function (event) { event.preventDefault (); }, false);
 		if (typeof window.devicePixelRatio != 'undefined' && window.devicePixelRatio > 2) {
 			var meta = document.getElementById ("viewport");
 			meta.setAttribute ('content', 'width=device-width, initial-scale=' + (2 / window.devicePixelRatio) + ', user-scalable=no');
@@ -39,6 +38,7 @@
 	
 	<div id="openfl-content"></div>
 	
+	<script type="text/javascript" src="./GloryWebsiteDemo.js"></script>
 	<script type="text/javascript">
 		lime.embed ("GloryWebsiteDemo", "openfl-content", null, null, { parameters: {} });
 	</script>
