@@ -37,10 +37,7 @@ package ca.confidant.glory.controller;
 			addSubCommand( AsyncLoadAssetsCommand );
 			addSubCommand( BuildControlsCommand );
 			// addSubCommand( InitPageSoundsCommand );//none
-			addSubCommand( BuildControlsCleanup );//fires notification which begins changePage for title
+			addSubCommand( LoadStartingPageCommand );//fires notification which begins changePage for title or starting url
 
-			
-			// sendNotification(ApplicationFacade.BUILD_PAGE,"title");
-			// sendNotification(ApplicationFacade.INIT_PAGE_SOUNDS, "title");
         }
     }

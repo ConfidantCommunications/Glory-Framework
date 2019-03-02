@@ -96,7 +96,6 @@ package ca.confidant.glory.view;
             @param state - This reports info about the data used, cached or otherwise.
         **/
         public function psListen (url:String, state:Dynamic):Void{
-                
 
                 //https://github.com/jasononeil/hxpushstate/blob/master/demo/Test.hx
 				trace("pushstate heard:"+url);
@@ -112,5 +111,8 @@ package ca.confidant.glory.view;
         */
         public function updatePushState(path:String):Void {
             PushState.push(path);
+        }
+        public function updateDocumentTitle(t:String):Void {
+            document.title = t;
         }
     }

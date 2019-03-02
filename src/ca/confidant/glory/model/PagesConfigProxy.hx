@@ -39,9 +39,9 @@ package ca.confidant.glory.model;
 		private var fast:haxe.xml.Fast;
 		private var allPages:Array<Map<String,Dynamic>>;
 		private var imageItems:Array<Dynamic>;
-		private var chosenpages:Array<Dynamic>;
-		private var chosenLayout:String;
 		private var currentPage:Int;
+		private var basePath:String;
+		private var appTitle:String;
 		/**
 		 * Constructor.
 		 */
@@ -58,7 +58,19 @@ package ca.confidant.glory.model;
 		public function getCurrentPage():Map<String,Dynamic>{
 			return allPages[currentPage];
 		}
-		
+		public function getAppTitle():String {
+			return appTitle;
+		}
+		public function getBasePath():String {
+			return basePath;
+		}
+		public function getPageIds():Array<String> {
+			var a = new Array<String>();
+			for (p in allPages){
+				a.push(p.get("id"));
+			}
+			return a;
+		}
 		/*
 		public function setPageOutTime(id:String,t:Int):Void{
 			for(i in 0...allPages.length){
@@ -189,7 +201,8 @@ package ca.confidant.glory.model;
 			imageItems=new Array();
 			//for each (var thispage:XML in _pagesXML..page){
 			//trace("parseXML");
-
+			basePath = (fast.has.basePath) ? fast.att.basePath : "/";
+			appTitle = (fast.has.title) ? fast.att.title : "";
 			for(thispage in fast.nodes.page){
 				var h:Map<String,Dynamic> = new Map<String,Dynamic>();
 				if(thispage.has.id) h.set("id",thispage.att.id);
@@ -199,6 +212,7 @@ package ca.confidant.glory.model;
 					h.set("swflibrary","");
 				}
 				if(thispage.has.src) h.set("src",thispage.att.src);
+				if(thispage.has.title) h.set("title",thispage.att.title);
 				if(thispage.has.type) h.set("type",thispage.att.type);
 				if(thispage.has.transitionOutTime) h.set("transitionOutTime",thispage.att.transitionOutTime);
 				if(thispage.has.transitionInTime) h.set("transitionInTime",thispage.att.transitionInTime);

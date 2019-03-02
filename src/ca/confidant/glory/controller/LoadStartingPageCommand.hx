@@ -25,16 +25,33 @@ package ca.confidant.glory.controller;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import openfl.Assets;
     import ca.confidant.glory.controller.ChangePageHelper;
+    import ca.confidant.glory.model.PagesConfigProxy;
+    #if js
+    import js.Browser;
+    #end
 	/*
 	 * @author Allan Dowdeswell
-	 * Fires at the end of the GotoIntroMacro, triggering setup of title page
+	 * Fires at the end of the GotoIntroMacro, triggering setup of first page
 	 */
-    class BuildControlsCleanup extends SimpleCommand
+    class LoadStartingPageCommand extends SimpleCommand
     {
         override public function execute( note:INotification ) : Void
         {
-			trace('BuildControlsCleanup');
-			sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification("title"));
+			trace('LoadStartingPageCommand');
+            var pcp = cast (facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
+
+            var arr = Std.string(Browser.location).split("/");
+            // trace("location:"+arr.pop());
+            var slug = arr.pop();
+            var slugFound = false;
+            var pageIds = pcp.getPageIds();
+            for (i in pageIds){
+                if (slug==i) slugFound = true;
+            }
+            if ((slug=="") || !slugFound) slug = "title";
+            
+
+			sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification(slug));
         }
 		
     }

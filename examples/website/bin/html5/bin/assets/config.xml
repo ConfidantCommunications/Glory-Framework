@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pages basePath="/">
+<pages basePath="/" title="Glory Framework Website Demo">
 	<controls>
 		<actor id="bRight" type="control" action="pageForward,removePage:options" z="16" x="849" y="580" width="111" height="60" src="nav/bRight.png" layout="alignRight,alignBottom"></actor>
 		<actor id="bLeft" type="control" action="pageBackward,removePage:options" z="17" x="0" y="580" width="111" height="60" src="nav/bLeft.png" layout="alignLeft,alignBottom"></actor>
@@ -7,11 +7,11 @@
 		<actor id="bHome" type="control" action="pageSkipTo:title,removePage:options" z="19" x="0" y="0" width="111" height="60" src="nav/bHome.png" layout="alignLeft,alignTop"></actor>
 	</controls>
 
-	<page id="title" type="normal">
+	<page id="title" type="normal" title="The Home Page">
 		<actor id="haxeLogo" type="control" action="httpLink:haxe.org/" z="20" x="0" y="100" width="200" height="200" src="title/haxe-opt.svg" layout="fillPercentWidth:0.2,maintainAspectRatio,centerX,centerY"></actor>
 	</page>
 	
-	<page id="bear" type="normal">
+	<page id="bear" type="normal" title="The Bear Page">
 		<actor id="bearActor" z="1" type="prop" x="0" y="0" width="288" height="288" src="bear.svg"  layout="fillPercentHeight:0.5,maintainAspectRatio,centerX,centerY" ></actor>
 	</page>
 

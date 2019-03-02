@@ -38,15 +38,17 @@ package ca.confidant.glory.controller;
 				pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 				eim=cast(facade.retrieveMediator(ExternalInterfaceMediator.NAME) , ExternalInterfaceMediator);
 				var data=note.getBody();
-				
+				var newPage = pcp.getPage(data.newPage);
 				if (
 						(data.newPage != null) 
-						&& (pcp.getPage(data.newPage).get("type")!="overlay")
+						&& (newPage.get("type")!="overlay")
 						&& (data.newPage!=data.oldPage)
 						&& (data.updatePushState == true)
 					){
 						eim.updatePushState("/"+data.newPage);
 					}
+					
+				eim.updateDocumentTitle(pcp.getAppTitle() + " : "+ newPage.get("title"));
 				// sp=cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 				// sp.setState(GloryState.READY);
       }

@@ -24,7 +24,7 @@ package ca.confidant.glory.controller;
 
 	/*
 	 * @author Allan Dowdeswell
-	 * This is first triggered by the GotoIntroMacro in the BuildControlsCleanup command, then by the page controls, whenever a page change is needed.
+	 * This is first triggered by the GotoIntroMacro in the LoadStartingPageCommand command, then by the page controls, whenever a page change is needed.
 	 */
     class ChangePageMacro extends AsyncMacroCommand
     {

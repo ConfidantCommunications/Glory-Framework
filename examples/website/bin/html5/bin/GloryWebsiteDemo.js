@@ -810,9 +810,9 @@ ApplicationMain.create = function(config) {
 	ManifestResources.init(config);
 	var _this = app.meta;
 	if(__map_reserved["build"] != null) {
-		_this.setReserved("build","52");
+		_this.setReserved("build","53");
 	} else {
-		_this.h["build"] = "52";
+		_this.h["build"] = "53";
 	}
 	var _this1 = app.meta;
 	if(__map_reserved["company"] != null) {
@@ -5364,19 +5364,6 @@ ca_confidant_glory_controller_AsyncLoadAssetsCommand.prototype = $extend(org_pur
 	}
 	,__class__: ca_confidant_glory_controller_AsyncLoadAssetsCommand
 });
-var ca_confidant_glory_controller_BuildControlsCleanup = function() {
-	org_puremvc_haxe_patterns_command_SimpleCommand.call(this);
-};
-$hxClasses["ca.confidant.glory.controller.BuildControlsCleanup"] = ca_confidant_glory_controller_BuildControlsCleanup;
-ca_confidant_glory_controller_BuildControlsCleanup.__name__ = ["ca","confidant","glory","controller","BuildControlsCleanup"];
-ca_confidant_glory_controller_BuildControlsCleanup.__super__ = org_puremvc_haxe_patterns_command_SimpleCommand;
-ca_confidant_glory_controller_BuildControlsCleanup.prototype = $extend(org_puremvc_haxe_patterns_command_SimpleCommand.prototype,{
-	execute: function(note) {
-		haxe_Log.trace("BuildControlsCleanup",{ fileName : "BuildControlsCleanup.hx", lineNumber : 36, className : "ca.confidant.glory.controller.BuildControlsCleanup", methodName : "execute"});
-		this.sendNotification("changePage",ca_confidant_glory_controller_ChangePageHelper.instance.buildNotification("title"));
-	}
-	,__class__: ca_confidant_glory_controller_BuildControlsCleanup
-});
 var ca_confidant_glory_controller_BuildControlsCommand = function() {
 	org_puremvc_haxe_patterns_command_AsyncCommand.call(this);
 };
@@ -5663,7 +5650,7 @@ ca_confidant_glory_controller_GotoIntroMacro.prototype = $extend(org_puremvc_hax
 		haxe_Log.trace("GotoIntroMacro",{ fileName : "GotoIntroMacro.hx", lineNumber : 36, className : "ca.confidant.glory.controller.GotoIntroMacro", methodName : "initializeAsyncMacroCommand"});
 		this.addSubCommand(ca_confidant_glory_controller_AsyncLoadAssetsCommand);
 		this.addSubCommand(ca_confidant_glory_controller_BuildControlsCommand);
-		this.addSubCommand(ca_confidant_glory_controller_BuildControlsCleanup);
+		this.addSubCommand(ca_confidant_glory_controller_LoadStartingPageCommand);
 	}
 	,__class__: ca_confidant_glory_controller_GotoIntroMacro
 });
@@ -5898,6 +5885,35 @@ ca_confidant_glory_controller_LayoutHelper.prototype = {
 	}
 	,__class__: ca_confidant_glory_controller_LayoutHelper
 };
+var ca_confidant_glory_controller_LoadStartingPageCommand = function() {
+	org_puremvc_haxe_patterns_command_SimpleCommand.call(this);
+};
+$hxClasses["ca.confidant.glory.controller.LoadStartingPageCommand"] = ca_confidant_glory_controller_LoadStartingPageCommand;
+ca_confidant_glory_controller_LoadStartingPageCommand.__name__ = ["ca","confidant","glory","controller","LoadStartingPageCommand"];
+ca_confidant_glory_controller_LoadStartingPageCommand.__super__ = org_puremvc_haxe_patterns_command_SimpleCommand;
+ca_confidant_glory_controller_LoadStartingPageCommand.prototype = $extend(org_puremvc_haxe_patterns_command_SimpleCommand.prototype,{
+	execute: function(note) {
+		haxe_Log.trace("LoadStartingPageCommand",{ fileName : "LoadStartingPageCommand.hx", lineNumber : 40, className : "ca.confidant.glory.controller.LoadStartingPageCommand", methodName : "execute"});
+		var pcp = js_Boot.__cast(this.facade.retrieveProxy("pagesConfigProxy") , ca_confidant_glory_model_PagesConfigProxy);
+		var arr = Std.string(window.location).split("/");
+		var slug = arr.pop();
+		var slugFound = false;
+		var pageIds = pcp.getPageIds();
+		var _g = 0;
+		while(_g < pageIds.length) {
+			var i = pageIds[_g];
+			++_g;
+			if(slug == i) {
+				slugFound = true;
+			}
+		}
+		if(slug == "" || !slugFound) {
+			slug = "title";
+		}
+		this.sendNotification("changePage",ca_confidant_glory_controller_ChangePageHelper.instance.buildNotification(slug));
+	}
+	,__class__: ca_confidant_glory_controller_LoadStartingPageCommand
+});
 var ca_confidant_glory_controller_PageTransitionOutCommand = function() {
 	org_puremvc_haxe_patterns_command_AsyncCommand.call(this);
 };
@@ -6097,28 +6113,11 @@ ca_confidant_glory_controller_UpdatePushStateCommand.prototype = $extend(org_pur
 		this.pcp = js_Boot.__cast(this.facade.retrieveProxy("pagesConfigProxy") , ca_confidant_glory_model_PagesConfigProxy);
 		this.eim = js_Boot.__cast(this.facade.retrieveMediator("ExternalInterfaceMediator") , ca_confidant_glory_view_ExternalInterfaceMediator);
 		var data = note.getBody();
-		var tmp;
-		var tmp1;
-		var tmp2;
-		if(data.newPage != null) {
-			var _this = this.pcp.getPage(data.newPage);
-			tmp2 = (__map_reserved["type"] != null ? _this.getReserved("type") : _this.h["type"]) != "overlay";
-		} else {
-			tmp2 = false;
-		}
-		if(tmp2) {
-			tmp1 = data.newPage != data.oldPage;
-		} else {
-			tmp1 = false;
-		}
-		if(tmp1) {
-			tmp = data.updatePushState == true;
-		} else {
-			tmp = false;
-		}
-		if(tmp) {
+		var newPage = this.pcp.getPage(data.newPage);
+		if(data.newPage != null && (__map_reserved["type"] != null ? newPage.getReserved("type") : newPage.h["type"]) != "overlay" && data.newPage != data.oldPage && data.updatePushState == true) {
 			this.eim.updatePushState("/" + data.newPage);
 		}
+		this.eim.updateDocumentTitle(this.pcp.getAppTitle() + " : " + Std.string(__map_reserved["title"] != null ? newPage.getReserved("title") : newPage.h["title"]));
 	}
 	,__class__: ca_confidant_glory_controller_UpdatePushStateCommand
 });
@@ -6190,13 +6189,9 @@ ca_confidant_glory_controller_startup_Startup3_$Assets_$Command.prototype = $ext
 		var xml = new haxe_xml_Fast(Xml.parse(ul.data)).node.resolve("pages");
 		var pcp = js_Boot.__cast(this.facade.retrieveProxy("pagesConfigProxy") , ca_confidant_glory_model_PagesConfigProxy);
 		pcp.processXML(xml);
-		var basePath = "";
-		if(xml.has.resolve("basePath")) {
-			basePath = xml.att.resolve("basePath");
-		}
-		haxe_Log.trace("eim setup",{ fileName : "Startup3_Assets_Command.hx", lineNumber : 70, className : "ca.confidant.glory.controller.startup.Startup3_Assets_Command", methodName : "_onXMLLoaded"});
+		haxe_Log.trace("eim setup",{ fileName : "Startup3_Assets_Command.hx", lineNumber : 64, className : "ca.confidant.glory.controller.startup.Startup3_Assets_Command", methodName : "_onXMLLoaded"});
 		var eim = js_Boot.__cast(this.facade.retrieveMediator("ExternalInterfaceMediator") , ca_confidant_glory_view_ExternalInterfaceMediator);
-		eim.setupPushState(basePath);
+		eim.setupPushState(pcp.getBasePath());
 	}
 	,__class__: ca_confidant_glory_controller_startup_Startup3_$Assets_$Command
 });
@@ -6308,15 +6303,32 @@ ca_confidant_glory_model_PagesConfigProxy.prototype = $extend(org_puremvc_haxe_p
 	,fast: null
 	,allPages: null
 	,imageItems: null
-	,chosenpages: null
-	,chosenLayout: null
 	,currentPage: null
+	,basePath: null
+	,appTitle: null
 	,processXML: function(input) {
 		this.fast = input;
 		this.parseXML();
 	}
 	,getCurrentPage: function() {
 		return this.allPages[this.currentPage];
+	}
+	,getAppTitle: function() {
+		return this.appTitle;
+	}
+	,getBasePath: function() {
+		return this.basePath;
+	}
+	,getPageIds: function() {
+		var a = [];
+		var _g = 0;
+		var _g1 = this.allPages;
+		while(_g < _g1.length) {
+			var p = _g1[_g];
+			++_g;
+			a.push(__map_reserved["id"] != null ? p.getReserved("id") : p.h["id"]);
+		}
+		return a;
 	}
 	,setCurrentPageById: function(id) {
 		var _g1 = 0;
@@ -6343,7 +6355,7 @@ ca_confidant_glory_model_PagesConfigProxy.prototype = $extend(org_puremvc_haxe_p
 	}
 	,getNextPage: function() {
 		var j = 1;
-		haxe_Log.trace("getNextPage:" + this.currentPage + ":" + this.allPages.length,{ fileName : "PagesConfigProxy.hx", lineNumber : 89, className : "ca.confidant.glory.model.PagesConfigProxy", methodName : "getNextPage"});
+		haxe_Log.trace("getNextPage:" + this.currentPage + ":" + this.allPages.length,{ fileName : "PagesConfigProxy.hx", lineNumber : 101, className : "ca.confidant.glory.model.PagesConfigProxy", methodName : "getNextPage"});
 		while(this.currentPage + j < this.allPages.length) {
 			var _this = this.allPages[this.currentPage + j];
 			if((__map_reserved["type"] != null ? _this.getReserved("type") : _this.h["type"]) == "normal") {
@@ -6430,6 +6442,8 @@ ca_confidant_glory_model_PagesConfigProxy.prototype = $extend(org_puremvc_haxe_p
 	,parseXML: function() {
 		this.allPages = [];
 		this.imageItems = [];
+		this.basePath = this.fast.has.resolve("basePath") ? this.fast.att.resolve("basePath") : "/";
+		this.appTitle = this.fast.has.resolve("title") ? this.fast.att.resolve("title") : "";
 		var _g_head = this.fast.nodes.resolve("page").h;
 		while(_g_head != null) {
 			var val = _g_head.item;
@@ -6464,45 +6478,53 @@ ca_confidant_glory_model_PagesConfigProxy.prototype = $extend(org_puremvc_haxe_p
 					h.h["src"] = value2;
 				}
 			}
-			if(thispage.has.resolve("type")) {
-				var value3 = thispage.att.resolve("type");
-				if(__map_reserved["type"] != null) {
-					h.setReserved("type",value3);
+			if(thispage.has.resolve("title")) {
+				var value3 = thispage.att.resolve("title");
+				if(__map_reserved["title"] != null) {
+					h.setReserved("title",value3);
 				} else {
-					h.h["type"] = value3;
+					h.h["title"] = value3;
+				}
+			}
+			if(thispage.has.resolve("type")) {
+				var value4 = thispage.att.resolve("type");
+				if(__map_reserved["type"] != null) {
+					h.setReserved("type",value4);
+				} else {
+					h.h["type"] = value4;
 				}
 			}
 			if(thispage.has.resolve("transitionOutTime")) {
-				var value4 = thispage.att.resolve("transitionOutTime");
+				var value5 = thispage.att.resolve("transitionOutTime");
 				if(__map_reserved["transitionOutTime"] != null) {
-					h.setReserved("transitionOutTime",value4);
+					h.setReserved("transitionOutTime",value5);
 				} else {
-					h.h["transitionOutTime"] = value4;
+					h.h["transitionOutTime"] = value5;
 				}
 			}
 			if(thispage.has.resolve("transitionInTime")) {
-				var value5 = thispage.att.resolve("transitionInTime");
+				var value6 = thispage.att.resolve("transitionInTime");
 				if(__map_reserved["transitionInTime"] != null) {
-					h.setReserved("transitionInTime",value5);
+					h.setReserved("transitionInTime",value6);
 				} else {
-					h.h["transitionInTime"] = value5;
+					h.h["transitionInTime"] = value6;
 				}
 			}
 			if(thispage.hasNode.resolve("actor")) {
-				var value6 = thispage.nodes.resolve("actor");
+				var value7 = thispage.nodes.resolve("actor");
 				if(__map_reserved["actors"] != null) {
-					h.setReserved("actors",value6);
+					h.setReserved("actors",value7);
 				} else {
-					h.h["actors"] = value6;
+					h.h["actors"] = value7;
 				}
 			}
 			if(thispage.hasNode.resolve("sound")) {
-				haxe_Log.trace("hasSounds:" + thispage.att.resolve("id"),{ fileName : "PagesConfigProxy.hx", lineNumber : 211, className : "ca.confidant.glory.model.PagesConfigProxy", methodName : "parseXML"});
-				var value7 = thispage.nodes.resolve("sound");
+				haxe_Log.trace("hasSounds:" + thispage.att.resolve("id"),{ fileName : "PagesConfigProxy.hx", lineNumber : 225, className : "ca.confidant.glory.model.PagesConfigProxy", methodName : "parseXML"});
+				var value8 = thispage.nodes.resolve("sound");
 				if(__map_reserved["sounds"] != null) {
-					h.setReserved("sounds",value7);
+					h.setReserved("sounds",value8);
 				} else {
-					h.h["sounds"] = value7;
+					h.h["sounds"] = value8;
 				}
 			}
 			this.allPages.push(h);
@@ -6742,7 +6764,7 @@ ca_confidant_glory_view_ExternalInterfaceMediator.prototype = $extend(org_puremv
 		pushstate_PushState.addEventListener(null,$bind(this,this.psListen));
 	}
 	,psListen: function(url,state) {
-		haxe_Log.trace("pushstate heard:" + url,{ fileName : "ExternalInterfaceMediator.hx", lineNumber : 102, className : "ca.confidant.glory.view.ExternalInterfaceMediator", methodName : "psListen"});
+		haxe_Log.trace("pushstate heard:" + url,{ fileName : "ExternalInterfaceMediator.hx", lineNumber : 101, className : "ca.confidant.glory.view.ExternalInterfaceMediator", methodName : "psListen"});
 		if(url == "") {
 			url = "title";
 		}
@@ -6750,6 +6772,9 @@ ca_confidant_glory_view_ExternalInterfaceMediator.prototype = $extend(org_puremv
 	}
 	,updatePushState: function(path) {
 		pushstate_PushState.push(path);
+	}
+	,updateDocumentTitle: function(t) {
+		window.document.title = t;
 	}
 	,__class__: ca_confidant_glory_view_ExternalInterfaceMediator
 });
@@ -31205,7 +31230,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 200450;
+	this.version = 256987;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = ["lime","utils","AssetCache"];

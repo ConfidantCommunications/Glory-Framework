@@ -61,20 +61,9 @@ package ca.confidant.glory.controller.startup;
 			pcp.processXML(xml);
 
 			#if js
-			//set up pushstate
-			// var p = xml.node.pages;
-			var basePath:String = "";
-			if (xml.has.basePath){
-				basePath = xml.att.basePath;
-			}
 			trace("eim setup");
 			var eim = cast( facade.retrieveMediator(ExternalInterfaceMediator.NAME),ExternalInterfaceMediator);
-			eim.setupPushState(basePath);
-
-
-
-			// PushState.addEventListener(psListener);
-			// PushState.push("/");
+			eim.setupPushState(pcp.getBasePath());
 			#end
 		}
     }
