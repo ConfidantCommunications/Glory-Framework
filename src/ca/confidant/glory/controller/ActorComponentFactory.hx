@@ -32,6 +32,7 @@ import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.MovieClip;
 import openfl.events.Event;
+import openfl.text.*;
 import ca.confidant.glory.model.AssetLibraryProxy;
 import ca.confidant.glory.controller.LayoutHelper;
 import org.puremvc.haxe.interfaces.IFacade;
@@ -55,13 +56,15 @@ class ActorComponentFactory {
 		#end
 
         var a = new ActorComponent();
-        var ext:String=cast(actor.att.src,String).substr(-3);
+        var theArray = cast(actor.att.src,String).split(".");
+        var ext:String=theArray.pop();
         //embed info from config, used once bitmaps are filled
+        var i1 = (actor.has.x)?Std.parseInt(actor.att.x):0;
+        var i2 = (actor.has.y)?Std.parseInt(actor.att.y):0;
+        var i3 = (actor.has.width)?Std.parseInt(actor.att.width):0;
+        var i4 = (actor.has.height)?Std.parseInt(actor.att.height):0;
         a.setInitValues(
-            Std.parseInt(actor.att.x),
-            Std.parseInt(actor.att.y),
-            Std.parseInt(actor.att.width),
-            Std.parseInt(actor.att.height)
+            i1,i2,i3,i4
         );
 
         a.type=actor.att.type;
@@ -120,7 +123,28 @@ class ActorComponentFactory {
                 trace("image:"+b);
                 a.addBitmap(b);
                 a.init();
+            case "txt"|"html"|"htm":
+                trace("why");
+                #if appMode
+                var t = LimeAssets.getText("assets/"+actor.att.src);
+                #else
+                var t = alp.getLibrary().getText("assets/"+actor.att.src);
+                #end
+                var myTextBox:TextField = new TextField();
+                if(ext=="txt"){
+                    myTextBox.text = t;
+                } else {
+                    myTextBox.htmlText = t;
+                }
+                myTextBox.width = Std.parseInt(actor.att.width); 
+                myTextBox.height = Std.parseInt(actor.att.height); 
+                myTextBox.multiline = true; 
+                myTextBox.wordWrap = true; 
+                myTextBox.border = true; 
+                a.addChild(myTextBox);
+                a.init();
             default:
+                trace("why not?"+ext);
                 if(actor.att.src != ""){
                     #if appMode
                         if(swflib!=null){

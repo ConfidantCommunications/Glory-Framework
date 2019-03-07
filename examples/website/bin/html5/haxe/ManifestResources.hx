@@ -63,6 +63,7 @@ import sys.FileSystem;
 		
 		#else
 		
+		Assets.libraryPaths["assets/swflibrary.bundle"] = rootPath + "assets/swflibrary.bundle/library.json";
 		data = '{"name":null,"assets":"ah","rootPath":null,"version":2,"libraryArgs":[],"libraryType":null}';
 		manifest = AssetManifest.parse (data, rootPath);
 		library = AssetLibrary.fromManifest (manifest);
@@ -91,6 +92,7 @@ null
 #if !display
 #if flash
 
+@:keep @:bind #if display private #end class __ASSET__assets_swflibrary_bundle_library_json extends null { }
 @:keep @:bind #if display private #end class __ASSET__manifest_default_json extends null { }
 
 

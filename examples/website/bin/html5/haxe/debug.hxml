@@ -18,6 +18,7 @@
 -cp /usr/lib/haxe/lib/advanced-layout/0,7,0
 -D advanced-layout=0.7.0
 -cp src
+-cp assets/swflibrary.bundle/src
 -D tools=7.1.1
 -D lime-canvas
 -D howlerjs

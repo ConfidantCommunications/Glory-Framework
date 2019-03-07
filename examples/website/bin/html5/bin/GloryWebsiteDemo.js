@@ -810,9 +810,9 @@ ApplicationMain.create = function(config) {
 	ManifestResources.init(config);
 	var _this = app.meta;
 	if(__map_reserved["build"] != null) {
-		_this.setReserved("build","53");
+		_this.setReserved("build","54");
 	} else {
-		_this.h["build"] = "53";
+		_this.h["build"] = "54";
 	}
 	var _this1 = app.meta;
 	if(__map_reserved["company"] != null) {
@@ -4399,6 +4399,13 @@ ManifestResources.init = function(config) {
 	var data;
 	var manifest;
 	var library;
+	var v = rootPath + "assets/swflibrary.bundle/library.json";
+	var _this = lime_utils_Assets.libraryPaths;
+	if(__map_reserved["assets/swflibrary.bundle"] != null) {
+		_this.setReserved("assets/swflibrary.bundle",v);
+	} else {
+		_this.h["assets/swflibrary.bundle"] = v;
+	}
 	data = "{\"name\":null,\"assets\":\"ah\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	manifest = lime_utils_AssetManifest.parse(data,rootPath);
 	library = lime_utils_AssetLibrary.fromManifest(manifest);
@@ -5125,8 +5132,13 @@ ca_confidant_glory_controller_ActorComponentFactory.prototype = {
 	,create: function(pageId,actor,swflib) {
 		var alp = js_Boot.__cast(this.facade.retrieveProxy(pageId) , ca_confidant_glory_model_AssetLibraryProxy);
 		var a = new ca_confidant_glory_view_components_ActorComponent();
-		var ext = HxOverrides.substr(js_Boot.__cast(actor.att.resolve("src") , String),-3,null);
-		a.setInitValues(Std.parseInt(actor.att.resolve("x")),Std.parseInt(actor.att.resolve("y")),Std.parseInt(actor.att.resolve("width")),Std.parseInt(actor.att.resolve("height")));
+		var theArray = (js_Boot.__cast(actor.att.resolve("src") , String)).split(".");
+		var ext = theArray.pop();
+		var i1 = actor.has.resolve("x") ? Std.parseInt(actor.att.resolve("x")) : 0;
+		var i2 = actor.has.resolve("y") ? Std.parseInt(actor.att.resolve("y")) : 0;
+		var i3 = actor.has.resolve("width") ? Std.parseInt(actor.att.resolve("width")) : 0;
+		var i4 = actor.has.resolve("height") ? Std.parseInt(actor.att.resolve("height")) : 0;
+		a.setInitValues(i1,i2,i3,i4);
 		a.type = actor.att.resolve("type");
 		a.set_name(actor.att.resolve("id"));
 		if(a.type == "control") {
@@ -5146,7 +5158,7 @@ ca_confidant_glory_controller_ActorComponentFactory.prototype = {
 		} catch( e ) {
 			haxe_CallStack.lastException = e;
 			if (e instanceof js__$Boot_HaxeError) e = e.val;
-			haxe_Log.trace("error:" + Std.string(e),{ fileName : "ActorComponentFactory.hx", lineNumber : 85, className : "ca.confidant.glory.controller.ActorComponentFactory", methodName : "create"});
+			haxe_Log.trace("error:" + Std.string(e),{ fileName : "ActorComponentFactory.hx", lineNumber : 88, className : "ca.confidant.glory.controller.ActorComponentFactory", methodName : "create"});
 		}
 		var accp = new ca_confidant_glory_model_ActorComponentConfigProxy(actor.att.resolve("id"),Std.string(actor.att.resolve("type")),action,l);
 		this.facade.registerProxy(accp);
@@ -5158,7 +5170,7 @@ ca_confidant_glory_controller_ActorComponentFactory.prototype = {
 			var image = alp.getLibrary().getImage("assets/" + actor.att.resolve("src"));
 			imageData = openfl_display_BitmapData.fromImage(image);
 			var b = new openfl_display_Bitmap(imageData);
-			haxe_Log.trace("image:" + Std.string(b),{ fileName : "ActorComponentFactory.hx", lineNumber : 120, className : "ca.confidant.glory.controller.ActorComponentFactory", methodName : "create"});
+			haxe_Log.trace("image:" + Std.string(b),{ fileName : "ActorComponentFactory.hx", lineNumber : 123, className : "ca.confidant.glory.controller.ActorComponentFactory", methodName : "create"});
 			a.addBitmap(b);
 			a.init();
 			break;
@@ -5168,11 +5180,29 @@ ca_confidant_glory_controller_ActorComponentFactory.prototype = {
 			a.init();
 			break;
 		case "swf":
-			haxe_Log.trace("deprecated: Do not use swf extension",{ fileName : "ActorComponentFactory.hx", lineNumber : 102, className : "ca.confidant.glory.controller.ActorComponentFactory", methodName : "create"});
+			haxe_Log.trace("deprecated: Do not use swf extension",{ fileName : "ActorComponentFactory.hx", lineNumber : 105, className : "ca.confidant.glory.controller.ActorComponentFactory", methodName : "create"});
+			break;
+		case "htm":case "html":case "txt":
+			haxe_Log.trace("why",{ fileName : "ActorComponentFactory.hx", lineNumber : 127, className : "ca.confidant.glory.controller.ActorComponentFactory", methodName : "create"});
+			var t = alp.getLibrary().getText("assets/" + actor.att.resolve("src"));
+			var myTextBox = new openfl_text_TextField();
+			if(ext == "txt") {
+				myTextBox.set_text(t);
+			} else {
+				myTextBox.set_htmlText(t);
+			}
+			myTextBox.set_width(Std.parseInt(actor.att.resolve("width")));
+			myTextBox.set_height(Std.parseInt(actor.att.resolve("height")));
+			myTextBox.set_multiline(true);
+			myTextBox.set_wordWrap(true);
+			myTextBox.set_border(true);
+			a.addChild(myTextBox);
+			a.init();
 			break;
 		default:
+			haxe_Log.trace("why not?" + ext,{ fileName : "ActorComponentFactory.hx", lineNumber : 147, className : "ca.confidant.glory.controller.ActorComponentFactory", methodName : "create"});
 			if(actor.att.resolve("src") != "") {
-				haxe_Log.trace("adding a .bundle movieclip",{ fileName : "ActorComponentFactory.hx", lineNumber : 160, className : "ca.confidant.glory.controller.ActorComponentFactory", methodName : "create"});
+				haxe_Log.trace("adding a .bundle movieclip",{ fileName : "ActorComponentFactory.hx", lineNumber : 184, className : "ca.confidant.glory.controller.ActorComponentFactory", methodName : "create"});
 				var mc = alp.getLibrary().getMovieClip(actor.att.resolve("src"));
 				a.addChild(mc);
 				a.init();
@@ -5353,10 +5383,10 @@ ca_confidant_glory_controller_AsyncLoadAssetsCommand.prototype = $extend(org_pur
 				return "IMAGE";
 			case "mp3":case "ogg":case "wav":
 				return "SOUND";
-			case "svg":case "xml":
-				return "TEXT";
 			case "swf":
 				return "BINARY";
+			case "htm":case "html":case "svg":case "txt":case "xml":
+				return "TEXT";
 			default:
 				return "IMAGE";
 			}
@@ -31230,7 +31260,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 256987;
+	this.version = 694912;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = ["lime","utils","AssetCache"];

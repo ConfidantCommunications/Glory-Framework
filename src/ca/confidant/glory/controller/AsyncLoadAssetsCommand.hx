@@ -93,7 +93,7 @@ package ca.confidant.glory.controller;
 			}
 		
 
-			// test if it's a html5 swf page, else load swf from manifest.
+			// test if it's a html5 swf page; flash will load swf from manifest.
 			var swflib:String = "";
 			if(pageId != null) swflib=pcp.getPage(pageId).get("swflibrary");
 			if(swflib!=""){
@@ -165,7 +165,7 @@ package ca.confidant.glory.controller;
 				trace("completed loading");
 				var theLibrary= cast(library,openfl.utils.AssetLibrary);
 				// trace("theLibrary:"+theLibrary);
-					Assets.registerLibrary (name, theLibrary);
+				Assets.registerLibrary (name, theLibrary);
 				// trace("registered:"+name);
 				facade.registerProxy(new AssetLibraryProxy(theLibrary, name));
 				// trace("proxy too.");
@@ -184,7 +184,7 @@ package ca.confidant.glory.controller;
 			switch(s.pop()){
 				case "jpg","jpeg","png","gif":
 					return AssetType.IMAGE;
-				case "svg","xml":
+				case "svg","xml","txt","html","htm","css":
 					return AssetType.TEXT;
 				case "wav","mp3","ogg":
 					return AssetType.SOUND;

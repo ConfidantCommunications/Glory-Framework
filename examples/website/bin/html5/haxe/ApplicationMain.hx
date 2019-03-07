@@ -39,7 +39,7 @@ import haxe.macro.Expr;
 		
 		ManifestResources.init (config);
 		
-		app.meta["build"] = "53";
+		app.meta["build"] = "54";
 		app.meta["company"] = "Confidant Communications";
 		app.meta["file"] = "GloryWebsiteDemo";
 		app.meta["name"] = "Glory Framework Website Demo";

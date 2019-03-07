@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages basePath="/" title="Glory Framework Website Demo">
 	<controls>
-		<actor id="bRight" type="control" action="pageForward,removePage:options" z="16" x="849" y="580" width="111" height="60" src="nav/bRight.png" layout="alignRight,alignBottom"></actor>
-		<actor id="bLeft" type="control" action="pageBackward,removePage:options" z="17" x="0" y="580" width="111" height="60" src="nav/bLeft.png" layout="alignLeft,alignBottom"></actor>
-		<actor id="bOptions" type="control" action="pageSkipTo:options" z="18" x="849" y="-11" width="111" height="60" src="nav/bOptions.png" layout="alignTop,alignRight"></actor>
-		<actor id="bHome" type="control" action="pageSkipTo:title,removePage:options" z="19" x="0" y="0" width="111" height="60" src="nav/bHome.png" layout="alignLeft,alignTop"></actor>
+		<actor id="bRight" type="control" action="pageForward,removePage:options" width="50" height="50" src="nav/right-icon.svg" layout="alignRight:5,alignBottom:5"></actor>
+		<actor id="bLeft" type="control" action="pageBackward,removePage:options" width="50" height="50" src="nav/left-icon.svg" layout="alignLeft:5,alignBottom:5"></actor>
+		<actor id="bOptions" type="control" action="pageSkipTo:options" width="50" height="50" src="nav/menu-icon.svg" layout="alignTopRight:5"></actor>
 	</controls>
 
+	<page id="options" type="overlay">
+		<actor id="background" type="prop" width="200" height="120" src="options/menu-background.png" layout="alignTop:55,alignRight:30"></actor>
+		<actor id="bHome" type="control" action="pageSkipTo:title,removePage:options" width="50" height="50" src="options/house-icon.svg" layout="alignTop:85,alignRight:140"></actor>
+		<actor id="bBear" type="control" action="pageSkipTo:bear,removePage:options" width="50" height="50" src="options/bear-icon.svg" layout="alignTop:85,alignRight:90"></actor>
+		<actor id="bBoy" type="control" action="pageSkipTo:swfPage,removePage:options" width="50" height="50" src="options/swfpage-icon.svg" layout="alignTop:85,alignRight:40"></actor>
+		<actor id="close" type="control" action="removePage:options"  width="20" height="20" src="nav/close.png"  layout="alignTop:60,alignRight:35"></actor>
+	</page>
 	<page id="title" type="normal" title="The Home Page">
 		<actor id="haxeLogo" type="control" action="httpLink:haxe.org/" z="20" x="0" y="100" width="200" height="200" src="title/haxe-opt.svg" layout="fillPercentWidth:0.2,maintainAspectRatio,centerX,centerY"></actor>
+		<actor id="frontPageText" type="prop" width="200" height="200" src="title/frontPageText.html" layout="alignBottom:5,centerX"></actor>
+		<font id="homefont" src="myfontpath.ttf" ></font>
+		<style id="homestyle" src="mystyle.css" ></style>
 	</page>
 	
 	<page id="bear" type="normal" title="The Bear Page">
-		<actor id="bearActor" z="1" type="prop" x="0" y="0" width="288" height="288" src="bear.svg"  layout="fillPercentHeight:0.5,maintainAspectRatio,centerX,centerY" ></actor>
+		<actor id="bearActor" z="1" type="prop" x="0" y="0" width="288" height="288" src="bear/bear.svg"  layout="fillPercentHeight:0.5,maintainAspectRatio,centerX,alignTop:10" ></actor>
+		<actor id="bearText" z="1" type="prop" x="0" y="0" width="400" height="400" src="bear/bear-text.svg"  layout="fillPercentWidth:0.7,maintainAspectRatio,alignLeft:40,alignBottom:100" ></actor>
 	</page>
 
+	<page id="swfPage" type="normal" swflibrary="swflibrary"><!--Currently library must be generated using `openfl process swflibrary.swf swflibrary.bundle` for html5 compatibility. src attribute below is the MovieClip class-->
+		<actor id="LittleBoy" z="1" type="prop" width="962" height="640" src="LittleBoy" layout="center"></actor>
+	</page>
 </pages>

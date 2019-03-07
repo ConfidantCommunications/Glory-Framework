@@ -81,6 +81,11 @@ using layout.LayoutCreator;
 					case "rigidFillPercentWidth": a.rigidFillPercentWidth(i);
 					case "rigidFillPercentHeight": a.rigidFillPercentHeight(i);
 					case "maintainAspectRatio": a.maintainAspectRatio();
+					//commands with sprite reference
+					//below
+					//rightOf
+					//belowCenter
+					//rightOfCenter
 					
 				}
 			}
