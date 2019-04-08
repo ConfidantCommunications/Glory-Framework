@@ -47,7 +47,7 @@ using layout.LayoutCreator;
 				var com = thisCommand.split(":");
 				var i = (com[1]!=null) ? Std.parseFloat(com[1]) : null; //convert parameter on right of colon to real number
 				trace("layout command:"+com+" value:"+i);
-
+				// var pcp:PageConfigProxy = cast(facade.getProxy(PageConfigProxy.NAME),PageConfigProxy);
 				switch(com[0]){
 					case "simpleX": a.simpleX(i);
 					case "simpleY": a.simpleY(i);
@@ -86,7 +86,11 @@ using layout.LayoutCreator;
 					//rightOf
 					//belowCenter
 					//rightOfCenter
-					
+					// case "leftOf": {
+					// 	var s = pcp.getCurrentPage().getChild(com[1]);
+					// 	a.leftOf(s);
+
+					// }
 				}
 			}
 

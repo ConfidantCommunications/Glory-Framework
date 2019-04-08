@@ -100,10 +100,6 @@ import ca.confidant.glory.controller.ChangePageHelper;
 								sendNotification(ApplicationFacade.PLAY_SOUND, actionArray[1]);
 							case ControlConstants.HTTP_LINK:
 								sendNotification(ApplicationFacade.HTTP_LINK, actionArray[1]);
-									//var sound = Assets.getSound ("assets/p1/limerickPCM.wav");
-									//sound.play ();
-								//TODO: BUILD AN ACTIVE SOUNDS PROXY
-								
 						}
 					}
 			}

@@ -164,6 +164,22 @@ package ca.confidant.glory.model;
 				return new List<Fast>();
 			}
 		}
+		/*public function getPageFonts(pageId:String):List<Fast>{
+			var p=getPage(pageId);
+			if ((p!=null)&&(p.get("fonts")!=null)){
+				return p.get("fonts");
+			} else {
+				return new List<Fast>();
+			}
+		}
+		public function getPageStyles(pageId:String):List<Fast>{
+			var p=getPage(pageId);
+			if ((p!=null)&&(p.get("styles")!=null)){
+				return p.get("styles");
+			} else {
+				return new List<Fast>();
+			}
+		}*/
 		public function getAppControls():List<Fast>{
 			if (fast.node.controls.hasNode.actor){
 				return fast.node.controls.nodes.actor;
@@ -217,20 +233,18 @@ package ca.confidant.glory.model;
 				if(thispage.has.transitionOutTime) h.set("transitionOutTime",thispage.att.transitionOutTime);
 				if(thispage.has.transitionInTime) h.set("transitionInTime",thispage.att.transitionInTime);
 				if(thispage.hasNode.actor) {
-					// trace("--actors:"+thispage.nodes.actor.length);
-					//trace(Type.typeof(thispage.nodes.actor));
 					h.set("actors",thispage.nodes.actor);
 				}
 				if(thispage.hasNode.sound) {
-					trace("hasSounds:"+thispage.att.id);
 					h.set("sounds",thispage.nodes.sound);
-					
 				}
-
-				//loadItems.push({name:thispage.@name,y:thispage.@y,x:thispage.@x,height:thispage.@height,width:thispage.@width,src:thispage.@src,group:thispage.@group,force:thispage.@force,config:thispage.config[0]});
+				if(thispage.hasNode.font) {
+					h.set("fonts",thispage.nodes.font);
+				}
+				if(thispage.hasNode.style) {
+					h.set("styles",thispage.nodes.style);
+				}
 				allPages.push(h);
-				//trace(thispage.att.name);
-
 			}
 
 			sendNotification(ApplicationFacade.PAGES_CONFIG_READY,{action:"gotoIntro"});

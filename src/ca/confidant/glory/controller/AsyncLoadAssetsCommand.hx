@@ -66,7 +66,7 @@ package ca.confidant.glory.controller;
 		var pageId:String;
 		var oldpm:PageMediator;
 		// var pendingLoads:Int;
-		var assetsList:List<Fast>;
+		var actorsList:List<Fast>;
 		public function new(){
 			super();
 		}
@@ -87,9 +87,9 @@ package ca.confidant.glory.controller;
 			pageId=data.newPage;
 
 			if(pageId==null){
-				assetsList=pcp.getAppControls();
+				actorsList=pcp.getAppControls();
 			} else {
-				assetsList=pcp.getPageActors(pageId);
+				actorsList=pcp.getPageActors(pageId);
 			}
 		
 
@@ -123,18 +123,18 @@ package ca.confidant.glory.controller;
 				//not a swflibrary so load non-swf assets from Manifest
 				var manifest = new AssetManifest();
 				manifest.libraryType = "openfl.utils.AssetLibrary";
-				for(theAsset in assetsList){
+				for(actor in actorsList){
 
-					switch(getAssetType(theAsset.att.src)){
+					switch(getAssetType(actor.att.src)){
 						case AssetType.IMAGE:
-							manifest.addBitmapData ("assets/" + theAsset.att.src);
+							manifest.addBitmapData ("assets/" + actor.att.src);
 						case AssetType.TEXT:
-							manifest.addText("assets/" + theAsset.att.src);
+							manifest.addText("assets/" + actor.att.src);
 						//deprecated; we're only using a single swf for a page now
 						//case AssetType.BINARY:
-							//manifest.addBytes("assets/" + theAsset.att.src);
+							//manifest.addBytes("assets/" + actor.att.src);
 						default:
-							manifest.addBytes("assets/" + theAsset.att.src);
+							manifest.addBytes("assets/" + actor.att.src);
 
 					}
 
@@ -145,10 +145,11 @@ package ca.confidant.glory.controller;
 					var soundArray = sound.att.src.split(",");
 					soundArray = soundArray.map(function (v) return "assets/"+v);
 					if(soundArray.length>0) manifest.addSound(soundArray,sound.att.id);
-					// manifest.assets.push({path:"assets/"+sound.att.src, id:sound.att.id, type:getAssetType(sound.att.src)});//,size:100
-					// manifest.addSound ([ "sounds/" + sound + ".ogg", "sounds/" + sound + ".mp3", "sounds/" + sound + ".wav" ], id);
-
 				}
+				/*var fonts=pcp.getPageFonts(pageId);
+				for(font in fonts){
+					manifest.addFont("assets/" + font.att.src);
+				}*/
 				var libName:String = (pageId==null) ? "gloryControls" : pageId;
 				manifestLoad(manifest,libName);
 
@@ -160,7 +161,7 @@ package ca.confidant.glory.controller;
 			
         }
 		private function manifestLoad(manifest:AssetManifest,name:String):Void {
-			trace("manifestLoad! "+name);
+			// trace("manifestLoad! "+manifest);
 			AssetLibrary.loadFromManifest (manifest).onComplete (function (library) {
 				trace("completed loading");
 				var theLibrary= cast(library,openfl.utils.AssetLibrary);

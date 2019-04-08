@@ -110,7 +110,6 @@ class BuildPageCommand extends SimpleCommand {
 			for (thisActor in actorsList){
 				trace("makeActor: "+thisActor.att.id);
 				var swflib = pcp.getPage(pageId).get("swflibrary");
-				// var actor = makeActor(thisActor,swflib);
 
 				var actor:ActorComponent = ActorComponentFactory.instance.create(pageId,thisActor,swflib);
 

@@ -15,9 +15,8 @@
 	</page>
 	<page id="title" type="normal" title="The Home Page">
 		<actor id="haxeLogo" type="control" action="httpLink:haxe.org/" z="20" x="0" y="100" width="200" height="200" src="title/haxe-opt.svg" layout="fillPercentWidth:0.2,maintainAspectRatio,centerX,centerY"></actor>
-		<actor id="frontPageText" type="prop" width="200" height="200" src="title/frontPageText.html" layout="alignBottom:5,centerX"></actor>
-		<font id="homefont" src="myfontpath.ttf" ></font>
-		<style id="homestyle" src="mystyle.css" ></style>
+		<actor id="frontPageText" type="prop" rotation="30" width="300" height="200" border="false" wordWrap="true" src="title/frontPageText.txt" textformat="font:JUICE Bold Bold,size:16,color:0x330055,bold:false,italic:false,underline:false,url,target:_blank,align:right,leftMargin:0,rightMargin:0,indent:0,leading:8" layout="rigidFillPercentWidth:0.4,maintainAspectRatio,alignBottom:5,alignLeft:60"></actor>
+		<actor id="frontPageText2" type="prop" width="300" height="400" border="false" wordWrap="true" src="title/frontPageText.html" textformat="font:Katamotz Ikasi,size:16,color:0x005533,bold:false,italic:false,underline:false,url,target:_blank,align:center,leftMargin:0,rightMargin:0,indent:0,leading:18" layout="rigidFillPercentWidth:0.4,maintainAspectRatio,centerY,alignRight:10"></actor>
 	</page>
 	
 	<page id="bear" type="normal" title="The Bear Page">

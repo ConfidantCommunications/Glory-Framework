@@ -32,6 +32,7 @@ import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.MovieClip;
 import openfl.events.Event;
+import openfl.Assets;
 import openfl.text.*;
 import ca.confidant.glory.model.AssetLibraryProxy;
 import ca.confidant.glory.controller.LayoutHelper;
@@ -124,24 +125,66 @@ class ActorComponentFactory {
                 a.addBitmap(b);
                 a.init();
             case "txt"|"html"|"htm":
-                trace("why");
                 #if appMode
                 var t = LimeAssets.getText("assets/"+actor.att.src);
                 #else
                 var t = alp.getLibrary().getText("assets/"+actor.att.src);
                 #end
+
+
                 var myTextBox:TextField = new TextField();
+                if(actor.has.textformat){
+                    var tfarray = Std.string(actor.att.textformat).split(",");
+                    var tf = new TextFormat ();
+                    for(rawrule in tfarray){
+                        var rule = rawrule.split(":");
+                        switch(rule[0]){
+                            case "font":       
+                                //retrieve the font from the library
+                                //  #if appMode
+                                // var f:openfl.text.Font = cast( Assets.getFont('fonts/'+rule[1]) );
+                                //  #else
+                                // var f:openfl.text.Font = cast( alp.getLibrary().getFont("assets/"+rule[1]) );
+                                //  #end
+                                //  trace("font:"+rule[1]);
+                                //  trace("fontname:"+f.fontName);
+                                // tf.font = f.fontName;
+                                tf.font=rule[1];
+                                // tf.font="Katamotz Ikasi";
+                                // trace("assets:"+Assets.list());
+                            case "size":        tf.size = Std.parseInt(rule[1]);
+                            case "color":       tf.color = Std.parseInt(rule[1]);
+                            case "bold":        tf.bold = (rule[1]=="true");
+                            case "italic":      tf.italic = (rule[1]=="true");
+                            case "underline":   tf.underline = (rule[1]=="true");
+                            case "url":         tf.url = rule[1];
+                            case "target":      tf.target = rule[1];
+                            case "align":       tf.align = rule[1];
+                            case "leftMargin":  tf.leftMargin = Std.parseInt(rule[1]);
+                            case "rightMargin": tf.rightMargin = Std.parseInt(rule[1]);
+                            case "indent":      tf.indent = Std.parseInt(rule[1]);
+                            case "leading":     tf.leading = Std.parseInt(rule[1]);
+                        }
+                    }
+                    myTextBox.defaultTextFormat = tf;
+                }
+                if(actor.has.width) myTextBox.width = Std.parseInt(actor.att.width); 
+                if(actor.has.height) myTextBox.height = Std.parseInt(actor.att.height); 
+                if(actor.has.rotation) myTextBox.rotation = Std.parseInt(actor.att.rotation); 
+                if(actor.has.multiline) myTextBox.multiline = (actor.att.height=="true"); 
+                if(actor.has.wordWrap) myTextBox.wordWrap = (actor.att.wordWrap=="true"); 
+                // if(actor.has.embedFonts) myTextBox.embedFonts = (actor.att.embedFonts=="true"); 
+                myTextBox.embedFonts = true;
+                if(actor.has.border) myTextBox.border = (actor.att.border=="true");
+                if(actor.has.background) myTextBox.background = (actor.att.background=="true");
                 if(ext=="txt"){
                     myTextBox.text = t;
                 } else {
                     myTextBox.htmlText = t;
                 }
-                myTextBox.width = Std.parseInt(actor.att.width); 
-                myTextBox.height = Std.parseInt(actor.att.height); 
-                myTextBox.multiline = true; 
-                myTextBox.wordWrap = true; 
-                myTextBox.border = true; 
-                a.addChild(myTextBox);
+                // a.addChild(myTextBox);
+                // textField.text=t;
+                a.addChild(myTextBox);//textField
                 a.init();
             default:
                 trace("why not?"+ext);
