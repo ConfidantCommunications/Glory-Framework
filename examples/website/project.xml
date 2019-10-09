@@ -34,4 +34,5 @@
 	<!--Using type="template" copies the assets to the bin folder without creating an asset manifest in the compiled javascript -->
 	<assets path="assets" type="template" include="*" exclude="*.fla" embed="false" unless="appMode" /> 
 	<template path="assets/index.html" rename="index.php" unless="appMode" />
+	<template path="assets/htaccess.txt" rename=".htaccess" unless="appMode" />
 </project>
