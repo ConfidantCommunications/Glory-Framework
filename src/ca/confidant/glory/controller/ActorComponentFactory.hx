@@ -20,7 +20,7 @@
 */
 
 package ca.confidant.glory.controller;
-import haxe.xml.Fast;
+import haxe.xml.Access;
 import ca.confidant.glory.ApplicationFacade;
 import ca.confidant.glory.model.ActorComponentConfigProxy;
 import ca.confidant.glory.view.ActorComponentMediator;
@@ -50,7 +50,7 @@ class ActorComponentFactory {
 		facade = Facade.getInstance();
 
     }  
-    public function create(pageId:String, actor:Fast, ?swflib:String):ActorComponent {
+    public function create(pageId:String, actor:Access, ?swflib:String):ActorComponent {
         
         #if !appMode
 		var alp = cast(facade.retrieveProxy(pageId) , AssetLibraryProxy);
@@ -234,7 +234,6 @@ class ActorComponentFactory {
                 }
         }
 
-        // trace(Reflect.fields(LayoutCreator));
         LayoutHelper.instance.layout(a,accp.layoutCommands);
         
 

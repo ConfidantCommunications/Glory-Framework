@@ -20,7 +20,7 @@
 */
 
 package ca.confidant.glory.controller;
-	import haxe.xml.Fast;
+	import haxe.xml.Access;
 	import openfl.utils.Assets;
 	import openfl.utils.AssetLibrary;
 	import openfl.utils.AssetManifest;
@@ -66,7 +66,7 @@ package ca.confidant.glory.controller;
 		var pageId:String;
 		var oldpm:PageMediator;
 		// var pendingLoads:Int;
-		var actorsList:List<Fast>;
+		var actorsList:Array<Access>;
 		public function new(){
 			super();
 		}

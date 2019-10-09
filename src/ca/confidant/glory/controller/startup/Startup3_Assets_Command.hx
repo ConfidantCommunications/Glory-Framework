@@ -24,7 +24,7 @@ package ca.confidant.glory.controller.startup;
 	import org.puremvc.haxe.interfaces.INotification;
 	import openfl.Assets;
 	import openfl.utils.AssetLibrary;
-	import haxe.xml.Fast;
+	import haxe.xml.Access;
 	import lime.utils.AssetType;
 	import ca.confidant.glory.model.PagesConfigProxy;
 	import openfl.net.URLLoader;
@@ -56,7 +56,7 @@ package ca.confidant.glory.controller.startup;
 		private function _onXMLLoaded(e:Event):Void
 		{
 			var ul:URLLoader=cast(e.target,URLLoader);
-			var xml=new Fast(Xml.parse(ul.data)).node.pages;
+			var xml=new Access(Xml.parse(ul.data)).node.pages;
 			var pcp:PagesConfigProxy=cast(facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
 			pcp.processXML(xml);
 

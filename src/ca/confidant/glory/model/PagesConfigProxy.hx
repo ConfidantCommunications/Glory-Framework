@@ -22,7 +22,7 @@ package ca.confidant.glory.model;
 
     import org.puremvc.haxe.patterns.proxy.Proxy;
     import ca.confidant.glory.ApplicationFacade;
-	import haxe.xml.Fast;
+	import haxe.xml.Access;
 	
 	/*
 	 * @author Allan Dowdeswell
@@ -36,7 +36,7 @@ package ca.confidant.glory.model;
 	{
 		public static inline var NAME:String = "pagesConfigProxy";
 		private var _pagesXML:Xml;
-		private var fast:haxe.xml.Fast;
+		private var fast:haxe.xml.Access;
 		private var allPages:Array<Map<String,Dynamic>>;
 		private var imageItems:Array<Dynamic>;
 		private var currentPage:Int;
@@ -51,7 +51,7 @@ package ca.confidant.glory.model;
 			currentPage=0;
 		}
 
-		public function processXML(input:Fast){
+		public function processXML(input:Access){
 			fast = input;
 			parseXML();
 		}
@@ -143,7 +143,7 @@ package ca.confidant.glory.model;
 				return 1;
 			}
 		}
-		public function getPageActors(pageId:String):List<Fast>{
+		public function getPageActors(pageId:String):Array<Access>{
 			var p=getPage(pageId);
 			if ((p!=null)&&(p.get("actors")!=null)){
 				//trace("returning actors!");
@@ -151,40 +151,40 @@ package ca.confidant.glory.model;
 			} else {
 				//iOS currently returning empty, why?
 				//trace("returning empty!");
-				return new List<Fast>();
+				return new Array<Access>();
 			}
 		}
-		public function getPageSounds(pageId:String):List<Fast>{
+		public function getPageSounds(pageId:String):Array<Access>{
 			var p=getPage(pageId);
 			if ((p!=null)&&(p.get("sounds")!=null)){
 				//trace("returning sounds!:"+Type.typeof(p.get("sounds")));
 				return p.get("sounds");
 			} else {
 				//trace("returning no sounds!");
-				return new List<Fast>();
+				return new Array<Access>();
 			}
 		}
-		/*public function getPageFonts(pageId:String):List<Fast>{
+		/*public function getPageFonts(pageId:String):Array<Access>{
 			var p=getPage(pageId);
 			if ((p!=null)&&(p.get("fonts")!=null)){
 				return p.get("fonts");
 			} else {
-				return new List<Fast>();
+				return new Array<Access>();
 			}
 		}
-		public function getPageStyles(pageId:String):List<Fast>{
+		public function getPageStyles(pageId:String):Array<Access>{
 			var p=getPage(pageId);
 			if ((p!=null)&&(p.get("styles")!=null)){
 				return p.get("styles");
 			} else {
-				return new List<Fast>();
+				return new Array<Access>();
 			}
 		}*/
-		public function getAppControls():List<Fast>{
+		public function getAppControls():Array<Access>{
 			if (fast.node.controls.hasNode.actor){
 				return fast.node.controls.nodes.actor;
 			}
-			return new List<Fast>();
+			return new Array<Access>();
 		}
 		public function getControlHref(controlId:String):String{
 			if (fast.node.controls.hasNode.actor){

@@ -90,9 +90,9 @@ class PushState {
 			document.addEventListener("click",function(e:MouseEvent) {
 				if (e.button==0 && !e.metaKey && !e.ctrlKey) {
 					var link:AnchorElement = null,
-					    node:Node = Std.instance(e.target,Node);
+					    node:Node = Std.downcast(e.target,Node);
 					while (link==null && node!=null) {
-						link = Std.instance(node,AnchorElement);
+						link = Std.downcast(node,AnchorElement);
 						node = node.parentNode;
 					}
 					if (link!=null && (link.rel=="pushstate" || hasClass(link,"pushstate"))) {
@@ -104,7 +104,7 @@ class PushState {
 
 			// Intercept <form rel="pushstate"> submits.
 			document.addEventListener("submit",function (e:Event) {
-				var form = Std.instance(e.target,FormElement);
+				var form = Std.downcast(e.target,FormElement);
 				if (hasClass(form,"pushstate")) {
 					e.preventDefault();
 					interceptFormSubmit(form);
@@ -152,7 +152,7 @@ class PushState {
 			var elm = form.elements.item(i);
 			switch elm.nodeName.toUpperCase() {
 				case 'INPUT':
-					var input = Std.instance(elm,InputElement);
+					var input = Std.downcast(elm,InputElement);
 					switch input.type {
 						case 'text','hidden','password','search','email','url','tel','number','range','date','month','week','time','datetime','datetime-local','color': addParam(input.name, input.value);
 						case 'checkbox','radio' if (input.checked): addParam(input.name, input.value);
@@ -161,10 +161,10 @@ class PushState {
 								addUpload(input.name, input.files);
 					}
 				case 'TEXTAREA':
-					var ta = Std.instance(elm,TextAreaElement);
+					var ta = Std.downcast(elm,TextAreaElement);
 					addParam(ta.name, ta.value);
 				case 'SELECT':
-					var select = Std.instance(elm,SelectElement);
+					var select = Std.downcast(elm,SelectElement);
 					switch select.type {
 						case 'select-one': addParam(select.name, select.value);
 						case 'select-multiple':
@@ -178,14 +178,14 @@ class PushState {
 			}
 		}
 		// Check if there was a submit button value:
-		var activeInput = Std.instance( document.activeElement, InputElement );
-		var activeBtn = Std.instance( document.activeElement, ButtonElement );
+		var activeInput = Std.downcast( document.activeElement, InputElement );
+		var activeBtn = Std.downcast( document.activeElement, ButtonElement );
 		if ( activeInput!=null && activeInput.type=="submit" ) addParam( activeInput.name, activeInput.value );
 		else if ( activeBtn!=null && activeBtn.type=="submit" ) addParam( activeBtn.name, activeBtn.value );
 		else {
 			var defaultSubmit = form.querySelector( "input[type=submit], button[type=submit]" );
-			var defaultInput = Std.instance( defaultSubmit, InputElement );
-			var defaultBtn = Std.instance( defaultSubmit, ButtonElement );
+			var defaultInput = Std.downcast( defaultSubmit, InputElement );
+			var defaultBtn = Std.downcast( defaultSubmit, ButtonElement );
 			if ( defaultInput!=null ) addParam( defaultInput.name, defaultInput.value );
 			else if ( defaultBtn!=null ) addParam( defaultBtn.name, defaultBtn.value );
 		}

@@ -25,7 +25,7 @@ import openfl.display.DisplayObject;
 import openfl.display.Bitmap;
 import openfl.display.BitmapDataChannel;
 import openfl.utils.ByteArray;
-
+using com.player03.layout.LayoutCreator;
 /**
  * @author Allan Dowdeswell
  * ActorComponents appear within a page. Make them do whatever you want. 

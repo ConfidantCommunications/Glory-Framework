@@ -24,7 +24,7 @@ package ca.confidant.glory.controller;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import lime.graphics.Image;
-	import haxe.xml.Fast;
+	import haxe.xml.Access;
 	import openfl.Assets;
 	import lime.utils.Assets in LimeAssets;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
@@ -59,7 +59,7 @@ package ca.confidant.glory.controller;
 			#if !appMode
 			alp=cast(facade.retrieveProxy("gloryControls") , AssetLibraryProxy);
 			#end
-			var controlsList:List<Fast>=pcp.getAppControls();
+			var controlsList:Array<Access>=pcp.getAppControls();
 			for (thisControl in controlsList){
 				// makeControl(thisControl);
 				var a = ActorComponentFactory.instance.create("gloryControls",thisControl);

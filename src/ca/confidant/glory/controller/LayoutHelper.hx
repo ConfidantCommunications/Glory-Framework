@@ -28,7 +28,8 @@ import ca.confidant.glory.model.StateProxy;
 import ca.confidant.glory.model.PagesConfigProxy;
 import ca.confidant.glory.view.components.ActorComponent;
 import org.puremvc.haxe.interfaces.INotification;
-using layout.LayoutCreator;
+// import com.player03.layout.Resizable;
+using com.player03.layout.LayoutCreator.ForOpenFL;
  
 	/*
 	 * @author Allan Dowdeswell
@@ -41,13 +42,59 @@ using layout.LayoutCreator;
 		private function new(){
 			// facade = Facade.getInstance();
 		};
-		
+
+		/*
+		* Now spoon-feed the LayoutCreator some view objects casted as Resizable. 
+		* Necessary due to breaking changes in Haxe 4.
+		*
+		static public inline function feed(r:Resizable, ?f) {
+			if (f != null) f(r);
+			return r;
+		}*/
+		/*
+
+				switch(com[0]){
+					case "simpleX": feed(a, t -> {t.simpleX(i);});
+					case "simpleY": feed(a, t -> {t.simpleY(i);});
+					case "centerX": feed(a, t -> {t.centerX();});
+					case "centerY": feed(a, t -> {t.centerY();});
+					case "center": feed(a, t -> {t.center();});
+					case "alignLeft": feed(a, t -> {t.alignLeft(i);});
+					case "alignRight": feed(a, t -> {t.alignRight(i);});
+					case "alignTop": feed(a, t -> {t.alignTop(i);});
+					case "alignBottom": feed(a, t -> {t.alignBottom(i);});
+					case "alignTopLeft": feed(a, t -> {t.alignTopLeft(i);});
+					case "alignTopRight": feed(a, t -> {t.alignTopRight(i);});
+					case "alignBottomLeft": feed(a, t -> {t.alignBottomLeft(i);});
+					case "alignBottomRight": feed(a, t -> {t.alignBottomRight(i);});
+					case "alignLeftCenter": feed(a, t -> {t.alignLeftCenter(i);});
+					case "alignRightCenter": feed(a, t -> {t.alignRightCenter(i);});
+					case "alignTopCenter": feed(a, t -> {t.alignTopCenter(i);});
+					case "alignBottomCenter": feed(a, t -> {t.alignBottomCenter(i);});
+					case "horizontalPercent": feed(a, t -> {t.horizontalPercent(i);});
+					case "verticalPercent": feed(a, t -> {t.verticalPercent(i);});
+					case "simpleScale": feed(a, t -> {t.simpleScale();});
+					case "simpleWidth": feed(a, t -> {t.simpleWidth(i);});
+					case "simpleHeight": feed(a, t -> {t.simpleHeight(i);});
+					case "rigidSimpleScale": feed(a, t -> {t.rigidSimpleScale();});
+					case "rigidSimpleWidth": feed(a, t -> {t.rigidSimpleWidth(i);});
+					case "rigidSimpleHeight": feed(a, t -> {t.rigidSimpleHeight(i);});
+					case "fillWidth": feed(a, t -> {t.fillWidth(i);});
+					case "fillHeight": feed(a, t -> {t.fillHeight(i);});
+					case "fillPercentWidth": feed(a, t -> {t.fillPercentWidth(i);});
+					case "fillPercentHeight": feed(a, t -> {t.fillPercentHeight(i);});
+					case "rigidFillPercentWidth": feed(a, t -> {t.rigidFillPercentWidth(i);});
+					case "rigidFillPercentHeight": feed(a, t -> {t.rigidFillPercentHeight(i);});
+					case "maintainAspectRatio": feed(a, t -> {t.maintainAspectRatio();});
+		*/
 		public function layout(a:ActorComponent,commands:Array<String>):Void {
+			
 			for(thisCommand in commands){
 				var com = thisCommand.split(":");
+				//todo: use an abstract here https://haxe.org/manual/types-abstract-implicit-casts.html
 				var i = (com[1]!=null) ? Std.parseFloat(com[1]) : null; //convert parameter on right of colon to real number
 				trace("layout command:"+com+" value:"+i);
-				// var pcp:PageConfigProxy = cast(facade.getProxy(PageConfigProxy.NAME),PageConfigProxy);
+				//
 				switch(com[0]){
 					case "simpleX": a.simpleX(i);
 					case "simpleY": a.simpleY(i);

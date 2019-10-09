@@ -5,8 +5,8 @@
 	"description": "Glory Framework is a page-based media framework built using [Haxe 3](http://haxe.org/), [OpenFL](http://openfl.org), and [PureMVC](http://puremvc.org/). It can be used for interactive e-books, adventure games, websites, or slide presentations on any target supported by OpenFL. It uses an XML configuration file to build the layout of each page, including placement and function of different controls. Each page can have its own custom class if desired. Glory also includes two Photoshop scripts which make it easy to rapidly convert a PSD layout into something that Glory can use. It can also use SVG files saved directly from Illustrator (not all types of object are supported).",
 	"contributors": ["ConfidantCommunications"],
 	"classPath":"src/",
-	"releasenote": "Now supporting swf assets.",
-	"version": "1.2.0",
+	"releasenote": "Now compatible with Haxe 4.0 and includes app mode and website mode.",
+	"version": "2.0.0",
 	"url": "https://github.com/ConfidantCommunications/Glory-Framework/",
 	"dependencies": {
 		"openfl"       :"",
@@ -14,4 +14,4 @@
 		"svg"    :"",
 		"puremvc-standard":""
 	}
-}
+} 
