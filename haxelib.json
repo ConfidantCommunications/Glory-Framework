@@ -6,7 +6,7 @@
 	"contributors": ["ConfidantCommunications"],
 	"classPath":"src/",
 	"releasenote": "Now compatible with Haxe 4.0 and includes app mode and website mode.",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"url": "https://github.com/ConfidantCommunications/Glory-Framework/",
 	"dependencies": {
 		"openfl"       :"",
