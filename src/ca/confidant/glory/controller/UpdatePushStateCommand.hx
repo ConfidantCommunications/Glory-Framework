@@ -45,7 +45,7 @@ package ca.confidant.glory.controller;
 						&& (data.newPage!=data.oldPage)
 						&& (data.updatePushState == true)
 					){
-						eim.updatePushState("/"+data.newPage);
+						eim.updatePushState(pcp.getBasePath()+data.newPage);
 					}
 					
 				eim.updateDocumentTitle(pcp.getAppTitle() + " : "+ newPage.get("title"));

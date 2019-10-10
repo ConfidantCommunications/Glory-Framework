@@ -41,6 +41,7 @@ package ca.confidant.glory.model;
 		private var imageItems:Array<Dynamic>;
 		private var currentPage:Int;
 		private var basePath:String;
+		private var homepageId:String;
 		private var appTitle:String;
 		/**
 		 * Constructor.
@@ -63,6 +64,9 @@ package ca.confidant.glory.model;
 		}
 		public function getBasePath():String {
 			return basePath;
+		}
+		public function getHomepageId():String {
+			return homepageId;
 		}
 		public function getPageIds():Array<String> {
 			var a = new Array<String>();
@@ -218,6 +222,7 @@ package ca.confidant.glory.model;
 			//for each (var thispage:XML in _pagesXML..page){
 			//trace("parseXML");
 			basePath = (fast.has.basePath) ? fast.att.basePath : "/";
+			homepageId = (fast.has.homepageId) ? fast.att.homepageId : "title";
 			appTitle = (fast.has.title) ? fast.att.title : "";
 			for(thispage in fast.nodes.page){
 				var h:Map<String,Dynamic> = new Map<String,Dynamic>();

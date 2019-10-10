@@ -27,6 +27,7 @@ package ca.confidant.glory.view;
     import ca.confidant.glory.controller.ChangePageHelper;
 	import openfl.events.*;
 	import openfl.external.ExternalInterface;
+	import ca.confidant.glory.model.PagesConfigProxy;
 	#if js
     import js.Browser.*;
 	import pushstate.PushState; //now forked locally
@@ -43,11 +44,12 @@ package ca.confidant.glory.view;
 	   /**
          * Constructor. 
          */
+        var pcp:PagesConfigProxy;
 		public static inline var NAME:String = "ExternalInterfaceMediator";
         // public var basePath:String;
         public function new ( viewComponent:Any ) {
 			super( NAME, viewComponent );
-    		
+    		pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
         }
 
 
@@ -80,7 +82,7 @@ package ca.confidant.glory.view;
                 */
         }
 		public function setupPushState(bp:String):Void{
-            trace("setupPushState");
+            trace("setupPushState:"+bp);
             PushState.init( bp );//basePath, true, false//basepath,trigger,ignoreAnchors
             PushState.addEventListener(
                 psListen
@@ -99,7 +101,7 @@ package ca.confidant.glory.view;
 
                 //https://github.com/jasononeil/hxpushstate/blob/master/demo/Test.hx
 				trace("pushstate heard:"+url);
-                if (url=="") url="title";
+                if (url=="") url = pcp.getHomepageId();
                 //send a notification with fromBrowser as true. This prevents a new call to updatePushState.
                 sendNotification(ApplicationFacade.CHANGE_PAGE,ChangePageHelper.instance.buildNotification(url,null,true));
 				// trace("pushstate saw:"+state);

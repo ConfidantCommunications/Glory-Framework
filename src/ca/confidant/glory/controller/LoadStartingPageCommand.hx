@@ -48,7 +48,7 @@ package ca.confidant.glory.controller;
             for (i in pageIds){
                 if (slug==i) slugFound = true;
             }
-            if ((slug=="") || !slugFound) slug = "title";
+            if ((slug=="") || !slugFound) slug = pcp.getHomepageId();
             
 
 			sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification(slug));

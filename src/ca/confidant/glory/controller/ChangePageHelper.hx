@@ -44,7 +44,7 @@ import ca.confidant.glory.view.constants.ControlConstants;
 			facade = Facade.getInstance();
 		};
 
-    public function buildNotification( data:String = "", ?action:String, ?fromBrowser:Bool ) : ChangePageData {
+    	public function buildNotification( data:String = "", ?action:String, ?fromBrowser:Bool ) : ChangePageData {
 			trace("building a notification:"+data+":"+action);
 			sp=cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 			
@@ -79,6 +79,6 @@ import ca.confidant.glory.view.constants.ControlConstants;
 			
 			var updatePS = fromBrowser ? false : true;
 			return {newPage:inPageId, oldPage:outPageId, action:action, updatePushState:updatePS};
-			}
+		}
 
 	}

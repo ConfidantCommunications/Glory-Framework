@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pages basePath="/" title="Glory Framework Website Demo">
+<pages basePath="/" homepageId="home" title="Glory Framework Website Demo">
 	<controls>
 		<actor id="bRight" type="control" action="pageForward,removePage:options" width="50" height="50" src="nav/right-icon.svg" layout="alignRight:5,alignBottom:5"></actor>
 		<actor id="bLeft" type="control" action="pageBackward,removePage:options" width="50" height="50" src="nav/left-icon.svg" layout="alignLeft:5,alignBottom:5"></actor>
@@ -8,12 +8,12 @@
 
 	<page id="options" type="overlay">
 		<actor id="background" type="prop" width="200" height="120" src="options/menu-background.png" layout="alignTop:55,alignRight:30"></actor>
-		<actor id="bHome" type="control" action="pageSkipTo:title,removePage:options" width="50" height="50" src="options/house-icon.svg" layout="alignTop:85,alignRight:140"></actor>
+		<actor id="bHome" type="control" action="pageSkipTo:home,removePage:options" width="50" height="50" src="options/house-icon.svg" layout="alignTop:85,alignRight:140"></actor>
 		<actor id="bBear" type="control" action="pageSkipTo:bear,removePage:options" width="50" height="50" src="options/bear-icon.svg" layout="alignTop:85,alignRight:90"></actor>
 		<actor id="bBoy" type="control" action="pageSkipTo:swfPage,removePage:options" width="50" height="50" src="options/swfpage-icon.svg" layout="alignTop:85,alignRight:40"></actor>
 		<actor id="close" type="control" action="removePage:options"  width="20" height="20" src="nav/close.png"  layout="alignTop:60,alignRight:35"></actor>
 	</page>
-	<page id="title" type="normal" title="The Home Page">
+	<page id="home" type="normal" title="The Home Page">
 		<actor id="haxeLogo" type="control" action="httpLink:haxe.org/" z="20" x="0" y="100" width="200" height="200" src="title/haxe-opt.svg" layout="fillPercentWidth:0.2,maintainAspectRatio,centerX,centerY"></actor>
 		<actor id="frontPageText" type="prop" rotation="30" width="300" height="200" border="false" wordWrap="true" src="title/frontPageText.txt" textformat="font:JUICE Bold Bold,size:16,color:0x330055,bold:false,italic:false,underline:false,url,target:_blank,align:right,leftMargin:0,rightMargin:0,indent:0,leading:8" layout="rigidFillPercentWidth:0.4,maintainAspectRatio,alignBottom:5,alignLeft:60"></actor>
 		<actor id="frontPageText2" type="prop" width="300" height="400" border="false" wordWrap="true" src="title/frontPageText.html" textformat="font:Katamotz Ikasi,size:16,color:0x005533,bold:false,italic:false,underline:false,url,target:_blank,align:center,leftMargin:0,rightMargin:0,indent:0,leading:18" layout="rigidFillPercentWidth:0.4,maintainAspectRatio,centerY,alignRight:10"></actor>
