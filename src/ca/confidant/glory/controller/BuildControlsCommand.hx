@@ -59,11 +59,27 @@ package ca.confidant.glory.controller;
 			#if !appMode
 			alp=cast(facade.retrieveProxy("gloryControls") , AssetLibraryProxy);
 			#end
+
 			var controlsList:Array<Access>=pcp.getAppControls();
-			for (thisControl in controlsList){
-				// makeControl(thisControl);
-				var a = ActorComponentFactory.instance.create("gloryControls",thisControl);
-				crp.registerControl(a);
+			if(controlsList.length>0){
+				// var controlComponents:Array<ActorComponent> = [];
+
+				for (thisControl in controlsList){
+					// makeControl(thisControl);
+					var a = ActorComponentFactory.instance.create("gloryControls",thisControl);
+					crp.registerControl(a.name,a);
+				}
+				//all the actors and their config proxies are created so it's safe to run the layout helper now since the layout commands may reference other actors
+				for (thisControl in controlsList){
+					
+					// var accp = cast( facade.retrieveProxy(b.name),ActorComponentConfigProxy);
+					var commands = thisControl.att.layout.split(",");
+					var appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
+
+					LayoutHelper.instance.layout(crp.getControl(thisControl.att.id),commands,appMediator.getApp());
+					
+				}
+				
 			}
 			commandComplete();
         }

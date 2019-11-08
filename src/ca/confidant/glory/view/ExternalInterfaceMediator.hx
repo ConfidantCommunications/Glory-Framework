@@ -82,11 +82,13 @@ package ca.confidant.glory.view;
                 */
         }
 		public function setupPushState(bp:String):Void{
+            #if js
             trace("setupPushState:"+bp);
             PushState.init( bp );//basePath, true, false//basepath,trigger,ignoreAnchors
             PushState.addEventListener(
                 psListen
             );
+            #end
             // window.onpopstate = PushState.handleOnPopState; //manually add in same manner as PushState
             // });
 
@@ -111,10 +113,12 @@ package ca.confidant.glory.view;
         /*
             This gets called by the UpdatePushStateCommand if the page change was initiated from within Glory and not the browser.
         */
+        #if js
         public function updatePushState(path:String):Void {
             PushState.push(path);
         }
         public function updateDocumentTitle(t:String):Void {
             document.title = t;
         }
+        #end
     }

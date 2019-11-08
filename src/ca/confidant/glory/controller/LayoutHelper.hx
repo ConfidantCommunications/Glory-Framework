@@ -26,14 +26,20 @@ import org.puremvc.haxe.patterns.facade.Facade;
 import org.puremvc.haxe.interfaces.IFacade;
 import ca.confidant.glory.model.StateProxy;
 import ca.confidant.glory.model.PagesConfigProxy;
-import ca.confidant.glory.view.components.ActorComponent;
+import ca.confidant.glory.view.components.*;
 import org.puremvc.haxe.interfaces.INotification;
+import openfl.display.*;
 // import com.player03.layout.Resizable;
 using com.player03.layout.LayoutCreator.ForOpenFL;
+using com.player03.layout.Direction;
  
 	/*
 	 * @author Allan Dowdeswell
 	 * This singleton handles layout behaviours for page actors.
+	 * Actors must have a layout attribute with a properly delimited list of commands. e.g.:
+	 * layout="fillPercentHeight:0.2,maintainAspectRatio,leftOfCenter:page2text/0,alignTop:100"
+	 * Functions are delimited by comma. Parameters for the function follow after the colon. 
+	 * Parameters are delimited by the slash.
 	 */
     class LayoutHelper
     {
@@ -42,103 +48,147 @@ using com.player03.layout.LayoutCreator.ForOpenFL;
 		private function new(){
 			// facade = Facade.getInstance();
 		};
-
-		/*
-		* Now spoon-feed the LayoutCreator some view objects casted as Resizable. 
-		* Necessary due to breaking changes in Haxe 4.
-		*
-		static public inline function feed(r:Resizable, ?f) {
-			if (f != null) f(r);
-			return r;
-		}*/
-		/*
-
-				switch(com[0]){
-					case "simpleX": feed(a, t -> {t.simpleX(i);});
-					case "simpleY": feed(a, t -> {t.simpleY(i);});
-					case "centerX": feed(a, t -> {t.centerX();});
-					case "centerY": feed(a, t -> {t.centerY();});
-					case "center": feed(a, t -> {t.center();});
-					case "alignLeft": feed(a, t -> {t.alignLeft(i);});
-					case "alignRight": feed(a, t -> {t.alignRight(i);});
-					case "alignTop": feed(a, t -> {t.alignTop(i);});
-					case "alignBottom": feed(a, t -> {t.alignBottom(i);});
-					case "alignTopLeft": feed(a, t -> {t.alignTopLeft(i);});
-					case "alignTopRight": feed(a, t -> {t.alignTopRight(i);});
-					case "alignBottomLeft": feed(a, t -> {t.alignBottomLeft(i);});
-					case "alignBottomRight": feed(a, t -> {t.alignBottomRight(i);});
-					case "alignLeftCenter": feed(a, t -> {t.alignLeftCenter(i);});
-					case "alignRightCenter": feed(a, t -> {t.alignRightCenter(i);});
-					case "alignTopCenter": feed(a, t -> {t.alignTopCenter(i);});
-					case "alignBottomCenter": feed(a, t -> {t.alignBottomCenter(i);});
-					case "horizontalPercent": feed(a, t -> {t.horizontalPercent(i);});
-					case "verticalPercent": feed(a, t -> {t.verticalPercent(i);});
-					case "simpleScale": feed(a, t -> {t.simpleScale();});
-					case "simpleWidth": feed(a, t -> {t.simpleWidth(i);});
-					case "simpleHeight": feed(a, t -> {t.simpleHeight(i);});
-					case "rigidSimpleScale": feed(a, t -> {t.rigidSimpleScale();});
-					case "rigidSimpleWidth": feed(a, t -> {t.rigidSimpleWidth(i);});
-					case "rigidSimpleHeight": feed(a, t -> {t.rigidSimpleHeight(i);});
-					case "fillWidth": feed(a, t -> {t.fillWidth(i);});
-					case "fillHeight": feed(a, t -> {t.fillHeight(i);});
-					case "fillPercentWidth": feed(a, t -> {t.fillPercentWidth(i);});
-					case "fillPercentHeight": feed(a, t -> {t.fillPercentHeight(i);});
-					case "rigidFillPercentWidth": feed(a, t -> {t.rigidFillPercentWidth(i);});
-					case "rigidFillPercentHeight": feed(a, t -> {t.rigidFillPercentHeight(i);});
-					case "maintainAspectRatio": feed(a, t -> {t.maintainAspectRatio();});
-		*/
-		public function layout(a:ActorComponent,commands:Array<String>):Void {
-			
+		public function layout(a:ActorComponent,commands:Array<String>,page:DisplayObjectContainer):Void {
 			for(thisCommand in commands){
 				var com = thisCommand.split(":");
+				// trace("LAYOUT:0"+com[0]);
 				//todo: use an abstract here https://haxe.org/manual/types-abstract-implicit-casts.html
-				var i = (com[1]!=null) ? Std.parseFloat(com[1]) : null; //convert parameter on right of colon to real number
-				trace("layout command:"+com+" value:"+i);
-				//
+				//first check for commands not needing a value
 				switch(com[0]){
-					case "simpleX": a.simpleX(i);
-					case "simpleY": a.simpleY(i);
-					case "centerX": a.centerX();
-					case "centerY": a.centerY();
-					case "center": a.center();
-					case "alignLeft": a.alignLeft(i);
-					case "alignRight": a.alignRight(i);
-					case "alignTop": a.alignTop(i);
-					case "alignBottom": a.alignBottom(i);
-					case "alignTopLeft": a.alignTopLeft(i);
-					case "alignTopRight": a.alignTopRight(i);
-					case "alignBottomLeft": a.alignBottomLeft(i);
-					case "alignBottomRight": a.alignBottomRight(i);
-					case "alignLeftCenter": a.alignLeftCenter(i);
-					case "alignRightCenter": a.alignRightCenter(i);
-					case "alignTopCenter": a.alignTopCenter(i);
-					case "alignBottomCenter": a.alignBottomCenter(i);
-					case "horizontalPercent": a.horizontalPercent(i);
-					case "verticalPercent": a.verticalPercent(i);
-					case "simpleScale": a.simpleScale();
-					case "simpleWidth": a.simpleWidth(i);
-					case "simpleHeight": a.simpleHeight(i);
-					case "rigidSimpleScale": a.rigidSimpleScale();
-					case "rigidSimpleWidth": a.rigidSimpleWidth(i);
-					case "rigidSimpleHeight": a.rigidSimpleHeight(i);
-					case "fillWidth": a.fillWidth(i);
-					case "fillHeight": a.fillHeight(i);
-					case "fillPercentWidth": a.fillPercentWidth(i);
-					case "fillPercentHeight": a.fillPercentHeight(i);
-					case "rigidFillPercentWidth": a.rigidFillPercentWidth(i);
-					case "rigidFillPercentHeight": a.rigidFillPercentHeight(i);
-					case "maintainAspectRatio": a.maintainAspectRatio();
-					//commands with sprite reference
-					//below
-					//rightOf
-					//belowCenter
-					//rightOfCenter
-					// case "leftOf": {
-					// 	var s = pcp.getCurrentPage().getChild(com[1]);
-					// 	a.leftOf(s);
-
-					// }
+					case "centerX": a.centerX(); continue;
+					case "centerY": a.centerY(); continue;
+					case "center": a.center(); continue;
+					case "maintainAspectRatio": a.maintainAspectRatio(); continue;
+					case "simpleScale": a.simpleScale(); continue;
+					case "rigidSimpleScale": a.rigidSimpleScale(); continue;
+					
+					case "stickToLeft": a.stickToLeft(); continue;
+					case "stickToRight": a.stickToRight(); continue;
+					case "stickToTop": a.stickToTop(); continue;
+					case "stickToBottom": a.stickToBottom(); continue;
+					case "stickToCenterX": a.stickToCenterX(); continue;
+					case "stickToCenterY": a.stickToCenterY(); continue;
+					case "stickToTopLeft": a.stickToTopLeft(); continue;
+					case "stickToTopRight": a.stickToTopRight(); continue;
+					case "stickToBottomLeft": a.stickToBottomLeft(); continue;
+					case "stickToBottomRight": a.stickToBottomRight(); continue;
+					case "stickToLeftCenter": a.stickToLeftCenter(); continue;
+					case "stickToRightCenter": a.stickToRightCenter(); continue;
+					case "stickToTopCenter": a.stickToTopCenter(); continue;
+					case "stickToBottomCenter": a.stickToBottomCenter(); continue;
+					case "stickToCenter": a.stickToCenter(); continue;
+					case "stickToLeftAndRight": a.stickToLeftAndRight(); continue;
+					case "stickToTopAndBottom": a.stickToTopAndBottom(); continue;
+					case "stickToAllSides": a.stickToAllSides(); continue;
+					
 				}
+				
+				switch (com[1]){
+					case null:
+						trace("this command requires a value:"+com[0]);
+						continue;
+					case "":
+						trace("You did not supply a value after the colon with:"+com[0]);
+						continue;
+				} 
+				//at this point there must be at least a string
+				var i = Std.parseFloat(com[1]);
+				
+				trace("LAYOUT:1:"+com[0]+":"+com[1]+":"+i);
+				if (i != Math.NaN) { //must have got a number
+				//now go through commands requiring a value
+					switch(com[0]){
+						case "simpleX": a.simpleX(i); continue;
+						case "simpleY": a.simpleY(i); continue;
+						case "alignLeft": a.alignLeft(i); continue;
+						case "alignRight": a.alignRight(i); continue;
+						case "alignTop": a.alignTop(i); continue;
+						case "alignBottom": a.alignBottom(i); continue;
+						case "alignTopLeft": a.alignTopLeft(i); continue;
+						case "alignTopRight": a.alignTopRight(i); continue;
+						case "alignBottomLeft": a.alignBottomLeft(i); continue;
+						case "alignBottomRight": a.alignBottomRight(i); continue;
+						case "alignLeftCenter": a.alignLeftCenter(i); continue;
+						case "alignRightCenter": a.alignRightCenter(i); continue;
+						case "alignTopCenter": a.alignTopCenter(i); continue;
+						case "alignBottomCenter": a.alignBottomCenter(i); continue;
+						case "horizontalPercent": a.horizontalPercent(i); continue;
+						case "verticalPercent": a.verticalPercent(i); continue;
+						case "simpleWidth": a.simpleWidth(i); continue;
+						case "simpleHeight": a.simpleHeight(i); continue;
+						case "rigidSimpleWidth": a.rigidSimpleWidth(i); continue;
+						case "rigidSimpleHeight": a.rigidSimpleHeight(i); continue;
+						case "fillWidth": a.fillWidth(i); continue;
+						case "fillHeight": a.fillHeight(i); continue;
+						case "fillPercentWidth": a.fillPercentWidth(i); continue;
+						case "fillPercentHeight": a.fillPercentHeight(i); continue;
+						case "rigidFillPercentWidth": a.rigidFillPercentWidth(i); continue;
+						case "rigidFillPercentHeight": a.rigidFillPercentHeight(i); continue;
+					}
+				} 
+			
+				//Must be a string reference. How many parameters?
+				// trace("LAYOUT:2 here we go");
+				
+				var params = com[1].split("/");
+				//Now is it a boolean?
+				if ((params[1]=="true") || (params[1]=="false")){
+					switch(com[0]){
+						case "preserveChildren": a.preserveChildren((params[1]=="true")); continue;
+						case "preserve": a.preserve((params[1]=="true")); continue;
+					}
+				}
+
+				//Not a boolean so try it as a target reference then:
+				var targetChild:DisplayObject = page.getChildByName(params[0]);//page.myActors.get(params[0]);
+				
+
+				if (targetChild == null){
+					trace("no valid target supplied for:"+a+" using:"+com[0]);
+					continue;
+				}
+				i = Std.parseFloat(params[1]);
+				if (i == Math.NaN) i=0;
+				// if(i != null) {
+				trace("LAYOUT:2:"+params[0]+":"+params[1]);
+				switch(com[0]){
+					case "centerXOn": a.centerXOn(targetChild); continue;
+					case "centerYOn": a.centerYOn(targetChild); continue;
+					case "leftOf":a.leftOf(targetChild,i); continue;
+					case "rightOf":a.rightOf(targetChild,i); continue;
+					case "above":a.above(targetChild,i); continue;
+					case "below":a.below(targetChild,i); continue;
+					case "leftOfCenter":a.leftOfCenter(targetChild,i); continue;
+					case "rightOfCenter":a.rightOfCenter(targetChild,i); continue;
+					case "aboveCenter":a.aboveCenter(targetChild,i); continue;
+					case "belowCenter":a.belowCenter(targetChild,i); continue;
+					case "fillAreaLeftOf":a.fillAreaLeftOf(targetChild,i); continue;
+					case "fillAreaRightOf":a.fillAreaRightOf(targetChild,i); continue;
+					case "fillAreaAbove":a.fillAreaAbove(targetChild,i); continue;
+					case "fillAreaBelow":a.fillAreaBelow(targetChild,i); continue;
+					case "matchWidth":a.matchWidth(targetChild,i); continue;
+					case "matchHeight":a.matchHeight(targetChild,i); continue;
+					// case "simpleTextSize":a.simpleTextSize(targetChild); continue;
+					// case "rigidSimpleScale":a.rigidSimpleScale(targetChild); continue;
+				}
+				// } 
+				//Now check if that parameter was a direction
+				switch (params[1]){
+					case "left":
+						if(com[0]=="alignWith") a.alignWith(targetChild,Direction.LEFT); continue;
+					case "right":
+						if(com[0]=="alignWith") a.alignWith(targetChild,Direction.RIGHT); continue;
+					case "top":
+						if(com[0]=="alignWith") a.alignWith(targetChild,Direction.TOP); continue;
+					case "bottom":
+						if(com[0]=="alignWith") a.alignWith(targetChild,Direction.BOTTOM); continue;
+				}
+
+				
+				
+
+			
+
 			}
 
 		}

@@ -35,7 +35,7 @@ import openfl.events.Event;
 import openfl.Assets;
 import openfl.text.*;
 import ca.confidant.glory.model.AssetLibraryProxy;
-import ca.confidant.glory.controller.LayoutHelper;
+// import ca.confidant.glory.controller.LayoutHelper;
 import org.puremvc.haxe.interfaces.IFacade;
 import org.puremvc.haxe.patterns.facade.Facade;
     /* 
@@ -120,8 +120,8 @@ class ActorComponentFactory {
                 imageData = BitmapData.fromImage (image);
                 // trace("imageData:"+imageData);
                 #end
-                var b = new Bitmap (imageData);
-                trace("image:"+b);
+                var b = new Bitmap (imageData, null, true);
+                // trace("image:"+b);
                 a.addBitmap(b);
                 a.init();
             case "txt"|"html"|"htm":
@@ -234,7 +234,7 @@ class ActorComponentFactory {
                 }
         }
 
-        LayoutHelper.instance.layout(a,accp.layoutCommands);
+        // LayoutHelper.instance.layout(a,accp.layoutCommands);
         
 
 

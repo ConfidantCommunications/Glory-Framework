@@ -40,6 +40,7 @@ package ca.confidant.glory.controller;
 			trace('LoadStartingPageCommand');
             var pcp = cast (facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
 
+            #if js
             var arr = Std.string(Browser.location).split("/");
             // trace("location:"+arr.pop());
             var slug = arr.pop();
@@ -49,6 +50,11 @@ package ca.confidant.glory.controller;
                 if (slug==i) slugFound = true;
             }
             if ((slug=="") || !slugFound) slug = pcp.getHomepageId();
+            #else
+
+            var slug = pcp.getHomepageId();
+            #end
+
             
 
 			sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification(slug));

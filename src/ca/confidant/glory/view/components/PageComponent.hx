@@ -36,12 +36,12 @@ class PageComponent extends Sprite {
 		super ();
 		myActors=new Map();
 		
-		trace("new Page!");
+		// trace("new Page!");
 		this.alpha=0;
 	}
 	
 	public function addActor(key:String,spr:ActorComponent):Void{
-		trace("adding actor:"+key);
+		// trace("adding actor:"+key);
 		this.addChild(spr);
 		myActors.set(key,spr);	
 	}

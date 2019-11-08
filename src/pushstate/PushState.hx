@@ -146,6 +146,7 @@ class PushState {
 				uploads = {};
 			Reflect.setField( uploads, name, files );
 		}
+		trace('push2');
 		// Serialization method adapted from http://stackoverflow.com/a/11661219/180995
 		// Note we can't use FormData because it cannot be inspected / iterated over.
 		for (i in 0...form.elements.length) {
@@ -380,6 +381,7 @@ class PushState {
 	@return `true` if the push was successful (not prevented), or `false` if it was prevented.
 	**/
 	public static function push(url:String, ?state:Dynamic, ?uploads:Dynamic<FileList>):Bool {
+		trace("push");
 		var strippedURL = stripURL(url);
 		if (state==null) state = {};
 		for (p in preventers) {

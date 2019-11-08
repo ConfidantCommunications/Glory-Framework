@@ -29,7 +29,7 @@ package ca.confidant.glory.controller;
 	import openfl.system.ApplicationDomain;
 	import openfl.events.Event;
 	import openfl.net.URLRequest;
-	import haxe.xml.Fast;
+	import haxe.xml.Access;
 	import openfl.Assets;
 	import lime.utils.Assets in LimeAssets;
     import org.puremvc.haxe.patterns.command.SimpleCommand;
@@ -105,15 +105,23 @@ class BuildPageCommand extends SimpleCommand {
 		var pm = new PageMediator(pageId,s);
 		facade.registerMediator(pm);
 
-		var actorsList=pcp.getPageActors(pageId);
+		var actorsList:Array<Access> = pcp.getPageActors(pageId);
 		if (actorsList.length>0){
+			var actorComponents:Array<ActorComponent> = [];
 			for (thisActor in actorsList){
 				trace("makeActor: "+thisActor.att.id);
 				var swflib = pcp.getPage(pageId).get("swflibrary");
 
 				var actor:ActorComponent = ActorComponentFactory.instance.create(pageId,thisActor,swflib);
-
+				actorComponents.push(actor);
 				s.addActor(thisActor.att.id, actor);
+			}
+			//all the actors and their config proxies are created so it's safe to run the layout helper now since the layout commands may reference other actors
+			for (b in actorComponents){
+				var accp = cast( facade.retrieveProxy(b.name),ActorComponentConfigProxy);
+				
+				LayoutHelper.instance.layout(b,accp.layoutCommands,s);
+				
 			}
 		}
 		var crp=cast(facade.retrieveProxy(ControlsRegistryProxy.NAME),ControlsRegistryProxy);

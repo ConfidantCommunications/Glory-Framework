@@ -22,7 +22,7 @@ package ca.confidant.glory.model;
 
 	import openfl.display.DisplayObject;
     import org.puremvc.haxe.patterns.proxy.Proxy;
-
+	import ca.confidant.glory.view.components.ActorComponent;
 
 	/* 
 	 * @author Allan Dowdeswell
@@ -32,7 +32,8 @@ package ca.confidant.glory.model;
 	{
 
 		private var currentPage:Int;
-		private var controls:Array<DisplayObject>;
+		// private var controls:Array<DisplayObject>;
+		private var controlsAccess:Map<String,ActorComponent>;
 
 		public static var NAME:String = "ControlsRegistryProxy";
 		/**
@@ -41,18 +42,23 @@ package ca.confidant.glory.model;
 		public function new( )
 		{
 	       		super ( NAME);
-				//currentPage=0;
-				controls=new Array();
-				//trace("ControlsRegistryProxy!");
+				controlsAccess = new Map<String,ActorComponent>();
 		}
-		public function getControls():Array<DisplayObject>{
-			//trace("crp:getControls");
-			return controls;
+		public function getControls():Array<ActorComponent>{
+			
+			var res = new Array<ActorComponent>();
+			for(a => b in controlsAccess){
+				res.push(b);
+			}
+			return res;
 		}
-		public function registerControl(d:DisplayObject):Void{
-			controls.push(d);
+		public function getControl(id:String):ActorComponent {
+			return controlsAccess.get(id);
 		}
-		public function deregisterControl(d:DisplayObject):Void{
-			controls.remove(d);
+		public function registerControl(key:String,d:ActorComponent):Void{
+			controlsAccess.set(key,d);
+		}
+		public function deregisterControl(key:String):Void{
+			controlsAccess.remove(key);
 		}
 	}

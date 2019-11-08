@@ -30,7 +30,9 @@ package ca.confidant.glory.controller.startup;
 	import openfl.net.URLLoader;
 	import openfl.events.Event;
 	import openfl.net.URLRequest;
+	#if js
 	import ca.confidant.glory.view.ExternalInterfaceMediator;
+	#end
 /**
  * @author Allan Dowdeswell
  * This is the fourth and final part of the StartupCommand chain.
