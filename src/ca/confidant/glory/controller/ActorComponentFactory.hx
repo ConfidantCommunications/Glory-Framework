@@ -152,18 +152,23 @@ class ActorComponentFactory {
                                 tf.font=rule[1];
                                 // tf.font="Katamotz Ikasi";
                                 // trace("assets:"+Assets.list());
-                            case "size":        tf.size = Std.parseInt(rule[1]);
-                            case "color":       tf.color = Std.parseInt(rule[1]);
+                            case "align":       tf.align = rule[1];
+                            case "blockIndent": tf.blockIndent = Std.parseInt(rule[1]);
                             case "bold":        tf.bold = (rule[1]=="true");
+                            case "bullet":      tf.bullet = (rule[1]=="true");
+                            case "color":       tf.color = Std.parseInt(rule[1]);
+                            case "indent":      tf.indent = Std.parseInt(rule[1]);
                             case "italic":      tf.italic = (rule[1]=="true");
+                            case "kerning":     tf.kerning = (rule[1]=="true");
+                            case "leading":     tf.leading = Std.parseInt(rule[1]);
+                            case "leftMargin":  tf.leftMargin = Std.parseInt(rule[1]);
+                            case "letterSpacing":  tf.letterSpacing = Std.parseInt(rule[1]);
+                            case "rightMargin": tf.rightMargin = Std.parseInt(rule[1]);
+                            case "size":        tf.size = Std.parseInt(rule[1]);
+                            case "tabStops":    tf.tabStops = cast(rule[1].split(","));
+                            case "target":      tf.target = rule[1];
                             case "underline":   tf.underline = (rule[1]=="true");
                             case "url":         tf.url = rule[1];
-                            case "target":      tf.target = rule[1];
-                            case "align":       tf.align = rule[1];
-                            case "leftMargin":  tf.leftMargin = Std.parseInt(rule[1]);
-                            case "rightMargin": tf.rightMargin = Std.parseInt(rule[1]);
-                            case "indent":      tf.indent = Std.parseInt(rule[1]);
-                            case "leading":     tf.leading = Std.parseInt(rule[1]);
                         }
                     }
                     myTextBox.defaultTextFormat = tf;

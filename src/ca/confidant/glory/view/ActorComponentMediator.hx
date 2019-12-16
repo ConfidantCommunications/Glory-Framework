@@ -35,6 +35,8 @@ import ca.confidant.glory.ApplicationFacade;
 import ca.confidant.glory.model.PagesConfigProxy;
 import ca.confidant.glory.model.ActorComponentConfigProxy;
 import ca.confidant.glory.controller.ChangePageHelper;
+import haxe.Json;
+import haxe.DynamicAccess;
 // using ca.confidant.glory.model.LoaderProxy.LoadResult;
 /**
  * @author Allan Dowdeswell
@@ -44,6 +46,9 @@ import ca.confidant.glory.controller.ChangePageHelper;
  *	@param viewComponent A reference to an ActorComponent.
  *	@param accp The ActorComponentConfigProxy which is created along with this Mediator. A repository for actor-specific data.
  */
+typedef CustomCommand = {
+    @:optional var args:Array<Dynamic>;
+}
 	class ActorComponentMediator extends Mediator {
 
 		private var config:ActorComponentConfigProxy;
@@ -80,26 +85,41 @@ import ca.confidant.glory.controller.ChangePageHelper;
 					var pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME),PagesConfigProxy);
 					var actionsArray:Array<String>=config.action.split(",");
 					
-					for(thisAction in actionsArray){
-						
-						var actionArray:Array<String>=thisAction.split(":");
-						
-						// if(actionArray[0]==ControlConstants.PAGE_SKIP_TO){
-						// 	trace("okay");
-						// }
-						switch(actionArray[0]){
-							case ControlConstants.REMOVE_PAGE:
-								sendNotification(ApplicationFacade.REMOVE_PAGE, {newPage:"",oldPage:actionArray[1],action:""});
-							case ControlConstants.PAGE_SKIP_TO:
-								sendNotification(ApplicationFacade.CHANGE_PAGE,ChangePageHelper.instance.buildNotification(actionArray[1]));
-							case ControlConstants.PAGE_FORWARD:
-								sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification("",ControlConstants.PAGE_FORWARD));
-							case ControlConstants.PAGE_BACKWARD:
-								sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification("",ControlConstants.PAGE_BACKWARD));
-							case ControlConstants.PLAY_SOUND:
-								sendNotification(ApplicationFacade.PLAY_SOUND, actionArray[1]);
-							case ControlConstants.HTTP_LINK:
-								sendNotification(ApplicationFacade.HTTP_LINK, actionArray[1]);
+					if((config.action.indexOf("{") >= 0) && (config.action.indexOf("}") >= 0)){
+						//must be a custom notification so parse as JSON
+						var actionsAccess:DynamicAccess<CustomCommand> = Json.parse(config.action);
+						for (thisAction in actionsAccess.keys()){
+							// trace("k:"+thisAction);
+							// trace("v:"+actionsAccess.get(thisAction));
+							sendNotification(thisAction,actionsAccess.get(thisAction));
+						}
+
+
+					} else {
+
+						for(thisAction in actionsArray){
+							
+							var actionArray:Array<String>=thisAction.split(":");
+							
+							// if(actionArray[0]==ControlConstants.PAGE_SKIP_TO){
+							// 	trace("okay");
+							// }
+							switch(actionArray[0]){
+								case ControlConstants.REMOVE_PAGE:
+									sendNotification(ApplicationFacade.REMOVE_PAGE, {newPage:"",oldPage:actionArray[1],action:""});
+								case ControlConstants.PAGE_SKIP_TO:
+									sendNotification(ApplicationFacade.CHANGE_PAGE,ChangePageHelper.instance.buildNotification(actionArray[1]));
+								case ControlConstants.PAGE_FORWARD:
+									sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification("",ControlConstants.PAGE_FORWARD));
+								case ControlConstants.PAGE_BACKWARD:
+									sendNotification(ApplicationFacade.CHANGE_PAGE, ChangePageHelper.instance.buildNotification("",ControlConstants.PAGE_BACKWARD));
+								case ControlConstants.PLAY_SOUND:
+									sendNotification(ApplicationFacade.PLAY_SOUND, actionArray[1]);
+								case ControlConstants.HTTP_LINK:
+									sendNotification(ApplicationFacade.HTTP_LINK, actionArray[1]);
+								
+
+							}
 						}
 					}
 			}

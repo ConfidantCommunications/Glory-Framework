@@ -32,6 +32,7 @@ class ControlConstants {
 	public static inline var PLAY_SOUND:String			= "playSound";	
 	public static inline var REMOVE_PAGE:String			= "removePage";	
 	public static inline var HTTP_LINK:String			= "httpLink";
+	public static inline var CUSTOM_NOTIFICATION:String = "customNotification";
 	public function new(){
 
 	}
