@@ -28,8 +28,10 @@ package ca.confidant.glory.controller.startup;
 	// import ca.confidant.glory.controller.ChangePageCommand;
 	import ca.confidant.glory.controller.TimerEnableCommand;
 	import ca.confidant.glory.controller.TimerDisableCommand;
+	#if !silentMode
 	import ca.confidant.glory.controller.InitPageSoundsCommand;
 	import ca.confidant.glory.controller.DestroyPageSoundsCommand;
+	#end
 	
 	/* 
 	 * @author Allan Dowdeswell
@@ -48,8 +50,9 @@ package ca.confidant.glory.controller.startup;
 			facade.registerCommand(ApplicationFacade.STAGE_RESIZE,HandleStageResizeCommand);
 			facade.registerCommand(ApplicationFacade.TIMER_ENABLE,TimerEnableCommand);
 			facade.registerCommand(ApplicationFacade.TIMER_DISABLE,TimerDisableCommand);
+			#if !silentMode
 			facade.registerCommand(ApplicationFacade.INIT_PAGE_SOUNDS,InitPageSoundsCommand);
 			facade.registerCommand(ApplicationFacade.DESTROY_PAGE_SOUNDS,DestroyPageSoundsCommand);
-
+			#end
         }
     }

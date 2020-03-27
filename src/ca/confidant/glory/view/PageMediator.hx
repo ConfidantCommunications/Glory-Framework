@@ -63,7 +63,7 @@ package ca.confidant.glory.view;
 		private function page():PageComponent {
 
 
-			return viewComponent;
+			return cast(viewComponent,PageComponent);
 		}
 
 	}

@@ -111,7 +111,10 @@ package ca.confidant.glory.controller;
 				#else
 					swflib="assets/"+swflib+".bundle";
 					//AssetLibrary.loadFromFile needs a manifest file or bundle, not a swf file
-					AssetLibrary.loadFromFile (swflib,"").onComplete( function (library:AssetLibrary) {
+					//
+					var p = pcp.getBasePath()+swflib;
+					AssetLibrary.loadFromFile (swflib,p).onComplete( function (library:AssetLibrary) {
+					// AssetLibrary.loadFromFile (swflib,"").onComplete( function (library:AssetLibrary) {
 						Assets.registerLibrary (libName, library);
 						trace ("SWF library loaded");
 						facade.registerProxy(new AssetLibraryProxy(library,libName));
@@ -124,7 +127,7 @@ package ca.confidant.glory.controller;
 				var manifest = new AssetManifest();
 				manifest.libraryType = "openfl.utils.AssetLibrary";
 				for(actor in actorsList){
-
+					if(!actor.has.src) continue;
 					switch(getAssetType(actor.att.src)){
 						case AssetType.IMAGE:
 							manifest.addBitmapData ("assets/" + actor.att.src);

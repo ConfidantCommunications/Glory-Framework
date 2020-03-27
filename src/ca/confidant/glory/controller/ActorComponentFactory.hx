@@ -57,8 +57,7 @@ class ActorComponentFactory {
 		#end
 
         var a = new ActorComponent();
-        var theArray = cast(actor.att.src,String).split(".");
-        var ext:String=theArray.pop();
+        
         //embed info from config, used once bitmaps are filled
         var i1 = (actor.has.x)?Std.parseInt(actor.att.x):0;
         var i2 = (actor.has.y)?Std.parseInt(actor.att.y):0;
@@ -66,14 +65,24 @@ class ActorComponentFactory {
         var i4 = (actor.has.height)?Std.parseInt(actor.att.height):0;
         a.setInitValues(
             i1,i2,i3,i4
-        );
-
-        a.type=actor.att.type;
-        a.name=actor.att.id;
-        if(a.type=="control"){
+            );
+            
+            a.type=actor.att.type;
+            a.name=actor.att.id;
+            
+        var ext:String = "";
+        if(actor.has.src){
+            var theArray = cast(actor.att.src,String).split(".");
+            ext = theArray.pop();
+        }
+        if(a.type == "control"){
             a.mouseEnabled=true;
             a.useHandCursor=true;
             a.buttonMode=true;
+        }
+        else if(a.type == "text"){
+            if(actor.has.htmlText) ext = "html";
+            else if (actor.has.text) ext = "txt";
         }
         
         var action:String;
@@ -124,12 +133,23 @@ class ActorComponentFactory {
                 // trace("image:"+b);
                 a.addBitmap(b);
                 a.init();
-            case "txt"|"html"|"htm":
-                #if appMode
-                var t = LimeAssets.getText("assets/"+actor.att.src);
-                #else
-                var t = alp.getLibrary().getText("assets/"+actor.att.src);
-                #end
+            case "txt","html","htm":
+                var t:String = "No text provided.";
+
+                if (actor.has.htmlText){
+                    t = actor.att.htmlText;
+                } else if (actor.has.text){
+                    t = actor.att.text;
+                
+                } else { //must be from file
+                    
+                    #if appMode
+                    t = LimeAssets.getText("assets/"+actor.att.src);
+                    #else
+                    t = alp.getLibrary().getText("assets/"+actor.att.src);
+                    #end
+
+                }
 
 
                 var myTextBox:TextField = new TextField();
@@ -182,6 +202,8 @@ class ActorComponentFactory {
                 myTextBox.embedFonts = true;
                 if(actor.has.border) myTextBox.border = (actor.att.border=="true");
                 if(actor.has.background) myTextBox.background = (actor.att.background=="true");
+                
+                
                 if(ext=="txt"){
                     myTextBox.text = t;
                 } else {

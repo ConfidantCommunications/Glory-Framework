@@ -33,10 +33,14 @@ package ca.confidant.glory.controller;
 		{
 			addSubCommand( PageTransitionOutCommand );
 			addSubCommand( RemovePageCommand );
+			#if !silentMode
 			addSubCommand( DestroyPageSoundsCommand );
+			#end
 			addSubCommand( AsyncLoadAssetsCommand );
 			addSubCommand( BuildPageCommand );
+			#if !silentMode
 			addSubCommand( InitPageSoundsCommand );
+			#end
 			addSubCommand( ChangePageCleanup );
 			#if js
 			addSubCommand( UpdatePushStateCommand );
