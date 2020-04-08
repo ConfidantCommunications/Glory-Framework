@@ -2,16 +2,18 @@
 	"name": "glory",
   	"license": "MIT",
 	"tags": ["ebook", "framework", "puremvc", "mvc", "media", "svg", "xml", "openfl","media","cross","cross-platform","flash","html5","ios"],
-	"description": "Glory Framework is a page-based media framework built using Haxe, OpenFL, and PureMVC. It can be used for interactive e-books, adventure games, websites, or slide presentations on any target supported by OpenFL. It uses an XML configuration file to build the layout of each page, including placement and function of different controls. Each page can have its own custom class if desired. Glory also includes two Photoshop scripts which make it easy to rapidly convert a PSD layout into something that Glory can use. It can also use SVG files saved directly from Illustrator (not all types of object are supported).",
+	"description": "Glory Framework is a page-based media framework built using Haxe, OpenFL, and PureMVC. It can be used for apps, games, websites, or presentations on any target supported by OpenFL. It uses an external configuration file to allow for asset and content changes without needing to recompile. Complete documentation is found on the GitHub wiki.",
 	"contributors": ["ConfidantCommunications"],
 	"classPath":"src/",
-	"releasenote": "More options and better compatibility with textformat and advanced-layout. Added support for custom notifications with controls.",
+	"releasenote": "Better .htaccess rules added to template to improve asset file compatibility.Text actors can now use html or txt attribute; no external file requirement now. Improved handling of base path, to aid installation in subdirectories.",
 	"version": "2.0.4",
 	"url": "https://github.com/ConfidantCommunications/Glory-Framework/",
 	"dependencies": {
 		"openfl"       :"",
 		"actuate"    :"",
 		"svg"    :"",
-		"puremvc-standard":""
+		"puremvc-standard":"",
+		"puremvc-asynccommand-standard":"",
+		"advanced-layout":""
 	}
 } 
