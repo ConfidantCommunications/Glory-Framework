@@ -1,18 +1,15 @@
 Glory Framework License
 
 
-Like NME, the Glory Framework source code is distributed under the MIT license.
+The Glory Framework source code is distributed under the MIT license (below). 
 
-Please note that the PureMVC code, also included in this repository, has a different license (see PureMVC-license.txt).
-
-Although not required, if you use this framework it would do the author's heart good if you send an email to report how you are using it.
-(secrets at the domain which is confidant.ca) Thank you!
+Please note that this framework uses PureMVC, which has a [different license](https://github.com/PureMVC/puremvc-haxe-standard-framework/blob/master/LICENSE).
 
 --------------------------------------------------------------------
 
 The MIT License
 
-Copyright (c) 2012 Glory Framework Contributors
+Copyright (c) 2012-2020 Glory Framework Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
