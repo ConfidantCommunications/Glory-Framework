@@ -25,6 +25,7 @@ import openfl.display.DisplayObject;
 import openfl.display.Bitmap;
 import openfl.display.BitmapDataChannel;
 import openfl.utils.ByteArray;
+import openfl.Lib;
 using com.player03.layout.LayoutCreator;
 /**
  * @author Allan Dowdeswell
@@ -46,17 +47,17 @@ class ActorComponent extends Sprite {
 	}
 	public function setInitValues(x:Int,y:Int,w:Int,h:Int):Void{
 		trace("setInitValues! "+x+":"+y+":"+w+":"+h);
-		this._initX=x;
-		this._initY=y;
-		this._initW=w;
-		this._initH=h;
+		this._initX = x;
+		this._initY = y;
+		this._initW = w;
+		this._initH = h;
 	}
 	public function init():Void{
 		trace("init for "+this.name);
-		this.x=_initX;
-		this.y=_initY;
-		this.width=_initW;
-		this.height=_initH;
+		this.x = _initX;
+		this.y = _initY;
+		this.width = _initW * Lib.current.stage.window.scale;
+		this.height = _initH * Lib.current.stage.window.scale;
 	}
 
 	public function addBitmap(bMap:Bitmap){
