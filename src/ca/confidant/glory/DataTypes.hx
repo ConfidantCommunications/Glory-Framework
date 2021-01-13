@@ -30,5 +30,6 @@ typedef ChangePageData = {
 }
 typedef StageSizeData = {
 	w:Int,
-	h:Int
+	h:Int,
+	s:Float
 }

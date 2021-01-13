@@ -75,7 +75,8 @@ package ca.confidant.glory.view;
 
 		private function onScreenResize(e:Event):Void{
 			
-			sendNotification( ApplicationFacade.STAGE_RESIZE, { w:getStage().stageWidth,h:getStage().stageHeight} );
+			
+			sendNotification( ApplicationFacade.STAGE_RESIZE, { w:getStage().stageWidth,h:getStage().stageHeight,s:getStage().window.scale} );
 
 		}
 		private function onFullScreenChange(e:FullScreenEvent):Void{
@@ -130,6 +131,9 @@ package ca.confidant.glory.view;
 		}
 		public function getFullScreenWidth():Int{
 			return getStage().fullScreenWidth;
+		}
+		public function getStageScale():Float{
+			return getStage().window.scale;
 		}
 		
     }
