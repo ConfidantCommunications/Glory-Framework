@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages basePath="/" homepageId="home" title="Glory Framework Website Demo">
+	<tracker type="google" id="UA-XXXXXXXXX-1" version="3" user="" domain="confidant.ca">
+		<!-- version 3 is universal analytics, version 4 is GA4 (not implemented yet) -->
+	</tracker>
 	<controls>
 		<actor id="bRight" type="control" action="pageForward,removePage:options" width="50" height="50" src="nav/right-icon.svg" layout="alignRight:5,alignBottom:5"></actor>
 		<actor id="bLeft" type="control" action="pageBackward,removePage:options" width="50" height="50" src="nav/left-icon.svg" layout="alignLeft:5,alignBottom:5"></actor>

@@ -7,6 +7,10 @@
 	<!--Enable the appMode tag below to embed all assets. 
 	Otherwise, Glory will load assets only when a page requires them (asynchronous loading). This is useful for building website-style Glory projects. 
 	<define name="appMode" />-->
+	<!--<define name="silentMode" /> omits sound capability in future-->
+
+	<!-- You must enable the flag below to use Google Analytics V3. Requires setup in config.xml. -->
+	<define name="enableGoogleTrackerV3" />
 
 	<window fps="60" fullscreen="false" if="appMode" />
 	<window fps="60" fullscreen="true" resizable="true" borderless="false" vsync="false" unless="appMode" />
@@ -24,6 +28,7 @@
 	<haxelib name="puremvc-standard" />
 	<haxelib name="puremvc-asynccommand-standard" />
 	<haxelib name="advanced-layout" />
+	<haxelib name="haxe-ga" if="enableGoogleTrackerV3" />
 	<haxeflag name="-dce" value="no" />
 	<!--haxelib name="pushstate" if="html5" / now forked locally-->
 	

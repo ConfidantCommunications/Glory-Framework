@@ -1,5 +1,6 @@
-﻿/*
- * Copyright (c) 2018 D. Allan Dowdeswell
+﻿
+/*
+ * Copyright (c) 2021 D. Allan Dowdeswell
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -20,27 +21,43 @@
 */
 package ca.confidant.glory.controller;
 
+
+    import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;
+    import ca.confidant.glory.ApplicationFacade;
 
-	import org.puremvc.haxe.patterns.command.AsyncMacroCommand;	
-
+	import ca.confidant.glory.ApplicationFacade;
+	import ca.confidant.glory.model.TrackerProxy;
+	import ca.confidant.glory.model.PagesConfigProxy;
+	import org.puremvc.haxe.interfaces.INotification;
+	import org.puremvc.haxe.patterns.command.AsyncCommand;	 
+	import js.Browser;
+	import openfl.Lib;
 /**
  * @author Allan Dowdeswell
- * This command executes once the PagesConfigProxy has parsed its data.
+ * 
  */
-    class GotoIntroMacro extends AsyncMacroCommand
+    class SetupTrackersCommand extends AsyncCommand
     {
+		var pcp:PagesConfigProxy;
 
-		override function initializeAsyncMacroCommand () : Void
+        override public function execute( note:INotification ) : Void
         {
-			trace('GotoIntroMacro');
-			#if (enableGoogleTrackerV3 || someOtherTrackerInFuture)
-			addSubCommand( SetupTrackersCommand );
-			#end
-			addSubCommand( AsyncLoadAssetsCommand );
-			addSubCommand( BuildControlsCommand );
-			// addSubCommand( InitPageSoundsCommand );//none
-			addSubCommand( LoadStartingPageCommand );//fires notification which begins changePage for title or starting url
-
+			trace('SetupTrackers');
+			pcp = cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
+			
+			var lang:String = (Browser.navigator.languages != null) ? Browser.navigator.languages[0] : Browser.navigator.language;
+			
+			
+			for (tracker in pcp.getTrackers()){
+				switch (tracker.att.type){
+					case "google":
+						var tp = new TrackerProxy("google");
+						tp.init(tracker.att.id, tracker.att.domain, tracker.att.version, lang);
+						facade.registerProxy(tp);
+						
+					}
+			}
+			commandComplete();
         }
     }

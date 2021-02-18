@@ -255,7 +255,12 @@ package ca.confidant.glory.model;
 			sendNotification(ApplicationFacade.PAGES_CONFIG_READY,{action:"gotoIntro"});
 
 		}
-
+		public function getTrackers():Array<Access>{
+			if (fast.hasNode.tracker){
+				return fast.nodes.tracker;
+			}
+			return new Array<Access>();
+		}
 
 		public function pagesXML()//:XML
 		{

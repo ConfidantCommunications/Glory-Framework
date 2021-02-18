@@ -22,6 +22,7 @@ package ca.confidant.glory.controller;
 	import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;
 	import ca.confidant.glory.model.PagesConfigProxy;
+	import ca.confidant.glory.model.TrackerProxy;
 	import ca.confidant.glory.view.ExternalInterfaceMediator;
 	/*
 	 * @author Allan Dowdeswell
@@ -45,10 +46,17 @@ package ca.confidant.glory.controller;
 						&& (data.newPage!=data.oldPage)
 						&& (data.updatePushState == true)
 					){
-						eim.updatePushState(pcp.getBasePath()+data.newPage);
+						var url = pcp.getBasePath()+data.newPage;
+						var t = pcp.getAppTitle() + " : "+ newPage.get("title");
+						eim.updatePushState(url);
+						eim.updateDocumentTitle(t);
+						
+						#if enableGoogleTrackerV3
+						var tp:TrackerProxy = cast(facade.retrieveProxy("google"));
+						tp.trackPageview(url,t);
+						#end
 					}
 					
-				eim.updateDocumentTitle(pcp.getAppTitle() + " : "+ newPage.get("title"));
 				// sp=cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 				// sp.setState(GloryState.READY);
       }

@@ -5,8 +5,8 @@
 	"description": "Glory Framework is a page-based media framework built using Haxe, OpenFL, and PureMVC. It can be used for apps, games, websites, or presentations on any target supported by OpenFL. It uses an external configuration file to allow for asset and content changes without needing to recompile. Complete documentation is found on the GitHub wiki.",
 	"contributors": ["ConfidantCommunications"],
 	"classPath":"src/",
-	"releasenote": "Better .htaccess rules added to template to improve asset file compatibility.Text actors can now use html or txt attribute; no external file requirement now. Improved handling of base path, to aid installation in subdirectories.",
-	"version": "2.0.4",
+	"releasenote": "Now supporting Google Analytics when enableGoogleTrackerV3 flag is set in project.xml (see website example and its config.xml).",
+	"version": "2.1.0",
 	"url": "https://github.com/ConfidantCommunications/Glory-Framework/",
 	"dependencies": {
 		"openfl"       :"",
