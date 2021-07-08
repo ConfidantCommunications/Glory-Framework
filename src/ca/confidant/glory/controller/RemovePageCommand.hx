@@ -60,8 +60,9 @@ package ca.confidant.glory.controller;
 			
 			//remove page sprites from the app:
 			try{
-				if (data.newPage!=data.oldPage){
+				if (data.newPage!=data.oldPage && facade.hasMediator(data.oldPage)){
 					trace("removing pageMediator:"+data.oldPage);
+					
 					var pageMediator=cast(facade.retrieveMediator(data.oldPage),PageMediator);
 					trace("done");
 					var s:Sprite=cast(pageMediator.getViewComponent(),Sprite);
