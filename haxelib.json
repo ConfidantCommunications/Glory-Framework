@@ -6,7 +6,7 @@
 	"contributors": ["ConfidantCommunications"],
 	"classPath":"src/",
 	"releasenote": "Now supporting Google Analytics when enableGoogleTrackerV3 flag is set in project.xml (see website example and its config.xml).",
-	"version": "2.1.1",
+	"version": "2.1.2",
 	"url": "https://github.com/ConfidantCommunications/Glory-Framework/",
 	"dependencies": {
 		"openfl"       :"",
