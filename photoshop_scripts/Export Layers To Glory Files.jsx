@@ -284,12 +284,12 @@ function settingDialog(exportInfo) {
 	}
 
 	// -- the third line in the dialog
-    dlgMain.grpTopLeft.add("statictext", undefined, strLabelFileNamePrefix);
+    //.grpTopLeft.add("statictext", undefined, strLabelFileNamePrefix);
 
 	// -- the fourth line in the dialog
-    dlgMain.etFileNamePrefix = dlgMain.grpTopLeft.add("edittext", undefined, exportInfo.fileNamePrefix.toString());
-    dlgMain.etFileNamePrefix.alignment = 'fill';
-    dlgMain.etFileNamePrefix.preferredSize.width = StrToIntWithDefault( stretDestination, 160 );
+    //.etFileNamePrefix = dlgMain.grpTopLeft.add("edittext", undefined, exportInfo.fileNamePrefix.toString());
+    //dlgMain.etFileNamePrefix.alignment = 'fill';
+    //dlgMain.etFileNamePrefix.preferredSize.width = StrToIntWithDefault( stretDestination, 160 );
 
 	// -- the fifth line in the dialog
     dlgMain.cbVisible = dlgMain.grpTopLeft.add("checkbox", undefined, strCheckboxVisibleOnly);
@@ -585,7 +585,7 @@ function settingDialog(exportInfo) {
     
     // get setting from dialog
     exportInfo.destination = dlgMain.etDestination.text;
-    exportInfo.fileNamePrefix = dlgMain.etFileNamePrefix.text;
+    exportInfo.fileNamePrefix = "";//dlgMain.etFileNamePrefix.text;
     exportInfo.visibleOnly = dlgMain.cbVisible.value;
     exportInfo.fileType = dlgMain.ddFileType.selection.index;
     exportInfo.icc = dlgMain.cbIcc.value;
@@ -1026,11 +1026,11 @@ function exportChildren(dupObj, orgObj, exportInfo, dupDocRef, fileNamePrefix) {
         } else { // just flatten
             duppedDocumentTmp.flatten();
         }
-        var fileNameBody = fileNamePrefix;
+        var fileNameBody = "";// fileNamePrefix;
         
         var zindex=dupObj.artLayers.length-1-i;
         
-        fileNameBody += "_" + zeroSuppress(zindex, 4); //used to be i,4
+        fileNameBody += zeroSuppress(zindex, 4); //used to be i,4
         fileNameBody += "_" + layerName;
         fileNameBody = fileNameBody.replace(/[:\/\\*\?\"\<\>\|]/g, "_");  // '/\:*?"<>|' -> '_'
         if (fileNameBody.length > 120) {
