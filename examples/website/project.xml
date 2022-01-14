@@ -10,7 +10,7 @@
 	<!--<define name="silentMode" /> omits sound capability in future-->
 
 	<!-- You must enable the flag below to use Google Analytics V3. Requires setup in config.xml. -->
-	<define name="enableGoogleTrackerV3" />
+	<!-- name="enableGoogleTrackerV3" /-->
 
 	<window fps="60" fullscreen="false" if="appMode" />
 	<window fps="60" fullscreen="true" resizable="true" borderless="false" vsync="false" unless="appMode" />
@@ -33,11 +33,12 @@
 	<!--haxelib name="pushstate" if="html5" / now forked locally-->
 	
 	<assets path="assets/fonts" rename="fonts" />
+	<assets path="seo" />
 	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="true" if="appMode" />
 	
 
 	<!--Using type="template" copies the assets to the bin folder without creating an asset manifest in the compiled javascript -->
 	<assets path="assets" type="template" include="*" exclude="*.fla" embed="false" unless="appMode" /> 
-	<template path="assets/index.html" rename="index.php" unless="appMode" />
+	<template path="assets/index.php" rename="index.php" unless="appMode" />
 	<template path="assets/htaccess.txt" rename=".htaccess" unless="appMode" />
 </project>

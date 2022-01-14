@@ -25,8 +25,8 @@
 	</script>
 
 	<style>
-		html,body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-		#content { ::if (WIN_BACKGROUND)::background: #000000; ::end::width: ::if (WIN_RESIZABLE)::100%::elseif (WIN_WIDTH > 0)::::WIN_WIDTH::px::else::100%::end::; height: ::if (WIN_RESIZABLE)::100%::elseif (WIN_WIDTH > 0)::::WIN_HEIGHT::px::else::100%::end::; }
+		html,body { margin: 0; padding: 0; height: 100%; }
+		#content { ::if (WIN_BACKGROUND)::background: #ffffff; ::end::width: ::if (WIN_RESIZABLE)::100%::elseif (WIN_WIDTH > 0)::::WIN_WIDTH::px::else::100%::end::; height: ::if (WIN_RESIZABLE)::100%::elseif (WIN_WIDTH > 0)::::WIN_HEIGHT::px::else::100%::end::; display:none;}
 ::foreach assets::::if (type == "font")::::if (cssFontFace)::::cssFontFace::::end::::end::::end::
 	</style>
 
@@ -36,9 +36,12 @@
 	<span style="font-family: ::id::"> </span>::end::::end::
 
 	<div id="content"></div>
-
+	<?php include_once('seo.php'); ?>
 	<script type="text/javascript">
 		lime.embed ("::APP_FILE::", "content", ::WIN_WIDTH::, ::WIN_HEIGHT::);
+		document.getElementById("content").style.display = "block"; 
+		document.getElementsByTagName("html")[0].style.overflow = "hidden"; 
+		document.getElementsByTagName("body")[0].style.overflow = "hidden"; 
 	</script>
 
 </body>

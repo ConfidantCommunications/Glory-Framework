@@ -1,0 +1,17 @@
+-cp src
+-main SeoHelper
+--php bin/html5/bin/
+-D php-front=seo.php
+-debug
+
+#search/replace code in site folder:
+# -cmd (perl -pi -e 's/JoomlahaxeViewJoomlahaxe::main\(\);/require_once dirname\(__FILE__\)\."\/..\/..\/lib\/JoomlahaxeViewJoomlahaxe.class.php";/g' /Users/allan/Documents/haXe/JoomlaHaxeTest/bin/com_joomlahaxe/site/views/joomlahaxe/view.html.php)
+
+#remove .DS_Store files on Mac computers
+# -cmd (find . -name '.DS_Store' -print0 | xargs -t0 rm)
+
+#Optional: auto-copy the compiled component to the local dev site.
+# -cmd (cp -r /Users/allan/Documents/haXe/JoomlaHaxeTest/bin/com_joomlahaxe/site/* /Applications/MAMPold/htdocs_artworks/components/com_joomlahaxe/)
+
+#Optional: make a zip file which can be used with Joomla's installer
+# -cmd (cd /Users/allan/Documents/haXe/JoomlaHaxeTest/bin/ && zip -r com_joomlahaxe.zip com_joomlahaxe)
