@@ -40,6 +40,12 @@
 	<script type="text/javascript">
 		lime.embed ("::APP_FILE::", "content", ::WIN_WIDTH::, ::WIN_HEIGHT::);
 	</script>
+	::if (SET_FACEBOOKPIXELID)::
+	<?php include_once("include/facebookpixel.html"); ?>
+	::end::
 
+	::if (SET_HOTJARID)::
+	<?php include_once("include/hotjar.html"); ?>
+	::end::
 </body>
 </html>
