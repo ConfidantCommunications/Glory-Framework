@@ -3,19 +3,19 @@
 	<!-- http://www.openfl.org/lime/docs/project-files/xml-format/ -->
 	<meta title="Glory Framework Website Demo" package="ca.confidant.gloryDemo" version="1.0.0" company="Confidant Communications" />
 	<app main="Main" path="bin" file="GloryWebsiteDemo" />
-
+	<set name="backgroundcolor" value="fff6e2" />
 	<window fps="60" fullscreen="false" if="appMode" />
 	<window fps="60" fullscreen="true" resizable="true" borderless="false" vsync="false" unless="appMode" />
-	<window width="" height="" background="0xfff6e2" orientation="auto" />
+	<window width="" height="" background="0x${backgroundcolor}" orientation="auto" />
 	<window hardware="true" allow-shaders="true" require-shaders="true" depth-buffer="false" stencil-buffer="false" />
-
+	<!--
 	<define name="enableGoogleTrackerV3" />
 	<set name="googletrackerid" value="UA-XXXXXXXXX-1"  />
 	<set name="googletrackerversion" value="3"  />
 	<set name="facebookpixelid" value="xxxxxxxxxxxxxxx" />
 	<set name="facebookpixelversion" value="2.0" />
 	<set name="hotjarid" value="XXXXXXX" />
-	<set name="hotjarsv" value="6" />
+	<set name="hotjarsv" value="6" />-->
 	<set name="deploydomain" value="glorywebsite.localhost" />
 
  	<set name="BUILD_DIR" value="bin" />

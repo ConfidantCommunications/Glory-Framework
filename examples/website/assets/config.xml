@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pages basePath="/" homepageId="home" title="Glory Framework Website Demo">
+
+::if (SET_HOTJARID)::
+<pages basePath="/" homepageId="home" title="Glory Framework Website Demo" updateHtmlBackground="onChangePage">
+::else::
+<pages basePath="/" homepageId="home" title="Glory Framework Website Demo" updateHtmlBackground="">
+::end::
 	::if (SET_GOOGLETRACKERID)::
 	<tracker type="google" id="::SET_GOOGLETRACKERID::" version="::SET_GOOGLETRACKERVERSION::" user="" domain="::SET_DEPLOYDOMAIN::">
 		<!-- version 3 is universal analytics, version 4 is GA4 (not implemented yet) -->

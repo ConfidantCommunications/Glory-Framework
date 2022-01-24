@@ -46,7 +46,8 @@ package ca.confidant.glory.view;
          */
         var pcp:PagesConfigProxy;
 		public static inline var NAME:String = "ExternalInterfaceMediator";
-        // public var basePath:String;
+        private var myNotificationInterests:Array<String> = [];
+        
         public function new ( viewComponent:Any ) {
 			super( NAME, viewComponent );
     		pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
@@ -55,16 +56,18 @@ package ca.confidant.glory.view;
 
         override public function listNotificationInterests():Array<String>
         {
-            return [ 
-            		//  ApplicationFacade.CALL_EXTERNAL_FUNCTION,
-					//  ApplicationFacade.CONSOLE_LOG
-                   ];
+            return myNotificationInterests;
         }
-
 
         override public function handleNotification( note:INotification ):Void 
         {
-            // switch ( note.getName() ) {
+            switch ( note.getName() ) {
+                /* case ApplicationFacade.CHANGE_PAGE:
+                    //should we be taking a screen shot?
+                    if(pcp.getUpdateHtmlBackground()=="onChangePage"){
+                        // updateHtmlBackground();
+                        sendNotification(ApplicationFacada.UPDATE_HTML_BACKGROUND);
+                    } */
                 /*
                 case ApplicationFacade.CALL_EXTERNAL_FUNCTION:
 					var theCall = note.getBody();
@@ -78,9 +81,15 @@ package ca.confidant.glory.view;
 					if (ExternalInterface.available) {
 						ExternalInterface.call( "console.log" , msg);
 					}
+                    */
             }
-                */
         }
+        /* public function setupHtmlBackgroundUpdates(type:String,interval:Int) {
+            trace("setupHtmlBackgroundUpdates:"+type);
+            if(type=="onChangePage"){
+                myNotificationInterests.push(ApplicationFacade.CHANGE_PAGE);
+            }
+        } */
 		public function setupPushState(bp:String):Void{
             #if js
             trace("setupPushState:"+bp);

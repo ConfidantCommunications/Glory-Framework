@@ -61,6 +61,7 @@ package ca.confidant.glory;
 		public static inline var DO_TRANSITION:String				= "doTransition";
         public static inline var FULL_SCREEN_CHANGE:String          = "fullScreenChange";
         public static inline var FULL_SCREEN_REQUEST:String         = "fullScreenRequest";
+        public static inline var UPDATE_HTML_BACKGROUND:String      = "updateHtmlBackground";
 		
         private static var instance : ApplicationFacade;
 

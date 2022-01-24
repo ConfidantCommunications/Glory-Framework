@@ -43,6 +43,7 @@ package ca.confidant.glory.model;
 		private var basePath:String;
 		private var homepageId:String;
 		private var appTitle:String;
+		private var updateHtmlBackground:String;
 		/**
 		 * Constructor.
 		 */
@@ -64,6 +65,9 @@ package ca.confidant.glory.model;
 		}
 		public function getBasePath():String {
 			return basePath;
+		}
+		public function getUpdateHtmlBackground():String {
+			return updateHtmlBackground;
 		}
 		public function getHomepageId():String {
 			return homepageId;
@@ -222,6 +226,7 @@ package ca.confidant.glory.model;
 			//for each (var thispage:XML in _pagesXML..page){
 			//trace("parseXML");
 			basePath = (fast.has.basePath) ? fast.att.basePath : "/";
+			updateHtmlBackground = (fast.has.updateHtmlBackground) ? fast.att.updateHtmlBackground : "/";
 			homepageId = (fast.has.homepageId) ? fast.att.homepageId : "title";
 			appTitle = (fast.has.title) ? fast.att.title : "";
 			for(thispage in fast.nodes.page){

@@ -45,10 +45,6 @@ package ca.confidant.glory.controller.startup;
         override public function execute( note:INotification ) : Void
         {
 			trace("startup3");
-			#if js
-			//todo: add other compiler clauses for other targets
-			facade.registerMediator(new ExternalInterfaceMediator(js.Browser.window));
-			#end
 			var loader=new URLLoader();
 							
 			loader.addEventListener (Event.COMPLETE, _onXMLLoaded);
@@ -64,8 +60,18 @@ package ca.confidant.glory.controller.startup;
 
 			#if js
 			trace("eim setup");
-			var eim = cast( facade.retrieveMediator(ExternalInterfaceMediator.NAME),ExternalInterfaceMediator);
+			
+			
+			var eim = new ExternalInterfaceMediator(js.Browser.window);
 			eim.setupPushState(pcp.getBasePath());
+			/* 
+			//if we implement "onInterval" in future this would be a good place to start the timer
+			var updateHtmlBackground = pcp.getUpdateHtmlBackground();
+			var interval = Std.parseInt(updateHtmlBackground);
+			var type = (updateHtmlBackground == "onChangePage") ? "onChangePage" : "onInterval";
+			eim.setupHtmlBackgroundUpdates(type,interval); */
+			
+			facade.registerMediator(eim);
 			#end
 		}
     }

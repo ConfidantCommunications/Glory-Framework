@@ -44,6 +44,7 @@ package ca.confidant.glory.controller;
 			addSubCommand( ChangePageCleanup );
 			#if js
 			addSubCommand( UpdatePushStateCommand );
+			addSubCommand( UpdateHtmlBackgroundCommand );
 			#end
 		}
 
