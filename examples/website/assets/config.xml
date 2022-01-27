@@ -7,7 +7,7 @@
 ::end::
 	::if (SET_GOOGLETRACKERID)::
 	<tracker type="google" id="::SET_GOOGLETRACKERID::" version="::SET_GOOGLETRACKERVERSION::" user="" domain="::SET_DEPLOYDOMAIN::">
-		<!-- version 3 is universal analytics, version 4 is GA4 (not implemented yet) -->
+		<!-- version 3 is universal analytics, version 4 is GA4 -->
 	</tracker>
 	::end::
 

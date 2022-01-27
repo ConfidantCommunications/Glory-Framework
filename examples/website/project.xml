@@ -10,6 +10,7 @@
 	<window hardware="true" allow-shaders="true" require-shaders="true" depth-buffer="false" stencil-buffer="false" />
 	<!--
 	<define name="enableGoogleTrackerV3" />
+	<define name="enableGoogleTrackerV4" />
 	<set name="googletrackerid" value="UA-XXXXXXXXX-1"  />
 	<set name="googletrackerversion" value="3"  />
 	<set name="facebookpixelid" value="xxxxxxxxxxxxxxx" />
@@ -39,6 +40,7 @@
 	<assets path="assets" type="template" include="*" exclude="*.fla" embed="false" unless="appMode" /> 
 	<template path="include/facebookpixel.html"  />
 	<template path="include/hotjar.html"  />
+	<template path="include/analyticsjs.html"  />
 	<template path="assets/index.html" rename="index.php" unless="appMode" />
 	<template path="assets/config.xml" rename="assets/config.xml" />
 	<template path="assets/htaccess.txt" rename=".htaccess" unless="appMode" />

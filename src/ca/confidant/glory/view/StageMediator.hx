@@ -74,7 +74,7 @@ package ca.confidant.glory.view;
         }
 
 		private function onScreenResize(e:Event):Void{
-			
+			trace('resize detected');
 			
 			sendNotification( ApplicationFacade.STAGE_RESIZE, { w:getStage().stageWidth,h:getStage().stageHeight,s:getStage().window.scale} );
 

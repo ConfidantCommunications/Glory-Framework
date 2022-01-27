@@ -54,5 +54,8 @@ package ca.confidant.glory.controller.startup;
 			facade.registerCommand(ApplicationFacade.INIT_PAGE_SOUNDS,InitPageSoundsCommand);
 			facade.registerCommand(ApplicationFacade.DESTROY_PAGE_SOUNDS,DestroyPageSoundsCommand);
 			#end
+			//this will redraw the background if the pcp allows it
+			facade.registerCommand(ApplicationFacade.STAGE_RESIZE,UpdateHtmlBackgroundCommand);
+			facade.registerCommand(ApplicationFacade.UPDATE_HTML_BACKGROUND,UpdateHtmlBackgroundCommand);
         }
     }

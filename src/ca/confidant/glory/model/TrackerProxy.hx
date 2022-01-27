@@ -2,10 +2,15 @@
 
     import org.puremvc.haxe.patterns.proxy.Proxy;
 	import ca.confidant.glory.ApplicationFacade;
+	#if enableGoogleTrackerV3
 	import googleAnalytics.Visitor;
 	import googleAnalytics.Tracker;
 	import googleAnalytics.Session;
 	import googleAnalytics.Page;
+	#end
+	#if enableGoogleTrackerV4
+	import js.Syntax;
+	#end
 	import openfl.Lib;
 	/*
 	 *  @author Allan Dowdeswell
@@ -15,15 +20,16 @@
 	 */
 	class TrackerProxy extends Proxy
 	{
+		
+		public function new( name:String )
+			{
+				super ( name );
+				
+			}
+		#if enableGoogleTrackerV3
 		private var tracker:Tracker;
 		private var visitor:Visitor;
 		private var session:Session;
-
-		public function new( name:String )
-		{
-	       		super ( name );
-
-		}
 		public function init(id:String, domain:String, version:String = "", locale:String = "C"):Void{
 			
 			if (version == "3"){
@@ -36,7 +42,7 @@
 				
 				session = new Session();
 				
-			}
+			} 
 		}
 		
 		public function trackPageview(pageId:String, pageTitle:String){	
@@ -49,4 +55,19 @@
 			// Track page view
 			tracker.trackPageview(page, session, visitor);
 		}
+		#else  
+		//if enableGoogleTrackerV4
+		public function init(id:String, domain:String, version:String = "", locale:String = "C"):Void{
+			//https://developers.google.com/analytics/devguides/collection/analyticsjs/accessing-trackers
+			trace("starting google");
+			Syntax.code("ga('create', {0}, 'auto')", id);
+		}
+		public function trackPageview(pageId:String, pageTitle:String){
+			trace("tracking google");
+			var params = {page:pageId,title:pageTitle};
+			Syntax.code("ga('set', {0})", params);			  
+			Syntax.code("ga('send', 'pageview')");
+		}
+
+		#end
 	}

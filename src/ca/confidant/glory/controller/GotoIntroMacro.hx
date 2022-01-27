@@ -34,7 +34,7 @@ package ca.confidant.glory.controller;
 		override function initializeAsyncMacroCommand () : Void
         {
 			trace('GotoIntroMacro');
-			#if (enableGoogleTrackerV3 || someOtherTrackerInFuture)
+			#if (enableGoogleTrackerV3 || enableGoogleTrackerV4)
 			addSubCommand( SetupTrackersCommand );
 			#end
 			addSubCommand( AsyncLoadAssetsCommand );

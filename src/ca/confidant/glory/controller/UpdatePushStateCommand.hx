@@ -22,7 +22,7 @@ package ca.confidant.glory.controller;
 	import org.puremvc.haxe.patterns.command.SimpleCommand;
 	import org.puremvc.haxe.interfaces.INotification;
 	import ca.confidant.glory.model.PagesConfigProxy;
-	#if enableGoogleTrackerV3
+	#if (enableGoogleTrackerV3 || enableGoogleTrackerV4)
 	import ca.confidant.glory.model.TrackerProxy;
 	#end
 	import ca.confidant.glory.view.ExternalInterfaceMediator;
@@ -53,7 +53,7 @@ package ca.confidant.glory.controller;
 						eim.updatePushState(url);
 						eim.updateDocumentTitle(t);
 						
-						#if enableGoogleTrackerV3
+						#if (enableGoogleTrackerV3 || enableGoogleTrackerV4)
 						var tp:TrackerProxy = cast(facade.retrieveProxy("google"));
 						tp.trackPageview(url,t);
 						#end

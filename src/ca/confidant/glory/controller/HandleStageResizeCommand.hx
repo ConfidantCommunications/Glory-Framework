@@ -44,7 +44,7 @@ package ca.confidant.glory.controller;
 
     override public function execute( note:INotification ) : Void
         {
-			// trace('HandleStageResizeCommand');
+			trace('HandleStageResizeCommand');
             var sizes:StageSizeData = note.getBody();
 
         }

@@ -31,15 +31,50 @@ package ca.confidant.glory.controller;
     import openfl.geom.*;
     import haxe.crypto.Base64;
     import openfl.Lib;
+	import haxe.Timer;
 	/* 
 	 * @author Allan Dowdeswell
-	 * This will cause a css background image to be applied to the containing HTML element
+	 * This will cause a css background image to be applied to the containing HTML element.
+	 * Triggered by ChangePageMacro and STAGE_RESIZE event
 	 * 
 	 */
 	 
     class UpdateHtmlBackgroundCommand extends SimpleCommand
     {
+	private function doCapture():Void {
+		trace("doCapture");
+		var pcp = cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 
+		var app:Sprite = cast ( facade.retrieveMediator("ApplicationMediator"), ApplicationMediator ).getApp();
+		var p = {w:Lib.current.stage.stageWidth,h:Lib.current.stage.stageHeight};
+		
+
+		//init the bitmapData object:
+		var bitmapData = new BitmapData(p.w, p.h, true, 0);
+		//this only draws the controls:
+		bitmapData.draw(app);
+		var pm = cast(facade.retrieveMediator(pcp.getCurrentPage().get("id")),PageMediator);
+		var s = cast(pm.page(),Sprite);
+
+		bitmapData.draw(s); 
+		var imageData = bitmapData.encode(new Rectangle(0, 0, p.w, p.h), new PNGEncoderOptions());
+		
+		
+		/*
+		this returns a transparent image:
+		var w:Window = cast( Lib.current.stage.window);
+		var image = w.readPixels(new lime.math.Rectangle(0, 0, p.w, p.h));
+		var imageData = image.encode(lime.graphics.ImageFileFormat.PNG,50);
+		*/
+
+		var b64 = Base64.encode(imageData);
+		var styleString = 'background-repeat:no-repeat;background-image: url("data:image/png;base64,$b64");';
+		// var styleString = 'background-image: url("data:image/jpg;base64,$b64");';
+		
+		document.getElementById("content").setAttribute("style",styleString);
+		//or:
+
+	}
 	override public function execute( note:INotification ) : Void
         {
 		
@@ -50,7 +85,7 @@ package ca.confidant.glory.controller;
 			var interval = Std.parseInt(updateHtmlBackground);
 			var type = (updateHtmlBackground == "onChangePage") ? "onChangePage" : "onInterval";
 			// eim.setupHtmlBackgroundUpdates(type,interval);
-			switch(type){
+			switch(type){ //keep this, so the type acts as an enabler
 				case "onChangePage":
 					//
 				// case "onInterval":
@@ -59,39 +94,9 @@ package ca.confidant.glory.controller;
 					//use TimerTick notification maybe
 					// return;
 				default:
-					return;
+					return; 
 			}
-
-
-			var app:Sprite = cast ( facade.retrieveMediator("ApplicationMediator"), ApplicationMediator ).getApp();
-			var p = {w:Lib.current.stage.stageWidth,h:Lib.current.stage.stageHeight};
-			
-
-			//init the bitmapData object:
-			var bitmapData = new BitmapData(p.w, p.h, true, 0);
-			//this only draws the controls:
-			bitmapData.draw(app);
-			var pm = cast(facade.retrieveMediator(pcp.getCurrentPage().get("id")),PageMediator);
-			var s = cast(pm.page(),Sprite);
-
-			bitmapData.draw(s); 
-			var imageData = bitmapData.encode(new Rectangle(0, 0, p.w, p.h), new PNGEncoderOptions());
-			
-			
-			/*
-			this returns a transparent image:
-			var w:Window = cast( Lib.current.stage.window);
-			var image = w.readPixels(new lime.math.Rectangle(0, 0, p.w, p.h));
-			var imageData = image.encode(lime.graphics.ImageFileFormat.PNG,50);
-			*/
-
-			var b64 = Base64.encode(imageData);
-			var styleString = 'background-image: url("data:image/png;base64,$b64");';
-			// var styleString = 'background-image: url("data:image/jpg;base64,$b64");';
-			
-			document.getElementById("content").setAttribute("style",styleString);
-			//or:
-
-			
+			// Timer.delay(doCapture,5000);//waits for the pages to draw
+			doCapture();
         }
     }

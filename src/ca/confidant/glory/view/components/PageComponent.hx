@@ -23,6 +23,8 @@ import flash.display.Sprite;
 import ca.confidant.glory.view.components.ActorComponent;
 import motion.Actuate;
 import motion.easing.Quad;
+import org.puremvc.haxe.interfaces.IFacade;
+import org.puremvc.haxe.patterns.facade.Facade;
 /**
  * @author Allan Dowdeswell
  * PageComponents hold the actors. 
@@ -54,6 +56,8 @@ class PageComponent extends Sprite {
 		// graphics.beginFill(0x0000FF);
 		// graphics.drawRect(0,0,50,50);
 		// graphics.endFill();
+		var facade = Facade.getInstance();
+		facade.sendNotification(ApplicationFacade.UPDATE_HTML_BACKGROUND);
 	}
 	/*
 	 * Gets called after page build
