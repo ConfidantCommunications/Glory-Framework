@@ -57,16 +57,12 @@ package ca.confidant.glory.controller;
 		var s = cast(pm.page(),Sprite);
 
 		bitmapData.draw(s); 
-		var imageData = bitmapData.encode(new Rectangle(0, 0, p.w, p.h), new PNGEncoderOptions());
-		
-		
-		/*
-		this returns a transparent image:
-		var w:Window = cast( Lib.current.stage.window);
-		var image = w.readPixels(new lime.math.Rectangle(0, 0, p.w, p.h));
-		var imageData = image.encode(lime.graphics.ImageFileFormat.PNG,50);
-		*/
+		//downsize to remedy hotjar background too large (maybe):
+		var sc = Lib.current.stage.window.scale;
+		bitmapData.image.resize(Math.round(bitmapData.image.width/sc),Math.round(bitmapData.image.height/sc));
+		var imageData = bitmapData.encode(new Rectangle(0, 0, p.w/sc, p.h/sc), new PNGEncoderOptions());
 
+		trace("Resize:"+sc+" X "+bitmapData.image.width);
 		var b64 = Base64.encode(imageData);
 		var styleString = 'background-repeat:no-repeat;background-image: url("data:image/png;base64,$b64");';
 		// var styleString = 'background-image: url("data:image/jpg;base64,$b64");';
