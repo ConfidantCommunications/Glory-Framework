@@ -52,6 +52,11 @@ package ca.confidant.glory.controller;
 						var t = pcp.getAppTitle() + " : "+ newPage.get("title");
 						eim.updatePushState(url);
 						eim.updateDocumentTitle(t);
+
+						//now track the homepage as the root URL
+						if (data.newPage == pcp.getHomepageId()){
+							url = pcp.getBasePath();
+						}
 						
 						#if (enableGoogleTrackerV3 || enableGoogleTrackerV4)
 						var tp:TrackerProxy = cast(facade.retrieveProxy("google"));
