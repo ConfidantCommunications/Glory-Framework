@@ -20,7 +20,7 @@
 	 */
 	class TrackerProxy extends Proxy
 	{
-		
+		private var homePath:String;
 		public function new( name:String )
 			{
 				super ( name );
@@ -60,13 +60,16 @@
 		public function init(id:String, domain:String, version:String = "", locale:String = "C"):Void{
 			//https://developers.google.com/analytics/devguides/collection/analyticsjs/accessing-trackers
 			trace("starting google");
+			this.homePath = "https://"+domain+"/";
 			Syntax.code("ga('create', {0}, 'auto')", id);
 		}
-		public function trackPageview(pageId:String, pageTitle:String){
+		public function trackPageview(trackerPath:String, pageTitle:String){
+			//https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
+			//https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
 			trace("tracking google");
-			var params = {page:pageId,title:pageTitle};
+			var params = {page:trackerPath,title:pageTitle};
 			Syntax.code("ga('set', {0})", params);			  
-			Syntax.code("ga('send', 'pageview')");
+			Syntax.code("ga('send', 'pageview')"); //no need for 3rd parameter (page) because we set it in the line above
 		}
 
 		#end

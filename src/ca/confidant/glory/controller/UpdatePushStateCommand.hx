@@ -48,19 +48,19 @@ package ca.confidant.glory.controller;
 						&& (data.newPage!=data.oldPage)
 						&& (data.updatePushState == true)
 					){
-						var url = pcp.getBasePath()+data.newPage;
+						var trackerPath = pcp.getBasePath()+data.newPage;
 						var t = pcp.getAppTitle() + " : "+ newPage.get("title");
-						eim.updatePushState(url);
+						eim.updatePushState(trackerPath);
 						eim.updateDocumentTitle(t);
 
 						//now track the homepage as the root URL
 						if (data.newPage == pcp.getHomepageId()){
-							url = pcp.getBasePath();
+							trackerPath = pcp.getBasePath();
 						}
 						
 						#if (enableGoogleTrackerV3 || enableGoogleTrackerV4)
 						var tp:TrackerProxy = cast(facade.retrieveProxy("google"));
-						tp.trackPageview(url,t);
+						tp.trackPageview(trackerPath,t);
 						#end
 					}
 					
