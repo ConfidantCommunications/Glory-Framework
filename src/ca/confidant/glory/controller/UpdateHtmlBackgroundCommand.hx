@@ -78,12 +78,10 @@ package ca.confidant.glory.controller;
 			
 			var pcp = cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			var updateHtmlBackground = pcp.getUpdateHtmlBackground();
-			var interval = Std.parseInt(updateHtmlBackground);
-			var type = (updateHtmlBackground == "onChangePage") ? "onChangePage" : "onInterval";
-			// eim.setupHtmlBackgroundUpdates(type,interval);
-			switch(type){ //keep this, so the type acts as an enabler
+			switch(updateHtmlBackground){ //keep this, so the type acts as an enabler
 				case "onChangePage":
 					//
+					doCapture();
 				// case "onInterval":
 					//not implemented yet. maybe for future
 					//var interval = Std.parseInt(updateHtmlBackground);//yields seconds
@@ -93,6 +91,5 @@ package ca.confidant.glory.controller;
 					return; 
 			}
 			// Timer.delay(doCapture,5000);//waits for the pages to draw
-			doCapture();
         }
     }
