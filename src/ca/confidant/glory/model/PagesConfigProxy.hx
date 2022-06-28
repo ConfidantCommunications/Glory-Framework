@@ -35,7 +35,7 @@ package ca.confidant.glory.model;
 	class PagesConfigProxy extends Proxy
 	{
 		public static inline var NAME:String = "pagesConfigProxy";
-		private var _pagesXML:Xml;
+		// private var _pagesXML:Xml;
 		private var fast:haxe.xml.Access;
 		private var allPages:Array<Map<String,Dynamic>>;
 		private var imageItems:Array<Dynamic>;
@@ -267,9 +267,9 @@ package ca.confidant.glory.model;
 			return new Array<Access>();
 		}
 
-		public function pagesXML()//:XML
+		public function getAllPages():Array<Map<String,Dynamic>>
 		{
-			return _pagesXML;
+			return allPages;
 		}
 
 	}
