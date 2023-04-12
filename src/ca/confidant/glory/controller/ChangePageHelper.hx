@@ -50,15 +50,15 @@ import ca.confidant.glory.view.constants.ControlConstants;
 			
 			if(sp.getState() == GloryState.TRANSITIONING) {
 				trace("Transition in progress! Canceling page change.");
-				return {};
+				return {newPage:"", oldPage:"", action:""};
 			};
 			// var data:ChangePageData=note.getBody();
-			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
+			pcp = cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			var inPageId:String;
 			var outPageId:String = pcp.getCurrentPage().get("id");
 			// trace("pcp next page:"+pcp.getNextPage());
 
-			if(data!=""){
+			if(data != ""){
 				inPageId = data;
 			} else {
 				switch(action){

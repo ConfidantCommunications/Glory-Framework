@@ -54,7 +54,8 @@ package ca.confidant.glory.controller;
 			sp=cast(facade.retrieveProxy(StateProxy.NAME) , StateProxy);
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			var data=note.getBody();
-			if(pcp.getPage(data.newPage).get("type")!="overlay") pcp.setCurrentPageById(data.newPage);
+			if (!Reflect.hasField(data,"newPage")) return;
+			if(data.newPage!="" && pcp.getPage(data.newPage).get("type")!="overlay") pcp.setCurrentPageById(data.newPage);
 			sp.setState(GloryState.READY);
         }
 

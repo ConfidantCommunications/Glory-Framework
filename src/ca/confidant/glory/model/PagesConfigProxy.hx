@@ -257,7 +257,7 @@ package ca.confidant.glory.model;
 				allPages.push(h);
 			}
 
-			sendNotification(ApplicationFacade.PAGES_CONFIG_READY,{action:"gotoIntro"});
+			sendNotification(ApplicationFacade.PAGES_CONFIG_READY,{newPage:"", oldPage:"", action:"gotoIntro"});
 
 		}
 		public function getTrackers():Array<Access>{

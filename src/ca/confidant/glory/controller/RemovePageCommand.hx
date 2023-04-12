@@ -45,13 +45,13 @@ package ca.confidant.glory.controller;
 		var appMediator:ApplicationMediator;
         override public function execute( note:INotification ) : Void
         {
-			trace("removing page");
 			var data:ChangePageData = note.getBody();
+			// trace("removing page:"+data.newPage);
 
 			pcp=cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 			appMediator = cast(facade.retrieveMediator(ApplicationMediator.NAME) , ApplicationMediator);
-
-			if((data.newPage != "") && (pcp.getPage(data.newPage).get("type")=="overlay")){
+			//(data.newPage != "")
+			if(/* Reflect.hasField(data,"newPage") &&  */(data.newPage != "") && (pcp.getPage(data.newPage).get("type")=="overlay")){
 				trace("overlay! not removing that…");
 				return;
 			}

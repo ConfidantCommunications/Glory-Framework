@@ -41,11 +41,11 @@ package ca.confidant.glory.controller;
 			#if (flash && debug)
 			trace("//"); //clears display
 			#end
-			trace("PageTransitionOutCommand:"+data);
-			if ((data.newPage != null) && (pcp.getPage(data.newPage).get("type")=="overlay")){
+			trace("PageTransitionOutCommand");
+			if ((data.newPage != "") && (pcp.getPage(data.newPage).get("type") == "overlay")){
 				trace("overlay! not removing old page.");
 				commandComplete();
-			} else if (data.newPage!=data.oldPage) {
+			} else if ((data.newPage != "") && data.newPage != data.oldPage) {
 				doTransition(data.oldPage, "out");
 				trace("transitionTime:"+pcp.getPageTransitionOutTime(data.oldPage));
 				var waitTimerOut=new Timer(pcp.getPageTransitionOutTime(data.oldPage)*1000);

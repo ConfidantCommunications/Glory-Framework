@@ -95,7 +95,7 @@ class BuildPageCommand extends SimpleCommand {
 		
 		s.name = pageId;
 
-		if((data.newPage != null) && (pcp.getPage(pageId).get("type")=="overlay")){
+		if((data.newPage != "") && (pcp.getPage(pageId).get("type") == "overlay")){
 			appMediator.addDisplayObject(s,-1);
 		} else {
 			appMediator.addDisplayObject(s,0);

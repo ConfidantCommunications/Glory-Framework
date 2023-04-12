@@ -86,7 +86,7 @@ package ca.confidant.glory.controller;
 			trace ("data:"+note.getBody());
 			pageId=data.newPage;
 
-			if(pageId==null){
+			if(pageId==null || pageId==""){
 				actorsList=pcp.getAppControls();
 			} else {
 				actorsList=pcp.getPageActors(pageId);
@@ -95,7 +95,7 @@ package ca.confidant.glory.controller;
 
 			// test if it's a html5 swf page; flash will load swf from manifest.
 			var swflib:String = "";
-			if(pageId != null) swflib=pcp.getPage(pageId).get("swflibrary");
+			if(pageId != null && pageId != "") swflib=pcp.getPage(pageId).get("swflibrary");
 			if(swflib!=""){
 				var libName:String = (pageId==null) ? "gloryControls" : pageId;
 

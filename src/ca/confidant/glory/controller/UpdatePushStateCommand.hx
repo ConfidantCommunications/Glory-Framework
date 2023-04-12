@@ -43,9 +43,9 @@ package ca.confidant.glory.controller;
 				var data=note.getBody();
 				var newPage = pcp.getPage(data.newPage);
 				if (
-						(data.newPage != null) 
-						&& (newPage.get("type")!="overlay")
-						&& (data.newPage!=data.oldPage)
+						(data.newPage != "") 
+						&& (newPage.get("type") != "overlay")
+						&& (data.newPage != data.oldPage)
 						&& (data.updatePushState == true)
 					){
 						var trackerPath = pcp.getBasePath()+data.newPage;
