@@ -21,7 +21,7 @@
 package ca.confidant.glory.controller;
 
     //import js.Dom;
-	import flash.display.Sprite;
+	import openfl.display.Sprite;
 
 	import haxe.xml.Fast;
 	import openfl.Assets;

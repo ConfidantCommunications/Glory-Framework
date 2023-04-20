@@ -30,6 +30,7 @@ package ca.confidant.glory.controller.startup;
 	import openfl.net.URLLoader;
 	import openfl.events.Event;
 	import openfl.net.URLRequest;
+	import ca.confidant.glory.Macros;
 	#if js
 	import ca.confidant.glory.view.ExternalInterfaceMediator;
 	#end
@@ -41,15 +42,18 @@ package ca.confidant.glory.controller.startup;
     class Startup3_Assets_Command extends SimpleCommand
     {
 
-
+		
         override public function execute( note:INotification ) : Void
         {
 			trace("startup3");
 			var loader=new URLLoader();
-							
+					
 			loader.addEventListener (Event.COMPLETE, _onXMLLoaded);
-			loader.load (new URLRequest ("assets/config.xml"));
-
+			if (Macros.isDefined("configpath")){
+				loader.load (new URLRequest (Macros.getConfigPath()));
+			} else {
+				loader.load (new URLRequest ("assets/config.xml"));
+			}
         }
 		private function _onXMLLoaded(e:Event):Void
 		{
