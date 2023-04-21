@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	<!-- http://www.openfl.org/lime/docs/project-files/xml-format/ -->
+
+
+	<!-- NOTE: CURRENTLY REQUIRES HAXE 4.1.5 -->
+	<!-- ALSO, OPENFL 8.9.7 IF YOU WANT TO USE SWF ASSETS -->
+
 	<meta title="Glory Framework Website Demo" package="ca.confidant.gloryDemo" version="1.0.0" company="Confidant Communications" />
 	<app main="Main" path="bin" file="GloryWebsiteDemo" />
 	<set name="backgroundcolor" value="fff6e2" />
+	<!-- <define name="configpath" value="assets/config.xml" /> -->
 	<window fps="60" fullscreen="false" if="appMode" />
 	<window fps="60" fullscreen="true" resizable="true" borderless="false" vsync="false" unless="appMode" />
 	<window width="" height="" background="0x${backgroundcolor}" orientation="auto" />
@@ -22,17 +28,19 @@
  	<set name="BUILD_DIR" value="bin" />
 
 	<source path="src" />
-
-	<haxelib name="openfl" />
+	<lime version="7.7.0" />
+	<haxelib name="openfl" version="8.9.7" />
 	<haxelib name="actuate" />
 	<haxelib name="svg" />
 	<haxelib name="glory" />
 	<haxelib name="puremvc-standard" />
 	<haxelib name="puremvc-asynccommand-standard" />
 	<haxelib name="advanced-layout" />
+	<haxelib name="swf" />
 	<haxelib name="haxe-ga" if="enableGoogleTrackerV3" />
 	<haxeflag name="-dce" value="no" />
-	
+	<!-- <haxeflag name="- -macro" value="keep('openfl._internal.formats.swf')" /> -->
+
 	<assets path="assets/fonts" rename="fonts" />
 	<assets path="assets" include="*" exclude="*.swf|*.fla" embed="true" if="appMode" />
 

@@ -1,0 +1,9 @@
+# @install: lix --silent download "haxelib:/glory#2.2.0" into glory/2.2.0/haxelib
+-lib actuate
+-lib advanced-layout
+-lib openfl
+-lib puremvc-asynccommand-standard
+-lib puremvc-standard
+-lib svg
+-cp ${HAXE_LIBCACHE}/glory/2.2.0/haxelib/src/
+-D glory=2.2.0

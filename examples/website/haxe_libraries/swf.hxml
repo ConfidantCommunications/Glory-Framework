@@ -1,0 +1,4 @@
+# @install: lix --silent download "haxelib:/swf#3.2.0" into swf/3.2.0/haxelib
+# @run: haxelib run-dir swf "${HAXE_LIBCACHE}/swf/3.2.0/haxelib"
+-cp ${HAXE_LIBCACHE}/swf/3.2.0/haxelib/src
+-D swf=3.2.0

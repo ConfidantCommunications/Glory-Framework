@@ -1,0 +1,3 @@
+# @install: lix --silent download "haxelib:/puremvc-standard#1.3.0" into puremvc-standard/1.3.0/haxelib
+-cp ${HAXE_LIBCACHE}/puremvc-standard/1.3.0/haxelib/src/
+-D puremvc-standard=1.3.0

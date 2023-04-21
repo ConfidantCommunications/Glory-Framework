@@ -1,0 +1,3 @@
+# @install: lix --silent download "haxelib:/svg#1.1.3" into svg/1.1.3/haxelib
+-cp ${HAXE_LIBCACHE}/svg/1.1.3/haxelib/
+-D svg=1.1.3

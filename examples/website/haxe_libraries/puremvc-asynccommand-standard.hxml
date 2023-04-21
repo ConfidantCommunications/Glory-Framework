@@ -1,0 +1,4 @@
+# @install: lix --silent download "haxelib:/puremvc-asynccommand-standard#1.2.0" into puremvc-asynccommand-standard/1.2.0/haxelib
+-lib puremvc-standard
+-cp ${HAXE_LIBCACHE}/puremvc-asynccommand-standard/1.2.0/haxelib/src-standard/
+-D puremvc-asynccommand-standard=1.2.0

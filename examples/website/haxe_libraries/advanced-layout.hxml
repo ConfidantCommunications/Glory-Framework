@@ -1,0 +1,3 @@
+# @install: lix --silent download "haxelib:/advanced-layout#0.11.0" into advanced-layout/0.11.0/haxelib
+-cp ${HAXE_LIBCACHE}/advanced-layout/0.11.0/haxelib/
+-D advanced-layout=0.11.0
