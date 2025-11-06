@@ -5,8 +5,8 @@
 	"description": "Glory Framework is a page-based media framework built using Haxe, OpenFL, and PureMVC. It can be used for apps, games, websites, or presentations on any target supported by OpenFL. It uses an external configuration file to allow for asset and content changes without needing to recompile. Complete documentation is found on the GitHub wiki.",
 	"contributors": ["ConfidantCommunications"],
 	"classPath":"src/",
-	"releasenote": "Requires Haxe 4.1.5. Added a macro to enable setting an alternate config path (see website example and its project.xml). Also added Lix versioning info.",
-	"version": "2.2.2",
+	"releasenote": "Supporting high resolution for UpdateHtmlBackgroundCommand.",
+	"version": "2.2.3",
 	"url": "https://github.com/ConfidantCommunications/Glory-Framework/",
 	"dependencies": {
 		"openfl"       :"",
