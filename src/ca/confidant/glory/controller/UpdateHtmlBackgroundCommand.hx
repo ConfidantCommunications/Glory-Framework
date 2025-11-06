@@ -29,6 +29,7 @@ package ca.confidant.glory.controller;
     import js.Browser.document;
     import openfl.display.*;
     import openfl.geom.*;
+    import openfl.system.Capabilities;
     import haxe.crypto.Base64;
     import openfl.Lib;
 	import haxe.Timer;
@@ -46,8 +47,12 @@ package ca.confidant.glory.controller;
 		var pcp = cast(facade.retrieveProxy(PagesConfigProxy.NAME) , PagesConfigProxy);
 
 		var app:Sprite = cast ( facade.retrieveMediator("ApplicationMediator"), ApplicationMediator ).getApp();
-		var p = {w:Lib.current.stage.stageWidth,h:Lib.current.stage.stageHeight};
-		
+		var dpiFactor =  Capabilities.screenDPI / 72;
+		var p = {
+			w: Math.round(Lib.current.stage.stageWidth * dpiFactor), 
+			h: Math.round(Lib.current.stage.stageHeight * dpiFactor)
+		};
+		trace("Capture Size: "+p.w+" x "+p.h+" @ "+dpiFactor+" DPI factor");
 
 		//init the bitmapData object:
 		var bitmapData = new BitmapData(p.w, p.h, true, 0);
@@ -57,12 +62,13 @@ package ca.confidant.glory.controller;
 		var s = cast(pm.page(),Sprite);
 
 		bitmapData.draw(s); 
+		var sc = 1;
 		//downsize to remedy hotjar background too large (maybe):
-		var sc = Lib.current.stage.window.scale;
-		bitmapData.image.resize(Math.round(bitmapData.image.width/sc),Math.round(bitmapData.image.height/sc));
+		// var sc = Lib.current.stage.window.scale;
+		// bitmapData.image.resize(Math.round(bitmapData.image.width/sc),Math.round(bitmapData.image.height/sc));
 		var imageData = bitmapData.encode(new Rectangle(0, 0, p.w/sc, p.h/sc), new PNGEncoderOptions());
 
-		trace("Resize:"+sc+" X "+bitmapData.image.width);
+		// trace("Resize:"+sc+" X "+bitmapData.image.width);
 		var b64 = Base64.encode(imageData);
 		var styleString = 'background-repeat:no-repeat;background-image: url("data:image/png;base64,$b64");';
 		// var styleString = 'background-image: url("data:image/jpg;base64,$b64");';
@@ -80,8 +86,8 @@ package ca.confidant.glory.controller;
 			var updateHtmlBackground = pcp.getUpdateHtmlBackground();
 			switch(updateHtmlBackground){ //keep this, so the type acts as an enabler
 				case "onChangePage":
-					//
-					doCapture();
+					// doCapture();
+					Timer.delay(doCapture,500);//waits for the pages to draw
 				// case "onInterval":
 					//not implemented yet. maybe for future
 					//var interval = Std.parseInt(updateHtmlBackground);//yields seconds
@@ -90,6 +96,5 @@ package ca.confidant.glory.controller;
 				default:
 					return; 
 			}
-			// Timer.delay(doCapture,5000);//waits for the pages to draw
         }
     }
